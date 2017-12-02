@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
     <title>
         
-        realzzz
+        How to use Hexo · realzzz
         
     </title>
     <link rel="icon" href= /assests/favicon.ico>
@@ -50,13 +50,22 @@
     
 </head>
     
-        <body class="home-body">
+        <body class="post-body">
     
     
-<header class="header index-header">
+<header class="header">
 
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >realzzz</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">How to use Hexo</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>realzzz</a>
 </header>
@@ -66,17 +75,17 @@
     <!-- 主页  -->
     
     
-    <!-- 文章页  -->
+    <!-- 404页  -->
             
-    <div class="site-intro-img" style="background-image: url(/intro/bk.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/post-bg.jpg)"></div>
     <div class="site-intro-placeholder"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            realzzz
-            <!-- 文章页  -->
+            How to use Hexo
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
@@ -84,12 +93,25 @@
             <!-- 主页副标题  -->
             
             
-                Don't settle, it's better to burn out than to fade away.
-            
-            <!-- 文章页  -->
+            <!-- 404 -->
             
         </p>
         <!-- 文章页meta -->
+        
+            <!-- 文章页标签  -->
+            
+                <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = Hexo>Hexo</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = 教程>教程</a>
+    
+</div>
+            
+            <div class="post-intro-meta">
+                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                <span class="post-intro-time">2017/12/02</span>
+            </div>
         
     </div>
 </div>
@@ -157,122 +179,53 @@
             }
         </script>
         <div class="container container-unloaded">
-            <main class="main index-page">
+            <main class="main post-page">
+    <article class="article-entry">
+        <p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。官方文档传送门<a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>。</p>
+<p>PS:在安装Hexo之前首先安装<code>Git</code>和<code>Node</code></p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<p>ß</p>
+<h3 id="初始化Hexo"><a href="#初始化Hexo" class="headerlink" title="初始化Hexo"></a>初始化Hexo</h3><p>创建一个目录用来作为你的blog目录，例如 MyBlog；并在该目录中进行Hexo的初始化：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init MyBlog</span><br><span class="line">$ <span class="built_in">cd</span> ~/MyBlog/</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
+<p>新建完成之后得到以下目录：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">·</span><br><span class="line">|-- _config.yml</span><br><span class="line">|-- package.json</span><br><span class="line">|-- scaffolds</span><br><span class="line">|-- <span class="built_in">source</span></span><br><span class="line">|   |-- _drafts</span><br><span class="line">|   |-- _posts</span><br><span class="line">|-- themes</span><br></pre></td></tr></table></figure>
+<p>至此就已经完成了Hexo的安装，接下来就是预览<br>首先安装hexo server</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo npm install hexo-server</span><br></pre></td></tr></table></figure>
+<p>然后生成静态页面并打开hexo本地服务<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate   (或 hexo g)</span><br><span class="line">$ hexo server</span><br></pre></td></tr></table></figure></p>
+<p>按命令行提示，打开 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> 即可看到默认主题的默认页面了。<br>由于默认主题中使用了些Google的资源，第一次访问可能会有一些慢，后面更换主题就会快很多了。</p>
+<h3 id="配置Hexo"><a href="#配置Hexo" class="headerlink" title="配置Hexo"></a>配置Hexo</h3><h4 id="关联GitHub账号"><a href="#关联GitHub账号" class="headerlink" title="关联GitHub账号"></a>关联GitHub账号</h4><p>首先需要去<a href="https://github.com/" target="_blank" rel="noopener">Github</a>注册一个账号，并新建一个名为 [my_account].github.io 的版本库。<br>然后打开前面创建的MyBlog目录下的 <code>_config.yml</code> 文件，在修改最下方的deploy为：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repo: https://github.com/[my_account]/[my_accout].github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure></p>
+<p>PS:冒号后面一定要加空格</p>
+<p>接下来安装hexo的git部署，在命令行中执行：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></p>
+<p>最后，将生成静态页面并部署到github的仓库中，执行：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d -g</span><br><span class="line">或者分开执行</span><br><span class="line">$ hexo generate</span><br><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure></p>
+<p>当提示 <code>INFO Deploy done: git</code> 即上传成功。现在打开 <code>http://[my_account].github.io</code>就可以访问了。</p>
+
+    </article>
+    <!-- 前后页  -->
+    <ul class="post-pager">
+        
+            <li class="next">
+                <a href= "/2017/12/02/first-page/" title= first-page >
+                    <span>Next Post</span>
+                    <span>first-page</span>
+                </a>
+            </li>
+        
+        
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
     
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2017/12/02/first-page/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>first-page</span>
-                    </h2>
-                <div class="abstract-content">
-                    
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/12/02</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2017/12/02/How-to-use-Hexo/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>How to use Hexo</span>
-                    </h2>
-                <div class="abstract-content">
-                    Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。官方文档传送门Hexo。
-PS:在安装Hexo之前首先安装Git和Node
-Quick Start安装Hexo1$ npm install -g hexo-cli
-ß
-初始化Hexo创建一个目录用来作为你的blog目录，例如 MyBlog；并在该目录中进行Hexo的初始化：
-123$ hexo init MyBlog$ cd ~/MyBlog/$ npm install
-新建完成之后得到以下目录：
-12345678·|-- _config.ym...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = Hexo>Hexo</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = 教程>教程</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/12/02</span>
-                </div>
-            </div>
-        </article>
-    
-    <!-- paginator  -->
+    <!--PC版-->
+
+    <!--PC版-->
+
+
     
 </main>
             <!-- profile -->
-            
-            <div class="profile">
-    <img class="profile-avatar" src= /avatar/cat.jpg >
-    <div class="profile-name">realzzz</div>
-    
-    <div class="profile-signature">
-        Don&#39;t settle.
-    </div>
-    
-    
-    <div class="profile-social">
-        
-    
-        
-            
-                <a href="mailto:real_z@yeah.net" class="iconfont-archer email" title=email ></a>
-            
-        
-    
-        
-            
-                <a href="//github.com/Realzzz1874" class="iconfont-archer github" target="_blank" title="github"></a>
-            
-        
-    
-        
-    
-        
-            
-                <a href="https://www.instagram.com/realzzz1874/" class="iconfont-archer instagram" target="_blank" title="instagram"></a>
-            
-        
-    
-        
-            
-                <a href="/atom.xml" class="iconfont-archer rss" target="_blank" title="rss"></a>
-            
-        
-    
-
-    </div>
-    
-    
-    
-        <div class="about-me">
-            <div>
-                <a href = "/about" >ABOUT ME</a>
-            </div>
-        </div>
-    
-</div>
             
         </div>
         <footer class="footer footer-unloaded">
@@ -319,6 +272,13 @@ Quick Start安装Hexo1$ npm install -g hexo-cli
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper">
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装Hexo"><span class="toc-number">1.1.</span> <span class="toc-text">安装Hexo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#初始化Hexo"><span class="toc-number">1.2.</span> <span class="toc-text">初始化Hexo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置Hexo"><span class="toc-number">1.3.</span> <span class="toc-text">配置Hexo</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#关联GitHub账号"><span class="toc-number">1.3.1.</span> <span class="toc-text">关联GitHub账号</span></a></li></ol></li></ol></li></ol>
+    </div>
     
     <div class="back-top">&#xe639;</div>
     <div class="sidebar">
