@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+    <title>
+        
+        Web版基于讯飞(IFLY)的语音识别与合成 · realzzz
+        
+    </title>
+    <link rel="icon" href= /assests/favicon.ico>
+    <!-- TODO: 在font-face加载完毕后改变字体  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webfont/1.6.28/webfontloader.js"></script>
+    <!-- 提前加载place holder  -->
+    <style type="text/css">
+        @font-face {
+            font-family: 'Oswald-Regular';
+            src: url(/font/Oswald-Regular.ttf);
+        }
+    </style>
+    <style type="text/css">
+        .site-intro-placeholder {
+            position: absolute;
+            z-index: -2;
+            top: 0;
+            left: 0px;
+            width: calc(100% + 300px);
+            height: 100%;
+            background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+            background-position: center center;
+            transform: translate3d(-226px, 0, 0);
+            animation: gradient-move 2.5s ease-out 0s 1;
+        }
+        @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+</style>
+    <link rel="stylesheet" href = /css/style.css?v=20171020 />
+    <script src="//cdn.staticfile.org/jquery/3.2.1/jquery.min.js" defer></script>
+    
+    <script src="/scripts/main.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >realzzz</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">Web版基于讯飞(IFLY)的语音识别与合成</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>realzzz</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/post-bg.jpg)"></div>
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            Web版基于讯飞(IFLY)的语音识别与合成
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <!-- 文章页标签  -->
+            
+                <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = 语音合成、语音识别>语音合成、语音识别</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = Web>Web</a>
+    
+</div>
+            
+            <div class="post-intro-meta">
+                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                <span class="post-intro-time">2017/12/03</span>
+            </div>
+        
+    </div>
+</div>
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <script>
+            var browser = {
+                    versions: function () {
+                        var u = window.navigator.userAgent;
+                        return {
+                            userAgent: u,
+                            trident: u.indexOf('Trident') > -1, //IE内核
+                            presto: u.indexOf('Presto') > -1, //opera内核
+                            webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                            gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                            mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                            ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                            android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                            iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+                            iPad: u.indexOf('iPad') > -1, //是否为iPad
+                            webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+                            weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+                            uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+                        };
+                    }()
+                }
+
+            function fontLoaded(){
+                console.log('font loaded');
+                if (document.getElementsByClassName('site-intro-meta')) {
+                    document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+                    document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+                    var postIntroTags = document.getElementsByClassName('post-intro-tags')[0],
+                        postIntroMeat = document.getElementsByClassName('post-intro-meta')[0];
+                        if (postIntroTags) {
+                            postIntroTags.classList.add('post-fade-in');
+                        }
+                        if (postIntroMeat) {
+                            postIntroMeat.classList.add('post-fade-in');
+                        }
+                    }
+                }
+                
+            console.log("userAgent:" + browser.versions.userAgent);
+            // UC不支持跨域，所以直接显示
+            if (browser.versions.uc) {
+                console.log("UCBrowser");
+                fontLoaded();
+            } else {
+                WebFont.load({
+                    custom: {
+                        families: ['Oswald-Regular']
+                    },
+                    loading: function () {  //所有字体开始加载
+                        // console.log('loading');
+                    },
+                    active: function () {  //所有字体已渲染
+                        fontLoaded();
+                    },
+                    inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+                        console.log('inactive: timeout');
+                        fontLoaded();
+                    },
+                    timeout: 7000 // Set the timeout to two seconds
+                });
+            }
+        </script>
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <p>讯飞开放平台，是科大讯飞基于云计算技术基础，将业界领先的智能语音核心技术向广大移动互联网开发者开放的全球首个同时提供语音合成、语音搜索、语音听写等智能语音交互能力的智能语音交互平台。<br><br>本篇文章是基于 HTML 5 标准实现的一组“网页语言”语音开发示例，现支持云端语音听写、语音合成(以及语音评测)功能。采用 WEBSOCKET 通信协议，后端是基于 NODEJS 的开发框架，云和端均使用 JAVASCRIPT 实现。API 开发接口简单，内部封装了语音前后端点检测，音量检测、音频压缩、WAV、MP3 编码等模块，支持音量、识别结果、合成音频的实时回调。</p>
+<h2 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h2><h3 id="TTS-Text-to-Speech"><a href="#TTS-Text-to-Speech" class="headerlink" title="TTS ( Text to Speech )"></a>TTS ( Text to Speech )</h3><p>语音合成（Text To Speech，TTS）技术能够自动将任意文字实时转换为连续的自然语音，是一种能够在任何时间、任何地点，向任何人提供语音信息服务的高效便捷手段，非常符合信息时代海量数据、动态更新和个性化查询的需求。</p>
+<h3 id="IAT-IFly-Auto-Transform"><a href="#IAT-IFly-Auto-Transform" class="headerlink" title="IAT( IFly Auto Transform )"></a>IAT( IFly Auto Transform )</h3><p>语音听写技术是一种使计算机能够识别人通过麦克风或者电话输入的词语或语句的技术，简单的说就是能够让计算机听懂人说话。它的最终目标是使得计算机不受词汇量限制，在各种噪声环境、语音信道下，能够实时、准确地识别不同方言、口音等特点的说话人的语句。</p>
+<h2 id="HTML文件准备"><a href="#HTML文件准备" class="headerlink" title="HTML文件准备"></a>HTML文件准备</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"main"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"iat_text"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"tts_text"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">textarea</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">rows</span>=<span class="string">"15"</span> <span class="attr">cols</span>=<span class="string">"117"</span> <span class="attr">id</span>=<span class="string">"textContent"</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"btn"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">name</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"iat"</span>&gt;</span>iat<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">name</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"tts"</span>&gt;</span>tts<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>其中：<br><br>id=”iat_text”的div是用来显示用户输入的语音转换成的文字，<br><br>id=”tts_text”的div用来输入用户想要转换成语音的文字。<br><br>id=”iat”的button是语音转文字的按钮，<br><br>id=”tts”的button是文字转语音的按钮。</p>
+<h2 id="库文件准备"><a href="#库文件准备" class="headerlink" title="库文件准备"></a>库文件准备</h2><h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">·</span><br><span class="line">|-- index.html</span><br><span class="line">|-- iat</span><br><span class="line">|   |-- audio</span><br><span class="line">|   |-- common</span><br><span class="line">|   |-- fingerprint2.min.js</span><br><span class="line">|   |-- iat.all.js</span><br><span class="line">|   |-- iatMain.js</span><br><span class="line">|-- tts</span><br><span class="line">|   |-- fingerprint.js</span><br><span class="line">|   |-- tts.min.js</span><br><span class="line">|   |-- ttsMain.js</span><br></pre></td></tr></table></figure>
+<p>HTML文件需要引入的js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">'js/iat/fingerprint2.min.js'</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"js/iat/iat.all.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"js/iat/iatMain.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"js/tts/fingerprint.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"js/tts/tts.min.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"js/tts/ttsMain.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<p>其中iatMain.js和ttsMain.js是主要的函数入口文件。<br></p>
+<h3 id="iat"><a href="#iat" class="headerlink" title="iat"></a>iat</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> iflytek = (<span class="function"><span class="keyword">function</span>(<span class="params">document</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> iat_result = <span class="built_in">document</span>.getElementById(<span class="string">'iat_text'</span>);</span><br><span class="line">    <span class="keyword">var</span> iat = <span class="built_in">document</span>.getElementById(<span class="string">'iat'</span>);</span><br><span class="line">    <span class="keyword">var</span> oldText = iat.innerHTML;</span><br><span class="line">    <span class="keyword">var</span> mic_pressed = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">var</span> volumeEvent = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> lastVolume = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">var</span> eventId = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">var</span> listen = <span class="function"><span class="keyword">function</span>(<span class="params">volume</span>) </span>&#123;</span><br><span class="line">            lastVolume = volume;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">var</span> start = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">var</span> stop = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            clearInterval(eventId);</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            <span class="string">"listen"</span>: listen,</span><br><span class="line">            <span class="string">"start"</span>: start,</span><br><span class="line">            <span class="string">"stop"</span>: stop</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;)();</span><br><span class="line">    <span class="keyword">var</span> session = <span class="keyword">new</span> IFlyIatSession(&#123;</span><br><span class="line">        <span class="string">"callback"</span>: &#123;</span><br><span class="line">            <span class="string">"onResult"</span>: <span class="function"><span class="keyword">function</span>(<span class="params">err, result</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (err == <span class="literal">null</span> || err == <span class="literal">undefined</span> || err == <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (result == <span class="string">''</span> || result == <span class="literal">null</span>) &#123;</span><br><span class="line">                        iat_result.innerHTML = <span class="string">"没有获取到识别结果"</span>;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        iat_result.innerHTML = result;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    iat_result.innerHTML = <span class="string">'error code : '</span> + err + <span class="string">", error description : "</span> + result;</span><br><span class="line">                &#125;</span><br><span class="line">                mic_pressed = <span class="literal">false</span>;</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">"onVolume"</span>: <span class="function"><span class="keyword">function</span>(<span class="params">volume</span>) </span>&#123;</span><br><span class="line">                volumeEvent.listen(volume);</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">"onError"</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">                mic_pressed = <span class="literal">false</span>;</span><br><span class="line">                volumeEvent.stop();</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">"onProcess"</span>: <span class="function"><span class="keyword">function</span>(<span class="params">status</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">switch</span> (status) &#123;</span><br><span class="line">                    <span class="keyword">case</span> <span class="string">'onStart'</span>:</span><br><span class="line">                        iat.innerHTML = <span class="string">"服务初始化。。。"</span>;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    <span class="keyword">case</span> <span class="string">'normalVolume'</span>:</span><br><span class="line">                    <span class="keyword">case</span> <span class="string">'started'</span>:</span><br><span class="line">                        iat.innerHTML = <span class="string">"倾听中。。。"</span>;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    <span class="keyword">case</span> <span class="string">'onStop'</span>:</span><br><span class="line">                        iat.innerHTML = <span class="string">"等待结果。。。"</span>;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    <span class="keyword">case</span> <span class="string">'lowVolume'</span>:</span><br><span class="line">                        iat.innerHTML = <span class="string">"倾听中。。。（声音过小）"</span>;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    <span class="keyword">default</span>:</span><br><span class="line">                        iat.innerHTML = oldText;</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">if</span> (!session.isSupport()) &#123;</span><br><span class="line">        iat.innerHTML = <span class="string">"当前浏览器不支持！"</span>;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> play = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!mic_pressed) &#123;</span><br><span class="line">            <span class="keyword">var</span> ssb_param = &#123;</span><br><span class="line">                <span class="string">"grammar_list"</span>: <span class="literal">null</span>,</span><br><span class="line">                <span class="string">"params"</span>: <span class="string">"appid=58d100a2,appidkey=723256fe67fdefcd, lang = sms, acous = anhui, aue=speex-wb;-1, usr = mkchen, ssm = 1, sub = iat, net_type = wifi, rse = utf8, ent =sms16k, rst = plain, auf  = audio/L16;rate=16000, vad_enable = 1, vad_timeout = 5000, vad_speech_tail = 500, compress = igzip"</span></span><br><span class="line">            &#125;;</span><br><span class="line">            iat_result.innerHTML = <span class="string">'    '</span>;</span><br><span class="line">            session.start(ssb_param);</span><br><span class="line">            mic_pressed = <span class="literal">true</span>;</span><br><span class="line">            volumeEvent.start();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            session.stop();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">var</span> cancel = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        session.cancel();</span><br><span class="line">    &#125;;</span><br><span class="line">    iat.addEventListener(<span class="string">"click"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        play();</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">document</span>.addEventListener(<span class="string">"visibilitychange"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">document</span>.hidden === <span class="literal">true</span>) &#123;</span><br><span class="line">            session.kill();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)(<span class="built_in">document</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="tts"><a href="#tts" class="headerlink" title="tts"></a>tts</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> audioPalyUrl = <span class="string">"http://h5.xf-yun.com/audioStream/"</span>;</span><br><span class="line"><span class="keyword">var</span> session = <span class="keyword">new</span> IFlyTtsSession(&#123;</span><br><span class="line">									<span class="string">'url'</span>                : <span class="string">'ws://h5.xf-yun.com/tts.do'</span>,</span><br><span class="line">									<span class="string">'reconnection'</span>       : <span class="literal">true</span>,</span><br><span class="line">									<span class="string">'reconnectionDelay'</span>  : <span class="number">30000</span></span><br><span class="line">								&#125;);</span><br><span class="line"><span class="built_in">window</span>.iaudio = <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">var</span> audio_state = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">tts_play</span>(<span class="params">content, vcn</span>)</span>&#123;</span><br><span class="line">    reset();</span><br><span class="line">	ssb_param = &#123;<span class="string">"appid"</span>: <span class="string">'58d100a2'</span>, <span class="string">"appkey"</span>:<span class="string">"723256fe67fdefcd"</span>, <span class="string">"synid"</span>:<span class="string">"12345"</span>, <span class="string">"params"</span> : <span class="string">"ent=aisound,aue=lame,vcn="</span>+vcn&#125;;</span><br><span class="line">	session.start(ssb_param, content, <span class="function"><span class="keyword">function</span> (<span class="params">err, obj</span>)</span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">var</span> audio_url = audioPalyUrl + obj.audio_url;</span><br><span class="line">		<span class="keyword">if</span>( audio_url != <span class="literal">null</span> &amp;&amp; audio_url != <span class="literal">undefined</span> )</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">window</span>.iaudio.src = audio_url;</span><br><span class="line">			<span class="built_in">window</span>.iaudio.play();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> tts = <span class="built_in">document</span>.getElementById(<span class="string">"tts"</span>);</span><br><span class="line">tts.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	tts_play(<span class="built_in">document</span>.getElementById(<span class="string">"textContent"</span>).value, <span class="string">'xiaoyu'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">stop</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    audio_state = <span class="number">2</span>;</span><br><span class="line">    <span class="built_in">window</span>.iaudio.pause();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">start</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	audio_state = <span class="number">1</span>;</span><br><span class="line">	<span class="built_in">window</span>.iaudio.play();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reset</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	audio_array = [];</span><br><span class="line">	audio_state = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>(<span class="built_in">window</span>.iaudio != <span class="literal">null</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">window</span>.iaudio.pause();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">window</span>.iaudio = <span class="keyword">new</span> Audio();</span><br><span class="line">	<span class="built_in">window</span>.iaudio.src = <span class="string">''</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </article>
+    <!-- 前后页  -->
+    <ul class="post-pager">
+        
+        
+            <li class="previous">
+                <a href= "/2017/12/02/How-to-use-Hexo/" title= How to use Hexo >
+                    <span>Previous Post</span>
+                    <span>How to use Hexo</span>
+                </a>
+            </li>
+        
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!--PC版-->
+
+    <!--PC版-->
+
+
+    
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:real_z@yeah.net" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/Realzzz1874" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+    
+        
+            
+                <a href="https://www.instagram.com/realzzz1874/" class="iconfont-archer instagram" target="_blank" title="instagram"></a>
+            
+        
+    
+        
+            
+                <a href="/atom.xml" class="iconfont-archer rss" target="_blank" title="rss"></a>
+            
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a herf="#">realzzz</a></span>
+    <!-- 不蒜子  -->
+    
+</footer>
+
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper">
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#名词解释"><span class="toc-number">1.</span> <span class="toc-text">名词解释</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#TTS-Text-to-Speech"><span class="toc-number">1.1.</span> <span class="toc-text">TTS ( Text to Speech )</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IAT-IFly-Auto-Transform"><span class="toc-number">1.2.</span> <span class="toc-text">IAT( IFly Auto Transform )</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML文件准备"><span class="toc-number">2.</span> <span class="toc-text">HTML文件准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#库文件准备"><span class="toc-number">3.</span> <span class="toc-text">库文件准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#目录结构"><span class="toc-number">3.1.</span> <span class="toc-text">目录结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iat"><span class="toc-number">3.2.</span> <span class="toc-text">iat</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tts"><span class="toc-number">3.3.</span> <span class="toc-text">tts</span></a></li></ol></li></ol>
+    </div>
+    
+    <div class="back-top">&#xe639;</div>
+    <div class="sidebar">
+    <div class="sidebar-header sidebar-header-show-archive">
+        <div class="sidebar-category">
+            <span class="sidebar-archive-link"><span class="iconfont-archer">&#xe67d;</span>Archive</span>
+            <span class="sidebar-tags-link"><span class="iconfont-archer">&#xe610;</span>Tag</span>
+        </div>
+    </div>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-archive">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-archive"> Total : 2 </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2017 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/03</span><a class="archive-post-title" href= "/2017/12/03/Web版基于讯飞(IFLY)的语音识别与合成/" >Web版基于讯飞(IFLY)的语音识别与合成</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/02</span><a class="archive-post-title" href= "/2017/12/02/How-to-use-Hexo/" >How to use Hexo</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name"><a href= "#">Hexo</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">教程</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">语音合成、语音识别</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">Web</a></span>
+    
+    </div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #888; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: false
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tag-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var jsInfo = {
+        root: '/'
+    }
+</script>
+    <!-- 不蒜子  -->
+    
+    <!-- CNZZ统计  -->
+    
+    </div>
+    </body>
+</html>
+
+
