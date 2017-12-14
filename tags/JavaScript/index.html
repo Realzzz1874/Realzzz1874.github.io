@@ -149,18 +149,15 @@
     
     
         <article class="index-post">
-            <a class="content-show-full" href = "/2017/12/03/用Promise封装ajax/" >
+            <a class="content-show-full" href = "/2017/12/14/使用js实现图片懒加载/" >
                     <h2 class="abstract-title">
                         
-                        <span>用Promise封装ajax</span>
+                        <span>使用js实现图片懒加载</span>
                     </h2>
                 <div class="abstract-content">
-                    回调函数真正的问题在于它剥夺了我们使用 return 和 throw 这些关键字的能力，而 Promise 的出现很好地解决了这个问题。
-何为PromisePromise 对象有以下两个特点。
-
-对象的状态不受外界影响。Promise 对象代表一个异步操作，有三种状态：Pending（进行中）、Resolved（已完成，又称 Fulfilled）和 Rejected（已失败）。只有异步操作的结果，可以决定当前是哪一种状态，任何其他操作都无法改变这个状态。这也是 Promise 这个名字的由来，它的英语意思就是「承诺」，表示其他手段无法改变。
-
-一旦状态改变，就不会再变，任何时候都可以得到...
+                    什么是懒加载页面的图片都是“按需加载”，即用户滚动页面显示出来的时候才加载图片。
+图片使用懒加载的原因在一个网页中，图片的加载是非常消耗流量的。在不使用懒加载的时候，浏览器会从上往下依次加载img标签。当一个页面很长的时候，隐藏在页面底部还没有暴露视野的图片在浏览器开始加载的时候就已经被预先加载了。这样的做法首先会导致页面在加载的时候变得卡顿，其次，如果用户没有继续向下滑动页面的话，等于是白白浪费了加载图片所需要的流量。所以在一个很长并且具有很多图片的网页中使用“懒加载”是非常有必要的。
+懒加载的基思想在写HTML的时候，不要直接写&lt;img src=&quot;xxx&quot;&...
                 </div>
             </a>
             <div class="abstract-post-meta">
@@ -168,15 +165,17 @@
                 
                 <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-href = Promise>Promise</a>
+        <a class="post-tag" href="javascript:void(0);" data-href = Web>Web</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-href = ajax>ajax</a>
+        <a class="post-tag" href="javascript:void(0);" data-href = JavaScript>JavaScript</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = 图片懒加载>图片懒加载</a>
     
 </div>
                 
                 <!-- date  -->
                 <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/12/03</span>
+                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/12/14</span>
                 </div>
             </div>
         </article>
