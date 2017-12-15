@@ -3,6 +3,68 @@
   
     
     <entry>
+      <title><![CDATA[浏览器加载JavaScript和CSS的过程]]></title>
+      <url>/2017/12/15/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8A%A0%E8%BD%BDJavaScript%E5%92%8CCSS%E7%9A%84%E8%BF%87%E7%A8%8B/</url>
+      <content type="html"><![CDATA[<h3 id="浏览器加载"><a href="#浏览器加载" class="headerlink" title="浏览器加载"></a>浏览器加载</h3><p>浏览器加载js和正常的下载文件一样，首先把服务端的js文件下载下来，然后在本地的浏览器执行。</p>
+<h3 id="浏览器加载外联的js"><a href="#浏览器加载外联的js" class="headerlink" title="浏览器加载外联的js"></a>浏览器加载外联的js</h3><ul>
+<li>js会阻塞后面的DOM解析以及其它的资源比如CSS、图片的加载。</li>
+<li>CSS不阻塞DOM的加载和解析，但是CSS会阻塞DOM的渲染。CSS不阻塞其它资源的加载（比如图片），但是会阻塞后面的js文件的执行。</li>
+<li>存在于CSS后面的js，CSS会间接地阻塞js后面的资源加载。因为CSS会阻塞js，js又会阻塞其它资源。</li>
+<li>由于浏览器的prefetch(预加载)技术，浏览器在获得HTML文档之后会提前下载页面上引用的资源。</li>
+<li>简单说就是：js全部阻塞，CSS半阻塞。</li>
+</ul>
+<h3 id="加载过程"><a href="#加载过程" class="headerlink" title="加载过程"></a>加载过程</h3><ul>
+<li>自上而下。当浏览器得到一个HTML文档之后会自上而下加载，并在加载的过程中进行解析渲染。</li>
+<li>加载过程中如果遇到有引用外部的CSS文件，浏览器会发出另一个请求来加载这个CSS文件。</li>
+<li>加载过程中如果遇到js文件，浏览器会挂起HTML文档的渲染进程，等待js文档加载并解析执行完毕以后才会恢复HTML文档的渲染进程。</li>
+</ul>
+<h3 id="解析过程"><a href="#解析过程" class="headerlink" title="解析过程"></a>解析过程</h3><ul>
+<li>浏览器引擎通过请求的URL进行域名的解析，先向服务器发起请求，获取相关文件（HTML、CSS、JavaScript、img等）。</li>
+<li>HTML文档加载完成之后生成DOM Tree。</li>
+<li>CSS文档加载完成之后构建CSS Rule Tree。</li>
+<li>js文档加载完成之后通过DOM API 和CSS API 来操作DOM Tree和 CSS Tree。</li>
+</ul>
+<h3 id="渲染过程"><a href="#渲染过程" class="headerlink" title="渲染过程"></a>渲染过程</h3><ol>
+<li>浏览器引擎通过DOM Tree和CSS Rule Tree生成Rendering Tree。</li>
+<li>Flow：在屏幕上绘制Rendering Tree中的所有节点的几何属性。</li>
+<li>Paint<ul>
+<li>绘制所有节点的可视属性</li>
+<li>合并所有绘制的图层</li>
+</ul>
+</li>
+</ol>
+<h3 id="Repaint-和-Reflow"><a href="#Repaint-和-Reflow" class="headerlink" title="Repaint 和 Reflow"></a>Repaint 和 Reflow</h3><p>当用户在浏览网页进行交互或者通过脚本改变页面的DOM结构的时候，页面加载、解析、渲染可能会重复进行，所以叫做Repaint和Reflow。</p>
+<ul>
+<li>Repaint<br><br>当页面元素改变的时并不会影响节点在页面中的位置，浏览器只是对页面进行重新绘制并不会重新布局。</li>
+<li>Reflow<br><br>当页面元素改变的时影响了节点在页面中的位置，由于HTML采用的是流布局，所以一旦元素的大小发生变化，页面就需要重新布局。</li>
+</ul>
+<h3 id="浏览器渲染过程的优化"><a href="#浏览器渲染过程的优化" class="headerlink" title="浏览器渲染过程的优化"></a>浏览器渲染过程的优化</h3><ul>
+<li>js脚本尽量包含在body末尾。</li>
+<li>CSS包含在head中。</li>
+<li>HTML中的动画元素采用fixed或者position为absolute，避免Reflow。</li>
+<li>减少CSS样式的嵌套层级。</li>
+<li>避免js操作DOM节点，提前将样式定义在class中。</li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> JavaScript </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> JavaScript </tag>
+            
+            <tag> 浏览器 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[使用js实现图片懒加载]]></title>
       <url>/2017/12/14/%E4%BD%BF%E7%94%A8js%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E6%87%92%E5%8A%A0%E8%BD%BD/</url>
       <content type="html"><![CDATA[<h2 id="什么是懒加载"><a href="#什么是懒加载" class="headerlink" title="什么是懒加载"></a>什么是懒加载</h2><p>页面的图片都是“按需加载”，即用户滚动页面显示出来的时候才加载图片。</p>
@@ -119,52 +181,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[用Promise封装ajax]]></title>
-      <url>/2017/12/03/%E7%94%A8Promise%E5%B0%81%E8%A3%85ajax/</url>
-      <content type="html"><![CDATA[<p>回调函数真正的问题在于它剥夺了我们使用 <code>return</code> 和 <code>throw</code> 这些关键字的能力，而 <code>Promise</code> 的出现很好地解决了这个问题。</p>
-<h2 id="何为Promise"><a href="#何为Promise" class="headerlink" title="何为Promise"></a>何为Promise</h2><p>Promise 对象有以下两个特点。</p>
-<ul>
-<li><p>对象的状态不受外界影响。Promise 对象代表一个异步操作，有三种状态：Pending（进行中）、Resolved（已完成，又称 Fulfilled）和 Rejected（已失败）。只有异步操作的结果，可以决定当前是哪一种状态，任何其他操作都无法改变这个状态。这也是 Promise 这个名字的由来，它的英语意思就是「承诺」，表示其他手段无法改变。</p>
-</li>
-<li><p>一旦状态改变，就不会再变，任何时候都可以得到这个结果。Promise 对象的状态改变，只有两种可能：从 Pending 变为 Resolved 和从 Pending 变为 Rejected。只要这两种情况发生，状态就凝固了，不会再变了，会一直保持这个结果。就算改变已经发生了，你再对 Promise 对象添加回调函数，也会立即得到这个结果。这与事件（Event）完全不同，事件的特点是，如果你错过了它，再去监听，是得不到结果的。</p>
-</li>
-</ul>
-<p>有了 Promise 对象，就可以将异步操作以同步操作的流程表达出来，避免了层层嵌套的回调函数。此外，Promise 对象提供统一的接口，使得控制异步操作更加容易。</p>
-<p>Promise 也有一些缺点。</p>
-<ul>
-<li>无法取消 Promise，一旦新建它就会立即执行，无法中途取消。</li>
-<li>如果不设置回调函数，Promise 内部抛出的错误，不会反应到外部。第三，当处于 Pending 状态时，无法得知目前进展到哪一个阶段（刚刚开始还是即将完成）。</li>
-</ul>
-<h2 id="Promise结构"><a href="#Promise结构" class="headerlink" title="Promise结构"></a>Promise结构</h2><p>Promise 构造函数接受一个函数作为参数，该函数的两个参数分别是 <code>resolve</code> 方法和 <code>reject</code> 方法。</p>
-<ul>
-<li><p>如果异步操作成功，则用 resolve 方法将 Promise 对象的状态，从「未完成」变为「成功」（即从 pending 变为 resolved）；</p>
-</li>
-<li><p>如果异步操作失败，则用 reject 方法将 Promise 对象的状态，从「未完成」变为「失败」（即从 pending 变为 rejected）。</p>
-</li>
-</ul>
-<h2 id="以封装ajax实例为例"><a href="#以封装ajax实例为例" class="headerlink" title="以封装ajax实例为例"></a>以封装ajax实例为例</h2><h3 id="传统的ajax写法"><a href="#传统的ajax写法" class="headerlink" title="传统的ajax写法"></a>传统的ajax写法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xmlhttp;</span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">window</span>.XMLHttpRequest)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码</span></span><br><span class="line">		xmlhttp=<span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// IE6, IE5 浏览器执行代码</span></span><br><span class="line">		xmlhttp=<span class="keyword">new</span> ActiveXObject(<span class="string">"Microsoft.XMLHTTP"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	xmlhttp.onreadystatechange=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (xmlhttp.readyState==<span class="number">4</span> &amp;&amp; xmlhttp.status==<span class="number">200</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">document</span>.getElementById(<span class="string">"myDiv"</span>).innerHTML=xmlhttp.responseText;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	xmlhttp.open(<span class="string">"GET"</span>,<span class="string">"/api/a.txt"</span>,<span class="literal">true</span>);</span><br><span class="line">	xmlhttp.send();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Promise写法"><a href="#Promise写法" class="headerlink" title="Promise写法"></a>Promise写法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ajax函数将返回Promise对象:</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ajax</span>(<span class="params">method, url, data</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> request = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">        request.onreadystatechange = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (request.readyState === <span class="number">4</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (request.status === <span class="number">200</span>) &#123;</span><br><span class="line">                    resolve(request.responseText);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    reject(request.status);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        request.open(method, url);</span><br><span class="line">        request.send(data);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="调用方式"><a href="#调用方式" class="headerlink" title="调用方式"></a>调用方式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用</span></span><br><span class="line"><span class="keyword">var</span> p = ajax(<span class="string">'GET'</span>, <span class="string">'/api/***'</span>);</span><br><span class="line">p.then(<span class="function"><span class="keyword">function</span> (<span class="params">text</span>) </span>&#123; <span class="comment">// 如果AJAX成功，获得响应内容</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;).catch(<span class="function"><span class="keyword">function</span> (<span class="params">status</span>) </span>&#123; <span class="comment">// 如果AJAX失败，获得响应代码</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-]]></content>
-      
-        <categories>
-            
-            <category> Promise </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> Promise </tag>
-            
-            <tag> ajax </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[排序算法]]></title>
       <url>/2017/12/03/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/</url>
       <content type="html"><![CDATA[<p>排序有内部排序和外部排序，内部排序是数据记录在内存中进行排序，而外部排序是因排序的数据很大，一次不能容纳全部的排序记录，在排序过程中需要访问外存。<br><br>常见的八大排序就是内部排序。</p>
@@ -211,6 +227,52 @@
         <tags>
             
             <tag> 排序 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[用Promise封装ajax]]></title>
+      <url>/2017/12/03/%E7%94%A8Promise%E5%B0%81%E8%A3%85ajax/</url>
+      <content type="html"><![CDATA[<p>回调函数真正的问题在于它剥夺了我们使用 <code>return</code> 和 <code>throw</code> 这些关键字的能力，而 <code>Promise</code> 的出现很好地解决了这个问题。</p>
+<h2 id="何为Promise"><a href="#何为Promise" class="headerlink" title="何为Promise"></a>何为Promise</h2><p>Promise 对象有以下两个特点。</p>
+<ul>
+<li><p>对象的状态不受外界影响。Promise 对象代表一个异步操作，有三种状态：Pending（进行中）、Resolved（已完成，又称 Fulfilled）和 Rejected（已失败）。只有异步操作的结果，可以决定当前是哪一种状态，任何其他操作都无法改变这个状态。这也是 Promise 这个名字的由来，它的英语意思就是「承诺」，表示其他手段无法改变。</p>
+</li>
+<li><p>一旦状态改变，就不会再变，任何时候都可以得到这个结果。Promise 对象的状态改变，只有两种可能：从 Pending 变为 Resolved 和从 Pending 变为 Rejected。只要这两种情况发生，状态就凝固了，不会再变了，会一直保持这个结果。就算改变已经发生了，你再对 Promise 对象添加回调函数，也会立即得到这个结果。这与事件（Event）完全不同，事件的特点是，如果你错过了它，再去监听，是得不到结果的。</p>
+</li>
+</ul>
+<p>有了 Promise 对象，就可以将异步操作以同步操作的流程表达出来，避免了层层嵌套的回调函数。此外，Promise 对象提供统一的接口，使得控制异步操作更加容易。</p>
+<p>Promise 也有一些缺点。</p>
+<ul>
+<li>无法取消 Promise，一旦新建它就会立即执行，无法中途取消。</li>
+<li>如果不设置回调函数，Promise 内部抛出的错误，不会反应到外部。第三，当处于 Pending 状态时，无法得知目前进展到哪一个阶段（刚刚开始还是即将完成）。</li>
+</ul>
+<h2 id="Promise结构"><a href="#Promise结构" class="headerlink" title="Promise结构"></a>Promise结构</h2><p>Promise 构造函数接受一个函数作为参数，该函数的两个参数分别是 <code>resolve</code> 方法和 <code>reject</code> 方法。</p>
+<ul>
+<li><p>如果异步操作成功，则用 resolve 方法将 Promise 对象的状态，从「未完成」变为「成功」（即从 pending 变为 resolved）；</p>
+</li>
+<li><p>如果异步操作失败，则用 reject 方法将 Promise 对象的状态，从「未完成」变为「失败」（即从 pending 变为 rejected）。</p>
+</li>
+</ul>
+<h2 id="以封装ajax实例为例"><a href="#以封装ajax实例为例" class="headerlink" title="以封装ajax实例为例"></a>以封装ajax实例为例</h2><h3 id="传统的ajax写法"><a href="#传统的ajax写法" class="headerlink" title="传统的ajax写法"></a>传统的ajax写法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xmlhttp;</span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">window</span>.XMLHttpRequest)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码</span></span><br><span class="line">		xmlhttp=<span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// IE6, IE5 浏览器执行代码</span></span><br><span class="line">		xmlhttp=<span class="keyword">new</span> ActiveXObject(<span class="string">"Microsoft.XMLHTTP"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	xmlhttp.onreadystatechange=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (xmlhttp.readyState==<span class="number">4</span> &amp;&amp; xmlhttp.status==<span class="number">200</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">document</span>.getElementById(<span class="string">"myDiv"</span>).innerHTML=xmlhttp.responseText;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	xmlhttp.open(<span class="string">"GET"</span>,<span class="string">"/api/a.txt"</span>,<span class="literal">true</span>);</span><br><span class="line">	xmlhttp.send();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Promise写法"><a href="#Promise写法" class="headerlink" title="Promise写法"></a>Promise写法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ajax函数将返回Promise对象:</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ajax</span>(<span class="params">method, url, data</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> request = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">        request.onreadystatechange = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (request.readyState === <span class="number">4</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (request.status === <span class="number">200</span>) &#123;</span><br><span class="line">                    resolve(request.responseText);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    reject(request.status);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        request.open(method, url);</span><br><span class="line">        request.send(data);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="调用方式"><a href="#调用方式" class="headerlink" title="调用方式"></a>调用方式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用</span></span><br><span class="line"><span class="keyword">var</span> p = ajax(<span class="string">'GET'</span>, <span class="string">'/api/***'</span>);</span><br><span class="line">p.then(<span class="function"><span class="keyword">function</span> (<span class="params">text</span>) </span>&#123; <span class="comment">// 如果AJAX成功，获得响应内容</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;).catch(<span class="function"><span class="keyword">function</span> (<span class="params">status</span>) </span>&#123; <span class="comment">// 如果AJAX失败，获得响应代码</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> Promise </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Promise </tag>
+            
+            <tag> ajax </tag>
             
         </tags>
         

@@ -149,6 +149,45 @@
     
     
         <article class="index-post">
+            <a class="content-show-full" href = "/2017/12/15/浏览器加载JavaScript和CSS的过程/" >
+                    <h2 class="abstract-title">
+                        
+                        <span>浏览器加载JavaScript和CSS的过程</span>
+                    </h2>
+                <div class="abstract-content">
+                    浏览器加载浏览器加载js和正常的下载文件一样，首先把服务端的js文件下载下来，然后在本地的浏览器执行。
+浏览器加载外联的js
+js会阻塞后面的DOM解析以及其它的资源比如CSS、图片的加载。
+CSS不阻塞DOM的加载和解析，但是CSS会阻塞DOM的渲染。CSS不阻塞其它资源的加载（比如图片），但是会阻塞后面的js文件的执行。
+存在于CSS后面的js，CSS会间接地阻塞js后面的资源加载。因为CSS会阻塞js，js又会阻塞其它资源。
+由于浏览器的prefetch(预加载)技术，浏览器在获得HTML文档之后会提前下载页面上引用的资源。
+简单说就是：js全部阻塞，CSS半阻塞。
+
+加载过程
+自...
+                </div>
+            </a>
+            <div class="abstract-post-meta">
+                <!-- tags  -->
+                
+                <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = JavaScript>JavaScript</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = 浏览器>浏览器</a>
+    
+</div>
+                
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/12/15</span>
+                </div>
+            </div>
+        </article>
+    
+    
+    
+        <article class="index-post">
             <a class="content-show-full" href = "/2017/12/14/使用js实现图片懒加载/" >
                     <h2 class="abstract-title">
                         
@@ -302,7 +341,24 @@
     
     
     
-    <div class="total-archive"> Total : 6 </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-archive"> Total : 7 </div>
     
     <div class="post-archive">
     
@@ -311,6 +367,11 @@
     
     <div class="archive-year"> 2017 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/15</span><a class="archive-post-title" href= "/2017/12/15/浏览器加载JavaScript和CSS的过程/" >浏览器加载JavaScript和CSS的过程</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -324,12 +385,12 @@
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/03</span><a class="archive-post-title" href= "/2017/12/03/排序算法/" >排序算法</a>
+            <span class="archive-post-date">12/03</span><a class="archive-post-title" href= "/2017/12/03/用Promise封装ajax/" >用Promise封装ajax</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/03</span><a class="archive-post-title" href= "/2017/12/03/用Promise封装ajax/" >用Promise封装ajax</a>
+            <span class="archive-post-date">12/03</span><a class="archive-post-title" href= "/2017/12/03/排序算法/" >排序算法</a>
         </li>
     
     
@@ -347,27 +408,29 @@
         <div class="sidebar-tags">
     <div class="sidebar-tags-name">
     
+        <span class="sidebar-tag-name"><a href= "#">Hexo</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">教程</a></span>
+    
         <span class="sidebar-tag-name"><a href= "#">Less</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">CSS</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">Web</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">Hexo</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">教程</a></span>
+        <span class="sidebar-tag-name"><a href= "#">语音合成、语音识别</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">JavaScript</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">图片懒加载</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">语音合成、语音识别</a></span>
+        <span class="sidebar-tag-name"><a href= "#">排序</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">浏览器</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">Promise</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">ajax</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">排序</a></span>
     
     </div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
