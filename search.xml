@@ -24,7 +24,7 @@
 <li>CSS文档加载完成之后构建CSS Rule Tree。</li>
 <li>js文档加载完成之后通过DOM API 和CSS API 来操作DOM Tree和 CSS Tree。</li>
 </ul>
-<h3 id="渲染过程"><a href="#渲染过程" class="headerlink" title="渲染过程"></a>渲染过程</h3><ol>
+<h3 id="渲染过程"><a href="#渲染过程" class="headerlink" title="渲染过程"></a>渲染过程</h3><ul>
 <li>浏览器引擎通过DOM Tree和CSS Rule Tree生成Rendering Tree。</li>
 <li>Flow：在屏幕上绘制Rendering Tree中的所有节点的几何属性。</li>
 <li>Paint<ul>
@@ -32,7 +32,7 @@
 <li>合并所有绘制的图层</li>
 </ul>
 </li>
-</ol>
+</ul>
 <h3 id="Repaint-和-Reflow"><a href="#Repaint-和-Reflow" class="headerlink" title="Repaint 和 Reflow"></a>Repaint 和 Reflow</h3><p>当用户在浏览网页进行交互或者通过脚本改变页面的DOM结构的时候，页面加载、解析、渲染可能会重复进行，所以叫做Repaint和Reflow。</p>
 <ul>
 <li>Repaint<br><br>当页面元素改变的时并不会影响节点在页面中的位置，浏览器只是对页面进行重新绘制并不会重新布局。</li>
