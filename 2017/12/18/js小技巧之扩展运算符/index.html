@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
     <title>
         
-        realzzz
+        js小技巧之扩展运算符 · realzzz
         
     </title>
     <link rel="icon" href= /assests/favicon.ico>
@@ -50,11 +50,22 @@
     
 </head>
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >realzzz</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">js小技巧之扩展运算符</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>realzzz</a>
 </header>
@@ -62,21 +73,45 @@
         <div class="site-intro">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/post-bg.jpg)"></div>
     <div class="site-intro-placeholder"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
+            js小技巧之扩展运算符
+            <!-- 404 -->
+            
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <!-- 文章页标签  -->
+            
+                <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = js小技巧>js小技巧</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = JavaScript>JavaScript</a>
+    
+</div>
+            
+            <div class="post-intro-meta">
+                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                <span class="post-intro-time">2017/12/18</span>
+            </div>
         
     </div>
 </div>
@@ -144,39 +179,43 @@
             }
         </script>
         <div class="container container-unloaded">
-            <main class="main index-page">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="是什么？"><a href="#是什么？" class="headerlink" title="是什么？"></a>是什么？</h2><p>扩展运算符（spread）是由三个<code>.</code>组成，可以将一个数组转换成一个用逗号分隔的序列。</p>
+<h2 id="怎么用？"><a href="#怎么用？" class="headerlink" title="怎么用？"></a>怎么用？</h2><h3 id="数据解构"><a href="#数据解构" class="headerlink" title="数据解构"></a>数据解构</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line"><span class="keyword">let</span> a, b;</span><br><span class="line">[a, ...b] = arr;</span><br><span class="line"><span class="comment">// a = 1</span></span><br><span class="line"><span class="comment">// b = [2, 3, 4]</span></span><br></pre></td></tr></table></figure>
+<h3 id="数据构造"><a href="#数据构造" class="headerlink" title="数据构造"></a>数据构造</h3><h4 id="处理对象"><a href="#处理对象" class="headerlink" title="处理对象"></a>处理对象</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = &#123;<span class="attr">a</span>:<span class="string">'aa'</span>&#125;</span><br><span class="line"><span class="keyword">let</span> b = &#123;<span class="attr">b</span>:<span class="string">'bb'</span>&#125;</span><br><span class="line"><span class="keyword">let</span> c = &#123;...a,...b&#125;</span><br><span class="line"><span class="comment">// c = &#123;"a":"aa","b":"bb"&#125;</span></span><br></pre></td></tr></table></figure>
+<h4 id="处理数组"><a href="#处理数组" class="headerlink" title="处理数组"></a>处理数组</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [<span class="string">'aa'</span>]</span><br><span class="line"><span class="keyword">let</span> b = [<span class="string">'bb'</span>]</span><br><span class="line"><span class="keyword">let</span> c = [...a, ...b]</span><br><span class="line"><span class="comment">// c = ["aa","bb"]</span></span><br></pre></td></tr></table></figure>
+<h3 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> num = [<span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line">add(...num);  <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<p>这个例子简单说明了调用函数的时候可以将一个数组通过扩展运算符转换为一个参数序列。<br></p>
+<h4 id="函数调用的具体运用"><a href="#函数调用的具体运用" class="headerlink" title="函数调用的具体运用"></a>函数调用的具体运用</h4><p>在JavaScript中求一个数组的最大值我们可能需要写一个比如二分法的查找算法，而JavaScript的Math对象中已经封装了一个Math.max()的函数用来求最大值，不过缺点是所传的参数不能是一个数组，而扩展运算符完美地解决了这个弊端。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> array = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="built_in">Math</span>.max(...array) <span class="comment">//3</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="作用于实现了-Iterator-接口的对象"><a href="#作用于实现了-Iterator-接口的对象" class="headerlink" title="作用于实现了 Iterator 接口的对象"></a>作用于实现了 Iterator 接口的对象</h3><p>在处理DOM节点的时候，我们经常需要获取某一整个nodeList然后批量操作<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> nodeListLi = <span class="built_in">document</span>.querySelectorAll(<span class="string">'li'</span>);</span><br><span class="line"><span class="keyword">let</span> arrayLi = [...nodeListLi];</span><br></pre></td></tr></table></figure></p>
+<p>这种方法可以简便地将nodeList转换为array进行操作。<br><br>扩展运算符内部调用的是数据结构的 Iterator 接口，因此只要具有 Iterator 接口的对象，都可以使用扩展运算符，比如 Map 和 Set 。</p>
+<h3 id="替代数组的apply方法"><a href="#替代数组的apply方法" class="headerlink" title="替代数组的apply方法"></a>替代数组的apply方法</h3><p>扩展运算符可以将一个数组转换成一个用逗号分隔的参数序列，所以在ES5中的apply方法就会被很好的替代。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES5</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params">a, b, c</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> args = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line">fun.apply(<span class="literal">null</span>, args);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params">a, b, c</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> args = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line">fun(...args);</span><br></pre></td></tr></table></figure></p>
+
+    </article>
+    <!-- 前后页  -->
+    <ul class="post-pager">
+        
+        
+            <li class="previous">
+                <a href= "/2017/12/15/浏览器加载JavaScript和CSS的过程/" title= 浏览器加载JavaScript和CSS的过程 >
+                    <span>Previous Post</span>
+                    <span>浏览器加载JavaScript和CSS的过程</span>
+                </a>
+            </li>
+        
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
     
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2017/12/03/排序算法/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>排序算法</span>
-                    </h2>
-                <div class="abstract-content">
-                    排序有内部排序和外部排序，内部排序是数据记录在内存中进行排序，而外部排序是因排序的数据很大，一次不能容纳全部的排序记录，在排序过程中需要访问外存。常见的八大排序就是内部排序。
-排序基本分类12345678910111213|-- 内部排序|   |-- 插入排序|       |-- 直接插入排序|       |-- 希尔排序|   |-- 选择排序|       |-- 简单选择排序|       |-- 堆排序|   |-- 交换排序|       |-- 冒泡排序|       |-- 快速排序|   |-- 归并排序|   |-- 基数排序|-- 外部排序
-内部排序插入排序 —...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = 排序>排序</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/12/03</span>
-                </div>
-            </div>
-        </article>
-    
-    <!-- paginator  -->
+    <!--PC版-->
+
+    <!--PC版-->
+
+
     
 </main>
             <!-- profile -->
@@ -226,6 +265,13 @@
 
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper">
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#是什么？"><span class="toc-number">1.</span> <span class="toc-text">是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#怎么用？"><span class="toc-number">2.</span> <span class="toc-text">怎么用？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据解构"><span class="toc-number">2.1.</span> <span class="toc-text">数据解构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据构造"><span class="toc-number">2.2.</span> <span class="toc-text">数据构造</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#处理对象"><span class="toc-number">2.2.1.</span> <span class="toc-text">处理对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#处理数组"><span class="toc-number">2.2.2.</span> <span class="toc-text">处理数组</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数调用"><span class="toc-number">2.3.</span> <span class="toc-text">函数调用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#函数调用的具体运用"><span class="toc-number">2.3.1.</span> <span class="toc-text">函数调用的具体运用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#作用于实现了-Iterator-接口的对象"><span class="toc-number">2.4.</span> <span class="toc-text">作用于实现了 Iterator 接口的对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#替代数组的apply方法"><span class="toc-number">2.5.</span> <span class="toc-text">替代数组的apply方法</span></a></li></ol></li></ol>
+    </div>
     
     <div class="back-top">&#xe639;</div>
     <div class="sidebar">
