@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
     <title>
         
-        realzzz
+        js小技巧之rest参数 · realzzz
         
     </title>
     <link rel="icon" href= /assests/favicon.ico>
@@ -50,11 +50,22 @@
     
 </head>
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >realzzz</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">js小技巧之rest参数</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>realzzz</a>
 </header>
@@ -62,21 +73,45 @@
         <div class="site-intro">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/post-bg.jpg)"></div>
     <div class="site-intro-placeholder"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
+            js小技巧之rest参数
+            <!-- 404 -->
+            
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <!-- 文章页标签  -->
+            
+                <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = js小技巧>js小技巧</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = JavaScript>JavaScript</a>
+    
+</div>
+            
+            <div class="post-intro-meta">
+                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                <span class="post-intro-time">2017/12/19</span>
+            </div>
         
     </div>
 </div>
@@ -144,78 +179,52 @@
             }
         </script>
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2017/12/19/js小技巧之rest参数/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>js小技巧之rest参数</span>
-                    </h2>
-                <div class="abstract-content">
-                    是什么？rest 参数是形式为...的变量名，可以用来获取函数的多余参数，rest参数搭配的变量是一个数组，该变量将多余的参数放入数组中。简单说：将多余的逗号分隔的参数序列转换为数组参数。（和扩展运算符spread相反）
-怎么用
-rest参数接收函数的多余参数，组成一个数组，要放在形参的最后
-123function func(a, b, ...otherArgs) &#123;    // ...&#125;
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="是什么？"><a href="#是什么？" class="headerlink" title="是什么？"></a>是什么？</h2><p>rest 参数是形式为<code>...</code>的变量名，可以用来获取函数的多余参数，rest参数搭配的变量是一个数组，该变量将多余的参数放入数组中。<br><br>简单说：将多余的逗号分隔的参数序列转换为数组参数。（和扩展运算符spread相反）</p>
+<h2 id="怎么用"><a href="#怎么用" class="headerlink" title="怎么用"></a>怎么用</h2><ul>
+<li><p>rest参数接收函数的多余参数，组成一个数组，要放在形参的最后</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params">a, b, ...otherArgs</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>rest参数可以用来代替不确定参数个数的传递方式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">...nums</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> num <span class="keyword">of</span> nums) &#123;</span><br><span class="line">    sum += num;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line">add(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>) <span class="comment">// 6</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>add函数可以用来求任意个数参数的和。</p>
+<h2 id="rest参数和arguments对象的区别"><a href="#rest参数和arguments对象的区别" class="headerlink" title="rest参数和arguments对象的区别"></a>rest参数和arguments对象的区别</h2><ul>
+<li>rest参数只包含那些放在后面没有名字的参数，arguments对象包含了所有的参数</li>
+<li><p>rest参数是一个array，arguments不是array。arguments为了使用数组的方法，必须使用<code>Array.prototype.slice.call</code>先将其转为数组。<br><br>例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// arguments</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sortNumbers</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>).sort();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// rest参数</span></span><br><span class="line"><span class="keyword">const</span> sortNumbers = <span class="function">(<span class="params">...numbers</span>) =&gt;</span> numbers.sort();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>函数的length属性不包括rest参数部分</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;&#125;).length  <span class="comment">// 1</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">...x</span>) </span>&#123;&#125;).length  <span class="comment">// 0</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">x, ...y</span>) </span>&#123;&#125;).length  <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 
-rest参数可以用来代替不确定参数个数的传递方式
-12345678function add(...nums) &#123;  let sum = 0;  for (var num...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = js小技巧>js小技巧</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = JavaScript>JavaScript</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/12/19</span>
-                </div>
-            </div>
-        </article>
+    </article>
+    <!-- 前后页  -->
+    <ul class="post-pager">
+        
+        
+            <li class="previous">
+                <a href= "/2017/12/18/js小技巧之扩展运算符/" title= js小技巧之扩展运算符 >
+                    <span>Previous Post</span>
+                    <span>js小技巧之扩展运算符</span>
+                </a>
+            </li>
+        
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
     
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2017/12/18/js小技巧之扩展运算符/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>js小技巧之扩展运算符</span>
-                    </h2>
-                <div class="abstract-content">
-                    是什么？扩展运算符（spread）是由三个.组成，可以将一个数组转换成一个用逗号分隔的序列。
-怎么用？数据解构12345let arr = [1, 2, 3, 4];let a, b;[a, ...b] = arr;// a = 1// b = [2, 3, 4]
-数据构造处理对象1234let a = &#123;a:'aa'&#125;let b = &#123;b:'bb'&#125;let c = &#123;...a,...b&#125;// c = &#123;"a":"aa","b":"bb"&#125;
-处理数组1234let a = ['aa']let b = ['bb...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = js小技巧>js小技巧</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = JavaScript>JavaScript</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/12/18</span>
-                </div>
-            </div>
-        </article>
-    
-    <!-- paginator  -->
+    <!--PC版-->
+
+    <!--PC版-->
+
+
     
 </main>
             <!-- profile -->
@@ -265,6 +274,13 @@ rest参数可以用来代替不确定参数个数的传递方式
 
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper">
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#是什么？"><span class="toc-number">1.</span> <span class="toc-text">是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#怎么用"><span class="toc-number">2.</span> <span class="toc-text">怎么用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rest参数和arguments对象的区别"><span class="toc-number">3.</span> <span class="toc-text">rest参数和arguments对象的区别</span></a></li></ol>
+    </div>
     
     <div class="back-top">&#xe639;</div>
     <div class="sidebar">

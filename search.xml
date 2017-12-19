@@ -3,6 +3,47 @@
   
     
     <entry>
+      <title><![CDATA[js小技巧之rest参数]]></title>
+      <url>/2017/12/19/js%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8Brest%E5%8F%82%E6%95%B0/</url>
+      <content type="html"><![CDATA[<h2 id="是什么？"><a href="#是什么？" class="headerlink" title="是什么？"></a>是什么？</h2><p>rest 参数是形式为<code>...</code>的变量名，可以用来获取函数的多余参数，rest参数搭配的变量是一个数组，该变量将多余的参数放入数组中。<br><br>简单说：将多余的逗号分隔的参数序列转换为数组参数。（和扩展运算符spread相反）</p>
+<h2 id="怎么用"><a href="#怎么用" class="headerlink" title="怎么用"></a>怎么用</h2><ul>
+<li><p>rest参数接收函数的多余参数，组成一个数组，要放在形参的最后</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params">a, b, ...otherArgs</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>rest参数可以用来代替不确定参数个数的传递方式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">...nums</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> num <span class="keyword">of</span> nums) &#123;</span><br><span class="line">    sum += num;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line">add(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>) <span class="comment">// 6</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>add函数可以用来求任意个数参数的和。</p>
+<h2 id="rest参数和arguments对象的区别"><a href="#rest参数和arguments对象的区别" class="headerlink" title="rest参数和arguments对象的区别"></a>rest参数和arguments对象的区别</h2><ul>
+<li>rest参数只包含那些放在后面没有名字的参数，arguments对象包含了所有的参数</li>
+<li><p>rest参数是一个array，arguments不是array。arguments为了使用数组的方法，必须使用<code>Array.prototype.slice.call</code>先将其转为数组。<br><br>例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// arguments</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sortNumbers</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>).sort();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// rest参数</span></span><br><span class="line"><span class="keyword">const</span> sortNumbers = <span class="function">(<span class="params">...numbers</span>) =&gt;</span> numbers.sort();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>函数的length属性不包括rest参数部分</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;&#125;).length  <span class="comment">// 1</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">...x</span>) </span>&#123;&#125;).length  <span class="comment">// 0</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">x, ...y</span>) </span>&#123;&#125;).length  <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> js小技巧 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> js小技巧 </tag>
+            
+            <tag> JavaScript </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[js小技巧之扩展运算符]]></title>
       <url>/2017/12/18/js%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8B%E6%89%A9%E5%B1%95%E8%BF%90%E7%AE%97%E7%AC%A6/</url>
       <content type="html"><![CDATA[<h2 id="是什么？"><a href="#是什么？" class="headerlink" title="是什么？"></a>是什么？</h2><p>扩展运算符（spread）是由三个<code>.</code>组成，可以将一个数组转换成一个用逗号分隔的序列。</p>
@@ -115,9 +156,9 @@
         
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> JavaScript </tag>
+            
+            <tag> Web </tag>
             
             <tag> 图片懒加载 </tag>
             
@@ -170,11 +211,11 @@
         
         <tags>
             
+            <tag> Web </tag>
+            
             <tag> Less </tag>
             
             <tag> CSS </tag>
-            
-            <tag> Web </tag>
             
         </tags>
         
@@ -204,9 +245,9 @@
         
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> 语音合成、语音识别 </tag>
+            
+            <tag> Web </tag>
             
         </tags>
         
