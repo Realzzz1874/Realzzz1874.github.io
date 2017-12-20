@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+    <title>
+        
+        javascript中的this、call、apply、bind · realzzz
+        
+    </title>
+    <link rel="icon" href= /assests/favicon.ico>
+    <!-- TODO: 在font-face加载完毕后改变字体  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webfont/1.6.28/webfontloader.js"></script>
+    <!-- 提前加载place holder  -->
+    <style type="text/css">
+        @font-face {
+            font-family: 'Oswald-Regular';
+            src: url(/font/Oswald-Regular.ttf);
+        }
+    </style>
+    <style type="text/css">
+        .site-intro-placeholder {
+            position: absolute;
+            z-index: -2;
+            top: 0;
+            left: 0px;
+            width: calc(100% + 300px);
+            height: 100%;
+            background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+            background-position: center center;
+            transform: translate3d(-226px, 0, 0);
+            animation: gradient-move 2.5s ease-out 0s 1;
+        }
+        @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+</style>
+    <link rel="stylesheet" href = /css/style.css?v=20171020 />
+    <script src="//cdn.staticfile.org/jquery/3.2.1/jquery.min.js" defer></script>
+    
+    <script src="/scripts/main.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >realzzz</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">javascript中的this、call、apply、bind</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>realzzz</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/post-bg.jpg)"></div>
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            javascript中的this、call、apply、bind
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <!-- 文章页标签  -->
+            
+                <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = js小技巧>js小技巧</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = JavaScript>JavaScript</a>
+    
+</div>
+            
+            <div class="post-intro-meta">
+                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                <span class="post-intro-time">2017/12/20</span>
+            </div>
+        
+    </div>
+</div>
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <script>
+            var browser = {
+                    versions: function () {
+                        var u = window.navigator.userAgent;
+                        return {
+                            userAgent: u,
+                            trident: u.indexOf('Trident') > -1, //IE内核
+                            presto: u.indexOf('Presto') > -1, //opera内核
+                            webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                            gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                            mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                            ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                            android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                            iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+                            iPad: u.indexOf('iPad') > -1, //是否为iPad
+                            webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+                            weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+                            uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+                        };
+                    }()
+                }
+
+            function fontLoaded(){
+                console.log('font loaded');
+                if (document.getElementsByClassName('site-intro-meta')) {
+                    document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+                    document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+                    var postIntroTags = document.getElementsByClassName('post-intro-tags')[0],
+                        postIntroMeat = document.getElementsByClassName('post-intro-meta')[0];
+                        if (postIntroTags) {
+                            postIntroTags.classList.add('post-fade-in');
+                        }
+                        if (postIntroMeat) {
+                            postIntroMeat.classList.add('post-fade-in');
+                        }
+                    }
+                }
+                
+            console.log("userAgent:" + browser.versions.userAgent);
+            // UC不支持跨域，所以直接显示
+            if (browser.versions.uc) {
+                console.log("UCBrowser");
+                fontLoaded();
+            } else {
+                WebFont.load({
+                    custom: {
+                        families: ['Oswald-Regular']
+                    },
+                    loading: function () {  //所有字体开始加载
+                        // console.log('loading');
+                    },
+                    active: function () {  //所有字体已渲染
+                        fontLoaded();
+                    },
+                    inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+                        console.log('inactive: timeout');
+                        fontLoaded();
+                    },
+                    timeout: 7000 // Set the timeout to two seconds
+                });
+            }
+        </script>
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="js函数调用的4种模式"><a href="#js函数调用的4种模式" class="headerlink" title="js函数调用的4种模式"></a>js函数调用的4种模式</h2><p>JavaScript里函数调用有 4 种模式：</p>
+<ul>
+<li>方法调用</li>
+<li>正常函数调用</li>
+<li>构造器函数调用</li>
+<li>apply/call调用</li>
+</ul>
+<p>这4种调用方式在使用的时候还会自动加上两个形参：this 和 arguments。</p>
+<h2 id="this的说明"><a href="#this的说明" class="headerlink" title="this的说明"></a>this的说明</h2><ul>
+<li>this对象的含义就是指向当前对象的属性和方法</li>
+<li>当在全局作用域的时候this指向全局，当在某个对象中使用this的时候this指向这个对象，当某个对象把方法赋值给另一个对象的时候this指向后一个对象。简单说就是：谁调用this就指向谁</li>
+<li>this一般的使用场景有：全局变量中、构造函数中、对象方法中</li>
+<li>this的使用要不要多层嵌套</li>
+</ul>
+<h2 id="this指向的一些例子"><a href="#this指向的一些例子" class="headerlink" title="this指向的一些例子"></a>this指向的一些例子</h2><p>1.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> people = &#123;     </span><br><span class="line">    name : <span class="string">''</span>,     </span><br><span class="line">    fun : <span class="function"><span class="keyword">function</span>(<span class="params">xx</span>) </span>&#123;                 </span><br><span class="line">        <span class="keyword">this</span>.name = xx;     </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">people.fun(<span class="string">'jack'</span>);</span><br></pre></td></tr></table></figure></p>
+<p>这里的this指向对象people</p>
+<p>2.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params">x</span>) </span>&#123;         </span><br><span class="line">    <span class="keyword">this</span>.a = x;</span><br><span class="line">&#125;</span><br><span class="line">fun(<span class="number">1</span>);</span><br></pre></td></tr></table></figure></p>
+<p>这里的this指向的是全局对象，如果在浏览器中则为<code>window</code>。因为fun函数调用的时候绑定<code>window</code></p>
+<p>3.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params">x</span>)</span></span><br><span class="line"><span class="function"></span>&#123;         </span><br><span class="line">    <span class="keyword">this</span>.a = x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> f = <span class="keyword">new</span> fun(<span class="number">1</span>);</span><br></pre></td></tr></table></figure></p>
+<p>这里的this指向的不再是全局对象，而是new出来的新对象。</p>
+<p>可见，this对象指向会经常改变的，JavaScript提供了call、apply、bind这三个方法，来切换/固定this的指向。</p>
+<h2 id="使用call、apply、bind来改变this的指向"><a href="#使用call、apply、bind来改变this的指向" class="headerlink" title="使用call、apply、bind来改变this的指向"></a>使用call、apply、bind来改变this的指向</h2><p>call、apply、bind三个方法都继承自Function.prototype，属于实例方法</p>
+<h3 id="Function-prototype-call"><a href="#Function-prototype-call" class="headerlink" title="Function.prototype.call()"></a>Function.prototype.call()</h3><p>call方法可以指定函数内部this的指向（函数执行所在的作用域），然后在指定的作用域中调用这个函数。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> people= &#123;</span><br><span class="line">  name: <span class="string">'jack'</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> name = <span class="string">'rose'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>call方法可以传递两个参数。第一个参数是指定函数内部中this的指向（也就是函数执行时所在的作用域），第二个参数是函数调用时需要传递的参数。<br>1）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fun();  <span class="comment">// 'rose'</span></span><br></pre></td></tr></table></figure></p>
+<p>直接调用fun函数则this指向的是全局对象<br>2）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fun.call();  <span class="comment">// 'rose'</span></span><br></pre></td></tr></table></figure></p>
+<p>如果call方法没有参数，或者参数为null或undefined或this，则等同于指向全局对象<br>3）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fun.call(people);  <span class="comment">// 'jack'</span></span><br></pre></td></tr></table></figure></p>
+<p>当call方法的参数为people的时候，this则指向people，这时候函数执行时的作用域为people对象，name属性的值就变成了jack</p>
+<h3 id="Function-prototype-apply"><a href="#Function-prototype-apply" class="headerlink" title="Function.prototype.apply()"></a>Function.prototype.apply()</h3><p>apply方法与call方法非常类似，都是指定函数内部this的指向，然后在指定的作用域调用这个函数，不同的是<strong>apply接收一个数组作为函数执行时的参数, 而call接收的参数是一个一个用逗号分隔传进来的</strong>。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">2</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">8</span>];</span><br><span class="line"><span class="keyword">var</span> apply_maxnum = <span class="built_in">Math</span>.max.apply(<span class="literal">null</span>, a);</span><br><span class="line"><span class="keyword">var</span> call_maxnum = <span class="built_in">Math</span>.max.call(<span class="literal">null</span>,<span class="number">2</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">8</span>);</span><br></pre></td></tr></table></figure></p>
+<p>这个例子说明了apply和call的参数形式的区别。对于call的用法刚好可以结合之前的es6中的扩展运算符进行转换<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> call_maxnum = <span class="built_in">Math</span>.max(...a);</span><br></pre></td></tr></table></figure></p>
+<h3 id="Function-prototype-bind"><a href="#Function-prototype-bind" class="headerlink" title="Function.prototype.bind()"></a>Function.prototype.bind()</h3><p>bind方法同样是指定函数内部this的指向，不同的是<strong>apply和call都是立即执行，而bind不是立即执行</strong>。bind() 会生成一个新的函数，bind函数的参数跟call一致，第一个参数也是绑定this的值，后面接受传递给函数的不定参数。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">  num: <span class="number">0</span>,</span><br><span class="line">  add: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.num++);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>这里如果直接将obj1.add赋值给一个变量，<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fun = obj1.add();</span><br></pre></td></tr></table></figure></p>
+<p>调用的时候并不能拿到num。<br><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fun(); <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure></p>
+<p>因为当把add赋值给fun的时候，this指向的不再是obj1而是window，window.num的默认值是undefined，将undefined自增运算之后就变成了NaN。<br><br>这个时候就可以使用bind方法，将obj1对象里的this绑定到obj1上。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fun = obj1.add.bind(obj);</span><br><span class="line">fun(); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure></p>
+<p>这个时候如果有一个其它对象比如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj2 = &#123;</span><br><span class="line">  num: <span class="number">1</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>这个时候bind可以将this绑定到其它的对象上：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fun = obj1.add.bind(obj2);</span><br><span class="line">fun(); <span class="comment">// 2</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>三种方法的第一个参数都是指定函数内部中this的指向（函数执行时所在的作用域），然后根据指定的作用域，调用该函数</li>
+<li>call和apply方法是在调用之后立即执行函数，而bind方法没有立即执行，需要将函数再执行一遍</li>
+<li>都可以在函数调用时传递参数。call和bind方法需要直接传入，而apply方法需要以数组的形式传入</li>
+<li>改变this对象的指向问题不仅有call、apply、bind方法，也可以使用that变量来固定this的指向</li>
+</ul>
+
+    </article>
+    <!-- 前后页  -->
+    <ul class="post-pager">
+        
+        
+            <li class="previous">
+                <a href= "/2017/12/19/js小技巧之rest参数/" title= js小技巧之rest参数 >
+                    <span>Previous Post</span>
+                    <span>js小技巧之rest参数</span>
+                </a>
+            </li>
+        
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!--PC版-->
+
+    <!--PC版-->
+
+
+    
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:real_z@yeah.net" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/Realzzz1874" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+    
+        
+            
+                <a href="https://www.instagram.com/realzzz1874/" class="iconfont-archer instagram" target="_blank" title="instagram"></a>
+            
+        
+    
+        
+            
+                <a href="/atom.xml" class="iconfont-archer rss" target="_blank" title="rss"></a>
+            
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a herf="#">realzzz</a></span>
+    <!-- 不蒜子  -->
+    
+</footer>
+
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper">
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#js函数调用的4种模式"><span class="toc-number">1.</span> <span class="toc-text">js函数调用的4种模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#this的说明"><span class="toc-number">2.</span> <span class="toc-text">this的说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#this指向的一些例子"><span class="toc-number">3.</span> <span class="toc-text">this指向的一些例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用call、apply、bind来改变this的指向"><span class="toc-number">4.</span> <span class="toc-text">使用call、apply、bind来改变this的指向</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Function-prototype-call"><span class="toc-number">4.1.</span> <span class="toc-text">Function.prototype.call()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Function-prototype-apply"><span class="toc-number">4.2.</span> <span class="toc-text">Function.prototype.apply()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Function-prototype-bind"><span class="toc-number">4.3.</span> <span class="toc-text">Function.prototype.bind()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li></ol>
+    </div>
+    
+    <div class="back-top">&#xe639;</div>
+    <div class="sidebar">
+    <div class="sidebar-header sidebar-header-show-archive">
+        <div class="sidebar-category">
+            <span class="sidebar-archive-link"><span class="iconfont-archer">&#xe67d;</span>Archive</span>
+            <span class="sidebar-tags-link"><span class="iconfont-archer">&#xe610;</span>Tag</span>
+        </div>
+    </div>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-archive">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-archive"> Total : 10 </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2017 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/20</span><a class="archive-post-title" href= "/2017/12/20/javascript中的this、call、apply、bind/" >javascript中的this、call、apply、bind</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/19</span><a class="archive-post-title" href= "/2017/12/19/js小技巧之rest参数/" >js小技巧之rest参数</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/18</span><a class="archive-post-title" href= "/2017/12/18/js小技巧之扩展运算符/" >js小技巧之扩展运算符</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/15</span><a class="archive-post-title" href= "/2017/12/15/浏览器加载JavaScript和CSS的过程/" >浏览器加载JavaScript和CSS的过程</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/14</span><a class="archive-post-title" href= "/2017/12/14/使用js实现图片懒加载/" >使用js实现图片懒加载</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/05</span><a class="archive-post-title" href= "/2017/12/05/Less基础/" >Less基础</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/03</span><a class="archive-post-title" href= "/2017/12/03/用Promise封装ajax/" >用Promise封装ajax</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/03</span><a class="archive-post-title" href= "/2017/12/03/Web版基于讯飞(IFLY)的语音识别与合成/" >Web版基于讯飞(IFLY)的语音识别与合成</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/03</span><a class="archive-post-title" href= "/2017/12/03/排序算法/" >排序算法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/02</span><a class="archive-post-title" href= "/2017/12/02/How-to-use-Hexo/" >How to use Hexo</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name"><a href= "#">Hexo</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">教程</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">js小技巧</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">JavaScript</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">图片懒加载</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">Web</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">Less</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">CSS</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">浏览器</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">排序</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">语音合成、语音识别</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">Promise</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">ajax</a></span>
+    
+    </div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #888; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: false
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tag-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var jsInfo = {
+        root: '/'
+    }
+</script>
+    <!-- 不蒜子  -->
+    
+    <!-- CNZZ统计  -->
+    
+    </div>
+    </body>
+</html>
+
+
