@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+    <title>
+        
+        Vue组件之间的信息传递 · realzzz
+        
+    </title>
+    <link rel="icon" href= /assests/favicon.ico>
+    <!-- TODO: 在font-face加载完毕后改变字体  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webfont/1.6.28/webfontloader.js"></script>
+    <!-- 提前加载place holder  -->
+    <style type="text/css">
+        @font-face {
+            font-family: 'Oswald-Regular';
+            src: url(/font/Oswald-Regular.ttf);
+        }
+    </style>
+    <style type="text/css">
+        .site-intro-placeholder {
+            position: absolute;
+            z-index: -2;
+            top: 0;
+            left: 0px;
+            width: calc(100% + 300px);
+            height: 100%;
+            background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+            background-position: center center;
+            transform: translate3d(-226px, 0, 0);
+            animation: gradient-move 2.5s ease-out 0s 1;
+        }
+        @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+</style>
+    <link rel="stylesheet" href = /css/style.css?v=20171020 />
+    <script src="//cdn.staticfile.org/jquery/3.2.1/jquery.min.js" defer></script>
+    
+    <script src="/scripts/main.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >realzzz</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">Vue组件之间的信息传递</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>realzzz</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/post-bg.jpg)"></div>
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            Vue组件之间的信息传递
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <!-- 文章页标签  -->
+            
+                <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = Web>Web</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = Vue>Vue</a>
+    
+</div>
+            
+            <div class="post-intro-meta">
+                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                <span class="post-intro-time">2017/12/26</span>
+            </div>
+        
+    </div>
+</div>
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <script>
+            var browser = {
+                    versions: function () {
+                        var u = window.navigator.userAgent;
+                        return {
+                            userAgent: u,
+                            trident: u.indexOf('Trident') > -1, //IE内核
+                            presto: u.indexOf('Presto') > -1, //opera内核
+                            webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                            gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                            mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                            ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                            android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                            iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+                            iPad: u.indexOf('iPad') > -1, //是否为iPad
+                            webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+                            weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+                            uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+                        };
+                    }()
+                }
+
+            function fontLoaded(){
+                console.log('font loaded');
+                if (document.getElementsByClassName('site-intro-meta')) {
+                    document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+                    document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+                    var postIntroTags = document.getElementsByClassName('post-intro-tags')[0],
+                        postIntroMeat = document.getElementsByClassName('post-intro-meta')[0];
+                        if (postIntroTags) {
+                            postIntroTags.classList.add('post-fade-in');
+                        }
+                        if (postIntroMeat) {
+                            postIntroMeat.classList.add('post-fade-in');
+                        }
+                    }
+                }
+                
+            console.log("userAgent:" + browser.versions.userAgent);
+            // UC不支持跨域，所以直接显示
+            if (browser.versions.uc) {
+                console.log("UCBrowser");
+                fontLoaded();
+            } else {
+                WebFont.load({
+                    custom: {
+                        families: ['Oswald-Regular']
+                    },
+                    loading: function () {  //所有字体开始加载
+                        // console.log('loading');
+                    },
+                    active: function () {  //所有字体已渲染
+                        fontLoaded();
+                    },
+                    inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+                        console.log('inactive: timeout');
+                        fontLoaded();
+                    },
+                    timeout: 7000 // Set the timeout to two seconds
+                });
+            }
+        </script>
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="什么是组件？"><a href="#什么是组件？" class="headerlink" title="什么是组件？"></a>什么是组件？</h2><blockquote>
+<p>组件 (Component) 可以扩展HTML元素，封装可以重用的代码。组件是自定义元素，Vue.js的编译器为它添加特殊的功能。</p>
+</blockquote>
+<p>组件的作用域是相互孤立的，在子组件中无法直接引用父组件中的数据。<br><br><strong><em>父子组件的关系为 props down，events up.</em></strong><br><br>父组件通过prop给子组件下发数据，子组件通过事件给父组件传递消息。</p>
+<h2 id="父组件传递数据给子组件"><a href="#父组件传递数据给子组件" class="headerlink" title="父组件传递数据给子组件"></a>父组件传递数据给子组件</h2><h3 id="静态props"><a href="#静态props" class="headerlink" title="静态props"></a>静态props</h3><h4 id="父组件通过props属性来传递数据给子组件："><a href="#父组件通过props属性来传递数据给子组件：" class="headerlink" title="父组件通过props属性来传递数据给子组件："></a>父组件通过props属性来传递数据给子组件：</h4><p>在父组件使用子组件的时候可以通过msg传一个字符串：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">child</span> <span class="attr">msg</span>=<span class="string">"hello"</span>&gt;</span><span class="tag">&lt;/<span class="name">child</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>在子组件中使用<code>props: [&#39;msg&#39;]</code>来接收：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'child'</span>, &#123;</span><br><span class="line">  props: [<span class="string">'msg'</span>],</span><br><span class="line">  template: <span class="string">'&lt;span&gt;&#123;&#123; msg &#125;&#125;&lt;/span&gt;'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h4 id="prop验证，子组件中指定传入的数据类型："><a href="#prop验证，子组件中指定传入的数据类型：" class="headerlink" title="prop验证，子组件中指定传入的数据类型："></a>prop验证，子组件中指定传入的数据类型：</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'child'</span>, &#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    msg: <span class="built_in">String</span></span><br><span class="line">  &#125;,</span><br><span class="line">  template: <span class="string">'&lt;span&gt;&#123;&#123; msg &#125;&#125;&lt;/span&gt;'</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 如果msg的数据类型不是String则会给出警告</span></span><br></pre></td></tr></table></figure>
+<h4 id="prop验证，子组件中指定传入数据的默认值："><a href="#prop验证，子组件中指定传入数据的默认值：" class="headerlink" title="prop验证，子组件中指定传入数据的默认值："></a>prop验证，子组件中指定传入数据的默认值：</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'child'</span>, &#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    msg: &#123;</span><br><span class="line">      type: <span class="built_in">String</span>,</span><br><span class="line">      <span class="keyword">default</span>: <span class="string">'hhh'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  template: <span class="string">'&lt;span&gt;&#123;&#123; msg &#125;&#125;&lt;/span&gt;'</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 如果父组件中msg值为空则使用默认值</span></span><br></pre></td></tr></table></figure>
+<h4 id="prop验证，子组件中自定义验证函数："><a href="#prop验证，子组件中自定义验证函数：" class="headerlink" title="prop验证，子组件中自定义验证函数："></a>prop验证，子组件中自定义验证函数：</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'child'</span>, &#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    msg: &#123;</span><br><span class="line">      validator: <span class="function"><span class="keyword">function</span> (<span class="params">val</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> val &gt; <span class="number">0</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  template: <span class="string">'&lt;span&gt;&#123;&#123; msg &#125;&#125;&lt;/span&gt;'</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 当传入的msg是一个小于0的数字验证则不通过</span></span><br></pre></td></tr></table></figure>
+<h3 id="动态props"><a href="#动态props" class="headerlink" title="动态props"></a>动态props</h3><blockquote>
+<p>与绑定到任何普通的HTML特性相类似，我们可以用<code>v-bind</code>来动态的将prop绑定到父组件的数据。每当父组件的数据变化的时候，该变化也会传导给子组件。</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model</span>=<span class="string">"parentMsg"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">child</span> <span class="attr">v-bind:msg</span>=<span class="string">"parentMsg"</span>&gt;</span><span class="tag">&lt;/<span class="name">child</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'child'</span>, &#123;</span><br><span class="line">  props: [<span class="string">'msg'</span>],</span><br><span class="line">  computed: &#123;</span><br><span class="line">    toSmall: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.msg.trim().toLowerCase()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  template: <span class="string">'&lt;span&gt;&#123;&#123; msg &#125;&#125;---&#123;&#123; toSmall &#125;&#125;&lt;/span&gt;'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><strong><em>在 JavaScript 中对象和数组是引用类型，指向同一个内存空间，如果 prop 是一个对象或数组，在子组件内部改变它会影响父组件的状态。</em></strong></p>
+<h2 id="子组件传递数据给父组件"><a href="#子组件传递数据给父组件" class="headerlink" title="子组件传递数据给父组件"></a>子组件传递数据给父组件</h2><p>在父子组件通信中，数据是单向传递的，子组件不能更改父组件的数据。如果子组件中需要更改父组件中的数据，可以先将数据保存下来然后再进行更改。更改完成以后如果子组件还想修改父组件的数据是不允许的，但是可以通过触发更改事件告知父组件，从而达到了子组件更改父组件的需求。</p>
+<p>子组件：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"up"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">    up() &#123;</span><br><span class="line">        <span class="keyword">this</span>.$emit(<span class="string">'upup'</span>,<span class="string">'hello'</span>);</span><br><span class="line">        <span class="comment">//主动触发upup方法，'hello'为向父组件传递的数据</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>父组件：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">child</span> @<span class="attr">upup</span>=<span class="string">"change"</span> <span class="attr">:msg</span>=<span class="string">"msg"</span>&gt;</span><span class="tag">&lt;/<span class="name">child</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 监听子组件触发的upup事件,然后调用change方法 --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">    change(msg) &#123;</span><br><span class="line">        <span class="keyword">this</span>.msg = msg;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这个例子中，子组件和父组件完全解耦，子组件做的只是通过emit报告自己的事件，父组件中监听子组件触发的事件，拿到传递的参数以后调用自己的处理参数的方法。</p>
+<h2 id="非父子组件之间的通信"><a href="#非父子组件之间的通信" class="headerlink" title="非父子组件之间的通信"></a>非父子组件之间的通信</h2><p>很多时候非父子组件之间也需要通信交换数据，这个时候可以用一个“中转站”(eventHub)来实现。所谓的中转站其实就是一个空的Vue实例。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> Hub = <span class="keyword">new</span> Vue();</span><br></pre></td></tr></table></figure></p>
+<p>创建一个事件中心<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div @click=<span class="string">"eve"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">methods: &#123;</span><br><span class="line">    eve() &#123;</span><br><span class="line">        Hub.$emit(<span class="string">'change'</span>,<span class="string">'hhh'</span>)</span><br><span class="line">        <span class="comment">//Hub触发事件</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>组件一触发<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">created() &#123;</span><br><span class="line">    Hub.$on(<span class="string">'change'</span>, (str) =&gt; &#123;</span><br><span class="line">      <span class="comment">//Hub接收事件</span></span><br><span class="line">        <span class="keyword">this</span>.msg = str</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>组件二接收</p>
+<h2 id="新的解决方法"><a href="#新的解决方法" class="headerlink" title="新的解决方法"></a>新的解决方法</h2><blockquote>
+<p>由于多个状态分散的跨越在许多组件和交互间各个角落，大型应用复杂度也经常逐渐增长。</p>
+</blockquote>
+<p>当状态较为复杂的时候，在最新的Vue中可以使用<a href="https://cn.vuejs.org/v2/guide/state-management.html" target="_blank" rel="noopener">状态管理模式</a>。</p>
+
+    </article>
+    <!-- 前后页  -->
+    <ul class="post-pager">
+        
+        
+            <li class="previous">
+                <a href= "/2017/12/20/javascript中的this、call、apply、bind/" title= javascript中的this、call、apply、bind >
+                    <span>Previous Post</span>
+                    <span>javascript中的this、call、apply、bind</span>
+                </a>
+            </li>
+        
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!--PC版-->
+
+    <!--PC版-->
+
+
+    
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:real_z@yeah.net" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/Realzzz1874" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+    
+        
+            
+                <a href="https://twitter.com/realzzz3" class="iconfont-archer twitter" target="_blank" title="twitter"></a>
+            
+        
+    
+        
+            
+                <a href="https://www.instagram.com/realzzz1874/" class="iconfont-archer instagram" target="_blank" title="instagram"></a>
+            
+        
+    
+        
+            
+                <a href="https://stackoverflow.com/users/7006525/realzzz" class="iconfont-archer stack-overflow" target="_blank" title="stack-overflow"></a>
+            
+        
+    
+        
+            
+                <a href="/atom.xml" class="iconfont-archer rss" target="_blank" title="rss"></a>
+            
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a herf="#">realzzz</a></span>
+    <!-- 不蒜子  -->
+    
+</footer>
+
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper">
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是组件？"><span class="toc-number">1.</span> <span class="toc-text">什么是组件？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#父组件传递数据给子组件"><span class="toc-number">2.</span> <span class="toc-text">父组件传递数据给子组件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#静态props"><span class="toc-number">2.1.</span> <span class="toc-text">静态props</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#父组件通过props属性来传递数据给子组件："><span class="toc-number">2.1.1.</span> <span class="toc-text">父组件通过props属性来传递数据给子组件：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#prop验证，子组件中指定传入的数据类型："><span class="toc-number">2.1.2.</span> <span class="toc-text">prop验证，子组件中指定传入的数据类型：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#prop验证，子组件中指定传入数据的默认值："><span class="toc-number">2.1.3.</span> <span class="toc-text">prop验证，子组件中指定传入数据的默认值：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#prop验证，子组件中自定义验证函数："><span class="toc-number">2.1.4.</span> <span class="toc-text">prop验证，子组件中自定义验证函数：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#动态props"><span class="toc-number">2.2.</span> <span class="toc-text">动态props</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#子组件传递数据给父组件"><span class="toc-number">3.</span> <span class="toc-text">子组件传递数据给父组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#非父子组件之间的通信"><span class="toc-number">4.</span> <span class="toc-text">非父子组件之间的通信</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#新的解决方法"><span class="toc-number">5.</span> <span class="toc-text">新的解决方法</span></a></li></ol>
+    </div>
+    
+    <div class="back-top">&#xe639;</div>
+    <div class="sidebar">
+    <div class="sidebar-header sidebar-header-show-archive">
+        <div class="sidebar-category">
+            <span class="sidebar-archive-link"><span class="iconfont-archer">&#xe67d;</span>Archive</span>
+            <span class="sidebar-tags-link"><span class="iconfont-archer">&#xe610;</span>Tag</span>
+        </div>
+    </div>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-archive">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-archive"> Total : 11 </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2017 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/26</span><a class="archive-post-title" href= "/2017/12/26/Vue组件之间的信息传递/" >Vue组件之间的信息传递</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/20</span><a class="archive-post-title" href= "/2017/12/20/javascript中的this、call、apply、bind/" >javascript中的this、call、apply、bind</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/19</span><a class="archive-post-title" href= "/2017/12/19/js小技巧之rest参数/" >js小技巧之rest参数</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/18</span><a class="archive-post-title" href= "/2017/12/18/js小技巧之扩展运算符/" >js小技巧之扩展运算符</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/15</span><a class="archive-post-title" href= "/2017/12/15/浏览器加载JavaScript和CSS的过程/" >浏览器加载JavaScript和CSS的过程</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/14</span><a class="archive-post-title" href= "/2017/12/14/使用js实现图片懒加载/" >使用js实现图片懒加载</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/05</span><a class="archive-post-title" href= "/2017/12/05/Less基础/" >Less基础</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/03</span><a class="archive-post-title" href= "/2017/12/03/排序算法/" >排序算法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/03</span><a class="archive-post-title" href= "/2017/12/03/用Promise封装ajax/" >用Promise封装ajax</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/03</span><a class="archive-post-title" href= "/2017/12/03/Web版基于讯飞(IFLY)的语音识别与合成/" >Web版基于讯飞(IFLY)的语音识别与合成</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/02</span><a class="archive-post-title" href= "/2017/12/02/How-to-use-Hexo/" >How to use Hexo</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name"><a href= "#">Less</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">CSS</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">Web</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">Vue</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">Hexo</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">教程</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">js小技巧</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">JavaScript</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">语音合成、语音识别</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">图片懒加载</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">浏览器</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">Promise</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">ajax</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">排序</a></span>
+    
+    </div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #888; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: false
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tag-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var jsInfo = {
+        root: '/'
+    }
+</script>
+    <!-- 不蒜子  -->
+    
+    <!-- CNZZ统计  -->
+    
+    </div>
+    </body>
+</html>
+
+

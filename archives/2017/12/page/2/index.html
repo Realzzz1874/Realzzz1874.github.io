@@ -149,18 +149,19 @@
     
     
         <article class="index-post">
-            <a class="content-show-full" href = "/2017/12/03/用Promise封装ajax/" >
+            <a class="content-show-full" href = "/2017/12/02/How-to-use-Hexo/" >
                     <h2 class="abstract-title">
                         
-                        <span>用Promise封装ajax</span>
+                        <span>How to use Hexo</span>
                     </h2>
                 <div class="abstract-content">
-                    回调函数真正的问题在于它剥夺了我们使用 return 和 throw 这些关键字的能力，而 Promise 的出现很好地解决了这个问题。
-何为PromisePromise 对象有以下两个特点。
-
-对象的状态不受外界影响。Promise 对象代表一个异步操作，有三种状态：Pending（进行中）、Resolved（已完成，又称 Fulfilled）和 Rejected（已失败）。只有异步操作的结果，可以决定当前是哪一种状态，任何其他操作都无法改变这个状态。这也是 Promise 这个名字的由来，它的英语意思就是「承诺」，表示其他手段无法改变。
-
-一旦状态改变，就不会再变，任何时候都可以得到...
+                    Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。官方文档传送门Hexo。
+PS:在安装Hexo之前首先安装Git和Node
+Quick Start安装Hexo1$ npm install -g hexo-cli
+初始化Hexo创建一个目录用来作为你的blog目录，例如 MyBlog；并在该目录中进行Hexo的初始化：
+123$ hexo init MyBlog$ cd ~/MyBlog/$ npm install
+新建完成之后得到以下目录：
+12345678·|-- _config.yml|...
                 </div>
             </a>
             <div class="abstract-post-meta">
@@ -168,20 +169,24 @@
                 
                 <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-href = Promise>Promise</a>
+        <a class="post-tag" href="javascript:void(0);" data-href = Hexo>Hexo</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-href = ajax>ajax</a>
+        <a class="post-tag" href="javascript:void(0);" data-href = 教程>教程</a>
     
 </div>
                 
                 <!-- date  -->
                 <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/12/03</span>
+                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/12/02</span>
                 </div>
             </div>
         </article>
     
     <!-- paginator  -->
+    
+    <nav class="page-nav">
+        <a class="extend prev" rel="prev" href="/archives/2017/12/">#PREV</a><a class="page-number" href="/archives/2017/12/">1</a><span class="page-number current">2</span>
+    </nav>
     
 </main>
             <!-- profile -->
