@@ -183,7 +183,7 @@
 <h2 id="排序基本分类"><a href="#排序基本分类" class="headerlink" title="排序基本分类"></a>排序基本分类</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">|-- 内部排序</span><br><span class="line">|   |-- 插入排序</span><br><span class="line">|       |-- 直接插入排序</span><br><span class="line">|       |-- 希尔排序</span><br><span class="line">|   |-- 选择排序</span><br><span class="line">|       |-- 简单选择排序</span><br><span class="line">|       |-- 堆排序</span><br><span class="line">|   |-- 交换排序</span><br><span class="line">|       |-- 冒泡排序</span><br><span class="line">|       |-- 快速排序</span><br><span class="line">|   |-- 归并排序</span><br><span class="line">|   |-- 基数排序</span><br><span class="line">|-- 外部排序</span><br></pre></td></tr></table></figure>
 <h2 id="内部排序"><a href="#内部排序" class="headerlink" title="内部排序"></a>内部排序</h2><h3 id="插入排序-—-直接插入排序-Straight-Insertion-Sort"><a href="#插入排序-—-直接插入排序-Straight-Insertion-Sort" class="headerlink" title="插入排序 — 直接插入排序(Straight Insertion Sort)"></a>插入排序 — 直接插入排序(Straight Insertion Sort)</h3><h4 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h4><p>将一个记录插入到已排序好的有序表中，从而得到一个新记录数增1的有序表。即：先将序列的第1个记录看成是一个有序的子序列，然后从第2个记录逐个进行插入，直至整个序列有序为止。<br><br>要点：设立哨兵，作为临时存储和判断数组边界之用。</p>
 <h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InsertSort</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (a[i] &lt; a[i - <span class="number">1</span>])</span><br><span class="line">        &#123; <span class="comment">//若第i个元素大于i-1元素，直接插入。小于的话，移动有序表后插入</span></span><br><span class="line">            <span class="keyword">int</span> j = i - <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">int</span> x = a[i];    <span class="comment">//复制为哨兵，即存储待排序元素</span></span><br><span class="line">            a[i] = a[i - <span class="number">1</span>]; <span class="comment">//先后移一个元素</span></span><br><span class="line">            <span class="keyword">while</span> (x &lt; a[j])</span><br><span class="line">            &#123; <span class="comment">//查找在有序表的插入位置</span></span><br><span class="line">                a[j + <span class="number">1</span>] = a[j];</span><br><span class="line">                j--; <span class="comment">//元素后移</span></span><br><span class="line">            &#125;</span><br><span class="line">            a[j + <span class="number">1</span>] = x; <span class="comment">//插入到正确位置</span></span><br><span class="line">        &#125;</span><br><span class="line">        print(a, n, i); <span class="comment">//打印每趟排序的结果</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="插入排序-—-希尔排序（Shell‘s-Sort）"><a href="#插入排序-—-希尔排序（Shell‘s-Sort）" class="headerlink" title="插入排序 — 希尔排序（Shell‘s Sort）"></a>插入排序 — 希尔排序（Shell‘s Sort）</h3><h4 id="基本思想-1"><a href="#基本思想-1" class="headerlink" title="基本思想"></a>基本思想</h4><p>希尔排序又叫缩小增量排序。</p>
+<h3 id="插入排序-—-希尔排序（Shell’s-Sort）"><a href="#插入排序-—-希尔排序（Shell’s-Sort）" class="headerlink" title="插入排序 — 希尔排序（Shell’s Sort）"></a>插入排序 — 希尔排序（Shell’s Sort）</h3><h4 id="基本思想-1"><a href="#基本思想-1" class="headerlink" title="基本思想"></a>基本思想</h4><p>希尔排序又叫缩小增量排序。</p>
 <p>先将整个待排序的记录序列分割成为若干子序列分别进行直接插入排序，待整个序列中的记录“基本有序”时，再对全体记录进行依次直接插入排序。</p>
 <ul>
 <li>选择一个增量序列t1，t2，…，tk，其中ti&gt;tj，tk=1；</li>
@@ -309,7 +309,7 @@
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#排序基本分类"><span class="toc-number">1.</span> <span class="toc-text">排序基本分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内部排序"><span class="toc-number">2.</span> <span class="toc-text">内部排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#插入排序-—-直接插入排序-Straight-Insertion-Sort"><span class="toc-number">2.1.</span> <span class="toc-text">插入排序 — 直接插入排序(Straight Insertion Sort)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本思想"><span class="toc-number">2.1.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#算法实现"><span class="toc-number">2.1.2.</span> <span class="toc-text">算法实现</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#插入排序-—-希尔排序（Shell‘s-Sort）"><span class="toc-number">2.2.</span> <span class="toc-text">插入排序 — 希尔排序（Shell‘s Sort）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本思想-1"><span class="toc-number">2.2.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#算法实现-1"><span class="toc-number">2.2.2.</span> <span class="toc-text">算法实现</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#选择排序-—-简单选择排序（Simple-Selection-Sort）"><span class="toc-number">2.3.</span> <span class="toc-text">选择排序 — 简单选择排序（Simple Selection Sort）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本思想-2"><span class="toc-number">2.3.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#算法实现-2"><span class="toc-number">2.3.2.</span> <span class="toc-text">算法实现</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#简单选择排序进阶-二元选择排序"><span class="toc-number">2.4.</span> <span class="toc-text">简单选择排序进阶 - 二元选择排序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本思想-3"><span class="toc-number">2.4.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#算法实现-3"><span class="toc-number">2.4.2.</span> <span class="toc-text">算法实现</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#选择排序-—-堆排序（Heap-Sort）"><span class="toc-number">2.5.</span> <span class="toc-text">选择排序 — 堆排序（Heap Sort）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本思想-4"><span class="toc-number">2.5.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#算法实现-4"><span class="toc-number">2.5.2.</span> <span class="toc-text">算法实现</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#交换排序-—-冒泡排序（Bubble-Sort）"><span class="toc-number">2.6.</span> <span class="toc-text">交换排序 — 冒泡排序（Bubble Sort）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本思想-5"><span class="toc-number">2.6.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#算法实现-5"><span class="toc-number">2.6.2.</span> <span class="toc-text">算法实现</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#交换排序-—-快速排序（Quick-Sort）"><span class="toc-number">2.7.</span> <span class="toc-text">交换排序 — 快速排序（Quick Sort）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本思想-6"><span class="toc-number">2.7.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#算法实现-6"><span class="toc-number">2.7.2.</span> <span class="toc-text">算法实现</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#排序基本分类"><span class="toc-number">1.</span> <span class="toc-text">排序基本分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内部排序"><span class="toc-number">2.</span> <span class="toc-text">内部排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#插入排序-—-直接插入排序-Straight-Insertion-Sort"><span class="toc-number">2.1.</span> <span class="toc-text">插入排序 — 直接插入排序(Straight Insertion Sort)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本思想"><span class="toc-number">2.1.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#算法实现"><span class="toc-number">2.1.2.</span> <span class="toc-text">算法实现</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#插入排序-—-希尔排序（Shell’s-Sort）"><span class="toc-number">2.2.</span> <span class="toc-text">插入排序 — 希尔排序（Shell’s Sort）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本思想-1"><span class="toc-number">2.2.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#算法实现-1"><span class="toc-number">2.2.2.</span> <span class="toc-text">算法实现</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#选择排序-—-简单选择排序（Simple-Selection-Sort）"><span class="toc-number">2.3.</span> <span class="toc-text">选择排序 — 简单选择排序（Simple Selection Sort）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本思想-2"><span class="toc-number">2.3.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#算法实现-2"><span class="toc-number">2.3.2.</span> <span class="toc-text">算法实现</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#简单选择排序进阶-二元选择排序"><span class="toc-number">2.4.</span> <span class="toc-text">简单选择排序进阶 - 二元选择排序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本思想-3"><span class="toc-number">2.4.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#算法实现-3"><span class="toc-number">2.4.2.</span> <span class="toc-text">算法实现</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#选择排序-—-堆排序（Heap-Sort）"><span class="toc-number">2.5.</span> <span class="toc-text">选择排序 — 堆排序（Heap Sort）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本思想-4"><span class="toc-number">2.5.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#算法实现-4"><span class="toc-number">2.5.2.</span> <span class="toc-text">算法实现</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#交换排序-—-冒泡排序（Bubble-Sort）"><span class="toc-number">2.6.</span> <span class="toc-text">交换排序 — 冒泡排序（Bubble Sort）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本思想-5"><span class="toc-number">2.6.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#算法实现-5"><span class="toc-number">2.6.2.</span> <span class="toc-text">算法实现</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#交换排序-—-快速排序（Quick-Sort）"><span class="toc-number">2.7.</span> <span class="toc-text">交换排序 — 快速排序（Quick Sort）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本思想-6"><span class="toc-number">2.7.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#算法实现-6"><span class="toc-number">2.7.2.</span> <span class="toc-text">算法实现</span></a></li></ol></li></ol></li></ol>
     </div>
     
     <div class="back-top">&#xe639;</div>
@@ -438,7 +438,24 @@
     
     
     
-    <div class="total-archive"> Total : 11 </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-archive"> Total : 12 </div>
     
     <div class="post-archive">
     
@@ -447,6 +464,11 @@
     
     <div class="archive-year"> 2017 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/27</span><a class="archive-post-title" href= "/2017/12/27/Web开发中的cookie、session、sessionStorage、localStorage/" >Web开发中的cookie、session、sessionStorage、localStorage</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -508,25 +530,27 @@
         <div class="sidebar-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name"><a href= "#">Less</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">CSS</a></span>
-    
         <span class="sidebar-tag-name"><a href= "#">Web</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">Vue</a></span>
+        <span class="sidebar-tag-name"><a href= "#">数据存储</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">Hexo</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">教程</a></span>
     
+        <span class="sidebar-tag-name"><a href= "#">Less</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">CSS</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">Vue</a></span>
+    
         <span class="sidebar-tag-name"><a href= "#">js小技巧</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">JavaScript</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">语音合成、语音识别</a></span>
-    
         <span class="sidebar-tag-name"><a href= "#">图片懒加载</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">语音合成、语音识别</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">浏览器</a></span>
     
