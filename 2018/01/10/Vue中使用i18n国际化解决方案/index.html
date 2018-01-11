@@ -181,13 +181,13 @@
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>在一些系统开发中，为了满足更多的用户需求，系统都需要具备支持多种语言切换的功能。本文以一个实例演示在Vue中使用<strong><em>i18n</em></strong>来解决多语言切换的问题。<br></p>
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>在一些系统开发中，为了满足更多的用户需求，系统都需要具备支持多种语言切换的功能。本文以一个实例演示在Vue中使用<strong><em>i18n</em></strong>来解决多语言切换的问题。<br><br>项目地址：<a href="https://github.com/Realzzz1874/i18nDemo" target="_blank" rel="noopener">i18nDemo</a></p>
 <blockquote>
 <p>百度词条:</p>
 <p>i18n（其来源是英文单词 internationalization的首末字符i和n，18为中间的字符数）是“国际化”的简称。在资讯领域，国际化(i18n)指让产品（出版物，软件，硬件等）无需做大的改变就能够适应不同的语言和地区的需要。对程序来说，在不修改内部代码的情况下，能根据不同语言及地区显示相应的界面。 在全球化的时代，国际化尤为重要，因为产品的潜在用户可能来自世界的各个角落。通常与i18n相关的还有L10n（“本地化”的简称）。</p>
 </blockquote>
 <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="新建一个Vue项目"><a href="#新建一个Vue项目" class="headerlink" title="新建一个Vue项目"></a>新建一个Vue项目</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue init webpack i18n</span><br></pre></td></tr></table></figure>
-<h3 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h3><p><img src="/2018/01/10/Vue中使用i18n国际化解决方案/../imgs/i18n.png" alt="目录"></p>
+<h3 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h3><p><img src="../imgs/i18n.png" alt="目录"></p>
 <h3 id="添加Vuex、Cooki、i18n"><a href="#添加Vuex、Cooki、i18n" class="headerlink" title="添加Vuex、Cooki、i18n"></a>添加Vuex、Cooki、i18n</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install --save vuex</span><br><span class="line">npm install --save js-cookie</span><br><span class="line">npm install --save vue-i18n</span><br></pre></td></tr></table></figure>
 <h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><h3 id="项目中添加store"><a href="#项目中添加store" class="headerlink" title="项目中添加store"></a>项目中添加store</h3><p>在src目录下新建一个store文件夹，里面包含：</p>
 <ul>
@@ -219,9 +219,9 @@
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  zh: &#123;</span><br><span class="line">    i18nView: &#123;</span><br><span class="line">      tittle: <span class="string">'你好'</span>,</span><br><span class="line">      content: <span class="string">'今天是晴天'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  en: &#123;</span><br><span class="line">    i18nView: &#123;</span><br><span class="line">      tittle: <span class="string">'hello'</span>,</span><br><span class="line">      content: <span class="string">'today is sunny'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><p>运行<code>npm run dev</code>，浏览器打开localhost:8080可以看到：<br></p>
-<p><img src="/2018/01/10/Vue中使用i18n国际化解决方案/../imgs/i18n_en.png" alt="英文"></p>
+<p><img src="../imgs/i18n_en.png" alt="英文"></p>
 <p>默认是英文状态，点击中文radio切换：</p>
-<p><img src="/2018/01/10/Vue中使用i18n国际化解决方案/../imgs/i18n_zh.png" alt="中文"></p>
+<p><img src="../imgs/i18n_zh.png" alt="中文"></p>
 
     </article>
     <!-- 前后页  -->
