@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
     <title>
         
-        用Promise封装ajax · realzzz
+        Vue项目中使用Vuex · realzzz
         
     </title>
     <link rel="icon" href= /assets/favicon.ico>
@@ -63,7 +63,7 @@
                 <a href="/" >realzzz</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">用Promise封装ajax</a>
+                <a href="#" class="post-name">Vue项目中使用Vuex</a>
             </div>
     </div>
     
@@ -84,7 +84,7 @@
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            用Promise封装ajax
+            Vue项目中使用Vuex
             <!-- 404 -->
             
         </h1>
@@ -102,15 +102,15 @@
             
                 <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-href = Promise>Promise</a>
+        <a class="post-tag" href="javascript:void(0);" data-href = Vue>Vue</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-href = ajax>ajax</a>
+        <a class="post-tag" href="javascript:void(0);" data-href = Vuex>Vuex</a>
     
 </div>
             
             <div class="post-intro-meta">
                 <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                <span class="post-intro-time">2017/12/03</span>
+                <span class="post-intro-time">2018/01/11</span>
             </div>
         
     </div>
@@ -181,47 +181,41 @@
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>回调函数真正的问题在于它剥夺了我们使用 <code>return</code> 和 <code>throw</code> 这些关键字的能力，而 <code>Promise</code> 的出现很好地解决了这个问题。</p>
-<h2 id="何为Promise"><a href="#何为Promise" class="headerlink" title="何为Promise"></a>何为Promise</h2><p>Promise 对象有以下两个特点。</p>
-<ul>
-<li><p>对象的状态不受外界影响。Promise 对象代表一个异步操作，有三种状态：Pending（进行中）、Resolved（已完成，又称 Fulfilled）和 Rejected（已失败）。只有异步操作的结果，可以决定当前是哪一种状态，任何其他操作都无法改变这个状态。这也是 Promise 这个名字的由来，它的英语意思就是「承诺」，表示其他手段无法改变。</p>
-</li>
-<li><p>一旦状态改变，就不会再变，任何时候都可以得到这个结果。Promise 对象的状态改变，只有两种可能：从 Pending 变为 Resolved 和从 Pending 变为 Rejected。只要这两种情况发生，状态就凝固了，不会再变了，会一直保持这个结果。就算改变已经发生了，你再对 Promise 对象添加回调函数，也会立即得到这个结果。这与事件（Event）完全不同，事件的特点是，如果你错过了它，再去监听，是得不到结果的。</p>
-</li>
-</ul>
-<p>有了 Promise 对象，就可以将异步操作以同步操作的流程表达出来，避免了层层嵌套的回调函数。此外，Promise 对象提供统一的接口，使得控制异步操作更加容易。</p>
-<p>Promise 也有一些缺点。</p>
-<ul>
-<li>无法取消 Promise，一旦新建它就会立即执行，无法中途取消。</li>
-<li>如果不设置回调函数，Promise 内部抛出的错误，不会反应到外部。第三，当处于 Pending 状态时，无法得知目前进展到哪一个阶段（刚刚开始还是即将完成）。</li>
-</ul>
-<h2 id="Promise结构"><a href="#Promise结构" class="headerlink" title="Promise结构"></a>Promise结构</h2><p>Promise 构造函数接受一个函数作为参数，该函数的两个参数分别是 <code>resolve</code> 方法和 <code>reject</code> 方法。</p>
-<ul>
-<li><p>如果异步操作成功，则用 resolve 方法将 Promise 对象的状态，从「未完成」变为「成功」（即从 pending 变为 resolved）；</p>
-</li>
-<li><p>如果异步操作失败，则用 reject 方法将 Promise 对象的状态，从「未完成」变为「失败」（即从 pending 变为 rejected）。</p>
-</li>
-</ul>
-<h2 id="以封装ajax实例为例"><a href="#以封装ajax实例为例" class="headerlink" title="以封装ajax实例为例"></a>以封装ajax实例为例</h2><h3 id="传统的ajax写法"><a href="#传统的ajax写法" class="headerlink" title="传统的ajax写法"></a>传统的ajax写法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xmlhttp;</span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">window</span>.XMLHttpRequest)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码</span></span><br><span class="line">		xmlhttp=<span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// IE6, IE5 浏览器执行代码</span></span><br><span class="line">		xmlhttp=<span class="keyword">new</span> ActiveXObject(<span class="string">"Microsoft.XMLHTTP"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	xmlhttp.onreadystatechange=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (xmlhttp.readyState==<span class="number">4</span> &amp;&amp; xmlhttp.status==<span class="number">200</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">document</span>.getElementById(<span class="string">"myDiv"</span>).innerHTML=xmlhttp.responseText;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	xmlhttp.open(<span class="string">"GET"</span>,<span class="string">"/api/a.txt"</span>,<span class="literal">true</span>);</span><br><span class="line">	xmlhttp.send();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Promise写法"><a href="#Promise写法" class="headerlink" title="Promise写法"></a>Promise写法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ajax函数将返回Promise对象:</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ajax</span>(<span class="params">method, url, data</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> request = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">        request.onreadystatechange = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (request.readyState === <span class="number">4</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (request.status === <span class="number">200</span>) &#123;</span><br><span class="line">                    resolve(request.responseText);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    reject(request.status);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        request.open(method, url);</span><br><span class="line">        request.send(data);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="调用方式"><a href="#调用方式" class="headerlink" title="调用方式"></a>调用方式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用</span></span><br><span class="line"><span class="keyword">var</span> p = ajax(<span class="string">'GET'</span>, <span class="string">'/api/***'</span>);</span><br><span class="line">p.then(<span class="function"><span class="keyword">function</span> (<span class="params">text</span>) </span>&#123; <span class="comment">// 如果AJAX成功，获得响应内容</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;).catch(<span class="function"><span class="keyword">function</span> (<span class="params">status</span>) </span>&#123; <span class="comment">// 如果AJAX失败，获得响应代码</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+        <h2 id="什么是Vuex"><a href="#什么是Vuex" class="headerlink" title="什么是Vuex"></a>什么是Vuex</h2><p>Vuex是Vue的状态管理模式。</p>
+<blockquote>
+<p>官方定义：<br>Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。Vuex 也集成到 Vue 的官方调试工具 <code>devtools extension</code>，提供了诸如零配置的 <code>time-travel</code> 调试、状态快照导入导出等高级调试功能。</p>
+</blockquote>
+<p>在之前的一篇文章中讲述了<a href="http://realzzz.coding.me/2017/12/26/Vue%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E4%BF%A1%E6%81%AF%E4%BC%A0%E9%80%92/" target="_blank" rel="noopener">Vue组件之间的信息传递</a>，多组件开发的过程中，随着项目的逐渐庞大，组件之间的通信也变得越来越复杂，所以多组件间的数据通信和状态管理就变得越来越难以维护。多个组件都要依赖于同一个状态，并且改动的地方也是比较杂乱。<br><br>Vuex的作用就是将组件管理单独独立出来，采用集中式存储管理的方法管理状态的变化。甚至可以直接理解为作用在前端的<strong><em>“数据库”</em></strong> 。 <br><br>Vuex采用单向数据流的方式来管理数据，用户界面触发<code>Actios</code>，改变APP的<code>State</code>，从而渲染出改变后的<code>View</code>。<br><img src="https://vuex.vuejs.org/zh-cn/images/flow.png" alt=""><br>完整版：<br><img src="https://vuex.vuejs.org/zh-cn/images/vuex.png" alt=""></p>
+<h2 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h2><p>vuex的核心就是一个容器（Store），容器中包含着需要管理的状态（State）。<br><br>一个典型的Vuexstore包含：<br><br><img src="../imgs/vuex_1.jpg" alt=""></p>
+<h3 id="State"><a href="#State" class="headerlink" title="State"></a>State</h3><p>state负责存储整个APP的状态数据，通过<code>this.$store.state</code>获取。如果将store比作是“前端数据库”，那么state可以比作是“数据库中的数据”。</p>
+<h3 id="Getter"><a href="#Getter" class="headerlink" title="Getter"></a>Getter</h3><p>store的计算属性，在从state中取回数据以后可能还需要进行二次封装处理，getter是“前端数据库”的读取操作。</p>
+<h3 id="Mutation"><a href="#Mutation" class="headerlink" title="Mutation"></a>Mutation</h3><p>Vuex的状态存储是响应式的，store中的状态发生变化时，组件中的状态也会跟着变化。store中的状态是不能直接修改的，如果在组件中想更改store中的状态，必须使用唯一的方法<strong><em>“（commit）mutation”</em></strong> 。我们将getter比作是读取数据，那么可以将mutation比作是“修改数据”。<strong><em>mutation必须是同步的事件</em></strong>。</p>
+<h3 id="Action"><a href="#Action" class="headerlink" title="Action"></a>Action</h3><p>action类似于mutation，但是和mutation又有很多不一样的地方。action解决了mutation不能异步操作的问题，mutation是直接更改state，action是提交mutation。<strong><em>通过dispatch触发</em></strong>。</p>
+<h3 id="Module"><a href="#Module" class="headerlink" title="Module"></a>Module</h3><p>项目越来越复杂的时候，state对象也会变得越来越复杂，不利于管理和维护。所以引入模块的概念，将store分割成多个module，每个module都有自己的state、mutation、action、getter。</p>
+<h3 id="Vuex数据流向"><a href="#Vuex数据流向" class="headerlink" title="Vuex数据流向"></a>Vuex数据流向</h3><ol>
+<li>action处理数据</li>
+<li>通过mutation提交数据更改state</li>
+<li>通过getter从state中获取</li>
+</ol>
+<h2 id="具体使用方法"><a href="#具体使用方法" class="headerlink" title="具体使用方法"></a>具体使用方法</h2><h3 id="项目中使用Vuex"><a href="#项目中使用Vuex" class="headerlink" title="项目中使用Vuex"></a>项目中使用Vuex</h3><p>安装：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save vuex</span><br></pre></td></tr></table></figure></p>
+<p>引入：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">'vuex'</span></span><br><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line">Vue.use(Vuex)</span><br></pre></td></tr></table></figure></p>
+<h3 id="初始化store"><a href="#初始化store" class="headerlink" title="初始化store"></a>初始化store</h3><p>在跟节点注入store对象：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">'./store'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  store,</span><br><span class="line">  template: <span class="string">'&lt;App/&gt;'</span>,</span><br><span class="line">  components: &#123; App &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>实例化store：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// store/index.js</span></span><br><span class="line"><span class="keyword">const</span> mutations = &#123;...&#125;;</span><br><span class="line"><span class="keyword">const</span> actions = &#123;...&#125;;</span><br><span class="line"><span class="keyword">const</span> state = &#123;...&#125;;</span><br><span class="line"></span><br><span class="line">Vuex.Store(&#123;</span><br><span class="line">  state,</span><br><span class="line">  actions,</span><br><span class="line">  mutation</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h3 id="具体示例"><a href="#具体示例" class="headerlink" title="具体示例"></a>具体示例</h3><p>以上一篇的<a href="http://realzzz.coding.me/2018/01/10/Vue%E4%B8%AD%E4%BD%BF%E7%94%A8i18n%E5%9B%BD%E9%99%85%E5%8C%96%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" target="_blank" rel="noopener">Vue中使用i18n国际化解决方案</a>为例：<br><br>在store文件夹下建一个modules文件夹，为了解释module的用法，我们把整个应用分成一个模块<code>app</code>:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// store/modules/app.js</span></span><br><span class="line"><span class="keyword">import</span> Cookies <span class="keyword">from</span> <span class="string">'js-cookie'</span></span><br><span class="line"><span class="keyword">const</span> app = &#123;</span><br><span class="line">  state: &#123;</span><br><span class="line">    language: Cookies.get(<span class="string">'language'</span>) || <span class="string">'en'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  mutations: &#123;</span><br><span class="line">    SET_LANGUAGE: <span class="function">(<span class="params">state, language</span>) =&gt;</span> &#123;</span><br><span class="line">      state.language = language</span><br><span class="line">      Cookies.set(<span class="string">'language'</span>, language)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  actions: &#123;</span><br><span class="line">    setLanguage (&#123; commit &#125;, language) &#123;</span><br><span class="line">      commit(<span class="string">'SET_LANGUAGE'</span>, language)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> app</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// store/getter.js</span></span><br><span class="line"><span class="keyword">const</span> getters = &#123;</span><br><span class="line">  language: <span class="function"><span class="params">state</span> =&gt;</span> state.app.language</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> getters</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// store/index.js</span></span><br><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">'vuex'</span></span><br><span class="line"><span class="keyword">import</span> getters <span class="keyword">from</span> <span class="string">'./getter'</span></span><br><span class="line"><span class="keyword">import</span> app <span class="keyword">from</span> <span class="string">'./modules/app'</span></span><br><span class="line">Vue.use(Vuex)</span><br><span class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">  modules: &#123;</span><br><span class="line">    app</span><br><span class="line">  &#125;,</span><br><span class="line">  getters</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> store</span><br></pre></td></tr></table></figure>
+<p>app模块中state里只有一个状态language，<br>在组件中如果需要获取language<br>:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="keyword">this</span>.$store.state.app.language</span><br></pre></td></tr></table></figure></p>
+<p>如果需要更改language：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.$store.dispatch(<span class="string">'setLanguage'</span>, lang)</span><br></pre></td></tr></table></figure></p>
 
     </article>
     <!-- 前后页  -->
     <ul class="post-pager">
         
-            <li class="next">
-                <a href= "/2017/12/03/排序算法/" title= 排序算法 >
-                    <span>Next Post</span>
-                    <span>排序算法</span>
-                </a>
-            </li>
-        
         
             <li class="previous">
-                <a href= "/2017/12/02/How-to-use-Hexo/" title= How to use Hexo >
+                <a href= "/2018/01/10/Vue中使用i18n国际化解决方案/" title= Vue中使用i18n国际化解决方案 >
                     <span>Previous Post</span>
-                    <span>How to use Hexo</span>
+                    <span>Vue中使用i18n国际化解决方案</span>
                 </a>
             </li>
         
@@ -303,7 +297,7 @@
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#何为Promise"><span class="toc-number">1.</span> <span class="toc-text">何为Promise</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Promise结构"><span class="toc-number">2.</span> <span class="toc-text">Promise结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#以封装ajax实例为例"><span class="toc-number">3.</span> <span class="toc-text">以封装ajax实例为例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#传统的ajax写法"><span class="toc-number">3.1.</span> <span class="toc-text">传统的ajax写法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Promise写法"><span class="toc-number">3.2.</span> <span class="toc-text">Promise写法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#调用方式"><span class="toc-number">3.3.</span> <span class="toc-text">调用方式</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是Vuex"><span class="toc-number">1.</span> <span class="toc-text">什么是Vuex</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#核心概念"><span class="toc-number">2.</span> <span class="toc-text">核心概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#State"><span class="toc-number">2.1.</span> <span class="toc-text">State</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Getter"><span class="toc-number">2.2.</span> <span class="toc-text">Getter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mutation"><span class="toc-number">2.3.</span> <span class="toc-text">Mutation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Action"><span class="toc-number">2.4.</span> <span class="toc-text">Action</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Module"><span class="toc-number">2.5.</span> <span class="toc-text">Module</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vuex数据流向"><span class="toc-number">2.6.</span> <span class="toc-text">Vuex数据流向</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#具体使用方法"><span class="toc-number">3.</span> <span class="toc-text">具体使用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#项目中使用Vuex"><span class="toc-number">3.1.</span> <span class="toc-text">项目中使用Vuex</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#初始化store"><span class="toc-number">3.2.</span> <span class="toc-text">初始化store</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#具体示例"><span class="toc-number">3.3.</span> <span class="toc-text">具体示例</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top">&#xe639;</div>
