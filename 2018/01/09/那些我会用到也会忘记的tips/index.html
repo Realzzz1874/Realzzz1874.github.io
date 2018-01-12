@@ -179,14 +179,8 @@
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <ol>
-<li><p>升级node版本</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g n</span><br><span class="line">n stable</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>正则验证合法uri</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">validateURL</span>(<span class="params">textval</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> urlregex = <span class="regexp">/^(https?|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&amp;%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]&#123;2&#125;|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]&#123;2&#125;|[1-9]?[0-9]))&#123;3&#125;|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]&#123;2&#125;))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&amp;%$#=~_-]+))*$/</span></span><br><span class="line">  <span class="keyword">return</span> urlregex.test(textval)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
+        <h3 id="1-升级node版本"><a href="#1-升级node版本" class="headerlink" title="1.升级node版本"></a>1.升级node版本</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g n</span><br><span class="line">n stable</span><br></pre></td></tr></table></figure>
+<h3 id="2-正则验证合法uri"><a href="#2-正则验证合法uri" class="headerlink" title="2.正则验证合法uri"></a>2.正则验证合法uri</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">validateURL</span>(<span class="params">textval</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> urlregex = <span class="regexp">/^(https?|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&amp;%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]&#123;2&#125;|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]&#123;2&#125;|[1-9]?[0-9]))&#123;3&#125;|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]&#123;2&#125;))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&amp;%$#=~_-]+))*$/</span></span><br><span class="line">  <span class="keyword">return</span> urlregex.test(textval)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </article>
     <!-- 前后页  -->
@@ -290,7 +284,7 @@
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-升级node版本"><span class="toc-number">1.</span> <span class="toc-text">1.升级node版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-正则验证合法uri"><span class="toc-number">2.</span> <span class="toc-text">2.正则验证合法uri</span></a></li></ol>
     </div>
     
     <div class="back-top">&#xe639;</div>
