@@ -149,6 +149,42 @@
     
     
         <article class="index-post">
+            <a class="content-show-full" href = "/2018/01/15/18位身份证号码验证算法的原理与实现/" >
+                    <h2 class="abstract-title">
+                        
+                        <span>18位身份证号码验证算法的原理与实现</span>
+                    </h2>
+                <div class="abstract-content">
+                    说明前段时间在工作中遇到一个需求，对用户输入的身份证号码做合法性检验。查了一下资料发现网上的相关文章也有不少，当时是用C#开发的客户端程序，这里给出更为普遍的JavaScript解决方案
+验证的算法原理
+判断用户输入的身份证号码长度是不是18位
+判断前17位是不是都是数字
+第一个数字不为0
+出生日期是否合法
+将前17位数字按照加权求和的计算方法与最后一位校验位比较
+
+算法的实现checkIdNum (idnum)函数接收一个身份证字符串，函数返回一个布尔值 true或者 false。取前17位为n，最后一位如果是x或者X都先置为0123var n = 0;var s = idnum.re...
+                </div>
+            </a>
+            <div class="abstract-post-meta">
+                <!-- tags  -->
+                
+                <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = Web>Web</a>
+    
+</div>
+                
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/01/15</span>
+                </div>
+            </div>
+        </article>
+    
+    
+    
+        <article class="index-post">
             <a class="content-show-full" href = "/2018/01/11/Vue项目中使用Vuex/" >
                     <h2 class="abstract-title">
                         
@@ -546,7 +582,16 @@ AMD推崇依赖前置，在模块定义的时候就要声明...
     
     
     
-    <div class="total-archive"> Total : 16 </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-archive"> Total : 17 </div>
     
     <div class="post-archive">
     
@@ -555,6 +600,11 @@ AMD推崇依赖前置，在模块定义的时候就要声明...
     
     <div class="archive-year"> 2018 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/15</span><a class="archive-post-title" href= "/2018/01/15/18位身份证号码验证算法的原理与实现/" >18位身份证号码验证算法的原理与实现</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -627,17 +677,17 @@ AMD推崇依赖前置，在模块定义的时候就要声明...
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">12/03</span><a class="archive-post-title" href= "/2017/12/03/用Promise封装ajax/" >用Promise封装ajax</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">12/03</span><a class="archive-post-title" href= "/2017/12/03/Web版基于讯飞(IFLY)的语音识别与合成/" >Web版基于讯飞(IFLY)的语音识别与合成</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">12/03</span><a class="archive-post-title" href= "/2017/12/03/排序算法/" >排序算法</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">12/03</span><a class="archive-post-title" href= "/2017/12/03/用Promise封装ajax/" >用Promise封装ajax</a>
         </li>
     
     

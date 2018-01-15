@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
     <title>
         
-        realzzz
+        18位身份证号码验证算法的原理与实现 · realzzz
         
     </title>
     <link rel="icon" href= /assets/favicon.ico>
@@ -50,11 +50,22 @@
     
 </head>
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >realzzz</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">18位身份证号码验证算法的原理与实现</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>realzzz</a>
 </header>
@@ -62,21 +73,43 @@
         <div class="site-intro">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/post-bg.jpg)"></div>
     <div class="site-intro-placeholder"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
+            18位身份证号码验证算法的原理与实现
+            <!-- 404 -->
+            
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <!-- 文章页标签  -->
+            
+                <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = Web>Web</a>
+    
+</div>
+            
+            <div class="post-intro-meta">
+                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                <span class="post-intro-time">2018/01/15</span>
+            </div>
         
     </div>
 </div>
@@ -144,39 +177,56 @@
             }
         </script>
         <div class="container container-unloaded">
-            <main class="main index-page">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>前段时间在工作中遇到一个需求，对用户输入的身份证号码做合法性检验。查了一下资料发现网上的相关文章也有不少，当时是用C#开发的客户端程序，这里给出更为普遍的JavaScript解决方案</p>
+<h2 id="验证的算法原理"><a href="#验证的算法原理" class="headerlink" title="验证的算法原理"></a>验证的算法原理</h2><ul>
+<li>判断用户输入的身份证号码长度是不是18位</li>
+<li>判断前17位是不是都是数字</li>
+<li>第一个数字不为0</li>
+<li>出生日期是否合法</li>
+<li>将前17位数字按照加权求和的计算方法与最后一位校验位比较</li>
+</ul>
+<h2 id="算法的实现"><a href="#算法的实现" class="headerlink" title="算法的实现"></a>算法的实现</h2><p><code>checkIdNum (idnum)</code>函数接收一个身份证字符串，函数返回一个布尔值 true或者 false。<br><br>取前17位为n，最后一位如果是x或者X都先置为0<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> n = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> s = idnum.replace(<span class="string">'x'</span>, <span class="string">'0'</span>).replace(<span class="string">'X'</span>, <span class="string">'0'</span>);</span><br><span class="line">n = idnum.substring(<span class="number">0</span>, <span class="number">17</span>);</span><br></pre></td></tr></table></figure></p>
+<p>验证长度是否合法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (idnum.length != <span class="number">18</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>验证是否为纯数字，第一位是否为0<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="built_in">isNaN</span>(n) || n &lt; <span class="built_in">Math</span>.pow(<span class="number">10</span>, <span class="number">16</span>) || <span class="built_in">isNaN</span>(s)) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>验证开头两位数字代表的省份是否合法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> address = <span class="string">"11x22x35x44x53x12x23x36x45x54x13x31x37x46x61x14x32x41x50x62x15x33x42x51x63x21x34x43x52x64x65x71x81x82x91"</span>;</span><br><span class="line"><span class="keyword">if</span> (address.indexOf(address.slice(<span class="number">0</span>, <span class="number">2</span>)) == <span class="number">-1</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>验证出生日期是否合法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> birth = idnum.substr(<span class="number">6</span>, <span class="number">8</span>).insert(<span class="number">6</span>, <span class="string">'-'</span>).insert(<span class="number">4</span>, <span class="string">'-'</span>);</span><br><span class="line"><span class="keyword">if</span> (!isDate(birth)) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这里用到了一个辅助函数<code>isDate(datetime)</code>，参数形式必须是yyyy-mm-dd<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isDate</span> (<span class="params">datetime</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> reg = <span class="regexp">/^(\d&#123;4&#125;)-(\d&#123;2&#125;)-(\d&#123;2&#125;)$/</span>;</span><br><span class="line">  <span class="keyword">var</span> str = datetime;</span><br><span class="line">  <span class="keyword">var</span> arr = reg.exec(str);</span><br><span class="line">  <span class="keyword">if</span> (str == <span class="string">""</span>)</span><br><span class="line">   <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  <span class="keyword">if</span> (!reg.test(str) &amp;&amp; <span class="built_in">RegExp</span>.$<span class="number">2</span> &lt;= <span class="number">12</span> &amp;&amp; <span class="built_in">RegExp</span>.$<span class="number">3</span> &lt;= <span class="number">31</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong><em>验证校验位是否正确</em></strong></p>
+<ul>
+<li>对前17位进行加权求和运算，记为sum</li>
+<li>得到的和sum与11进行取模运算，记为y</li>
+<li>记身份证最后的校验位为Y，通过y查找理论验证码对应取值表，判断<code>arrVarifyCode[y]</code>和Y是否一致</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arrVarifyCode = (<span class="string">"1,0,x,9,8,7,6,5,4,3,2"</span>).split(<span class="string">','</span>);</span><br><span class="line"><span class="keyword">var</span> wiArr = (<span class="string">"7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2"</span>).split(<span class="string">','</span>);</span><br><span class="line"><span class="keyword">var</span> aiArr = idnum.substring(<span class="number">0</span>, <span class="number">17</span>).split(<span class="string">""</span>);</span><br><span class="line"><span class="keyword">var</span> sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i&lt;<span class="number">17</span>; i++) &#123;</span><br><span class="line">  sum += <span class="built_in">parseInt</span>(wiArr[i]) * <span class="built_in">parseInt</span>(aiArr[i]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> y = <span class="number">-1</span>;</span><br><span class="line">y = sum % <span class="number">11</span>;</span><br><span class="line"><span class="keyword">if</span> (arrVarifyCode[y] != idnum.substr(<span class="number">17</span>, <span class="number">1</span>).toLowerCase()) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果以上验证全部通过，则说明身份证号码合法。</p>
+<h2 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h2><p><a href="https://github.com/Realzzz1874/checkIdNum" target="_blank" rel="noopener">checkIdNum</a></p>
+
+    </article>
+    <!-- 前后页  -->
+    <ul class="post-pager">
+        
+        
+            <li class="previous">
+                <a href= "/2018/01/11/Vue项目中使用Vuex/" title= Vue项目中使用Vuex >
+                    <span>Previous Post</span>
+                    <span>Vue项目中使用Vuex</span>
+                </a>
+            </li>
+        
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
     
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2017/12/03/排序算法/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>排序算法</span>
-                    </h2>
-                <div class="abstract-content">
-                    排序有内部排序和外部排序，内部排序是数据记录在内存中进行排序，而外部排序是因排序的数据很大，一次不能容纳全部的排序记录，在排序过程中需要访问外存。常见的八大排序就是内部排序。
-排序基本分类12345678910111213|-- 内部排序|   |-- 插入排序|       |-- 直接插入排序|       |-- 希尔排序|   |-- 选择排序|       |-- 简单选择排序|       |-- 堆排序|   |-- 交换排序|       |-- 冒泡排序|       |-- 快速排序|   |-- 归并排序|   |-- 基数排序|-- 外部排序
-内部排序插入排序 —...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = 排序>排序</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/12/03</span>
-                </div>
-            </div>
-        </article>
-    
-    <!-- paginator  -->
+    <!--PC版-->
+
+    <!--PC版-->
+
+
     
 </main>
             <!-- profile -->
@@ -243,6 +293,13 @@
 
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper">
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#说明"><span class="toc-number">1.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证的算法原理"><span class="toc-number">2.</span> <span class="toc-text">验证的算法原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#算法的实现"><span class="toc-number">3.</span> <span class="toc-text">算法的实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#完整代码"><span class="toc-number">4.</span> <span class="toc-text">完整代码</span></a></li></ol>
+    </div>
     
     <div class="back-top">&#xe639;</div>
     <div class="sidebar">
