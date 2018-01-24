@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
     <title>
         
-        realzzz
+        深入了解CommonJS模块实现原理 · realzzz
         
     </title>
     <link rel="icon" href= /assets/favicon.ico>
@@ -69,11 +69,22 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >realzzz</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">深入了解CommonJS模块实现原理</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>realzzz</a>
 </header>
@@ -81,21 +92,45 @@
         <div class="site-intro">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/post-bg.jpg)"></div>
     <div class="site-intro-placeholder"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
+            深入了解CommonJS模块实现原理
+            <!-- 404 -->
+            
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <!-- 文章页标签  -->
+            
+                <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = Web>Web</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = JavaScript>JavaScript</a>
+    
+</div>
+            
+            <div class="post-intro-meta">
+                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                <span class="post-intro-time">2018/01/24</span>
+            </div>
         
     </div>
 </div>
@@ -163,46 +198,33 @@
             }
         </script>
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2017/12/27/Web开发中的cookie、session、sessionStorage、localStorage/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>Web开发中的cookie、session、sessionStorage、localStorage</span>
-                    </h2>
-                <div class="abstract-content">
-                    cookiecookie的本质是一小段文本信息，存储在客户端。当Web服务器向浏览器发送Web页面的时候，一旦关闭连接，服务端不会记录用户的信息，cookie的作用就是用来记录客户端的用户信息。客户端请求服务器的时候，如果服务器需要记录客户端的用户状态，就使用response向客户端发送一个cookie。客户端这个时候会把这个cookie保存下来，当客户端再次访问浏览器的时候会把这个cookie带着一起发送给服务器，服务器检查这个cookie以此来判断用户的状态。
-应用场景：
-判断用户是否登录过网站，以便下次能实现自动登录
-保存上次登录的时间等信息
-保存上次查看的页面
-浏览计数
+            <main class="main post-page">
+    <article class="article-entry">
+        
+    </article>
+    <!-- 前后页  -->
+    <ul class="post-pager">
+        
+        
+            <li class="previous">
+                <a href= "/2018/01/15/18位身份证号码验证算法的原理与实现/" title= 18位身份证号码验证算法的原理与实现 >
+                    <span>Previous Post</span>
+                    <span>18位身份证号码验证算法的原理与实现</span>
+                </a>
+            </li>
+        
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
 
-ses...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
+<!-- City版安装代码已完成 -->
     
-        <a class="post-tag" href="javascript:void(0);" data-href = Web>Web</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-href = 数据存储>数据存储</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/12/27</span>
-                </div>
-            </div>
-        </article>
-    
-    <!-- paginator  -->
+    <!--PC版-->
+
+    <!--PC版-->
+
+
     
 </main>
             <!-- profile -->
@@ -269,6 +291,13 @@ ses...
 
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper">
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        
+    </div>
     
     <div class="back-top">&#xe639;</div>
     <div class="sidebar">

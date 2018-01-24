@@ -168,18 +168,15 @@
     
     
         <article class="index-post">
-            <a class="content-show-full" href = "/2017/12/03/用Promise封装ajax/" >
+            <a class="content-show-full" href = "/2017/12/03/排序算法/" >
                     <h2 class="abstract-title">
                         
-                        <span>用Promise封装ajax</span>
+                        <span>排序算法</span>
                     </h2>
                 <div class="abstract-content">
-                    回调函数真正的问题在于它剥夺了我们使用 return 和 throw 这些关键字的能力，而 Promise 的出现很好地解决了这个问题。
-何为PromisePromise 对象有以下两个特点。
-
-对象的状态不受外界影响。Promise 对象代表一个异步操作，有三种状态：Pending（进行中）、Resolved（已完成，又称 Fulfilled）和 Rejected（已失败）。只有异步操作的结果，可以决定当前是哪一种状态，任何其他操作都无法改变这个状态。这也是 Promise 这个名字的由来，它的英语意思就是「承诺」，表示其他手段无法改变。
-
-一旦状态改变，就不会再变，任何时候都可以得到...
+                    排序有内部排序和外部排序，内部排序是数据记录在内存中进行排序，而外部排序是因排序的数据很大，一次不能容纳全部的排序记录，在排序过程中需要访问外存。常见的八大排序就是内部排序。
+排序基本分类12345678910111213|-- 内部排序|   |-- 插入排序|       |-- 直接插入排序|       |-- 希尔排序|   |-- 选择排序|       |-- 简单选择排序|       |-- 堆排序|   |-- 交换排序|       |-- 冒泡排序|       |-- 快速排序|   |-- 归并排序|   |-- 基数排序|-- 外部排序
+内部排序插入排序 —...
                 </div>
             </a>
             <div class="abstract-post-meta">
@@ -187,9 +184,7 @@
                 
                 <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-href = Promise>Promise</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = ajax>ajax</a>
+        <a class="post-tag" href="javascript:void(0);" data-href = 排序>排序</a>
     
 </div>
                 
@@ -520,7 +515,8 @@ Quick Start安装Hexo1$ npm install -g hexo-cli
     
     
     
-    <div class="total-archive"> Total : 17 </div>
+    
+    <div class="total-archive"> Total : 18 </div>
     
     <div class="post-archive">
     
@@ -529,6 +525,11 @@ Quick Start安装Hexo1$ npm install -g hexo-cli
     
     <div class="archive-year"> 2018 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/24</span><a class="archive-post-title" href= "/2018/01/24/深入了解CommonJS模块实现原理/" >深入了解CommonJS模块实现原理</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -606,7 +607,7 @@ Quick Start安装Hexo1$ npm install -g hexo-cli
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/03</span><a class="archive-post-title" href= "/2017/12/03/用Promise封装ajax/" >用Promise封装ajax</a>
+            <span class="archive-post-date">12/03</span><a class="archive-post-title" href= "/2017/12/03/排序算法/" >排序算法</a>
         </li>
     
     
@@ -616,7 +617,7 @@ Quick Start安装Hexo1$ npm install -g hexo-cli
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/03</span><a class="archive-post-title" href= "/2017/12/03/排序算法/" >排序算法</a>
+            <span class="archive-post-date">12/03</span><a class="archive-post-title" href= "/2017/12/03/用Promise封装ajax/" >用Promise封装ajax</a>
         </li>
     
     
@@ -643,13 +644,15 @@ Quick Start安装Hexo1$ npm install -g hexo-cli
     
         <span class="sidebar-tag-name"><a href= "#">Vue</a></span>
     
+        <span class="sidebar-tag-name"><a href= "#">语音合成、语音识别</a></span>
+    
         <span class="sidebar-tag-name"><a href= "#">Vuex</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">js小技巧</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">tips</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">语音合成、语音识别</a></span>
+        <span class="sidebar-tag-name"><a href= "#">数据存储</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">图片懒加载</a></span>
     
@@ -658,8 +661,6 @@ Quick Start安装Hexo1$ npm install -g hexo-cli
         <span class="sidebar-tag-name"><a href= "#">Promise</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">ajax</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">数据存储</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">排序</a></span>
     
