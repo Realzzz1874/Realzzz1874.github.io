@@ -187,7 +187,9 @@
                         <span>深入了解CommonJS模块实现原理</span>
                     </h2>
                 <div class="abstract-content">
-                    
+                    在JavaScript中使用变量也需要同其它编程语言一样要注意变量的作用域，如果a.js和b.js中都使用了全局变量x，那么它们将会产生冲突。JavaScript语言本身并没有一种模块机制来保证不同模块之间可以使用相同的变量名。JavaScript是函数式编程语言，JavaScript支持闭包。用闭包函数的方式将一段JavaScript代码封装起来，那么这段代码中的变量将只能在本闭包中产生作用，采用这种方法便形象地将“全局变量”变成了闭包中的“局部变量”。
+编写一个js文件命名为a.js：12var a = 'hello world!';console.log(a);
+Node.js模块...
                 </div>
             </a>
             <div class="abstract-post-meta">

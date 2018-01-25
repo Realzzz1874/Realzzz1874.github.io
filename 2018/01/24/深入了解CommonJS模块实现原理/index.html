@@ -200,7 +200,11 @@
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        
+        <p>在JavaScript中使用变量也需要同其它编程语言一样要注意变量的作用域，如果a.js和b.js中都使用了全局变量x，那么它们将会产生冲突。<br><br>JavaScript语言本身并没有一种模块机制来保证不同模块之间可以使用相同的变量名。<br><br>JavaScript是函数式编程语言，JavaScript支持<a href="https://baike.baidu.com/item/%E9%97%AD%E5%8C%85/10908873?fr=aladdin" target="_blank" rel="noopener">闭包</a>。用闭包函数的方式将一段JavaScript代码封装起来，那么这段代码中的变量将只能在本闭包中产生作用，采用这种方法便形象地将“全局变量”变成了闭包中的“局部变量”。<br></p>
+<p>编写一个js文件命名为<code>a.js</code>：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">'hello world!'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br></pre></td></tr></table></figure></p>
+<p>Node.js模块化加载以后会将原来的代码进行封装：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="string">'hello world!'</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(a);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></p>
+<p>这一步操作以后，原来的全局变量a现在就变成了闭包中的局部变量</p>
+
     </article>
     <!-- 前后页  -->
     <ul class="post-pager">
