@@ -181,6 +181,36 @@
     
     
         <article class="index-post">
+            <a class="content-show-full" href = "/2018/01/25/记一些常用的正则/" >
+                    <h2 class="abstract-title">
+                        
+                        <span>记一些常用的正则</span>
+                    </h2>
+                <div class="abstract-content">
+                    1.验证表单email输入的数据必须包含 @ 符号和点号(.)。同时，@ 不可以是邮件地址的首字符，并且 @ 之后需有至少一个点号：123456789function validateFormEmail()&#123;  var x=document.forms["myForm"]["email"].value;  var atpos=x.indexOf("@");  var dotpos=x.lastIndexOf(".");  if (atpos&lt;1 || dotpos&lt;atpos+2 || dotpos+2&gt;=x.length)&#123;    alert("不...
+                </div>
+            </a>
+            <div class="abstract-post-meta">
+                <!-- tags  -->
+                
+                <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = tips>tips</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = 正则表达式>正则表达式</a>
+    
+</div>
+                
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/01/25</span>
+                </div>
+            </div>
+        </article>
+    
+    
+    
+        <article class="index-post">
             <a class="content-show-full" href = "/2018/01/24/深入了解CommonJS模块实现原理/" >
                     <h2 class="abstract-title">
                         
@@ -323,8 +353,8 @@ i18n（其来源是英文单词 internationalization的首末字符i和n，18为
                         <span>那些我会用到也会忘记的tips</span>
                     </h2>
                 <div class="abstract-content">
-                    升级node版本12npm install -g nn stable
-正则验证合法uri1234export function validateURL(textval) &#123;  const urlregex = /^(https?|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&amp;%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]&#123;2&#125;|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]&#123;2&#125;|[1-9]?[0-9]))&#123;3&#125;|...
+                    1.升级node版本12npm install -g nn stable
+2.正则验证合法uri1234function validateURL(textval) &#123;  const urlregex = /^(https?|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&amp;%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]&#123;2&#125;|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]&#123;2&#125;|[1-9]?[0-9]))&#123;3&#125;|([a...
                 </div>
             </a>
             <div class="abstract-post-meta">
@@ -488,44 +518,6 @@ this指向的一些例子...
                 <!-- date  -->
                 <div class="abstract-date">
                     <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/12/20</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2017/12/19/js小技巧之rest参数/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>js小技巧之rest参数</span>
-                    </h2>
-                <div class="abstract-content">
-                    是什么rest 参数是形式为...的变量名，可以用来获取函数的多余参数，rest参数搭配的变量是一个数组，该变量将多余的参数放入数组中。简单说：将多余的逗号分隔的参数序列转换为数组参数。（和扩展运算符spread相反）
-怎么用
-rest参数接收函数的多余参数，组成一个数组，要放在形参的最后
-123function func(a, b, ...otherArgs) &#123;    // ...&#125;
-
-rest参数可以用来代替不确定参数个数的传递方式
-12345678function add(...nums) &#123;  let sum = 0;  for (var num ...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = JavaScript>JavaScript</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = js小技巧>js小技巧</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = tips>tips</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/12/19</span>
                 </div>
             </div>
         </article>
@@ -878,7 +870,30 @@ rest参数可以用来代替不确定参数个数的传递方式
     
     
     
-    <div class="total-archive"> Total : 18 </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-archive"> Total : 19 </div>
     
     <div class="post-archive">
     
@@ -887,6 +902,11 @@ rest参数可以用来代替不确定参数个数的传递方式
     
     <div class="archive-year"> 2018 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/25</span><a class="archive-post-title" href= "/2018/01/25/记一些常用的正则/" >记一些常用的正则</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -969,17 +989,17 @@ rest参数可以用来代替不确定参数个数的传递方式
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">12/03</span><a class="archive-post-title" href= "/2017/12/03/用Promise封装ajax/" >用Promise封装ajax</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">12/03</span><a class="archive-post-title" href= "/2017/12/03/排序算法/" >排序算法</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">12/03</span><a class="archive-post-title" href= "/2017/12/03/Web版基于讯飞(IFLY)的语音识别与合成/" >Web版基于讯飞(IFLY)的语音识别与合成</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">12/03</span><a class="archive-post-title" href= "/2017/12/03/用Promise封装ajax/" >用Promise封装ajax</a>
         </li>
     
     
@@ -1006,17 +1026,19 @@ rest参数可以用来代替不确定参数个数的传递方式
     
         <span class="sidebar-tag-name"><a href= "#">Vue</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">语音合成、语音识别</a></span>
-    
         <span class="sidebar-tag-name"><a href= "#">Vuex</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">数据存储</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">语音合成、语音识别</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">js小技巧</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">tips</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">数据存储</a></span>
-    
         <span class="sidebar-tag-name"><a href= "#">图片懒加载</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">排序</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">浏览器</a></span>
     
@@ -1024,7 +1046,7 @@ rest参数可以用来代替不确定参数个数的传递方式
     
         <span class="sidebar-tag-name"><a href= "#">ajax</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">排序</a></span>
+        <span class="sidebar-tag-name"><a href= "#">正则表达式</a></span>
     
     </div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
     <title>
         
-        realzzz
+        记一些常用的正则 · realzzz
         
     </title>
     <link rel="icon" href= /assets/favicon.ico>
@@ -69,11 +69,22 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >realzzz</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">记一些常用的正则</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>realzzz</a>
 </header>
@@ -81,21 +92,45 @@
         <div class="site-intro">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/post-bg.jpg)"></div>
     <div class="site-intro-placeholder"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
+            记一些常用的正则
+            <!-- 404 -->
+            
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <!-- 文章页标签  -->
+            
+                <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = tips>tips</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = 正则表达式>正则表达式</a>
+    
+</div>
+            
+            <div class="post-intro-meta">
+                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                <span class="post-intro-time">2018/01/25</span>
+            </div>
         
     </div>
 </div>
@@ -163,68 +198,37 @@
             }
         </script>
         <div class="container container-unloaded">
-            <main class="main index-page">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h3 id="1-验证表单email"><a href="#1-验证表单email" class="headerlink" title="1.验证表单email"></a>1.验证表单email</h3><p>输入的数据必须包含 @ 符号和点号(.)。同时，@ 不可以是邮件地址的首字符，并且 @ 之后需有至少一个点号：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">validateFormEmail</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> x=<span class="built_in">document</span>.forms[<span class="string">"myForm"</span>][<span class="string">"email"</span>].value;</span><br><span class="line">  <span class="keyword">var</span> atpos=x.indexOf(<span class="string">"@"</span>);</span><br><span class="line">  <span class="keyword">var</span> dotpos=x.lastIndexOf(<span class="string">"."</span>);</span><br><span class="line">  <span class="keyword">if</span> (atpos&lt;<span class="number">1</span> || dotpos&lt;atpos+<span class="number">2</span> || dotpos+<span class="number">2</span>&gt;=x.length)&#123;</span><br><span class="line">    alert(<span class="string">"不是一个有效的 e-mail 地址"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-验证合法uri"><a href="#2-验证合法uri" class="headerlink" title="2.验证合法uri"></a>2.验证合法uri</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">validateURL</span>(<span class="params">textval</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> urlregex = <span class="regexp">/^(https?|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&amp;%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]&#123;2&#125;|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]&#123;2&#125;|[1-9]?[0-9]))&#123;3&#125;|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]&#123;2&#125;))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&amp;%$#=~_-]+))*$/</span></span><br><span class="line">  <span class="keyword">return</span> urlregex.test(textval)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-验证电话号码"><a href="#3-验证电话号码" class="headerlink" title="3.验证电话号码"></a>3.验证电话号码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="4-验证日期"><a href="#4-验证日期" class="headerlink" title="4.验证日期"></a>4.验证日期</h3><p>参数为yyyy-mm-dd格式<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isDate</span>(<span class="params">datetime</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> reg = <span class="regexp">/^(\d&#123;4&#125;)-(\d&#123;2&#125;)-(\d&#123;2&#125;)$/</span>;</span><br><span class="line">  <span class="keyword">var</span> str = datetime;</span><br><span class="line">  <span class="keyword">var</span> arr = reg.exec(str);</span><br><span class="line">  <span class="keyword">if</span> (str == <span class="string">""</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  <span class="keyword">if</span> (!reg.test(str) &amp;&amp; <span class="built_in">RegExp</span>.$<span class="number">2</span> &lt;= <span class="number">12</span> &amp;&amp; <span class="built_in">RegExp</span>.$<span class="number">3</span> &lt;= <span class="number">31</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+    </article>
+    <!-- 前后页  -->
+    <ul class="post-pager">
+        
+        
+            <li class="previous">
+                <a href= "/2018/01/24/深入了解CommonJS模块实现原理/" title= 深入了解CommonJS模块实现原理 >
+                    <span>Previous Post</span>
+                    <span>深入了解CommonJS模块实现原理</span>
+                </a>
+            </li>
+        
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
     
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2018/01/25/记一些常用的正则/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>记一些常用的正则</span>
-                    </h2>
-                <div class="abstract-content">
-                    1.验证表单email输入的数据必须包含 @ 符号和点号(.)。同时，@ 不可以是邮件地址的首字符，并且 @ 之后需有至少一个点号：123456789function validateFormEmail()&#123;  var x=document.forms["myForm"]["email"].value;  var atpos=x.indexOf("@");  var dotpos=x.lastIndexOf(".");  if (atpos&lt;1 || dotpos&lt;atpos+2 || dotpos+2&gt;=x.length)&#123;    alert("不...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = tips>tips</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = 正则表达式>正则表达式</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/01/25</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2018/01/09/那些我会用到也会忘记的tips/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>那些我会用到也会忘记的tips</span>
-                    </h2>
-                <div class="abstract-content">
-                    1.升级node版本12npm install -g nn stable
-2.正则验证合法uri1234function validateURL(textval) &#123;  const urlregex = /^(https?|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&amp;%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]&#123;2&#125;|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]&#123;2&#125;|[1-9]?[0-9]))&#123;3&#125;|([a...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = tips>tips</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/01/09</span>
-                </div>
-            </div>
-        </article>
-    
-    <!-- paginator  -->
+    <!--PC版-->
+
+    <!--PC版-->
+
+
     
 </main>
             <!-- profile -->
@@ -291,6 +295,13 @@
 
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper">
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-验证表单email"><span class="toc-number">1.</span> <span class="toc-text">1.验证表单email</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-验证合法uri"><span class="toc-number">2.</span> <span class="toc-text">2.验证合法uri</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-验证电话号码"><span class="toc-number">3.</span> <span class="toc-text">3.验证电话号码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-验证日期"><span class="toc-number">4.</span> <span class="toc-text">4.验证日期</span></a></li></ol>
+    </div>
     
     <div class="back-top">&#xe639;</div>
     <div class="sidebar">
