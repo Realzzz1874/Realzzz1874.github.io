@@ -174,7 +174,7 @@
                         <span>记一些常用的正则</span>
                     </h2>
                 <div class="abstract-content">
-                    验证表单email输入的数据必须包含 @ 符号和点号(.)。同时，@ 不可以是邮件地址的首字符，并且 @ 之后需有至少一个点号：123456789function validateFormEmail(x)&#123;  var atpos=x.indexOf("@");  var dotpos=x.lastIndexOf(".");  if (atpos&lt;1 || dotpos&lt;atpos+2 || dotpos+2&gt;=x.length)&#123;    return false;  &#125; else &#123;    return true;  &#125;...
+                    验证表单email输入的数据必须包含 @ 符号和点号(.)。同时，@ 不可以是邮件地址的首字符，并且 @ 之后需有至少一个点号：12345678function validateFormEmail(x)&#123;  var reg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]&#123;2,3&#125;$/;  if (!reg.test(email)) &#123;    return false;  &#125; else &#123;    re...
                 </div>
             </a>
             <div class="abstract-post-meta">
