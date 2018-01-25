@@ -174,7 +174,7 @@
                         <span>记一些常用的正则</span>
                     </h2>
                 <div class="abstract-content">
-                    1.验证表单email输入的数据必须包含 @ 符号和点号(.)。同时，@ 不可以是邮件地址的首字符，并且 @ 之后需有至少一个点号：123456789function validateFormEmail()&#123;  var x=document.forms["myForm"]["email"].value;  var atpos=x.indexOf("@");  var dotpos=x.lastIndexOf(".");  if (atpos&lt;1 || dotpos&lt;atpos+2 || dotpos+2&gt;=x.length)&#123;    alert("不...
+                    验证表单email输入的数据必须包含 @ 符号和点号(.)。同时，@ 不可以是邮件地址的首字符，并且 @ 之后需有至少一个点号：123456789function validateFormEmail()&#123;  var x=document.forms["myForm"]["email"].value;  var atpos=x.indexOf("@");  var dotpos=x.lastIndexOf(".");  if (atpos&lt;1 || dotpos&lt;atpos+2 || dotpos+2&gt;=x.length)&#123;    alert("不是一...
                 </div>
             </a>
             <div class="abstract-post-meta">
@@ -340,8 +340,8 @@ i18n（其来源是英文单词 internationalization的首末字符i和n，18为
                         <span>那些我会用到也会忘记的tips</span>
                     </h2>
                 <div class="abstract-content">
-                    1.升级node版本12npm install -g nn stable
-2.正则验证合法uri1234function validateURL(textval) &#123;  const urlregex = /^(https?|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&amp;%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]&#123;2&#125;|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]&#123;2&#125;|[1-9]?[0-9]))&#123;3&#125;|([a...
+                    升级node版本12npm install -g nn stable
+正则验证合法uri1234function validateURL(textval) &#123;  const urlregex = /^(https?|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&amp;%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]&#123;2&#125;|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]&#123;2&#125;|[1-9]?[0-9]))&#123;3&#125;|([a-zA-...
                 </div>
             </a>
             <div class="abstract-post-meta">
