@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://realzzz.coding.me/"/>
-  <updated>2018-01-27T06:02:36.282Z</updated>
+  <updated>2018-01-28T04:33:50.597Z</updated>
   <id>http://realzzz.coding.me/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>axios拦截器的使用以及一些常用的配置</title>
+    <link href="http://realzzz.coding.me/2018/01/28/axios%E6%8B%A6%E6%88%AA%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BB%A5%E5%8F%8A%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84%E9%85%8D%E7%BD%AE/"/>
+    <id>http://realzzz.coding.me/2018/01/28/axios拦截器的使用以及一些常用的配置/</id>
+    <published>2018-01-27T16:00:00.000Z</published>
+    <updated>2018-01-28T04:33:50.597Z</updated>
+    
+    <summary type="html">
+    
+      axios拦截器的使用以及一些常用的配置
+    
+    </summary>
+    
+      <category term="Vue" scheme="http://realzzz.coding.me/categories/Vue/"/>
+    
+    
+      <category term="Web" scheme="http://realzzz.coding.me/tags/Web/"/>
+    
+      <category term="Vue" scheme="http://realzzz.coding.me/tags/Vue/"/>
+    
+      <category term="axios" scheme="http://realzzz.coding.me/tags/axios/"/>
+    
+  </entry>
   
   <entry>
     <title>记一些常用的正则</title>
