@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://realzzz.coding.me/"/>
-  <updated>2018-01-31T09:53:29.561Z</updated>
+  <updated>2018-01-31T10:06:05.930Z</updated>
   <id>http://realzzz.coding.me/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://realzzz.coding.me/2018/01/31/JavaScript%E4%B8%AD%E7%9A%84%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%8E%9F%E5%9E%8B%E9%93%BE/"/>
     <id>http://realzzz.coding.me/2018/01/31/JavaScript中的继承与原型链/</id>
     <published>2018-01-30T16:00:00.000Z</published>
-    <updated>2018-01-31T09:53:29.561Z</updated>
+    <updated>2018-01-31T10:06:05.930Z</updated>
     
-    <content type="html"><![CDATA[<p>继承</p>]]></content>
+    <content type="html"><![CDATA[<p>个人觉得JavaScript中最难的地方就是闭包与原型链了吧。。。<br><br>JavaScript本身是动态的，连class都没有实现（不要以为es6中引入了class关键字，那只是一个语法糖而已，JavaScript本身依然是基于原型的。。。）</p>]]></content>
     
     <summary type="html">
     
