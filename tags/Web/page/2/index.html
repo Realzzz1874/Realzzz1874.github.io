@@ -168,13 +168,14 @@
     
     
         <article class="index-post">
-            <a class="content-show-full" href = "/2018/01/31/JavaScript中的继承与原型链/" >
+            <a class="content-show-full" href = "/2017/12/03/Web版基于讯飞(IFLY)的语音识别与合成/" >
                     <h2 class="abstract-title">
                         
-                        <span>JavaScript中的继承与原型链</span>
+                        <span>Web版基于讯飞(IFLY)的语音识别与合成</span>
                     </h2>
                 <div class="abstract-content">
-                    
+                    讯飞开放平台，是科大讯飞基于云计算技术基础，将业界领先的智能语音核心技术向广大移动互联网开发者开放的全球首个同时提供语音合成、语音搜索、语音听写等智能语音交互能力的智能语音交互平台。本篇文章是基于 HTML 5 标准实现的一组“网页语言”语音开发示例，现支持云端语音听写、语音合成(以及语音评测)功能。采用 WEBSOCKET 通信协议，后端是基于 NODEJS 的开发框架，云和端均使用 JAVASCRIPT 实现。API 开发接口简单，内部封装了语音前后端点检测，音量检测、音频压缩、WAV、MP3 编码等模块，支持音量、识别结果、合成音频的实时回调。
+名词解释TTS ( Text to ...
                 </div>
             </a>
             <div class="abstract-post-meta">
@@ -184,328 +185,13 @@
     
         <a class="post-tag" href="javascript:void(0);" data-href = Web>Web</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-href = JavaScript>JavaScript</a>
+        <a class="post-tag" href="javascript:void(0);" data-href = 语音合成、语音识别>语音合成、语音识别</a>
     
 </div>
                 
                 <!-- date  -->
                 <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/01/31</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2018/01/28/axios拦截器的使用以及一些常用的配置/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>axios拦截器的使用以及一些常用的配置</span>
-                    </h2>
-                <div class="abstract-content">
-                    引言在Vue2.0之前的项目中使用的是vue-resource进行网络请求，而在Vue2.0之后官方宣布不再继续更新vue-resource，而是推荐axios。axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js 中。
-实例一个简单的post请求：12345678axios.post('/user', &#123;  firstName: 'Fred',  lastName: 'Flintstone'&#125;).then(function (response) &#123;  console.log(response);&#125;).catc...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = Web>Web</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = Vue>Vue</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = axios>axios</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/01/28</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2018/01/24/深入了解CommonJS模块实现原理/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>深入了解CommonJS模块实现原理</span>
-                    </h2>
-                <div class="abstract-content">
-                    在JavaScript中使用变量也需要同其它编程语言一样要注意变量的作用域，如果a.js和b.js中都使用了全局变量x，那么它们将会产生冲突。JavaScript语言本身并没有一种模块机制来保证不同模块之间可以使用相同的变量名。
-模块的隔离JavaScript是函数式编程语言，JavaScript支持闭包。用闭包函数的方式将一段JavaScript代码封装起来，那么这段代码中的变量将只能在本闭包中产生作用，采用这种方法便形象地将“全局变量”变成了闭包中的“局部变量”。
-编写一个js文件命名为a.js：12var a = 'hello world!';console.log(a);
-Nod...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = Web>Web</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = JavaScript>JavaScript</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/01/24</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2018/01/15/18位身份证号码验证算法的原理与实现/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>18位身份证号码验证算法的原理与实现</span>
-                    </h2>
-                <div class="abstract-content">
-                    说明前段时间在工作中遇到一个需求，对用户输入的身份证号码做合法性检验。查了一下资料发现网上的相关文章也有不少，当时是用C#开发的客户端程序，这里给出更为普遍的JavaScript解决方案
-验证的算法原理
-判断用户输入的身份证号码长度是不是18位
-判断前17位是不是都是数字
-第一个数字不为0
-出生日期是否合法
-将前17位数字按照加权求和的计算方法与最后一位校验位比较
-
-算法的实现checkIdNum (idnum)函数接收一个身份证字符串，函数返回一个布尔值 true或者 false。取前17位为n，最后一位如果是x或者X都先置为0123var n = 0;var s = idnum.re...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = Web>Web</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/01/15</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2018/01/10/Vue中使用i18n国际化解决方案/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>Vue中使用i18n国际化解决方案</span>
-                    </h2>
-                <div class="abstract-content">
-                    概述在一些系统开发中，为了满足更多的用户需求，系统都需要具备支持多种语言切换的功能。本文以一个实例演示在Vue中使用i18n来解决多语言切换的问题。项目地址：i18nDemo
-
-百度词条:
-i18n（其来源是英文单词 internationalization的首末字符i和n，18为中间的字符数）是“国际化”的简称。在资讯领域，国际化(i18n)指让产品（出版物，软件，硬件等）无需做大的改变就能够适应不同的语言和地区的需要。对程序来说，在不修改内部代码的情况下，能根据不同语言及地区显示相应的界面。 在全球化的时代，国际化尤为重要，因为产品的潜在用户可能来自世界的各个角落。通常与i18n相关...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = Web>Web</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = Vue>Vue</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/01/10</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2018/01/03/CommonJS、AMD和CMD/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>CommonJS、AMD和CMD</span>
-                    </h2>
-                <div class="abstract-content">
-                    是什么CommonJS是作用在服务器端，同步的，如nodeJS。根据CommonJS的规范，一个文件就是一个模块，加载的时候用require方法，然后执行之后返回文件内部的exports对象AMD是Asynchronous Module Definition的缩写，意思是“异步模块定义”CMD是Commom Module Definition的缩写，意思是“通用模块定义”AMD是RequireJS对模块定义的规范化产物CMD是SeaJS对模块定义的规范化产物
-区别AMD和CMD最大的区别就是对依赖的执行时机处理不同（不是加载的时机或者方式）
-
-AMD推崇依赖前置，在模块定义的时候就要声明...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = Web>Web</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = JavaScript>JavaScript</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/01/03</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2017/12/27/Web开发中的cookie、session、sessionStorage、localStorage/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>Web开发中的cookie、session、sessionStorage、localStorage</span>
-                    </h2>
-                <div class="abstract-content">
-                    cookiecookie的本质是一小段文本信息，存储在客户端。当Web服务器向浏览器发送Web页面的时候，一旦关闭连接，服务端不会记录用户的信息，cookie的作用就是用来记录客户端的用户信息。客户端请求服务器的时候，如果服务器需要记录客户端的用户状态，就使用response向客户端发送一个cookie。客户端这个时候会把这个cookie保存下来，当客户端再次访问浏览器的时候会把这个cookie带着一起发送给服务器，服务器检查这个cookie以此来判断用户的状态。
-应用场景：
-判断用户是否登录过网站，以便下次能实现自动登录
-保存上次登录的时间等信息
-保存上次查看的页面
-浏览计数
-
-ses...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = Web>Web</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = 数据存储>数据存储</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/12/27</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2017/12/26/Vue组件之间的信息传递/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>Vue组件之间的信息传递</span>
-                    </h2>
-                <div class="abstract-content">
-                    什么是组件？
-组件 (Component) 可以扩展HTML元素，封装可以重用的代码。组件是自定义元素，Vue.js的编译器为它添加特殊的功能。
-
-组件的作用域是相互孤立的，在子组件中无法直接引用父组件中的数据。父子组件的关系为 props down，events up.父组件通过prop给子组件下发数据，子组件通过事件给父组件传递消息。
-父组件传递数据给子组件静态props父组件通过props属性来传递数据给子组件：在父组件使用子组件的时候可以通过msg传一个字符串：1&lt;child msg="hello"&gt;&lt;/child&gt;
-在子组件中使用props: [&#39...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = Web>Web</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = Vue>Vue</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/12/26</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2017/12/14/使用js实现图片懒加载/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>使用js实现图片懒加载</span>
-                    </h2>
-                <div class="abstract-content">
-                    什么是懒加载页面的图片都是“按需加载”，即用户滚动页面显示出来的时候才加载图片。
-图片使用懒加载的原因在一个网页中，图片的加载是非常消耗流量的。在不使用懒加载的时候，浏览器会从上往下依次加载img标签。当一个页面很长的时候，隐藏在页面底部还没有暴露视野的图片在浏览器开始加载的时候就已经被预先加载了。这样的做法首先会导致页面在加载的时候变得卡顿，其次，如果用户没有继续向下滑动页面的话，等于是白白浪费了加载图片所需要的流量。所以在一个很长并且具有很多图片的网页中使用“懒加载”是非常有必要的。
-懒加载的基思想在写HTML的时候，不要直接写&lt;img src=&quot;xxx&quot;&...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = Web>Web</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = JavaScript>JavaScript</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = 图片懒加载>图片懒加载</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/12/14</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2017/12/05/Less基础/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>Less基础</span>
-                    </h2>
-                <div class="abstract-content">
-                    什么是LessLess是一个CSS预处理器，能够定制，可管理和可重复使用网站的样式表。 Less是一个动态的样式表语言，扩展CSS的性能。
-CSS预处理器是一种脚本语言，它扩展了CSS并将其编译成普通的CSS语法，以便它可以通过Web浏览器读取使用。它提供了像变量，函数，混合类型和操作，可以很方便的建立动态的CSS功能。
-为什么要使用Less
-Less创建更简洁，更容易，跨浏览器更友好
-Less编译比其他的 CSS 预处理器更快
-Less的模块化设计使得代码可读性提高
-Less的变量设计使得项目更容易维护
-
-使用Less安装1npm install -g less
-举例说明以一段代码为例...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = Web>Web</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = Less>Less</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = CSS>CSS</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/12/05</span>
+                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/12/03</span>
                 </div>
             </div>
         </article>
@@ -513,7 +199,7 @@ Less的变量设计使得项目更容易维护
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/tags/Web/page/2/">2</a><a class="extend next" rel="next" href="/tags/Web/page/2/">#NEXT</a>
+        <a class="extend prev" rel="prev" href="/tags/Web/">#PREV</a><a class="page-number" href="/tags/Web/">1</a><span class="page-number current">2</span>
     </nav>
     
 </main>
