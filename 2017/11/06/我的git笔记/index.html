@@ -225,11 +225,10 @@
 </li>
 <li><p>查看已经暂存和未暂存的修改</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><code>git diff</code> 查看的是工作目录中当前文件和暂存区域快照之间的差异，也就是修改之后还没有暂存起来的变化内容。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git diff --cached</span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line">git diff --staged</span><br></pre></td></tr></table></figure></p>
+<p><code>git diff</code> 查看的是工作目录中当前文件和暂存区域快照之间的差异，也就是修改之后还没有暂存起来的变化内容。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git diff --cached</span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line">git diff --staged</span><br></pre></td></tr></table></figure>
 <p>查看已暂存的将要添加到下次提交里的内容需要使用<code>git diff --cached(staged)</code></p>
-<ol>
+</li>
 <li><p>提交更新</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m<span class="string">"提交信息说明"</span></span><br></pre></td></tr></table></figure>
 </li>
@@ -238,15 +237,14 @@
 </li>
 <li><p>移除文件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rm</span><br></pre></td></tr></table></figure>
+<p>把file从暂存区域中删除，但仍然希望保留在当前工作目录中：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rm --cached [file]</span><br></pre></td></tr></table></figure>
 </li>
-</ol>
-<p>把file从暂存区域中删除，但仍然希望保留在当前工作目录中：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rm --cached [file]</span><br></pre></td></tr></table></figure></p>
-<ol>
-<li>移动文件<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git mv [file_from][file_to]</span><br></pre></td></tr></table></figure>
+<li><p>移动文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git mv [file_from][file_to]</span><br></pre></td></tr></table></figure>
+<p><code>git mv</code>相当于是：<br></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mv file_from file_to</span><br><span class="line">git rm file_to</span><br><span class="line">git add file_to</span><br></pre></td></tr></table></figure>
 </li>
-</ol>
-<p><code>git mv</code>相当于是：<br><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mv file_from file_to</span><br><span class="line">git rm file_to</span><br><span class="line">git add file_to</span><br></pre></td></tr></table></figure></p>
-<ol>
 <li><p>查看提交历史</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span></span><br><span class="line"><span class="comment"># -p 显示每次提交的差异</span></span><br><span class="line"><span class="comment"># -2 仅仅显示最近2次提交</span></span><br><span class="line"><span class="comment"># --stat 查看每次提交的简略统计信息</span></span><br><span class="line"><span class="comment"># git log --since=2.weeks 显示最近2周的提交记录</span></span><br></pre></td></tr></table></figure>
 </li>
