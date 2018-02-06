@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>http://realzzz.coding.me/2018/01/31/JavaScript%E4%B8%AD%E7%9A%84%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%8E%9F%E5%9E%8B%E9%93%BE/</loc>
+    <lastmod>2018-02-06T04:26:16.405Z</lastmod>
+    <data>
+        <display>
+        <title>JavaScript中的继承与原型链</title>
+        <pubTime>2018-01-30T16:00:00.000Z</pubTime>
+        
+        <tag>Web</tag>
+         
+        <tag>JavaScript</tag>
+         
+         
+           
+             
+              <breadCrumb title="JavaScript" url="http://realzzz.coding.me/categories/JavaScript/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://realzzz.coding.me/2018/01/25/%E8%AE%B0%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84%E6%AD%A3%E5%88%99/</loc>
     <lastmod>2018-02-05T08:56:03.768Z</lastmod>
     <data>
@@ -19,28 +41,6 @@
            
              
               <breadCrumb title="tips" url="http://realzzz.coding.me/categories/tips/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://realzzz.coding.me/2018/01/31/JavaScript%E4%B8%AD%E7%9A%84%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%8E%9F%E5%9E%8B%E9%93%BE/</loc>
-    <lastmod>2018-02-04T13:56:27.931Z</lastmod>
-    <data>
-        <display>
-        <title>JavaScript中的继承与原型链</title>
-        <pubTime>2018-01-30T16:00:00.000Z</pubTime>
-        
-        <tag>Web</tag>
-         
-        <tag>JavaScript</tag>
-         
-         
-           
-             
-              <breadCrumb title="JavaScript" url="http://realzzz.coding.me/categories/JavaScript/"/>
           
         </display>
     </data>
