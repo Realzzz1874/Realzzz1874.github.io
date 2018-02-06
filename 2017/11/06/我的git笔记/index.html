@@ -250,10 +250,8 @@
 </li>
 <li><p>撤销操作</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit --amend</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
 <p>这个命令会将暂存区中的文件提交。如果上次提交以后没有做任何修改而执行了这条命令，那么快照会保持不变，修改的只是提交信息。</p>
-<ul>
+</li>
 <li><p>取消暂存的文件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --HEAD &lt;file&gt;</span><br></pre></td></tr></table></figure>
 </li>
@@ -265,16 +263,13 @@
 </li>
 <li><p>从远程仓库中抓取与拉取</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git fetch [remote-name]</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span></span><br></pre></td></tr></table></figure>
 <p>git pull = git fetch + git merge</p>
-<ul>
-<li>推送到远程分支<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push [remote-name] [branch-name]</span><br></pre></td></tr></table></figure>
 </li>
-</ul>
+<li><p>推送到远程分支</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push [remote-name] [branch-name]</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git push orign master</span><br><span class="line"><span class="comment"># 将master分支推送到orign服务器</span></span><br></pre></td></tr></table></figure>
-<ul>
+</li>
 <li><p>查看远程仓库</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote show [remote-name]</span><br></pre></td></tr></table></figure>
 </li>
@@ -286,10 +281,9 @@
 </li>
 <li><p>分支切换</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout branch-name</span><br></pre></td></tr></table></figure>
+<p>新建一个分支并切换：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b branch-name</span><br></pre></td></tr></table></figure>
 </li>
-</ul>
-<p>新建一个分支并切换：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b branch-name</span><br></pre></td></tr></table></figure></p>
-<ul>
 <li><p>删除分支</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -d branch-name</span><br></pre></td></tr></table></figure>
 </li>
