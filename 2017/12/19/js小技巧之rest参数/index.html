@@ -209,9 +209,9 @@
 </li>
 <li><p>rest参数可以用来代替不确定参数个数的传递方式</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">...nums</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> num <span class="keyword">of</span> nums) &#123;</span><br><span class="line">    sum += num;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line">add(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>) <span class="comment">// 6</span></span><br></pre></td></tr></table></figure>
+<p>add函数可以用来求任意个数参数的和。</p>
 </li>
 </ul>
-<p>add函数可以用来求任意个数参数的和。</p>
 <h2 id="rest参数和arguments对象的区别"><a href="#rest参数和arguments对象的区别" class="headerlink" title="rest参数和arguments对象的区别"></a>rest参数和arguments对象的区别</h2><ul>
 <li>rest参数只包含那些放在后面没有名字的参数，arguments对象包含了所有的参数</li>
 <li><p>rest参数是一个array，arguments不是array。arguments为了使用数组的方法，必须使用<code>Array.prototype.slice.call</code>先将其转为数组。<br><br>例子：</p>
