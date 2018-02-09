@@ -205,7 +205,7 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">src</span>=<span class="string">"style.css"</span>&gt;</span><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>内部样式表</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"> 样式 </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>内联样式</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">"color:red;font-size:16px;"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -214,7 +214,15 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span>d<span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined">@import url("style.css")</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h3 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h3>
+<p><code>link和@import的区别：</code></p>
+<ul>
+<li>@import只能加载CSS，link还可以定义ref等其它的属性</li>
+<li>link引用的CSS同时被加载，@import引入的CSS等到页面全部加载完成后再加载</li>
+<li>@import只有IE5以上才可以使用，link都可以</li>
+<li>js控制DOM修改样式只能使用link的方式</li>
+<li>@import可以在CSS样式中再引入其它的样式</li>
+</ul>
+
     </article>
     <!-- 前后页  -->
     <ul class="post-pager">
@@ -332,7 +340,7 @@
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#引入方式"><span class="toc-number">1.</span> <span class="toc-text">引入方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#盒模型"><span class="toc-number">2.</span> <span class="toc-text">盒模型</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#引入方式"><span class="toc-number">1.</span> <span class="toc-text">引入方式</span></a></li></ol>
     </div>
     
     <div class="back-top">&#xe639;</div>
