@@ -181,6 +181,76 @@
     
     
         <article class="index-post">
+            <a class="content-show-full" href = "/2018/01/03/CommonJS、AMD和CMD/" >
+                    <h2 class="abstract-title">
+                        
+                        <span>CommonJS、AMD和CMD</span>
+                    </h2>
+                <div class="abstract-content">
+                    是什么CommonJS是作用在服务器端，同步的，如nodeJS。根据CommonJS的规范，一个文件就是一个模块，加载的时候用require方法，然后执行之后返回文件内部的exports对象AMD是Asynchronous Module Definition的缩写，意思是“异步模块定义”CMD是Commom Module Definition的缩写，意思是“通用模块定义”AMD是RequireJS对模块定义的规范化产物CMD是SeaJS对模块定义的规范化产物
+区别AMD和CMD最大的区别就是对依赖的执行时机处理不同（不是加载的时机或者方式）
+
+AMD推崇依赖前置，在模块定义的时候就要声明...
+                </div>
+            </a>
+            <div class="abstract-post-meta">
+                <!-- tags  -->
+                
+                <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = Web>Web</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = JavaScript>JavaScript</a>
+    
+</div>
+                
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/01/03</span>
+                </div>
+            </div>
+        </article>
+    
+    
+    
+        <article class="index-post">
+            <a class="content-show-full" href = "/2017/12/27/Web开发中的cookie、session、sessionStorage、localStorage/" >
+                    <h2 class="abstract-title">
+                        
+                        <span>Web开发中的cookie、session、sessionStorage、localStorage</span>
+                    </h2>
+                <div class="abstract-content">
+                    cookiecookie的本质是一小段文本信息，存储在客户端。当Web服务器向浏览器发送Web页面的时候，一旦关闭连接，服务端不会记录用户的信息，cookie的作用就是用来记录客户端的用户信息。客户端请求服务器的时候，如果服务器需要记录客户端的用户状态，就使用response向客户端发送一个cookie。客户端这个时候会把这个cookie保存下来，当客户端再次访问浏览器的时候会把这个cookie带着一起发送给服务器，服务器检查这个cookie以此来判断用户的状态。
+应用场景：
+判断用户是否登录过网站，以便下次能实现自动登录
+保存上次登录的时间等信息
+保存上次查看的页面
+浏览计数
+
+ses...
+                </div>
+            </a>
+            <div class="abstract-post-meta">
+                <!-- tags  -->
+                
+                <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = Web>Web</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = 数据存储>数据存储</a>
+    
+</div>
+                
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/12/27</span>
+                </div>
+            </div>
+        </article>
+    
+    
+    
+        <article class="index-post">
             <a class="content-show-full" href = "/2017/12/26/Vue组件之间的信息传递/" >
                     <h2 class="abstract-title">
                         
@@ -431,82 +501,15 @@ Less的变量设计使得项目更容易维护
     
         <a class="post-tag" href="javascript:void(0);" data-href = Web>Web</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-href = Less>Less</a>
-    
         <a class="post-tag" href="javascript:void(0);" data-href = CSS>CSS</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = Less>Less</a>
     
 </div>
                 
                 <!-- date  -->
                 <div class="abstract-date">
                     <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/12/05</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2017/12/03/用Promise封装ajax/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>用Promise封装ajax</span>
-                    </h2>
-                <div class="abstract-content">
-                    回调函数真正的问题在于它剥夺了我们使用 return 和 throw 这些关键字的能力，而 Promise 的出现很好地解决了这个问题。
-何为PromisePromise 对象有以下两个特点。
-
-对象的状态不受外界影响。Promise 对象代表一个异步操作，有三种状态：Pending（进行中）、Resolved（已完成，又称 Fulfilled）和 Rejected（已失败）。只有异步操作的结果，可以决定当前是哪一种状态，任何其他操作都无法改变这个状态。这也是 Promise 这个名字的由来，它的英语意思就是「承诺」，表示其他手段无法改变。
-
-一旦状态改变，就不会再变，任何时候都可以得到...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = Promise>Promise</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = ajax>ajax</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/12/03</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2017/12/03/排序算法/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>排序算法</span>
-                    </h2>
-                <div class="abstract-content">
-                    排序有内部排序和外部排序，内部排序是数据记录在内存中进行排序，而外部排序是因排序的数据很大，一次不能容纳全部的排序记录，在排序过程中需要访问外存。常见的八大排序就是内部排序。
-排序基本分类12345678910111213|-- 内部排序|   |-- 插入排序|       |-- 直接插入排序|       |-- 希尔排序|   |-- 选择排序|       |-- 简单选择排序|       |-- 堆排序|   |-- 交换排序|       |-- 冒泡排序|       |-- 快速排序|   |-- 归并排序|   |-- 基数排序|-- 外部排序
-内部排序插入排序 —...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = 算法>算法</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = 排序>排序</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/12/03</span>
                 </div>
             </div>
         </article>
@@ -989,7 +992,33 @@ Less的变量设计使得项目更容易维护
     
     
     
-    <div class="total-archive"> Total : 23 </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-archive"> Total : 25 </div>
     
     <div class="post-archive">
     
@@ -998,6 +1027,16 @@ Less的变量设计使得项目更容易维护
     
     <div class="archive-year"> 2018 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/09</span><a class="archive-post-title" href= "/2018/02/09/JavaScript宝典/" >JavaScript宝典</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/09</span><a class="archive-post-title" href= "/2018/02/09/CSS宝典/" >CSS宝典</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1130,6 +1169,8 @@ Less的变量设计使得项目更容易维护
     
         <span class="sidebar-tag-name"><a href= "#">Web</a></span>
     
+        <span class="sidebar-tag-name"><a href= "#">CSS</a></span>
+    
         <span class="sidebar-tag-name"><a href= "#">JavaScript</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">Hexo</a></span>
@@ -1138,13 +1179,15 @@ Less的变量设计使得项目更容易维护
     
         <span class="sidebar-tag-name"><a href= "#">Less</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">CSS</a></span>
-    
         <span class="sidebar-tag-name"><a href= "#">Vue</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">Vuex</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">axios</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">Vuex</a></span>
+        <span class="sidebar-tag-name"><a href= "#">数据存储</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">语音合成、语音识别</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">js小技巧</a></span>
     
@@ -1152,23 +1195,19 @@ Less的变量设计使得项目更容易维护
     
         <span class="sidebar-tag-name"><a href= "#">图片懒加载</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">数据存储</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">git</a></span>
-    
         <span class="sidebar-tag-name"><a href= "#">算法</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">大整数运算</a></span>
     
+        <span class="sidebar-tag-name"><a href= "#">git</a></span>
+    
         <span class="sidebar-tag-name"><a href= "#">浏览器</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">语音合成、语音识别</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">正则表达式</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">Promise</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">ajax</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">正则表达式</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">排序</a></span>
     
