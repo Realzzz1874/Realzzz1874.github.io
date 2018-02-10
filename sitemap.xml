@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://realzzz.coding.me/2017/10/24/CSS%E5%AE%9D%E5%85%B8/</loc>
+    
+    <lastmod>2018-02-10T12:09:34.451Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://realzzz.coding.me/2018/02/09/Vue%E4%B8%AD%E4%BD%BF%E7%94%A8i18n%E5%9B%BD%E9%99%85%E5%8C%96%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</loc>
     
     <lastmod>2018-02-10T03:45:14.139Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>http://realzzz.coding.me/2017/10/24/JavaScript%E5%AE%9D%E5%85%B8/</loc>
     
     <lastmod>2018-02-10T03:44:17.955Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://realzzz.coding.me/2017/10/24/CSS%E5%AE%9D%E5%85%B8/</loc>
-    
-    <lastmod>2018-02-10T03:44:02.643Z</lastmod>
     
   </url>
   
