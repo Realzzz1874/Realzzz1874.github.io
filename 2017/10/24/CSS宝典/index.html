@@ -236,6 +236,7 @@
 <li>相对定位：被看做普通流定位模型的一部分，定位元素的位置相对于它在普通流模型中的位置进行移动。使用相对定位的元素，不管它是否移动，元素仍要占据原来的位置。移动元素会导致它覆盖其它的框。</li>
 <li>绝对定位：相对于已经定位的最近的祖先元素，如果没有已经定位的祖先元素，那么它的位置就相对于最初的包含块。绝对定位的框脱离普通流，所以它可以覆盖页面的其它元素，可以设置Z-index属性来控制这些框的堆放顺序。</li>
 </ul>
+<h3 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h3><p>文档中的每个元素都被描述成矩形盒子，渲染引擎的目的就是判断这些盒子的大小、属性、位置等。每一个盒子有四条边，外边距边界<code>margin</code>、边框边界<code>border</code>、内边距边界<code>padding</code>、内容边界<code>content</code>。<br><br>在w3c模型中：总宽度 = margin-left + border-left + padding-left + width + padding-right + border-right + margin-right <br><br>在IE模型中: 总宽度 = margin-left + width + margin-right<br><img src="../imgs/1.gif" alt="盒子模型"></p>
 
     </article>
     <!-- 前后页  -->
@@ -347,7 +348,7 @@
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#引入方式"><span class="toc-number">1.</span> <span class="toc-text">引入方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#可继承属性"><span class="toc-number">2.</span> <span class="toc-text">可继承属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定位机制"><span class="toc-number">3.</span> <span class="toc-text">定位机制</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#引入方式"><span class="toc-number">1.</span> <span class="toc-text">引入方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#可继承属性"><span class="toc-number">2.</span> <span class="toc-text">可继承属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定位机制"><span class="toc-number">3.</span> <span class="toc-text">定位机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#盒模型"><span class="toc-number">4.</span> <span class="toc-text">盒模型</span></a></li></ol>
     </div>
     
     <div class="back-top">&#xe639;</div>
