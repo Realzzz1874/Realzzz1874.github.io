@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
     <title>
         
-        我的git笔记 · realzzz
+        gulp和webpack的区别联系 · realzzz
         
     </title>
     <link rel="icon" href= /assets/favicon.ico>
@@ -82,7 +82,7 @@
                 <a href="/" >realzzz</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">我的git笔记</a>
+                <a href="#" class="post-name">gulp和webpack的区别联系</a>
             </div>
     </div>
     
@@ -103,7 +103,7 @@
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            我的git笔记
+            gulp和webpack的区别联系
             <!-- 404 -->
             
         </h1>
@@ -121,15 +121,15 @@
             
                 <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-href = tips>tips</a>
+        <a class="post-tag" href="javascript:void(0);" data-href = Web>Web</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-href = git>git</a>
+        <a class="post-tag" href="javascript:void(0);" data-href = 自动化工具>自动化工具</a>
     
 </div>
             
             <div class="post-intro-meta">
                 <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                <span class="post-intro-time">2017/11/06</span>
+                <span class="post-intro-time">2018/02/17</span>
             </div>
         
     </div>
@@ -200,119 +200,22 @@
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ul>
-<li><p>配置用户信息:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">"xxx"</span></span><br><span class="line">git config --global user.email <span class="string">"xxx@xxx.xxx"</span></span><br><span class="line"><span class="comment"># 全局配置用户名和邮箱</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>配置文本编辑器:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global core.editor emacs</span><br><span class="line"><span class="comment"># 配置成emacs为例</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>检查配置信息</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --list</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ul>
-<li><p>clone：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> [url] [local_name]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>检查当前文件状态：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>跟踪新文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add [. / file]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>忽略文件（.gitignore）</p>
-</li>
-<li><p>查看已经暂存和未暂存的修改</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff</span><br></pre></td></tr></table></figure>
-<p><code>git diff</code> 查看的是工作目录中当前文件和暂存区域快照之间的差异，也就是修改之后还没有暂存起来的变化内容。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git diff --cached</span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line">git diff --staged</span><br></pre></td></tr></table></figure>
-<p>查看已暂存的将要添加到下次提交里的内容需要使用<code>git diff --cached(staged)</code></p>
-</li>
-<li><p>提交更新</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m<span class="string">"提交信息说明"</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>跳过使用暂存区域</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git commit -a -m<span class="string">"提交信息说明"</span></span><br><span class="line"><span class="comment"># 将 git add 与 git commit 合并为一条命令</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>移除文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rm</span><br></pre></td></tr></table></figure>
-<p>把file从暂存区域中删除，但仍然希望保留在当前工作目录中：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rm --cached [file]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>移动文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git mv [file_from][file_to]</span><br></pre></td></tr></table></figure>
-<p><code>git mv</code>相当于是：<br></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mv file_from file_to</span><br><span class="line">git rm file_to</span><br><span class="line">git add file_to</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看提交历史</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span></span><br><span class="line"><span class="comment"># -p 显示每次提交的差异</span></span><br><span class="line"><span class="comment"># -2 仅仅显示最近2次提交</span></span><br><span class="line"><span class="comment"># --stat 查看每次提交的简略统计信息</span></span><br><span class="line"><span class="comment"># git log --since=2.weeks 显示最近2周的提交记录</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>撤销操作</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit --amend</span><br></pre></td></tr></table></figure>
-<p>这个命令会将暂存区中的文件提交。如果上次提交以后没有做任何修改而执行了这条命令，那么快照会保持不变，修改的只是提交信息。</p>
-</li>
-<li><p>取消暂存的文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --HEAD &lt;file&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>撤销对文件的修改</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -- [file]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看远程仓库</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>从远程仓库中抓取与拉取</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git fetch [remote-name]</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span></span><br></pre></td></tr></table></figure>
-<p>git pull = git fetch + git merge</p>
-</li>
-<li><p>推送到远程分支</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push [remote-name] [branch-name]</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git push orign master</span><br><span class="line"><span class="comment"># 将master分支推送到orign服务器</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看远程仓库</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote show [remote-name]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>打标签</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">annotated</span><br><span class="line">git tag -a v1.1 -m <span class="string">'version 1.1'</span></span><br><span class="line"><span class="comment"># -a 指定tag类型 annotated，-m 附注信息</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>分支创建</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch branch-name</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>分支切换</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout branch-name</span><br></pre></td></tr></table></figure>
-<p>新建一个分支并切换：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b branch-name</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>删除分支</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -d branch-name</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>分支合并</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br><span class="line">git merge branch-name</span><br><span class="line"><span class="comment"># 目前处于master分支，将branch-name分支合并到master分支上</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>删除远程分支</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git push orign --delete branch-name</span><br><span class="line"><span class="comment"># 运行带有--delete选项的git push命令来删除一个远程分支</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>git rebase<br><a href="https://www.jianshu.com/p/cca69cb695a6" target="_blank" rel="noopener">参考</a></p>
-</li>
-</ul>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>随着WebAPP的的兴起，前端的开发趋于工程化。原本的一些例如：模块化开发、版本控制、文件合并压缩、mock数据等概念也逐渐渗透到了前端。前端开发的产品是交付给浏览器的，资源是通过增量加载的方式慢慢累积到浏览器端，所以如何能让这些资源“优雅”地加载就成了一个值得研究的问题。</p>
+<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><h4 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h4><p>webpack是前端资源化管理和打包工具。webpack将松散的模块按照依赖和规则打包成符合生产环境部署的前端资源。还可以将按需加载的模块进行分隔，等实际需要的时候再进行异步加载。webpack中比较重要的一个概念是loader，通过loader的转换，任何形式的资源都可以视作模块，比如CommonJS模块、AMD模块、ES6模块、CSS、图片、JSON、LESS等。</p>
+<h4 id="gulp"><a href="#gulp" class="headerlink" title="gulp"></a>gulp</h4><p>gulp是一个规范前端开发流程、实现前后端分离、版本控制、模块化开发、文件合并压缩等功能的一个前端自动化构建工具。gulp可以看成是一个规范的流水线，通过task对整个开发过程进行构建。</p>
+<h4 id="二者之间"><a href="#二者之间" class="headerlink" title="二者之间"></a>二者之间</h4><p>webpack被称为“模块打包机”，侧重于模块的打包工作。开发中的所有资源都是模块，webpack是通过loader和plugins来处理资源。<br><br>gulp是对前端开发的“整个过程”进行控制管理，通过给gulp配置不同的task来实现不同的功能，从而构建整个前端的开发流程。<br><br>gulp是对整个开发过程的控制，所以它的每一个task对于task配置路径下的所有资源都可以管理。webpack是根据模块的依赖进行静态分析，然后将模块按照指定的规则生成对应的静态文件。<br><br>webpack通过配置文件webpack.config.js中的entry配置的一个入口文件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">entry: &#123;</span><br><span class="line">  app: __dirname + <span class="string">"/src/scripts/app.js"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后webpack进入这个app.js文件进行解析<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app.js</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'../style/app.scss'</span>;</span><br><span class="line"><span class="comment">//引入依赖模块</span></span><br><span class="line">  <span class="keyword">var</span> greeter = <span class="built_in">require</span>(<span class="string">'./Greeter.js'</span>);</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>).appendChild(greeter());</span><br></pre></td></tr></table></figure></p>
+<p>在解析的过程中，webpack发现了一个app.scss文件，然后就会根据webpack.config.js文件中的loaders去处理.scss文件，在处理的过程中如果发现还有其它依赖则webpack再去处理其它依赖。直到处理完该链路上的文件。回到主文件发现了一个Greeter.js的文件，则再像之前一样去处理。<br><br>webpack对资源文件的处理是通过入口文件产生的依赖形成的，不会像gulp那样指定路径下的所有规定的文件都受到影响。</p>
 
     </article>
     <!-- 前后页  -->
     <ul class="post-pager">
         
-            <li class="next">
-                <a href= "/2017/11/15/大整数运算/" title= 大整数运算 >
-                    <span>Next Post</span>
-                    <span>大整数运算</span>
-                </a>
-            </li>
-        
         
             <li class="previous">
-                <a href= "/2017/10/24/JavaScript宝典/" title= JavaScript积累（持续更新） >
+                <a href= "/2018/02/09/Vue中使用i18n国际化解决方案/" title= Vue中使用i18n国际化解决方案 >
                     <span>Previous Post</span>
-                    <span>JavaScript积累（持续更新）</span>
+                    <span>Vue中使用i18n国际化解决方案</span>
                 </a>
             </li>
         
@@ -414,7 +317,7 @@
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置"><span class="toc-number">1.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用"><span class="toc-number">2.</span> <span class="toc-text">使用</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基本概念"><span class="toc-number">2.</span> <span class="toc-text">基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#webpack"><span class="toc-number">2.1.</span> <span class="toc-text">webpack</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gulp"><span class="toc-number">2.2.</span> <span class="toc-text">gulp</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二者之间"><span class="toc-number">2.3.</span> <span class="toc-text">二者之间</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top">&#xe639;</div>
