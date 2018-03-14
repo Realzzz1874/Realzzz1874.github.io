@@ -236,7 +236,33 @@
 <p>浏览器打开localhost:9200或者采用<code>curl -XGET</code>的方法，看见一堆信息，还有重要的那句<code>You Know, for Search</code>就OK了。</p>
 </li>
 </ul>
-
+<h3 id="Logstash"><a href="#Logstash" class="headerlink" title="Logstash"></a><code>Logstash</code></h3><ul>
+<li><p>下载、解压</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 一样下载压缩包解压吧，反正官网都有</span></span><br><span class="line">tar -zxvf logstash-x.x.x.tar.gz</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 新建一个log-s.conf的配置文件</span></span><br><span class="line">vim <span class="built_in">log</span>-s.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">input &#123;</span><br><span class="line">  <span class="built_in">log</span> &#123;</span><br><span class="line">    mode =&gt; <span class="string">"server"</span></span><br><span class="line">    host =&gt; <span class="string">"localhoat"</span></span><br><span class="line">    port =&gt; 4567</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">filter &#123;</span><br><span class="line">  <span class="comment">#Only matched data are send to output.</span></span><br><span class="line">&#125;</span><br><span class="line">output &#123;</span><br><span class="line">  elasticsearch &#123;</span><br><span class="line">    action =&gt; <span class="string">"index"</span>          <span class="comment">#The operation on ES</span></span><br><span class="line">    hosts  =&gt; <span class="string">"localhost:9200"</span>   <span class="comment">#ElasticSearch host, can be array.</span></span><br><span class="line">    index  =&gt; <span class="string">"applog"</span>         <span class="comment">#The index to write data to.</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 指定刚才的配置文件</span></span><br><span class="line">./logstash -f <span class="built_in">log</span>-s.conf</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Kibana"><a href="#Kibana" class="headerlink" title="Kibana"></a><code>Kibana</code></h3><ul>
+<li><p>下载解压</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf kibana-x.x.x.tar.gz</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改配置文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim config/kibana.yml</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">server.port: 5601</span><br><span class="line">server.host: <span class="string">"localhost"</span></span><br><span class="line">elasticsearch.url: http://localhost:9200</span><br><span class="line">kibana.index: “.kibana”</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./kibana</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>验证<br>浏览器访问<code>localhost:5601</code>出现<code>Kibana</code>的页面则说明成功。</p>
+</li>
+</ul>
+<h2 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h2>
     </article>
     <!-- 前后页  -->
     <ul class="post-pager">
@@ -347,7 +373,7 @@
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">2.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用"><span class="toc-number">3.</span> <span class="toc-text">使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Elasticsearch"><span class="toc-number">3.1.</span> <span class="toc-text">Elasticsearch</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">2.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用"><span class="toc-number">3.</span> <span class="toc-text">使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Elasticsearch"><span class="toc-number">3.1.</span> <span class="toc-text">Elasticsearch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Logstash"><span class="toc-number">3.2.</span> <span class="toc-text">Logstash</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kibana"><span class="toc-number">3.3.</span> <span class="toc-text">Kibana</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#未完待续"><span class="toc-number">4.</span> <span class="toc-text">未完待续</span></a></li></ol>
     </div>
     
     <div class="back-top">&#xe639;</div>
