@@ -43,7 +43,9 @@
     <link href="http://realzzz.coding.me/2018/03/11/%E4%BD%BF%E7%94%A8%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6wepy/"/>
     <id>http://realzzz.coding.me/2018/03/11/使用微信小程序框架wepy/</id>
     <published>2018-03-10T16:00:00.000Z</published>
-    <updated>2018-03-14T15:20:20.123Z</updated>
+    <updated>2018-03-15T12:24:51.545Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="why"><a href="#why" class="headerlink" title="why"></a>why</h3><ul><li>与<code>Vue</code>开发相似</li><li>组件化</li><li>使用<code>npm</code></li><li><code>ES6</code></li><li>模板编译</li><li>插件</li></ul><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="初始化项目"><a href="#初始化项目" class="headerlink" title="初始化项目"></a>初始化项目</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装脚手架工具</span></span><br><span class="line">npm install wepy-cli -g</span><br><span class="line"><span class="comment"># 建立项目</span></span><br><span class="line">wepy init standard myproject</span><br><span class="line"><span class="comment"># 进入目录</span></span><br><span class="line"><span class="built_in">cd</span> myproject</span><br><span class="line"><span class="comment"># 安装依赖</span></span><br><span class="line">npm install</span><br><span class="line"><span class="comment"># 开启实时编译</span></span><br><span class="line">wepy build --watch</span><br></pre></td></tr></table></figure><h3 id="目录结构说明"><a href="#目录结构说明" class="headerlink" title="目录结构说明"></a>目录结构说明</h3><p><img src="../imgs/wepy.png" alt="目录"></p>]]></content>
     
     <summary type="html">
     
