@@ -205,7 +205,7 @@
 <li>首先要有权限登录部署<code>Gitlab</code>的服务器</li>
 <li>通过<code>ssh</code>登陆上<code>Gitlab</code>的服务器，然后找到<code>gitlab</code>存放仓库的地方</li>
 <li><code>cd</code>到该仓库目录下</li>
-<li><p>直接执行<code>gitfsck</code>命令，该命令显示所有未被其他对象引用 (指向) 的所有对象，会有类似如下输出：</p>
+<li><p>直接执行<code>git fsck</code>命令，该命令显示所有未被其他对象引用 (指向) 的所有对象，会有类似如下输出：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dangling commit ab1afef80fac8e34258ff41fc1b867c702daa24b</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>这个就是之前被丢弃的<code>commit</code>，也有可能是被冲掉的<code>commit</code></p>
