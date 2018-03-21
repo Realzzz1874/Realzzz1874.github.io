@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://realzzz.coding.me/2018/03/21/git-push-f-%E7%9A%84%E8%A1%A5%E6%95%91%E6%96%B9%E6%B3%95/</loc>
+    <lastmod>2018-03-21T15:51:23.026Z</lastmod>
+    <data>
+        <display>
+        <title>git push -f 的补救方法</title>
+        <pubTime>2018-03-20T16:00:00.000Z</pubTime>
+        
+        <tag>git</tag>
+         
+         
+           
+             
+              <breadCrumb title="git" url="http://realzzz.coding.me/categories/git/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://realzzz.coding.me/2018/03/11/%E4%BD%BF%E7%94%A8%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6wepy/</loc>
     <lastmod>2018-03-15T15:57:10.247Z</lastmod>
     <data>
@@ -210,9 +230,9 @@
         <title>我的git笔记</title>
         <pubTime>2017-11-05T16:00:00.000Z</pubTime>
         
-        <tag>tips</tag>
-         
         <tag>git</tag>
+         
+        <tag>tips</tag>
          
          
            
@@ -547,9 +567,9 @@
         
         <tag>Web</tag>
          
-        <tag>CSS</tag>
-         
         <tag>Less</tag>
+         
+        <tag>CSS</tag>
          
          
            
