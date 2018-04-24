@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
     <title>
         
-        使用微信小程序框架wepy · realzzz
+        RESTfulAPI的规范 · realzzz
         
     </title>
     <link rel="icon" href= /assets/favicon.ico>
@@ -82,7 +82,7 @@
                 <a href="/" >realzzz</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">使用微信小程序框架wepy</a>
+                <a href="#" class="post-name">RESTfulAPI的规范</a>
             </div>
     </div>
     
@@ -103,7 +103,7 @@
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            使用微信小程序框架wepy
+            RESTfulAPI的规范
             <!-- 404 -->
             
         </h1>
@@ -119,19 +119,9 @@
         
             <!-- 文章页标签  -->
             
-                <div class= post-intro-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = Web>Web</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = 微信小程序>微信小程序</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = wepy>wepy</a>
-    
-</div>
-            
             <div class="post-intro-meta">
                 <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                <span class="post-intro-time">2018/03/11</span>
+                <span class="post-intro-time">2018/04/18</span>
             </div>
         
     </div>
@@ -202,61 +192,16 @@
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="why"><a href="#why" class="headerlink" title="why"></a>why</h3><ul>
-<li>与<code>Vue</code>开发相似</li>
-<li>组件化</li>
-<li>使用<code>npm</code></li>
-<li><code>ES6</code></li>
-<li>模板编译</li>
-<li>插件</li>
-</ul>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="初始化项目"><a href="#初始化项目" class="headerlink" title="初始化项目"></a>初始化项目</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装脚手架工具</span></span><br><span class="line">npm install wepy-cli -g</span><br><span class="line"><span class="comment"># 建立项目</span></span><br><span class="line">wepy init standard myproject</span><br><span class="line"><span class="comment"># 进入目录</span></span><br><span class="line"><span class="built_in">cd</span> myproject</span><br><span class="line"><span class="comment"># 安装依赖</span></span><br><span class="line">npm install</span><br><span class="line"><span class="comment"># 开启实时编译</span></span><br><span class="line">wepy build --watch</span><br></pre></td></tr></table></figure>
-<h3 id="目录结构说明"><a href="#目录结构说明" class="headerlink" title="目录结构说明"></a>目录结构说明</h3><p><img src="../imgs/wepy.png" alt="目录"></p>
-<ul>
-<li><code>dist</code> -&gt; 微信开发者工具指定的目录，编译生成，不要修改</li>
-<li><code>node_modules</code></li>
-<li><code>src/components</code> -&gt; 组件目录</li>
-<li><code>src/pages</code> -&gt; 项目中的页面目录</li>
-<li><code>src/utils</code> -&gt; 一些辅助工具（按需）</li>
-</ul>
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
-<li>微信开发者工具预览的时候指定目录为<code>dist</code>目录</li>
-<li>在微信开发者工具中关闭ES6转ES5、关闭上传代码时样式自动补全、关闭代码压缩上传</li>
-</ul>
-<h3 id="代码高亮"><a href="#代码高亮" class="headerlink" title="代码高亮"></a>代码高亮</h3><ul>
-<li><p>Atom</p>
-<p>安装<code>language-vue</code>插件，然后在<code>Config</code>中加入：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">customFileTypes:</span><br><span class="line"> <span class="string">"text.html.vue"</span>: [</span><br><span class="line">    <span class="string">"wpy"</span></span><br><span class="line"> ]</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="单页文件"><a href="#单页文件" class="headerlink" title="单页文件"></a>单页文件</h3><p>与<code>Vue</code>很相似，单页应用一个<code>pages/XXX.wpy</code>就是一个页面，一个<code>.wpy</code>文件包含三个部分：<code>template</code>、<code>style</code>、<code>script</code>（假装就是<code>Vue</code>）。</p>
-<ul>
-<li><code>template</code>部分编译之后对应原生小程序的<code>.wxml</code>文件</li>
-<li><code>style</code>部分编译之后对应原生小程序的<code>.wxss</code>文件</li>
-<li><code>script</code>中的配置部分（<code>config</code>）编译之后对应原生小程序的<code>.json</code>文件</li>
-<li><code>script</code>中的逻辑部分（除了<code>config</code>）编译之后对应原生小程序的<code>.js</code>文件</li>
-</ul>
-<h3 id="入口文件app-wpy"><a href="#入口文件app-wpy" class="headerlink" title="入口文件app.wpy"></a>入口文件<code>app.wpy</code></h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">config = &#123;</span><br><span class="line">  <span class="string">"pages"</span>: [</span><br><span class="line">    <span class="comment">// 页面路径</span></span><br><span class="line">    <span class="string">"pages/index/index"</span>,</span><br><span class="line">    <span class="comment">// "..."</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"window"</span>: &#123;</span><br><span class="line">    <span class="comment">// 全局样式</span></span><br><span class="line">    <span class="string">"backgroundTextStyle"</span>: <span class="string">"light"</span>,</span><br><span class="line">    <span class="string">"navigationBarBackgroundColor"</span>: <span class="string">"#fff"</span>,</span><br><span class="line">    <span class="string">"navigationBarTitleText"</span>: <span class="string">"WeChat"</span>,</span><br><span class="line">    <span class="string">"navigationBarTextStyle"</span>: <span class="string">"black"</span>,</span><br><span class="line">    <span class="comment">// "..."</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">globalData = &#123;</span><br><span class="line">  <span class="comment">// 全局数据</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">constructor</span> () &#123;</span><br><span class="line">  <span class="comment">// 可以加拦截器等</span></span><br><span class="line">&#125;</span><br><span class="line">onLaunch() &#123;</span><br><span class="line">  <span class="comment">// 小程序启动</span></span><br><span class="line">  <span class="comment">// 一般可以做一些授权以及登录操作</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="页面文件page-wpy"><a href="#页面文件page-wpy" class="headerlink" title="页面文件page.wpy"></a>页面文件<code>page.wpy</code></h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> wepy <span class="keyword">from</span> <span class="string">'wepy'</span>;</span><br><span class="line"><span class="keyword">import</span> Child <span class="keyword">from</span> <span class="string">'../components/child'</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Page</span> <span class="keyword">extends</span> <span class="title">wepy</span>.<span class="title">page</span> </span>&#123;</span><br><span class="line">  config = &#123;</span><br><span class="line">    <span class="comment">// 页面的配置文件，可以对app.wpy中的window按需重新配置</span></span><br><span class="line">  &#125;;</span><br><span class="line">  components = &#123;</span><br><span class="line">    <span class="comment">// 页面需要的组件</span></span><br><span class="line">    child: Child,</span><br><span class="line">  &#125;;</span><br><span class="line">  data = &#123;</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">  &#125;;</span><br><span class="line">  methods = &#123;</span><br><span class="line">    <span class="comment">// 只能处理页面的绑定事件，辅助函数要在外层写，和methods同级</span></span><br><span class="line">  &#125;;</span><br><span class="line">  events = &#123;</span><br><span class="line">    <span class="comment">// 存放响应组件之间通过$broadcast、$emit、$invoke所传递的事件的函数</span></span><br><span class="line">  &#125;;</span><br><span class="line">  onLoad() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="组件文件child-wpy"><a href="#组件文件child-wpy" class="headerlink" title="组件文件child.wpy"></a>组件文件<code>child.wpy</code></h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> wepy <span class="keyword">from</span> <span class="string">'wepy'</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">wepy</span>.<span class="title">component</span> </span>&#123;</span><br><span class="line">  <span class="comment">// extends wepy.component 不同外，剩下的与page.wpy类似</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="一些不同的地方"><a href="#一些不同的地方" class="headerlink" title="一些不同的地方"></a>一些不同的地方</h2><h3 id="props"><a href="#props" class="headerlink" title="props"></a><code>props</code></h3><p><code>props</code>传值在WePY中属于父子组件之间传值的一种机制，包括静态传值与动态传值。<br></p>
-<h4 id="静态传值"><a href="#静态传值" class="headerlink" title="静态传值"></a>静态传值</h4><h4 id="动态传值"><a href="#动态传值" class="headerlink" title="动态传值"></a>动态传值</h4>
+        
     </article>
     <!-- 前后页  -->
     <ul class="post-pager">
         
-            <li class="next">
-                <a href= "/2018/03/14/ELK填坑攻略/" title= ELK填坑攻略 >
-                    <span>Next Post</span>
-                    <span>ELK填坑攻略</span>
-                </a>
-            </li>
-        
         
             <li class="previous">
-                <a href= "/2018/02/17/gulp和webpack的区别联系/" title= gulp和webpack的区别联系 >
+                <a href= "/2018/03/21/git-push-f-的补救方法/" title= git push -f 的补救方法 >
                     <span>Previous Post</span>
-                    <span>gulp和webpack的区别联系</span>
+                    <span>git push -f 的补救方法</span>
                 </a>
             </li>
         
@@ -358,7 +303,7 @@
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#why"><span class="toc-number">1.1.</span> <span class="toc-text">why</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用"><span class="toc-number">2.</span> <span class="toc-text">使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#初始化项目"><span class="toc-number">2.1.</span> <span class="toc-text">初始化项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#目录结构说明"><span class="toc-number">2.2.</span> <span class="toc-text">目录结构说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意事项"><span class="toc-number">2.3.</span> <span class="toc-text">注意事项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码高亮"><span class="toc-number">2.4.</span> <span class="toc-text">代码高亮</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#单页文件"><span class="toc-number">2.5.</span> <span class="toc-text">单页文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#入口文件app-wpy"><span class="toc-number">2.6.</span> <span class="toc-text">入口文件app.wpy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#页面文件page-wpy"><span class="toc-number">2.7.</span> <span class="toc-text">页面文件page.wpy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组件文件child-wpy"><span class="toc-number">2.8.</span> <span class="toc-text">组件文件child.wpy</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一些不同的地方"><span class="toc-number">3.</span> <span class="toc-text">一些不同的地方</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#props"><span class="toc-number">3.1.</span> <span class="toc-text">props</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#静态传值"><span class="toc-number">3.1.1.</span> <span class="toc-text">静态传值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#动态传值"><span class="toc-number">3.1.2.</span> <span class="toc-text">动态传值</span></a></li></ol></li></ol></li></ol>
+        
     </div>
     
     <div class="back-top">&#xe639;</div>
@@ -750,26 +695,6 @@
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-archive"> Total : 28 </div>
     
     <div class="post-archive">
@@ -782,17 +707,17 @@
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">04/18</span><a class="archive-post-title" href= "/2018/04/18/RESTfulAPI的规范/" >RESTfulAPI的规范</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">03/21</span><a class="archive-post-title" href= "/2018/03/21/git-push-f-的补救方法/" >git push -f 的补救方法</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/14</span><a class="archive-post-title" href= "/2018/03/14/ELK填坑攻略/" >ELK填坑攻略</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/11</span><a class="archive-post-title" href= "/2018/03/11/使用微信小程序框架wepy/" >使用微信小程序框架wepy</a>
         </li>
     
     
@@ -891,17 +816,17 @@
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/05</span><a class="archive-post-title" href= "/2017/12/05/Less基础/" >Less基础</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">12/03</span><a class="archive-post-title" href= "/2017/12/03/排序算法/" >排序算法</a>
+            <span class="archive-post-date">12/05</span><a class="archive-post-title" href= "/2017/12/05/Less基础/" >Less</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">12/03</span><a class="archive-post-title" href= "/2017/12/03/用Promise封装ajax/" >用Promise封装ajax</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/03</span><a class="archive-post-title" href= "/2017/12/03/排序算法/" >排序算法</a>
         </li>
     
     
@@ -936,13 +861,13 @@
     
         <span class="sidebar-tag-name"><a href= "#">Web</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">JavaScript</a></span>
-    
         <span class="sidebar-tag-name"><a href= "#">ELK</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">Less</a></span>
+        <span class="sidebar-tag-name"><a href= "#">JavaScript</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">CSS</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">Less</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">Hexo</a></span>
     
@@ -950,17 +875,13 @@
     
         <span class="sidebar-tag-name"><a href= "#">Vue</a></span>
     
+        <span class="sidebar-tag-name"><a href= "#">Vuex</a></span>
+    
         <span class="sidebar-tag-name"><a href= "#">axios</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">git</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">Vuex</a></span>
-    
         <span class="sidebar-tag-name"><a href= "#">自动化工具</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">语音合成、语音识别</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">数据存储</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">js小技巧</a></span>
     
@@ -968,23 +889,23 @@
     
         <span class="sidebar-tag-name"><a href= "#">图片懒加载</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">微信小程序</a></span>
+        <span class="sidebar-tag-name"><a href= "#">数据存储</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">wepy</a></span>
+        <span class="sidebar-tag-name"><a href= "#">语音合成、语音识别</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">浏览器</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">算法</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">大整数运算</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">Promise</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">ajax</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">排序</a></span>
-    
         <span class="sidebar-tag-name"><a href= "#">正则表达式</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">算法</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">大整数运算</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">排序</a></span>
     
     </div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
