@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://realzzz.coding.me/2018/01/15/18%E4%BD%8D%E8%BA%AB%E4%BB%BD%E8%AF%81%E5%8F%B7%E7%A0%81%E9%AA%8C%E8%AF%81%E7%AE%97%E6%B3%95%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0/</loc>
+    <lastmod>2018-04-24T14:07:12.680Z</lastmod>
+    <data>
+        <display>
+        <title>18位身份证号码验证算法的原理与实现</title>
+        <pubTime>2018-01-14T16:00:00.000Z</pubTime>
+        
+        <tag>Web</tag>
+         
+         
+           
+             
+              <breadCrumb title="Web" url="http://realzzz.coding.me/categories/Web/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://realzzz.coding.me/2018/04/18/RESTfulAPI%E7%9A%84%E8%A7%84%E8%8C%83/</loc>
     <lastmod>2018-04-24T14:05:17.669Z</lastmod>
     <data>
@@ -365,26 +385,6 @@
         <tag>Web</tag>
          
         <tag>JavaScript</tag>
-         
-         
-           
-             
-              <breadCrumb title="Web" url="http://realzzz.coding.me/categories/Web/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://realzzz.coding.me/2018/01/15/18%E4%BD%8D%E8%BA%AB%E4%BB%BD%E8%AF%81%E5%8F%B7%E7%A0%81%E9%AA%8C%E8%AF%81%E7%AE%97%E6%B3%95%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0/</loc>
-    <lastmod>2018-01-15T11:28:31.481Z</lastmod>
-    <data>
-        <display>
-        <title>18位身份证号码验证算法的原理与实现</title>
-        <pubTime>2018-01-14T16:00:00.000Z</pubTime>
-        
-        <tag>Web</tag>
          
          
            
