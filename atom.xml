@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://realzzz.coding.me/"/>
-  <updated>2018-04-18T11:44:11.506Z</updated>
+  <updated>2018-04-24T14:05:17.669Z</updated>
   <id>http://realzzz.coding.me/</id>
   
   <author>
@@ -17,16 +17,24 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>RESTfulAPI的规范</title>
+    <title>RESTful的规范</title>
     <link href="http://realzzz.coding.me/2018/04/18/RESTfulAPI%E7%9A%84%E8%A7%84%E8%8C%83/"/>
     <id>http://realzzz.coding.me/2018/04/18/RESTfulAPI的规范/</id>
-    <published>2018-04-18T11:44:11.000Z</published>
-    <updated>2018-04-18T11:44:11.506Z</updated>
+    <published>2018-04-17T16:00:00.000Z</published>
+    <updated>2018-04-24T14:05:17.669Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h2><p>B/S架构建立在分布式体系上，前端的设备种类也越来越多，所以我们更希望后端的接口能够统一。<br><br><code>REST</code>即<code>Representational State Transfer</code>，中文翻译是<code>表现层状态转化</code>。这个短语省略了一个主语<code>Resources</code>，所以我们常说的<code>表现层状态转化</code>其实说的是<code>资源表现层状态转化</code>。</p><h2 id="概念理解"><a href="#概念理解" class="headerlink" title="概念理解"></a>概念理解</h2><ul><li>资源<br><br>网络上的一个实体，或者说是网络上的一个具体信息。每种资源对应一个特定的URI,要获取这个资源，访问它的URI就可以，因此URI就成了每一个资源的地址或独一无二的识别符。</li><li>表现层<br><br>资源是一种信息实体，有很多的外在表现形式。资源的具体呈现形式就是表现层。</li><li>状态转化<br><br>互联网通信使用HTTP协议，是一个无状态的协议。所有的状态都保存在服务器端，客户端想要操作服务器就必须要让服务器发生状态转化，这种转化又是建立在表现层上的，所以叫做<code>表现层状态转化</code>。</li></ul><h2 id="具体规范"><a href="#具体规范" class="headerlink" title="具体规范"></a>具体规范</h2><h3 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h3><p><code>HTTPS</code></p><h3 id="域名"><a href="#域名" class="headerlink" title="域名"></a>域名</h3><p>尽量部署在专用域名之下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://api.example.com</span><br></pre></td></tr></table></figure></p><h3 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h3><p>API的版本号放在URL中<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://api.example.com/v1/</span><br></pre></td></tr></table></figure></p><h3 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h3><p>在RESTful架构中，每个网址代表一种资源，所以网址中不能含有动词，只能含有名词，而且所用的名词通常与数据库中的表名相对应。</p><h3 id="动词"><a href="#动词" class="headerlink" title="动词"></a>动词</h3><p>对于资源的具体操作类型，由HTTP动词表示。常见的HTTP动词有：<br><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. GET（SELECT）：从服务器取出资源（一项或多项）</span><br><span class="line">2. POST（CREATE）：在服务器新建一个资源</span><br><span class="line">3. PUT（UPDATE）：在服务器更新资源（客户端提供改变后的完整资源）</span><br><span class="line">4. PATCH（UPDATE）：在服务器更新资源（客户端提供改变的属性）</span><br><span class="line">5. DELETE（DELETE）：从服务器删除资源</span><br></pre></td></tr></table></figure></p><p>不常见的有：<br><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1. HEAD：获取资源的元数据</span><br><span class="line">2. OPTIONS：获取信息，关于资源的哪些属性是客户端可以改变的</span><br></pre></td></tr></table></figure></p><h3 id="过滤信息"><a href="#过滤信息" class="headerlink" title="过滤信息"></a>过滤信息</h3><p>如果想从返回结果中过滤出符合要求的信息，这个时候API应该提供相应的参数来过滤返回结果。常见的过滤有：<br><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. ?<span class="built_in">limit</span>=10：指定返回记录的数量</span><br><span class="line">2. ?offset=10：指定返回记录的开始位置</span><br><span class="line">3. ?page=2&amp;per_page=100：指定第几页，以及每页的记录数</span><br><span class="line">4. ?sortby=name&amp;order=asc：指定返回结果按照哪个属性排序，以及排序顺序</span><br><span class="line">5. ?animal_type_id=1：指定筛选条件</span><br></pre></td></tr></table></figure></p><h3 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h3><p>一般来说，如果返回的状态码是4XX，那么就应该向用户返回错误信息。返回的信息中，将error作为键名，出错的信息作为键值即可。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  error: <span class="string">'error message'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h3 id="返回结果"><a href="#返回结果" class="headerlink" title="返回结果"></a>返回结果</h3><p>针对不同的动词操作，服务器应该返回相应的结果，结果应该遵循：<br><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1. GET /collection：返回资源对象的列表（数组）</span><br><span class="line">2. GET /collection/resource：返回单个资源对象</span><br><span class="line">3. POST /collection：返回新生成的资源对象</span><br><span class="line">4. PUT /collection/resource：返回完整的资源对象</span><br><span class="line">5. PATCH /collection/resource：返回完整的资源对象</span><br><span class="line">6. DELETE /collection/resource：返回一个空文档</span><br></pre></td></tr></table></figure></p>]]></content>
     
     <summary type="html">
     
+      RESTful的规范
+    
     </summary>
     
+      <category term="Web" scheme="http://realzzz.coding.me/categories/Web/"/>
+    
+    
+      <category term="RESTful" scheme="http://realzzz.coding.me/tags/RESTful/"/>
     
   </entry>
   
