@@ -181,6 +181,48 @@
     
     
         <article class="index-post">
+            <a class="content-show-full" href = "/2018/04/26/微信小程序（wepy）中实现左滑删除列表项/" >
+                    <h2 class="abstract-title">
+                        
+                        <span>微信小程序（wepy）中实现左滑删除列表项</span>
+                    </h2>
+                <div class="abstract-content">
+                    实现效果
+向左滑动的时候，列表的item跟着向左滑动，同时列表右边出现删除按钮
+滑动距离超过指定宽度的时候，item自动滑到左侧，删除按钮完全出现
+滑动距离小于指定宽度的时候，item回到原来的位置，隐藏删除按钮
+
+实现思路
+将列表中的每一个item和删除按钮（del_btn）通过z-index属性分为上下两层
+上层item使用绝对定位，左滑改变left属性为对应负值
+通过监听touchstart、touchmove、touchend来实现滑动
+
+实现方法HTML部分1234567891011121314&lt;view class="detail-item" wx:for="&#123...
+                </div>
+            </a>
+            <div class="abstract-post-meta">
+                <!-- tags  -->
+                
+                <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = 小程序>小程序</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = wepy>wepy</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = 页面交互>页面交互</a>
+    
+</div>
+                
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/04/26</span>
+                </div>
+            </div>
+        </article>
+    
+    
+    
+        <article class="index-post">
             <a class="content-show-full" href = "/2018/04/25/读完《小团圆》之后的一些想法/" >
                     <h2 class="abstract-title">
                         
@@ -460,39 +502,6 @@ i18n（其来源是英文单词 internationalization的首末字符i和n，18为
                 <!-- date  -->
                 <div class="abstract-date">
                     <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/01/25</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2018/01/24/深入了解CommonJS模块实现原理/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>深入了解CommonJS模块实现原理</span>
-                    </h2>
-                <div class="abstract-content">
-                    在JavaScript中使用变量也需要同其它编程语言一样要注意变量的作用域，如果a.js和b.js中都使用了全局变量x，那么它们将会产生冲突。JavaScript语言本身并没有一种模块机制来保证不同模块之间可以使用相同的变量名。
-模块的隔离JavaScript是函数式编程语言，JavaScript支持闭包。用闭包函数的方式将一段JavaScript代码封装起来，那么这段代码中的变量将只能在本闭包中产生作用，采用这种方法便形象地将“全局变量”变成了闭包中的“局部变量”。
-编写一个js文件命名为a.js：12var a = 'hello world!';console.log(a);
-Nod...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = Web>Web</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = JavaScript>JavaScript</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/01/24</span>
                 </div>
             </div>
         </article>
@@ -1009,24 +1018,7 @@ Nod...
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <div class="total-archive"> Total : 29 </div>
+    <div class="total-archive"> Total : 30 </div>
     
     <div class="post-archive">
     
@@ -1035,6 +1027,11 @@ Nod...
     
     <div class="archive-year"> 2018 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/26</span><a class="archive-post-title" href= "/2018/04/26/微信小程序（wepy）中实现左滑删除列表项/" >微信小程序（wepy）中实现左滑删除列表项</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1205,17 +1202,17 @@ Nod...
     
         <span class="sidebar-tag-name"><a href= "#">RESTful</a></span>
     
+        <span class="sidebar-tag-name"><a href= "#">Vue</a></span>
+    
         <span class="sidebar-tag-name"><a href= "#">Hexo</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">教程</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">Less</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">Vue</a></span>
+        <span class="sidebar-tag-name"><a href= "#">axios</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">git</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">axios</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">自动化工具</a></span>
     
@@ -1225,29 +1222,35 @@ Nod...
     
         <span class="sidebar-tag-name"><a href= "#">tips</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">数据存储</a></span>
-    
         <span class="sidebar-tag-name"><a href= "#">语音合成、语音识别</a></span>
     
+        <span class="sidebar-tag-name"><a href= "#">数据存储</a></span>
+    
         <span class="sidebar-tag-name"><a href= "#">图片懒加载</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">小程序</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">wepy</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">页面交互</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">浏览器</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">算法</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">大整数运算</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">浏览器</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">正则表达式</a></span>
-    
         <span class="sidebar-tag-name"><a href= "#">Promise</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">ajax</a></span>
     
+        <span class="sidebar-tag-name"><a href= "#">正则表达式</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">排序</a></span>
+    
         <span class="sidebar-tag-name"><a href= "#">读书</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">文学</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">排序</a></span>
     
     </div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">

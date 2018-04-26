@@ -1,3 +1,4 @@
+http://realzzz.coding.me/2018/04/26/微信小程序（wepy）中实现左滑删除列表项/
 http://realzzz.coding.me/2018/04/25/读完《小团圆》之后的一些想法/
 http://realzzz.coding.me/2018/04/18/RESTfulAPI的规范/
 http://realzzz.coding.me/2018/03/21/git-push-f-的补救方法/
@@ -20,9 +21,9 @@ http://realzzz.coding.me/2017/12/18/js小技巧之扩展运算符/
 http://realzzz.coding.me/2017/12/15/浏览器加载JavaScript和CSS的过程/
 http://realzzz.coding.me/2017/12/14/使用js实现图片懒加载/
 http://realzzz.coding.me/2017/12/05/Less基础/
+http://realzzz.coding.me/2017/12/03/Web版基于讯飞(IFLY)的语音识别与合成/
 http://realzzz.coding.me/2017/12/03/排序算法/
 http://realzzz.coding.me/2017/12/03/用Promise封装ajax/
-http://realzzz.coding.me/2017/12/03/Web版基于讯飞(IFLY)的语音识别与合成/
 http://realzzz.coding.me/2017/12/02/How-to-use-Hexo/
 http://realzzz.coding.me/2017/11/15/大整数运算/
 http://realzzz.coding.me/2017/11/06/我的git笔记/

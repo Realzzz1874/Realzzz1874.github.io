@@ -168,6 +168,48 @@
     
     
         <article class="index-post">
+            <a class="content-show-full" href = "/2018/04/26/微信小程序（wepy）中实现左滑删除列表项/" >
+                    <h2 class="abstract-title">
+                        
+                        <span>微信小程序（wepy）中实现左滑删除列表项</span>
+                    </h2>
+                <div class="abstract-content">
+                    实现效果
+向左滑动的时候，列表的item跟着向左滑动，同时列表右边出现删除按钮
+滑动距离超过指定宽度的时候，item自动滑到左侧，删除按钮完全出现
+滑动距离小于指定宽度的时候，item回到原来的位置，隐藏删除按钮
+
+实现思路
+将列表中的每一个item和删除按钮（del_btn）通过z-index属性分为上下两层
+上层item使用绝对定位，左滑改变left属性为对应负值
+通过监听touchstart、touchmove、touchend来实现滑动
+
+实现方法HTML部分1234567891011121314&lt;view class="detail-item" wx:for="&#123...
+                </div>
+            </a>
+            <div class="abstract-post-meta">
+                <!-- tags  -->
+                
+                <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = 小程序>小程序</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = wepy>wepy</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = 页面交互>页面交互</a>
+    
+</div>
+                
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/04/26</span>
+                </div>
+            </div>
+        </article>
+    
+    
+    
+        <article class="index-post">
             <a class="content-show-full" href = "/2018/04/25/读完《小团圆》之后的一些想法/" >
                     <h2 class="abstract-title">
                         
@@ -672,24 +714,7 @@
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <div class="total-archive"> Total : 29 </div>
+    <div class="total-archive"> Total : 30 </div>
     
     <div class="post-archive">
     
@@ -698,6 +723,11 @@
     
     <div class="archive-year"> 2018 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/26</span><a class="archive-post-title" href= "/2018/04/26/微信小程序（wepy）中实现左滑删除列表项/" >微信小程序（wepy）中实现左滑删除列表项</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -868,17 +898,17 @@
     
         <span class="sidebar-tag-name"><a href= "#">RESTful</a></span>
     
+        <span class="sidebar-tag-name"><a href= "#">Vue</a></span>
+    
         <span class="sidebar-tag-name"><a href= "#">Hexo</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">教程</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">Less</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">Vue</a></span>
+        <span class="sidebar-tag-name"><a href= "#">axios</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">git</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">axios</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">自动化工具</a></span>
     
@@ -888,29 +918,35 @@
     
         <span class="sidebar-tag-name"><a href= "#">tips</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">数据存储</a></span>
-    
         <span class="sidebar-tag-name"><a href= "#">语音合成、语音识别</a></span>
     
+        <span class="sidebar-tag-name"><a href= "#">数据存储</a></span>
+    
         <span class="sidebar-tag-name"><a href= "#">图片懒加载</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">小程序</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">wepy</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">页面交互</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">浏览器</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">算法</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">大整数运算</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">浏览器</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">正则表达式</a></span>
-    
         <span class="sidebar-tag-name"><a href= "#">Promise</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">ajax</a></span>
     
+        <span class="sidebar-tag-name"><a href= "#">正则表达式</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">排序</a></span>
+    
         <span class="sidebar-tag-name"><a href= "#">读书</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">文学</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">排序</a></span>
     
     </div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
