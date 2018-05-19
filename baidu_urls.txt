@@ -1,3 +1,4 @@
+http://realzzz.coding.me/2018/05/19/微信小程序（wepy）使用的坑s-持续更新/
 http://realzzz.coding.me/2018/04/26/微信小程序（wepy）中实现左滑删除列表项/
 http://realzzz.coding.me/2018/04/25/读完《小团圆》之后的一些想法/
 http://realzzz.coding.me/2018/04/18/RESTfulAPI的规范/

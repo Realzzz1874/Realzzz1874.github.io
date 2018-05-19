@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://realzzz.coding.me/"/>
-  <updated>2018-04-26T14:15:19.921Z</updated>
+  <updated>2018-05-19T11:27:48.304Z</updated>
   <id>http://realzzz.coding.me/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>微信小程序（wepy）使用的坑s--持续更新</title>
+    <link href="http://realzzz.coding.me/2018/05/19/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%EF%BC%88wepy%EF%BC%89%E4%BD%BF%E7%94%A8%E7%9A%84%E5%9D%91s-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/"/>
+    <id>http://realzzz.coding.me/2018/05/19/微信小程序（wepy）使用的坑s-持续更新/</id>
+    <published>2018-05-18T16:00:00.000Z</published>
+    <updated>2018-05-19T11:27:48.304Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="tabBar字体颜色"><a href="#tabBar字体颜色" class="headerlink" title="tabBar字体颜色"></a>tabBar字体颜色</h3><p>IOS下tabBar的字体颜色不可以简写，不可以写成如：<code>black</code>的形式，需要写成<code>#000000</code>,<br><br>Android下颜色不可以写成<code>#000</code>的形式,<br><br><code>总结</code>: 统一写成<code>#000000</code>.</p><h3 id="tap事件名称长度的bug"><a href="#tap事件名称长度的bug" class="headerlink" title="@tap事件名称长度的bug"></a>@tap事件名称长度的bug</h3><p>@tap事件长度不能超过22个字符，其它事件没有这个问题</p><h3 id="picker组件的选择范围"><a href="#picker组件的选择范围" class="headerlink" title="picker组件的选择范围"></a>picker组件的选择范围</h3><p>picker组件调起选择框的可触摸范围是子节点的大小，不能在子节点之间的空白区域调起，<br><br><code>解决办法</code>: 在picker组件内写一个总的容器，将所有子节点包含在这个容器中，然后定义这个容器的大小为需要调起的范围。</p><h3 id="组件属性值为Boolean"><a href="#组件属性值为Boolean" class="headerlink" title="组件属性值为Boolean"></a>组件属性值为Boolean</h3><p>当组件的属性值为boolean的时候，不可以直接写成<code>xxx=&quot;false&quot;</code>, 标签解析会自动将<code>&quot;&quot;</code>中的内容解析成字符串，所以当值为false的时候还是true. <br><br><code>解决办法</code>: 需要写成<code>xxx=&quot;false&quot;</code>.</p>]]></content>
+    
+    <summary type="html">
+    
+      微信小程序（wepy）使用的坑s--持续更新
+    
+    </summary>
+    
+      <category term="小程序" scheme="http://realzzz.coding.me/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+    
+      <category term="小程序" scheme="http://realzzz.coding.me/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+      <category term="wepy" scheme="http://realzzz.coding.me/tags/wepy/"/>
+    
+  </entry>
   
   <entry>
     <title>微信小程序（wepy）中实现左滑删除列表项</title>
@@ -457,32 +481,6 @@
     <summary type="html">
     
       js小技巧之rest参数
-    
-    </summary>
-    
-      <category term="js小技巧" scheme="http://realzzz.coding.me/categories/js%E5%B0%8F%E6%8A%80%E5%B7%A7/"/>
-    
-    
-      <category term="JavaScript" scheme="http://realzzz.coding.me/tags/JavaScript/"/>
-    
-      <category term="js小技巧" scheme="http://realzzz.coding.me/tags/js%E5%B0%8F%E6%8A%80%E5%B7%A7/"/>
-    
-      <category term="tips" scheme="http://realzzz.coding.me/tags/tips/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>js小技巧之扩展运算符</title>
-    <link href="http://realzzz.coding.me/2017/12/18/js%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8B%E6%89%A9%E5%B1%95%E8%BF%90%E7%AE%97%E7%AC%A6/"/>
-    <id>http://realzzz.coding.me/2017/12/18/js小技巧之扩展运算符/</id>
-    <published>2017-12-17T16:00:00.000Z</published>
-    <updated>2018-01-10T01:57:08.244Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="是什么？"><a href="#是什么？" class="headerlink" title="是什么？"></a>是什么？</h2><p>扩展运算符（spread）是由三个<code>.</code>组成，可以将一个数组转换成一个用逗号分隔的序列。</p><h2 id="怎么用？"><a href="#怎么用？" class="headerlink" title="怎么用？"></a>怎么用？</h2><h3 id="数据解构"><a href="#数据解构" class="headerlink" title="数据解构"></a>数据解构</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line"><span class="keyword">let</span> a, b;</span><br><span class="line">[a, ...b] = arr;</span><br><span class="line"><span class="comment">// a = 1</span></span><br><span class="line"><span class="comment">// b = [2, 3, 4]</span></span><br></pre></td></tr></table></figure><h3 id="数据构造"><a href="#数据构造" class="headerlink" title="数据构造"></a>数据构造</h3><h4 id="处理对象"><a href="#处理对象" class="headerlink" title="处理对象"></a>处理对象</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = &#123;<span class="attr">a</span>:<span class="string">'aa'</span>&#125;</span><br><span class="line"><span class="keyword">let</span> b = &#123;<span class="attr">b</span>:<span class="string">'bb'</span>&#125;</span><br><span class="line"><span class="keyword">let</span> c = &#123;...a,...b&#125;</span><br><span class="line"><span class="comment">// c = &#123;"a":"aa","b":"bb"&#125;</span></span><br></pre></td></tr></table></figure><h4 id="处理数组"><a href="#处理数组" class="headerlink" title="处理数组"></a>处理数组</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [<span class="string">'aa'</span>]</span><br><span class="line"><span class="keyword">let</span> b = [<span class="string">'bb'</span>]</span><br><span class="line"><span class="keyword">let</span> c = [...a, ...b]</span><br><span class="line"><span class="comment">// c = ["aa","bb"]</span></span><br></pre></td></tr></table></figure><h3 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> num = [<span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line">add(...num);  <span class="comment">// 3</span></span><br></pre></td></tr></table></figure><p>这个例子简单说明了调用函数的时候可以将一个数组通过扩展运算符转换为一个参数序列。<br></p><h4 id="函数调用的具体运用"><a href="#函数调用的具体运用" class="headerlink" title="函数调用的具体运用"></a>函数调用的具体运用</h4><p>在JavaScript中求一个数组的最大值我们可能需要写一个比如二分法的查找算法，而JavaScript的Math对象中已经封装了一个Math.max()的函数用来求最大值，不过缺点是所传的参数不能是一个数组，而扩展运算符完美地解决了这个弊端。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> array = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="built_in">Math</span>.max(...array) <span class="comment">//3</span></span><br></pre></td></tr></table></figure></p><h3 id="作用于实现了-Iterator-接口的对象"><a href="#作用于实现了-Iterator-接口的对象" class="headerlink" title="作用于实现了 Iterator 接口的对象"></a>作用于实现了 Iterator 接口的对象</h3><p>在处理DOM节点的时候，我们经常需要获取某一整个nodeList然后批量操作<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> nodeListLi = <span class="built_in">document</span>.querySelectorAll(<span class="string">'li'</span>);</span><br><span class="line"><span class="keyword">let</span> arrayLi = [...nodeListLi];</span><br></pre></td></tr></table></figure></p><p>这种方法可以简便地将nodeList转换为array进行操作。<br><br>扩展运算符内部调用的是数据结构的 Iterator 接口，因此只要具有 Iterator 接口的对象，都可以使用扩展运算符，比如 Map 和 Set 。</p><h3 id="替代数组的apply方法"><a href="#替代数组的apply方法" class="headerlink" title="替代数组的apply方法"></a>替代数组的apply方法</h3><p>扩展运算符可以将一个数组转换成一个用逗号分隔的参数序列，所以在ES5中的apply方法就会被很好的替代。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES5</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params">a, b, c</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> args = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line">fun.apply(<span class="literal">null</span>, args);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params">a, b, c</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> args = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line">fun(...args);</span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      js小技巧之扩展运算符
     
     </summary>
     
