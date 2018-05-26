@@ -212,28 +212,11 @@
 </li>
 </ul>
 <h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ul>
-<li><p>clone：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> [url] [local_name]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>检查当前文件状态：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>跟踪新文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add [. / file]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>忽略文件（.gitignore）</p>
-</li>
 <li><p>查看已经暂存和未暂存的修改</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff</span><br></pre></td></tr></table></figure>
 <p><code>git diff</code> 查看的是工作目录中当前文件和暂存区域快照之间的差异，也就是修改之后还没有暂存起来的变化内容。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git diff --cached</span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line">git diff --staged</span><br></pre></td></tr></table></figure>
 <p>查看已暂存的将要添加到下次提交里的内容需要使用<code>git diff --cached(staged)</code></p>
-</li>
-<li><p>提交更新</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m<span class="string">"提交信息说明"</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>跳过使用暂存区域</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git commit -a -m<span class="string">"提交信息说明"</span></span><br><span class="line"><span class="comment"># 将 git add 与 git commit 合并为一条命令</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>移除文件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rm</span><br></pre></td></tr></table></figure>
@@ -273,9 +256,6 @@
 <li><p>查看远程仓库</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote show [remote-name]</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>打标签</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">annotated</span><br><span class="line">git tag -a v1.1 -m <span class="string">'version 1.1'</span></span><br><span class="line"><span class="comment"># -a 指定tag类型 annotated，-m 附注信息</span></span><br></pre></td></tr></table></figure>
-</li>
 <li><p>分支创建</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch branch-name</span><br></pre></td></tr></table></figure>
 </li>
@@ -294,6 +274,17 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git push orign --delete branch-name</span><br><span class="line"><span class="comment"># 运行带有--delete选项的git push命令来删除一个远程分支</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>git rebase<br><a href="https://www.jianshu.com/p/cca69cb695a6" target="_blank" rel="noopener">参考</a></p>
+</li>
+</ul>
+<h3 id="tag"><a href="#tag" class="headerlink" title="tag"></a>tag</h3><ul>
+<li><p>打标签</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git tag -a v1.1 -m <span class="string">'version 1.1'</span></span><br><span class="line"><span class="comment"># -a 指定tag类型 annotated，-m 附注信息</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>同步标签</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git push origin v1.1</span><br><span class="line"><span class="comment"># 同步一个</span></span><br><span class="line">git push origin --tags</span><br><span class="line"><span class="comment"># 同步所有</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除标签</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git tag -d v1.1</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 
@@ -414,7 +405,7 @@
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置"><span class="toc-number">1.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用"><span class="toc-number">2.</span> <span class="toc-text">使用</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置"><span class="toc-number">1.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用"><span class="toc-number">2.</span> <span class="toc-text">使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tag"><span class="toc-number">3.</span> <span class="toc-text">tag</span></a></li></ol>
     </div>
     
     <div class="back-top">&#xe639;</div>

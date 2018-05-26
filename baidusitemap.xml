@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>http://realzzz.coding.me/2017/11/06/%E6%88%91%E7%9A%84git%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2018-05-26T14:41:24.806Z</lastmod>
+    <data>
+        <display>
+        <title>我的git笔记</title>
+        <pubTime>2017-11-05T16:00:00.000Z</pubTime>
+        
+        <tag>git</tag>
+         
+        <tag>tips</tag>
+         
+         
+           
+             
+              <breadCrumb title="git" url="http://realzzz.coding.me/categories/git/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://realzzz.coding.me/2018/05/19/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%EF%BC%88wepy%EF%BC%89%E4%BD%BF%E7%94%A8%E7%9A%84%E5%9D%91s-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/</loc>
     <lastmod>2018-05-24T04:56:45.956Z</lastmod>
     <data>
@@ -324,28 +346,6 @@
            
              
               <breadCrumb title="算法" url="http://realzzz.coding.me/categories/%E7%AE%97%E6%B3%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://realzzz.coding.me/2017/11/06/%E6%88%91%E7%9A%84git%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2018-02-06T15:42:40.591Z</lastmod>
-    <data>
-        <display>
-        <title>我的git笔记</title>
-        <pubTime>2017-11-05T16:00:00.000Z</pubTime>
-        
-        <tag>git</tag>
-         
-        <tag>tips</tag>
-         
-         
-           
-             
-              <breadCrumb title="git" url="http://realzzz.coding.me/categories/git/"/>
           
         </display>
     </data>
