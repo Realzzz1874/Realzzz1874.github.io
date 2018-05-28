@@ -284,7 +284,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git push origin v1.1</span><br><span class="line"><span class="comment"># 同步一个</span></span><br><span class="line">git push origin --tags</span><br><span class="line"><span class="comment"># 同步所有</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>删除标签</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git tag -d v1.1</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git tag -d v1.1  <span class="comment"># 删除本地</span></span><br><span class="line"><span class="comment"># 删除远程</span></span><br><span class="line">git tag -d v0.9 <span class="comment"># 先删除本地</span></span><br><span class="line">git push origin :refs/tags/v0.9 <span class="comment">#再删除远程</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 
