@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://realzzz.coding.me/"/>
-  <updated>2018-05-24T04:56:45.956Z</updated>
+  <updated>2018-05-29T07:56:50.939Z</updated>
   <id>http://realzzz.coding.me/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://realzzz.coding.me/2018/05/19/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%EF%BC%88wepy%EF%BC%89%E4%BD%BF%E7%94%A8%E7%9A%84%E5%9D%91s-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/"/>
     <id>http://realzzz.coding.me/2018/05/19/微信小程序（wepy）使用的坑s-持续更新/</id>
     <published>2018-05-18T16:00:00.000Z</published>
-    <updated>2018-05-24T04:56:45.956Z</updated>
+    <updated>2018-05-29T07:56:50.939Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="tabBar字体颜色"><a href="#tabBar字体颜色" class="headerlink" title="tabBar字体颜色"></a>tabBar字体颜色</h3><p>IOS下tabBar的字体颜色不可以简写，不可以写成如：<code>black</code>的形式，需要写成<code>#000000</code>,<br><br>Android下颜色不可以写成<code>#000</code>的形式,<br><br><code>总结</code>: 统一写成<code>#000000</code>.</p><h3 id="tap事件名称长度的bug"><a href="#tap事件名称长度的bug" class="headerlink" title="@tap事件名称长度的bug"></a>@tap事件名称长度的bug</h3><p>@tap事件长度不能超过22个字符，其它事件没有这个问题</p><h3 id="picker组件的选择范围"><a href="#picker组件的选择范围" class="headerlink" title="picker组件的选择范围"></a>picker组件的选择范围</h3><p>picker组件调起选择框的可触摸范围是子节点的大小，不能在子节点之间的空白区域调起，<br><br><code>解决办法</code>: 在picker组件内写一个总的容器，将所有子节点包含在这个容器中，然后定义这个容器的大小为需要调起的范围。</p><h3 id="组件属性值为Boolean"><a href="#组件属性值为Boolean" class="headerlink" title="组件属性值为Boolean"></a>组件属性值为Boolean</h3><p>当组件的属性值为boolean的时候，不可以直接写成<code>xxx=&quot;false&quot;</code>, 标签解析会自动将<code>&quot;&quot;</code>中的内容解析成字符串，所以当值为false的时候还是true. <br><br><code>解决办法</code>: 需要写成<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xxx=<span class="string">"&#123;&#123;false&#125;&#125;"</span></span><br></pre></td></tr></table></figure></p>]]></content>
+    <content type="html"><![CDATA[<h3 id="tabBar字体颜色"><a href="#tabBar字体颜色" class="headerlink" title="tabBar字体颜色"></a>tabBar字体颜色</h3><p>IOS下tabBar的字体颜色不可以简写，不可以写成如：<code>black</code>的形式，需要写成<code>#000000</code>,<br><br>Android下颜色不可以写成<code>#000</code>的形式,<br><br><code>总结</code>: 统一写成<code>#000000</code>.</p><h3 id="tap事件名称长度的bug"><a href="#tap事件名称长度的bug" class="headerlink" title="@tap事件名称长度的bug"></a>@tap事件名称长度的bug</h3><p>@tap事件长度不能超过22个字符，其它事件没有这个问题</p><h3 id="picker组件的选择范围"><a href="#picker组件的选择范围" class="headerlink" title="picker组件的选择范围"></a>picker组件的选择范围</h3><p>picker组件调起选择框的可触摸范围是子节点的大小，不能在子节点之间的空白区域调起，<br><br><code>解决办法</code>: 在picker组件内写一个总的容器，将所有子节点包含在这个容器中，然后定义这个容器的大小为需要调起的范围。</p><h3 id="组件属性值为Boolean"><a href="#组件属性值为Boolean" class="headerlink" title="组件属性值为Boolean"></a>组件属性值为Boolean</h3><p>当组件的属性值为boolean的时候，不可以直接写成<code>xxx=&quot;false&quot;</code>, 标签解析会自动将<code>&quot;&quot;</code>中的内容解析成字符串，所以当值为false的时候还是true. <br><br><code>解决办法</code>: 需要写成<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xxx=<span class="string">"&#123;&#123;false&#125;&#125;"</span></span><br></pre></td></tr></table></figure></p><h3 id="iOS下hideTabBar方法失效"><a href="#iOS下hideTabBar方法失效" class="headerlink" title="iOS下hideTabBar方法失效"></a>iOS下hideTabBar方法失效</h3><p>问题描述：tabBar 定义了3个页面，其中希望进入B页面后自动隐藏tabBar，而展现自定义的底部菜单。使用wepy.hideTabBar()，在安卓上表现正常，但是在IOS 上测试出现问题.<br><br><code>解决办法</code>: 将hideTabBar写在页面的onReady中</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">onReady() &#123;</span><br><span class="line">  wepy.hideTabBar(&#123;</span><br><span class="line">    animation: <span class="literal">true</span>,</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
