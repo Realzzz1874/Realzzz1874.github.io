@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://realzzz.coding.me/"/>
-  <updated>2018-05-29T07:56:50.939Z</updated>
+  <updated>2018-07-20T15:27:35.563Z</updated>
   <id>http://realzzz.coding.me/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>第二次读《大裂》</title>
+    <link href="http://realzzz.coding.me/2018/07/20/%E7%AC%AC%E4%BA%8C%E6%AC%A1%E8%AF%BB%E3%80%8A%E5%A4%A7%E8%A3%82%E3%80%8B/"/>
+    <id>http://realzzz.coding.me/2018/07/20/第二次读《大裂》/</id>
+    <published>2018-07-19T16:00:00.000Z</published>
+    <updated>2018-07-20T15:27:35.563Z</updated>
+    
+    <content type="html"><![CDATA[<p>&emsp;&emsp;第一次读《大裂》是去年的11月，我记得很清楚，因为那会儿刚知道作者自杀了。其实很早之前就有码过这本书，但是一直都没看。直到有一天网上看见胡迁自杀的消息才猛地想起来，真是愧疚。<br><br>&emsp;&emsp;上一次读《大裂》是一口气读完的。<br>&emsp;&emsp;那天是周末，醒的时候已经是傍晚了。瞅了一眼手机发现有个快递信息，便拿上外套出门了。<br><br>&emsp;&emsp;认真去了解胡迁这个人的时候会发现很多东西，比如他喜欢写一些很短的故事，喜欢写生活中的人们没办法解决的痛苦，喜欢简单直接，喜欢抽烟，可是这又是他的全部吗？这些尚构不成万分之一的彼此。<br><br>&emsp;&emsp;一口气读完这本书的感觉是酣畅淋漓的，但又像那种沉闷的天气一般，潮湿，压抑。“伤害”、“黑暗”、“浑浑噩噩”，我甚至都找不到准确的词能形容当时的感觉。第二遍读的时候我很认真的做了记录，每当我想到一个词的时候我都记在了本子上，“无力”、“荒诞”、“弱者”、“反抗与不敢反抗”、“绝望”、“厌世”、“毁灭”、“苟且生存的无奈”、“否定”。可是他又不是像一个悲观主义的人在和你纯粹比惨，更像是蜷缩的刺猬，小声告诉你，这就是我的全部了。<br><br>&emsp;&emsp;“世界像悬崖，文明像火车”。整本书读了两遍也不知道希望是什么，幸福又是什么。黄金能代表幸福吗？就算坚持到了最后抱到了黄金，可是早已经物是人非，这种结局又真的是想要的吗？人间，又真的值得吗？生活就像是挖宝藏一样，没有意义，但是又迫不得已。总得盼着点什么吧。那叶子可能就是麻痹你我的快乐，可是最终人还是住到了洞里。一股张力，不留痕迹地便将你我毁灭。<br><br>&emsp;&emsp;“每个人到了这野鸡大学，都是垃圾被倾倒在了恶臭中，等着腐朽。有什么可以划开这混沌？老广院在期待，新生也想苦苦寻找。有人想用血腥和暴力烧出一片天地，证明自己有价值，但实际上是一堆狗屎；有人在嫖娼和卖毒品中得到了救赎，找到了属于他自己的希望破灭后的真实，甘于在这平凡的生活中混吃等死；但没有一个人有好下场，每个人都不配有好下场。” 你逃不掉，你一定会废掉，最后成为垃圾。<br><br>&emsp;&emsp;死亡是极有力的加成方式。我们的互相揣测也没有任何意义。我们都心知肚明，生活的苦难远不是由生活的高低水平决定，感同身受也只是天方夜谭。死亡或许是解脱，也或许是迫于无奈，作者知道，我不知道。<br><br>&emsp;&emsp;过早的看透很多事情却又无能为力的时候会让我们变得刻薄，而这种尖锐最终都会刺到自己身上，将我们的心脏捅个对穿。抹去压抑的感觉再回过头认真思考的时候，其实这都是生活吧。<br><br>&emsp;&emsp;世界还能更坏么？反正不会太好了。<br></p>]]></content>
+    
+    <summary type="html">
+    
+      第二次读《大裂》
+    
+    </summary>
+    
+      <category term="文学" scheme="http://realzzz.coding.me/categories/%E6%96%87%E5%AD%A6/"/>
+    
+    
+      <category term="读书" scheme="http://realzzz.coding.me/tags/%E8%AF%BB%E4%B9%A6/"/>
+    
+      <category term="文学" scheme="http://realzzz.coding.me/tags/%E6%96%87%E5%AD%A6/"/>
+    
+  </entry>
   
   <entry>
     <title>微信小程序（wepy）使用的坑s--持续更新</title>
@@ -466,32 +490,6 @@
       <category term="JavaScript" scheme="http://realzzz.coding.me/tags/JavaScript/"/>
     
       <category term="js小技巧" scheme="http://realzzz.coding.me/tags/js%E5%B0%8F%E6%8A%80%E5%B7%A7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>js小技巧之rest参数</title>
-    <link href="http://realzzz.coding.me/2017/12/19/js%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8Brest%E5%8F%82%E6%95%B0/"/>
-    <id>http://realzzz.coding.me/2017/12/19/js小技巧之rest参数/</id>
-    <published>2017-12-18T16:00:00.000Z</published>
-    <updated>2018-02-07T16:23:03.978Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h2><p>rest 参数是形式为<code>...</code>的变量名，可以用来获取函数的多余参数，rest参数搭配的变量是一个数组，该变量将多余的参数放入数组中。<br><br>简单说：将多余的逗号分隔的参数序列转换为数组参数。（和扩展运算符spread相反）</p><h2 id="怎么用"><a href="#怎么用" class="headerlink" title="怎么用"></a>怎么用</h2><ul><li><p>rest参数接收函数的多余参数，组成一个数组，要放在形参的最后</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params">a, b, ...otherArgs</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li><p>rest参数可以用来代替不确定参数个数的传递方式</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">...nums</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> num <span class="keyword">of</span> nums) &#123;</span><br><span class="line">    sum += num;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line">add(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>) <span class="comment">// 6</span></span><br></pre></td></tr></table></figure><p>add函数可以用来求任意个数参数的和。</p></li></ul><h2 id="rest参数和arguments对象的区别"><a href="#rest参数和arguments对象的区别" class="headerlink" title="rest参数和arguments对象的区别"></a>rest参数和arguments对象的区别</h2><ul><li>rest参数只包含那些放在后面没有名字的参数，arguments对象包含了所有的参数</li><li><p>rest参数是一个array，arguments不是array。arguments为了使用数组的方法，必须使用<code>Array.prototype.slice.call</code>先将其转为数组。<br><br>例子：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// arguments</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sortNumbers</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>).sort();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// rest参数</span></span><br><span class="line"><span class="keyword">const</span> sortNumbers = <span class="function">(<span class="params">...numbers</span>) =&gt;</span> numbers.sort();</span><br></pre></td></tr></table></figure></li><li><p>函数的length属性不包括rest参数部分</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;&#125;).length  <span class="comment">// 1</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">...x</span>) </span>&#123;&#125;).length  <span class="comment">// 0</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">x, ...y</span>) </span>&#123;&#125;).length  <span class="comment">// 1</span></span><br></pre></td></tr></table></figure></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      js小技巧之rest参数
-    
-    </summary>
-    
-      <category term="js小技巧" scheme="http://realzzz.coding.me/categories/js%E5%B0%8F%E6%8A%80%E5%B7%A7/"/>
-    
-    
-      <category term="JavaScript" scheme="http://realzzz.coding.me/tags/JavaScript/"/>
-    
-      <category term="js小技巧" scheme="http://realzzz.coding.me/tags/js%E5%B0%8F%E6%8A%80%E5%B7%A7/"/>
-    
-      <category term="tips" scheme="http://realzzz.coding.me/tags/tips/"/>
     
   </entry>
   
