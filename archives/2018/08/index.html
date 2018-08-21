@@ -168,52 +168,23 @@
     
     
         <article class="index-post">
-            <a class="content-show-full" href = "/2017/12/03/排序算法/" >
+            <a class="content-show-full" href = "/2018/08/21/微信小程序生成海报分享到朋友圈/" >
                     <h2 class="abstract-title">
                         
-                        <span>排序算法</span>
+                        <span>微信小程序生成海报分享到朋友圈</span>
                     </h2>
                 <div class="abstract-content">
-                    排序有内部排序和外部排序，内部排序是数据记录在内存中进行排序，而外部排序是因排序的数据很大，一次不能容纳全部的排序记录，在排序过程中需要访问外存。常见的八大排序就是内部排序。
-排序基本分类12345678910111213|-- 内部排序|   |-- 插入排序|       |-- 直接插入排序|       |-- 希尔排序|   |-- 选择排序|       |-- 简单选择排序|       |-- 堆排序|   |-- 交换排序|       |-- 冒泡排序|       |-- 快速排序|   |-- 归并排序|   |-- 基数排序|-- 外部排序
-内部排序插入排序 —...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = 算法>算法</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = 排序>排序</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/12/03</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2017/11/15/大整数运算/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>大整数运算</span>
-                    </h2>
-                <div class="abstract-content">
-                    前言记得大一的时候用C语言写过大整数的运算，现在主力语言已经是JavaScript了，刚好遇到这个问题，所以用JavaScript重写一下大整数运算。JavaScript中能表示的最大精确整数是9007199254740992（2的53次方），超过这个范围就会发生精度丢失，所以大整数的运算就必须拿出来单独考虑了（小数先不考虑）。
-算法原理
-加法：从右往左遍历相加，有进位的把左边的数加1
-减法：先判断两数的大小，减完之后再在前面判断是否加负号
-乘法：每一位对应相乘，结果保存在数组中，再将数组转换为对应的值
-除法：反复做减法，看从被除数里面最多能减去多少个除数，商就是多少
+                    微信官方目前还没有开放小程序直接调起朋友圈分享的能力，所以没法直接将海报分享到朋友圈，需要手动保存图片到相册，然后用户发朋友圈。
+实现步骤
+制作海报
+保存到相册
+朋友圈分享
 
-实现加法1234...
+制作海报直接下载网络图片（略）canvas绘制
+首先在页面内引入一个canvas标签
+1&lt;canvas style="width: 574rpx;height: 1010rpx;margin-top: 50rpx;margin-bottom: 100rpx;" canvas-id="post_canvas"&gt;&lt;/canvas&gt;
+
+js绘制由于canvas的单位是数字也就是默认的px，所以需要...
                 </div>
             </a>
             <div class="abstract-post-meta">
@@ -221,15 +192,15 @@
                 
                 <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-href = 算法>算法</a>
+        <a class="post-tag" href="javascript:void(0);" data-href = 小程序>小程序</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-href = 大整数运算>大整数运算</a>
+        <a class="post-tag" href="javascript:void(0);" data-href = wepy>wepy</a>
     
 </div>
                 
                 <!-- date  -->
                 <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/11/15</span>
+                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/08/21</span>
                 </div>
             </div>
         </article>

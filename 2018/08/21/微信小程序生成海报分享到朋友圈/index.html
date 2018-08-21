@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
     <title>
         
-        realzzz
+        微信小程序生成海报分享到朋友圈 · realzzz
         
     </title>
     <link rel="icon" href= /assets/favicon.ico>
@@ -69,11 +69,22 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >realzzz</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">微信小程序生成海报分享到朋友圈</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>realzzz</a>
 </header>
@@ -81,21 +92,45 @@
         <div class="site-intro">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/post-bg.jpg)"></div>
     <div class="site-intro-placeholder"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
+            微信小程序生成海报分享到朋友圈
+            <!-- 404 -->
+            
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <!-- 文章页标签  -->
+            
+                <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = 小程序>小程序</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = wepy>wepy</a>
+    
+</div>
+            
+            <div class="post-intro-meta">
+                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                <span class="post-intro-time">2018/08/21</span>
+            </div>
         
     </div>
 </div>
@@ -163,78 +198,69 @@
             }
         </script>
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2017/12/03/排序算法/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>排序算法</span>
-                    </h2>
-                <div class="abstract-content">
-                    排序有内部排序和外部排序，内部排序是数据记录在内存中进行排序，而外部排序是因排序的数据很大，一次不能容纳全部的排序记录，在排序过程中需要访问外存。常见的八大排序就是内部排序。
-排序基本分类12345678910111213|-- 内部排序|   |-- 插入排序|       |-- 直接插入排序|       |-- 希尔排序|   |-- 选择排序|       |-- 简单选择排序|       |-- 堆排序|   |-- 交换排序|       |-- 冒泡排序|       |-- 快速排序|   |-- 归并排序|   |-- 基数排序|-- 外部排序
-内部排序插入排序 —...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = 算法>算法</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = 排序>排序</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/12/03</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2017/11/15/大整数运算/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>大整数运算</span>
-                    </h2>
-                <div class="abstract-content">
-                    前言记得大一的时候用C语言写过大整数的运算，现在主力语言已经是JavaScript了，刚好遇到这个问题，所以用JavaScript重写一下大整数运算。JavaScript中能表示的最大精确整数是9007199254740992（2的53次方），超过这个范围就会发生精度丢失，所以大整数的运算就必须拿出来单独考虑了（小数先不考虑）。
-算法原理
-加法：从右往左遍历相加，有进位的把左边的数加1
-减法：先判断两数的大小，减完之后再在前面判断是否加负号
-乘法：每一位对应相乘，结果保存在数组中，再将数组转换为对应的值
-除法：反复做减法，看从被除数里面最多能减去多少个除数，商就是多少
+            <main class="main post-page">
+    <article class="article-entry">
+        <p>微信官方目前还没有开放小程序直接调起朋友圈分享的能力，所以没法直接将海报分享到朋友圈，需要手动保存图片到相册，然后用户发朋友圈。</p>
+<h3 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h3><ul>
+<li>制作海报</li>
+<li>保存到相册</li>
+<li>朋友圈分享</li>
+</ul>
+<h3 id="制作海报"><a href="#制作海报" class="headerlink" title="制作海报"></a>制作海报</h3><h4 id="直接下载网络图片（略）"><a href="#直接下载网络图片（略）" class="headerlink" title="直接下载网络图片（略）"></a>直接下载网络图片（略）</h4><h4 id="canvas绘制"><a href="#canvas绘制" class="headerlink" title="canvas绘制"></a>canvas绘制</h4><ul>
+<li><p>首先在页面内引入一个canvas标签</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">style</span>=<span class="string">"width: 574rpx;height: 1010rpx;margin-top: 50rpx;margin-bottom: 100rpx;"</span> <span class="attr">canvas-id</span>=<span class="string">"post_canvas"</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>js绘制<br><br>由于canvas的单位是数字也就是默认的px，所以需要先将px和rpx进行转换。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 辅助函数：px与rpx相互转换</span></span><br><span class="line"><span class="comment"> * @param &#123;Number&#125; win_width 屏幕宽度</span></span><br><span class="line"><span class="comment"> * @param &#123;Number&#125; p 需要转换的数值</span></span><br><span class="line"><span class="comment"> * @param &#123;Boolean&#125; f true表示px转rpx， false表示rpx转px</span></span><br><span class="line"><span class="comment"> * @returns &#123;String&#125; 转换后的数字</span></span><br><span class="line"><span class="comment"> * 转换公式： px = rpx / 750 * win_width;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pxAndRpx</span>(<span class="params">win_width, p, f</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> f ? <span class="built_in">parseInt</span>(p / win_width * <span class="number">750</span>) : <span class="built_in">parseInt</span>(p / <span class="number">750</span> * win_width);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>获取页面canvas-id</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> ctx = wepy.createCanvasContext(<span class="string">'post_canvas'</span>);</span><br><span class="line">ctx.clearRect(<span class="number">0</span>, <span class="number">0</span>, util.pxAndRpx(win_width, <span class="number">574</span>, <span class="number">0</span>), util.pxAndRpx(win_width, <span class="number">1010</span>, <span class="number">0</span>));</span><br><span class="line"><span class="comment">// 背景图</span></span><br><span class="line">ctx.drawImage(<span class="keyword">this</span>.back_path, <span class="number">0</span>, <span class="number">0</span>, util.pxAndRpx(win_width, <span class="number">574</span>, <span class="number">0</span>), util.pxAndRpx(win_width, <span class="number">1010</span>, <span class="number">0</span>));</span><br><span class="line"><span class="comment">// 头像（图像）</span></span><br><span class="line"><span class="keyword">this</span>.circleImg(ctx, <span class="keyword">this</span>.head_path, util.pxAndRpx(win_width, <span class="number">54</span>, <span class="number">0</span>), util.pxAndRpx(win_width, <span class="number">79.7</span>, <span class="number">0</span>), util.pxAndRpx(win_width, <span class="number">30</span>, <span class="number">0</span>));</span><br><span class="line"><span class="comment">// 文字</span></span><br><span class="line">ctx.setFontSize(util.pxAndRpx(win_width, <span class="number">28</span>, <span class="number">0</span>));</span><br><span class="line">ctx.setFillStyle(<span class="string">'#FFFFFF'</span>);</span><br><span class="line">ctx.fillText(<span class="keyword">this</span>.from_nickname, util.pxAndRpx(win_width, <span class="number">132</span>, <span class="number">0</span>), util.pxAndRpx(win_width, <span class="number">104</span>, <span class="number">0</span>));</span><br><span class="line"><span class="comment">// 绘制</span></span><br><span class="line"><span class="comment">// 临时路径需要写在draw的回调中</span></span><br><span class="line"><span class="comment">// 并且在回调中加入setTimeout确保“画完”</span></span><br><span class="line">ctx.draw(<span class="literal">true</span>, setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  wepy.canvasToTempFilePath(&#123;</span><br><span class="line">    canvasId: <span class="string">'save_canvas'</span>,</span><br><span class="line">    quality: <span class="number">1</span>,</span><br><span class="line">    destWidth: util.pxAndRpx(win_width, <span class="number">1148</span>, <span class="number">0</span>),</span><br><span class="line">    destHeight: util.pxAndRpx(win_width, <span class="number">2020</span>, <span class="number">0</span>),</span><br><span class="line">  &#125;).then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(res);</span><br><span class="line">    <span class="keyword">this</span>.temp_file = res.tempFilePath;</span><br><span class="line">    <span class="keyword">this</span>.$apply();</span><br><span class="line">  &#125;).catch(<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(err);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;,<span class="number">1000</span>));</span><br></pre></td></tr></table></figure>
+<p>其中<code>circleImg</code>是一个画头像的函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 画头像</span></span><br><span class="line">circleImg(ctx, img, x, y, r) &#123;</span><br><span class="line">  ctx.save();</span><br><span class="line">  <span class="keyword">let</span> d =<span class="number">2</span> * r;</span><br><span class="line">  <span class="keyword">let</span> cx = x + r;</span><br><span class="line">  <span class="keyword">let</span> cy = y + r;</span><br><span class="line">  ctx.arc(cx, cy, r, <span class="number">0</span>, <span class="number">2</span> * <span class="built_in">Math</span>.PI);</span><br><span class="line">  ctx.clip();</span><br><span class="line">  ctx.drawImage(img, x, y, d, d);</span><br><span class="line">  ctx.restore();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="保存"><a href="#保存" class="headerlink" title="保存"></a>保存</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="keyword">this</span>.temp_file != <span class="string">''</span>) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.temp_file);</span><br><span class="line">  wepy.saveImageToPhotosAlbum(&#123;</span><br><span class="line">    filePath: <span class="keyword">this</span>.temp_file,</span><br><span class="line">  &#125;).then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 成功</span></span><br><span class="line">  &#125;).catch(<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 失败 没有授权保存图片的权限</span></span><br><span class="line">    wepy.getSetting().then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (!res[<span class="string">'scope.writePhotosAlbum'</span>]) &#123;</span><br><span class="line">        wepy.showToast(&#123;</span><br><span class="line">          title: <span class="string">'请授权小程序保存图片的权限'</span>,</span><br><span class="line">          icon: <span class="string">'none'</span>,</span><br><span class="line">          mask: <span class="literal">true</span>,</span><br><span class="line">          duration: <span class="number">3000</span>,</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="朋友圈分享（略）"><a href="#朋友圈分享（略）" class="headerlink" title="朋友圈分享（略）"></a>朋友圈分享（略）</h3><h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><p>由于页面的大小有限，canvas保存的图片大小有限制，可能会遇到页面上的二维码太模糊而无法扫描出来。<br><br>解决办法：在页面内隐藏绘制一个比较大的canvas，保存到本地的时候保存着张比较大的图片。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">style</span>=<span class="string">"width:0; height:0; overflow:hidden;  position: absolute; top: -9999rpx;"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">canvas</span> <span class="attr">style</span>=<span class="string">"width: 1148rpx;height: 2020rpx;"</span> <span class="attr">canvas-id</span>=<span class="string">"save_canvas"</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>相应的，绘制的时候绘制两张，第一张draw回调不下载，第二张draw的回调中下载。</p>
 
-实现加法1234...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
+    </article>
+    <!-- 前后页  -->
+    <ul class="post-pager">
+        
+        
+            <li class="previous">
+                <a href= "/2018/07/20/第二次读《大裂》/" title= 第二次读《大裂》 >
+                    <span>Previous Post</span>
+                    <span>第二次读《大裂》</span>
+                </a>
+            </li>
+        
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+    <div id="lv-container" data-id="city" data-uid= MTAyMC8zMzYxNC8xMDE2OQ==>
+        <script type="text/javascript">
+            (function (d, s) {
+                var j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') { return; }
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+        <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+
+<!-- City版安装代码已完成 -->
     
-        <a class="post-tag" href="javascript:void(0);" data-href = 算法>算法</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-href = 大整数运算>大整数运算</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/11/15</span>
-                </div>
-            </div>
-        </article>
-    
-    <!-- paginator  -->
+    <!--PC版-->
+
+    <!--PC版-->
+
+
     
 </main>
             <!-- profile -->
@@ -301,6 +327,13 @@
 
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper">
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#实现步骤"><span class="toc-number">1.</span> <span class="toc-text">实现步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#制作海报"><span class="toc-number">2.</span> <span class="toc-text">制作海报</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#直接下载网络图片（略）"><span class="toc-number">2.1.</span> <span class="toc-text">直接下载网络图片（略）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#canvas绘制"><span class="toc-number">2.2.</span> <span class="toc-text">canvas绘制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#保存"><span class="toc-number">3.</span> <span class="toc-text">保存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#朋友圈分享（略）"><span class="toc-number">4.</span> <span class="toc-text">朋友圈分享（略）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#补充"><span class="toc-number">5.</span> <span class="toc-text">补充</span></a></li></ol>
+    </div>
     
     <div class="back-top">&#xe639;</div>
     <div class="sidebar">
