@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
     <title>
         
-        Web开发中的cookie、session、sessionStorage、localStorage · realzzz
+        《大象席地而坐》 · realzzz
         
     </title>
     <link rel="icon" href= /assets/favicon.ico>
@@ -82,7 +82,7 @@
                 <a href="/" >realzzz</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">Web开发中的cookie、session、sessionStorage、localStorage</a>
+                <a href="#" class="post-name">《大象席地而坐》</a>
             </div>
     </div>
     
@@ -103,7 +103,7 @@
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            Web开发中的cookie、session、sessionStorage、localStorage
+            《大象席地而坐》
             <!-- 404 -->
             
         </h1>
@@ -121,15 +121,15 @@
             
                 <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-href = Web>Web</a>
+        <a class="post-tag" href="javascript:void(0);" data-href = 影视>影视</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-href = 数据存储>数据存储</a>
+        <a class="post-tag" href="javascript:void(0);" data-href = 文字>文字</a>
     
 </div>
             
             <div class="post-intro-meta">
                 <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                <span class="post-intro-time">2017/12/27</span>
+                <span class="post-intro-time">2018/08/22</span>
             </div>
         
     </div>
@@ -200,72 +200,17 @@
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h3 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h3><p>cookie的本质是一小段文本信息，存储在客户端。当Web服务器向浏览器发送Web页面的时候，一旦关闭连接，服务端不会记录用户的信息，cookie的作用就是用来记录客户端的用户信息。客户端请求服务器的时候，如果服务器需要记录客户端的用户状态，就使用response向客户端发送一个cookie。客户端这个时候会把这个cookie保存下来，当客户端再次访问浏览器的时候会把这个cookie带着一起发送给服务器，服务器检查这个cookie以此来判断用户的状态。<br></p>
-<h4 id="应用场景："><a href="#应用场景：" class="headerlink" title="应用场景："></a>应用场景：</h4><ul>
-<li>判断用户是否登录过网站，以便下次能实现自动登录</li>
-<li>保存上次登录的时间等信息</li>
-<li>保存上次查看的页面</li>
-<li>浏览计数</li>
-</ul>
-<h3 id="session"><a href="#session" class="headerlink" title="session"></a>session</h3><p>session和cookie一样都是用来跟踪浏览器用户身份的会话方式。是服务器端使用的一种记录客户状态的机制。客户端每次请求服务器的时候会带上当前会话的sessionid，服务器根据当前的sessionid判断相应的用户数据的标志，判断用户是否存在或者是否拥有某些操作权限。session是存储在服务器的，所以过多的使用session会给服务器造成过多的压力。<br></p>
-<h4 id="应用场景：-1"><a href="#应用场景：-1" class="headerlink" title="应用场景："></a>应用场景：</h4><ul>
-<li>商城的购物车</li>
-<li>保存用户的登录信息</li>
-<li>将某些数据放入session中给不同的页面使用</li>
-<li>防止用户非法登录</li>
-</ul>
-<h3 id="sessionStorage"><a href="#sessionStorage" class="headerlink" title="sessionStorage"></a>sessionStorage</h3><p>在新的HTML5中出现了WebStorage的感念。WebStorage有两种形式：sessionStorage（会话存储）和localStorage（本地存储）。<br><br>sessionStorage（会话存储），是针对一个session的数据存储，当用户关闭浏览器窗口后数据就会被删除。<br><br>sessionStorage的一些属性和方法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sessionStorage.length  <span class="comment">// 获得sessionStorage的个数</span></span><br><span class="line">sessionStorage.key = value  <span class="comment">// 设置键值对</span></span><br><span class="line">sessionStorage.setItem(key, value)  <span class="comment">// 添加或修改</span></span><br><span class="line">sessionStorage.getItem(key, value)  <span class="comment">// 获取</span></span><br><span class="line">sessionStorage.removeItem(key, value)  <span class="comment">//移除</span></span><br><span class="line">sessionStorage.key(n)	 <span class="comment">// 获得sessionStorage第n个键值对的键</span></span><br><span class="line">sessionStorage.clear()  <span class="comment">// 移除当前会话的sessionStorage</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="localStorage"><a href="#localStorage" class="headerlink" title="localStorage"></a>localStorage</h3><p>localStorage（本地存储），是将数据长久的保存在客户端本地，浏览器关闭以后也不会自动删除，如有需要可以手动删除。localStorage主要是用来解决cookie存储容量较小的问题。<br><br>localStorage的一些属性和方法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">localStorage.length  <span class="comment">// 获得localStorage的个数</span></span><br><span class="line">localStorage.key = value  <span class="comment">// 设置键值对</span></span><br><span class="line">localStorage.setItem(key, value)  <span class="comment">// 添加或修改</span></span><br><span class="line">localStorage.getItem(key, value)  <span class="comment">// 获取</span></span><br><span class="line">localStorage.removeItem(key, value)  <span class="comment">// 移除</span></span><br><span class="line">localStorage.key(n)  <span class="comment">// 获得localStorage第n个键值对的键</span></span><br><span class="line">localStorage.clear()  <span class="comment">//移除所有同源的localStorage</span></span><br></pre></td></tr></table></figure></p>
-<p>sessionStorage和localStorage主要通过在JavaScript中操作这两个对象来实现的，sessionStorage对应的是window.sessionStorage，localStorage对应的是window.localStorage。</p>
-<h3 id="cookie、session、sessionStorage、localStorage之间的异同"><a href="#cookie、session、sessionStorage、localStorage之间的异同" class="headerlink" title="cookie、session、sessionStorage、localStorage之间的异同"></a>cookie、session、sessionStorage、localStorage之间的异同</h3><h4 id="cookie与session的区别"><a href="#cookie与session的区别" class="headerlink" title="cookie与session的区别"></a>cookie与session的区别</h4><ul>
-<li>保持状态：cookie保存在浏览器端，session保存在服务器端</li>
-<li>使用方式：<br><br>1) cookie机制：如果不在浏览器中设置过期时间，cookie会被保存在内存中，随浏览器关闭而结束生命。如果设置了过期时间则保存在硬盘中，直到过期时间才结束。<br><br>2) session机制：当服务器收到请求需要创建session对象的时候，首先检查客户端的请求中是否包含了sessionid，如果包含则返回该id对应的session对象，如果请求中没有包含sessionid则创建新的session对象并将sessionid在本次响应中返回给客户端。如果用户禁用了cookie，则可以使用URL重写，通过<code>response.encodeURL(url)</code>实现。API对URL的解析为：当浏览器支持cookie的时候URL不做任何处理，当不支持的时候则重写URL将sessionid拼接到访问地址后。</li>
-<li>存储内容：cookie以文本的形式保存字符串类型的数据；session通过类似Hashtable的数据结构保存任何类型的对象。</li>
-<li>存储大小：cookie存储最多为4kb，session没有大小限制。</li>
-<li>安全性：session的安全性大于cookie，针对cookie所存在的安全性问题有cookie欺骗和cookie截获。<br>session安全性大于cookie的原因有：<br><br>1) sessionid存在cookie中，要攻破session首先要攻破cookie<br><br>2) sessionid需要先登录才会存在<br><br>3) 第二次启动session_start后，前一次的sessionid就会失效<br><br>4) sessionid是加密的</li>
-</ul>
-<h4 id="cookie与session的缺点"><a href="#cookie与session的缺点" class="headerlink" title="cookie与session的缺点"></a>cookie与session的缺点</h4><p>cookie：</p>
-<ul>
-<li>大小受限，最多4kb</li>
-<li>用户可以禁用，功能受限</li>
-<li>安全性低</li>
-<li>每次访问都有发送给服务器，浪费带宽</li>
-</ul>
-<p>session：</p>
-<ul>
-<li>保存在服务器上，保存太多占内存</li>
-<li>依赖于cookie，如果cookie被禁则需要URL重写，不安全</li>
-</ul>
-<h4 id="sessionStorage和localStorage的区别"><a href="#sessionStorage和localStorage的区别" class="headerlink" title="sessionStorage和localStorage的区别"></a>sessionStorage和localStorage的区别</h4><ul>
-<li>生命周期：localStorage的生命周期是永久的，关闭浏览器也会一直存在除非主动删除；sessionStorage的生命周期只在当前会话下有效，在同源的窗口始终存在，在关闭浏览器窗口被销毁。</li>
-<li>存储大小：二者的存储上限都是5M。</li>
-<li>存储位置：都存在客户端，不与服务器通信交互。</li>
-<li>存储内容类型：只能存字符串类型。</li>
-<li>应用场景：localStorage用于长期登录，适合长期保存在本地的数据；sessionStorage适合一次性登录。</li>
-</ul>
-<h4 id="WebStorage相对于cookie和session的优点"><a href="#WebStorage相对于cookie和session的优点" class="headerlink" title="WebStorage相对于cookie和session的优点"></a>WebStorage相对于cookie和session的优点</h4><ul>
-<li>存储空间更大：WebStorage为5M，cookie是4kb。</li>
-<li>节省带宽：WebStorage存在本地不发送给服务器。</li>
-<li>响应速度更快：WebStorage存在本地，不用从服务器上获取。</li>
-<li>数据操作比cookie更方便。</li>
-</ul>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;”2018年2月16日，农历新年第一天，电影《大象席地而坐》在柏林举行了世界首映。这是本届柏林电影节论坛单元唯一一部中国导演的作品，官方称赞它“极富视觉震撼力，细致入微地刻画了一个自私自利的社会”，并授予费比西国际影评人奖。”<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;就在电影上映的四个多月前，导演自杀了。用一根绳子结束了29岁的生命。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;”完成这部电影用了一整年时间，而最终，没有一帧画面属于我，我也无法保护它。它被外力消解掉了。（胡波，2017年8月26日，《牛蛙》后记）。”<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;那天我找了很久的资源，墙里墙外，本以为还有可能国内上映，可是当我找到资源的时候就知道不可能了，4个小时，注定不会有高票房的电影，他们不会干这种赔钱的”傻逼事情”。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;”满洲里的马戏团有一只大象，它他妈就一直坐在那，可能有人老拿叉子扎它，也可能它就喜欢坐那儿，很多人就跑过去，抱着栏杆看，有人扔什么吃的过去，它也不理。”<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;影片讲述了四个人各自因为不同原因，共同选择从石家庄前往满洲里看大象的故事。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>韦布</em>，一个不喜欢读书，喜欢同学<em>黄玲</em>的中学生。校霸于帅怀疑韦布的好朋友李凯偷了他的手机，李凯不承认，然后于帅找李凯麻烦。韦布帮李凯出头，结果失手将于帅推下了楼梯最后治疗无效死亡。<strong><em>可笑的是李凯真的偷了于帅的手机。</em></strong><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>于城</em>，社会混混，于帅的哥哥，有一些社会关系。不被家庭认可，也很讨厌家庭的歧视。他和自己哥们的女人上床，被发现后哥们跳楼自杀。但在由他主导的偷情故事中，看不出他有任何悔意，他甚至都不愿意和女人一起收拾残局。到此为止，他似乎什么都不在乎，什么都不害怕，一个无名之辈，身处无名之地。但在之后，正是由他串联起三个人发生在一天之中的“失去”和“逃离”的故事。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <em>王金</em>，也叫老金，满洲里服役过兵役的退休军人。女儿女婿想给孙女上好学校买学区房，手里钱不够要卖掉老房子，就希望老头儿搬进养老院住。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <em>黄玲</em>，韦布喜欢的女生，单亲家庭，母亲卖药为生并且常年酗酒。从小缺乏父爱的她和已经有家室的教导副主任有一段秘密恋情。后来二人的恋情曝光，教导主任仕途受挫，原配找上门，这个城市也没有了她的容身之所。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 一连串的生活琐事，让四个人都变成了各自生活中的局外人，他们只好逃离。在逃离的一天中，他们一直在失去。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 为什么要去满洲里看大象呢？<strong><em>因为听说大象就坐在那儿一动也不动。</em></strong><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 无法从现实困境挣脱出来的他们，都向往那个逃避糟糕现状的地方。这四个人物，在家庭上所能建立起来的关联都很弱，哪怕是至亲之间，都没能成为自己与这个世界的羁绊。于城、韦布、黄玲、老金都生活在已经失衡的原生家庭中，在碰撞社会规则之后的无奈，在无解的生活中走了一段又一段的路。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 整部影片导演都以冰冷的方式叙事，压抑，甚至绝望。电影中有许多镜头是人物的背影特写或者两人谈话的侧写。因为背影，有时需要揣测他们的各种神态表情，但是细想，他们看向远处，其实都是想逃离困境而已。而两个人谈话时，经常一个人用力讲话，另一个人的思绪却在别处飘着，没有集中精力。对话中，充斥着直言，脏话，没有一点的遮掩和委婉，真实而残酷。一个个人物在生活的冲击下，显示的都是悲观和厌世的情绪。都想要逃离，想去满洲里看好笑的大象，以此寻求解脱。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 影片的最后，寒冬黑夜，长途大巴停车休息，远处传来一声大象的吼叫，却不知大象身在何处。茫茫黑夜中听到那一声象鸣，震撼人心。可他们看到了什么呢？他们什么也没有看到。人生这片荒原，所有时乖运拙之人都在混乱，泥泞中前行，彼此相望，寻找着自己编织的大象，却不得始终。或许在专业技术方面，电影的镜头、语言、化妆、灯光、美术、摄影都还有很大程度的提升空间，但作为他这一生中唯一的一部长篇电影，胡波把自己揉碎了给大家看，它真的不好咀嚼消化吸收，它有很多的不完美，一如不完美的生活。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 满洲里真的有大象吗？<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 不知道，但或许存留着这样的幻想，生活才会过得好一些吧。<br><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  </p>
 
     </article>
     <!-- 前后页  -->
     <ul class="post-pager">
         
-            <li class="next">
-                <a href= "/2018/01/03/CommonJS、AMD和CMD/" title= CommonJS、AMD和CMD >
-                    <span>Next Post</span>
-                    <span>CommonJS、AMD和CMD</span>
-                </a>
-            </li>
-        
         
             <li class="previous">
-                <a href= "/2017/12/20/javascript中的this、call、apply、bind/" title= javascript中的this、call、apply、bind >
+                <a href= "/2018/08/21/微信小程序生成海报分享到朋友圈/" title= 微信小程序生成海报分享到朋友圈 >
                     <span>Previous Post</span>
-                    <span>javascript中的this、call、apply、bind</span>
+                    <span>微信小程序生成海报分享到朋友圈</span>
                 </a>
             </li>
         
@@ -367,7 +312,7 @@
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#cookie"><span class="toc-number">1.</span> <span class="toc-text">cookie</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#应用场景："><span class="toc-number">1.1.</span> <span class="toc-text">应用场景：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#session"><span class="toc-number">2.</span> <span class="toc-text">session</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#应用场景：-1"><span class="toc-number">2.1.</span> <span class="toc-text">应用场景：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sessionStorage"><span class="toc-number">3.</span> <span class="toc-text">sessionStorage</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#localStorage"><span class="toc-number">4.</span> <span class="toc-text">localStorage</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cookie、session、sessionStorage、localStorage之间的异同"><span class="toc-number">5.</span> <span class="toc-text">cookie、session、sessionStorage、localStorage之间的异同</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#cookie与session的区别"><span class="toc-number">5.1.</span> <span class="toc-text">cookie与session的区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cookie与session的缺点"><span class="toc-number">5.2.</span> <span class="toc-text">cookie与session的缺点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sessionStorage和localStorage的区别"><span class="toc-number">5.3.</span> <span class="toc-text">sessionStorage和localStorage的区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#WebStorage相对于cookie和session的优点"><span class="toc-number">5.4.</span> <span class="toc-text">WebStorage相对于cookie和session的优点</span></a></li></ol></li></ol>
+        
     </div>
     
     <div class="back-top">&#xe639;</div>

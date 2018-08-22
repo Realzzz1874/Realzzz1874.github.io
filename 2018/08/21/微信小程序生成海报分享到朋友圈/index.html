@@ -213,7 +213,7 @@
 <li><p>js绘制<br><br>由于canvas的单位是数字也就是默认的px，所以需要先将px和rpx进行转换。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 辅助函数：px与rpx相互转换</span></span><br><span class="line"><span class="comment"> * @param &#123;Number&#125; win_width 屏幕宽度</span></span><br><span class="line"><span class="comment"> * @param &#123;Number&#125; p 需要转换的数值</span></span><br><span class="line"><span class="comment"> * @param &#123;Boolean&#125; f true表示px转rpx， false表示rpx转px</span></span><br><span class="line"><span class="comment"> * @returns &#123;String&#125; 转换后的数字</span></span><br><span class="line"><span class="comment"> * 转换公式： px = rpx / 750 * win_width;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pxAndRpx</span>(<span class="params">win_width, p, f</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> f ? <span class="built_in">parseInt</span>(p / win_width * <span class="number">750</span>) : <span class="built_in">parseInt</span>(p / <span class="number">750</span> * win_width);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>获取页面canvas-id</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> ctx = wepy.createCanvasContext(<span class="string">'post_canvas'</span>);</span><br><span class="line">ctx.clearRect(<span class="number">0</span>, <span class="number">0</span>, util.pxAndRpx(win_width, <span class="number">574</span>, <span class="number">0</span>), util.pxAndRpx(win_width, <span class="number">1010</span>, <span class="number">0</span>));</span><br><span class="line"><span class="comment">// 背景图</span></span><br><span class="line">ctx.drawImage(<span class="keyword">this</span>.back_path, <span class="number">0</span>, <span class="number">0</span>, util.pxAndRpx(win_width, <span class="number">574</span>, <span class="number">0</span>), util.pxAndRpx(win_width, <span class="number">1010</span>, <span class="number">0</span>));</span><br><span class="line"><span class="comment">// 头像（图像）</span></span><br><span class="line"><span class="keyword">this</span>.circleImg(ctx, <span class="keyword">this</span>.head_path, util.pxAndRpx(win_width, <span class="number">54</span>, <span class="number">0</span>), util.pxAndRpx(win_width, <span class="number">79.7</span>, <span class="number">0</span>), util.pxAndRpx(win_width, <span class="number">30</span>, <span class="number">0</span>));</span><br><span class="line"><span class="comment">// 文字</span></span><br><span class="line">ctx.setFontSize(util.pxAndRpx(win_width, <span class="number">28</span>, <span class="number">0</span>));</span><br><span class="line">ctx.setFillStyle(<span class="string">'#FFFFFF'</span>);</span><br><span class="line">ctx.fillText(<span class="keyword">this</span>.from_nickname, util.pxAndRpx(win_width, <span class="number">132</span>, <span class="number">0</span>), util.pxAndRpx(win_width, <span class="number">104</span>, <span class="number">0</span>));</span><br><span class="line"><span class="comment">// 绘制</span></span><br><span class="line"><span class="comment">// 临时路径需要写在draw的回调中</span></span><br><span class="line"><span class="comment">// 并且在回调中加入setTimeout确保“画完”</span></span><br><span class="line">ctx.draw(<span class="literal">true</span>, setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  wepy.canvasToTempFilePath(&#123;</span><br><span class="line">    canvasId: <span class="string">'save_canvas'</span>,</span><br><span class="line">    quality: <span class="number">1</span>,</span><br><span class="line">    destWidth: util.pxAndRpx(win_width, <span class="number">1148</span>, <span class="number">0</span>),</span><br><span class="line">    destHeight: util.pxAndRpx(win_width, <span class="number">2020</span>, <span class="number">0</span>),</span><br><span class="line">  &#125;).then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(res);</span><br><span class="line">    <span class="keyword">this</span>.temp_file = res.tempFilePath;</span><br><span class="line">    <span class="keyword">this</span>.$apply();</span><br><span class="line">  &#125;).catch(<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(err);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;,<span class="number">1000</span>));</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> ctx = wepy.createCanvasContext(<span class="string">'post_canvas'</span>);</span><br><span class="line">ctx.clearRect(<span class="number">0</span>, <span class="number">0</span>, util.pxAndRpx(win_width, <span class="number">574</span>, <span class="number">0</span>), util.pxAndRpx(win_width, <span class="number">1010</span>, <span class="number">0</span>));</span><br><span class="line"><span class="comment">// 背景图</span></span><br><span class="line">ctx.drawImage(<span class="keyword">this</span>.back_path, <span class="number">0</span>, <span class="number">0</span>, util.pxAndRpx(win_width, <span class="number">574</span>, <span class="number">0</span>), util.pxAndRpx(win_width, <span class="number">1010</span>, <span class="number">0</span>));</span><br><span class="line"><span class="comment">// 头像（图像）</span></span><br><span class="line"><span class="keyword">this</span>.circleImg(ctx, <span class="keyword">this</span>.head_path, util.pxAndRpx(win_width, <span class="number">54</span>, <span class="number">0</span>), util.pxAndRpx(win_width, <span class="number">79.7</span>, <span class="number">0</span>), util.pxAndRpx(win_width, <span class="number">30</span>, <span class="number">0</span>));</span><br><span class="line"><span class="comment">// 文字</span></span><br><span class="line">ctx.setFontSize(util.pxAndRpx(win_width, <span class="number">28</span>, <span class="number">0</span>));</span><br><span class="line">ctx.setFillStyle(<span class="string">'#FFFFFF'</span>);</span><br><span class="line">ctx.fillText(<span class="keyword">this</span>.from_nickname, util.pxAndRpx(win_width, <span class="number">132</span>, <span class="number">0</span>), util.pxAndRpx(win_width, <span class="number">104</span>, <span class="number">0</span>));</span><br><span class="line"><span class="comment">// 绘制</span></span><br><span class="line"><span class="comment">// 临时路径需要写在draw的回调中</span></span><br><span class="line"><span class="comment">// 并且在回调中加入setTimeout确保“画完”</span></span><br><span class="line">ctx.draw(<span class="literal">true</span>, setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  wepy.canvasToTempFilePath(&#123;</span><br><span class="line">    canvasId: <span class="string">'post_canvas'</span>,</span><br><span class="line">    quality: <span class="number">1</span>,</span><br><span class="line">    destWidth: util.pxAndRpx(win_width, <span class="number">1148</span>, <span class="number">0</span>),</span><br><span class="line">    destHeight: util.pxAndRpx(win_width, <span class="number">2020</span>, <span class="number">0</span>),</span><br><span class="line">  &#125;).then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(res);</span><br><span class="line">    <span class="keyword">this</span>.temp_file = res.tempFilePath;</span><br><span class="line">    <span class="keyword">this</span>.$apply();</span><br><span class="line">  &#125;).catch(<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(err);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;,<span class="number">1000</span>));</span><br></pre></td></tr></table></figure>
 <p>其中<code>circleImg</code>是一个画头像的函数</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 画头像</span></span><br><span class="line">circleImg(ctx, img, x, y, r) &#123;</span><br><span class="line">  ctx.save();</span><br><span class="line">  <span class="keyword">let</span> d =<span class="number">2</span> * r;</span><br><span class="line">  <span class="keyword">let</span> cx = x + r;</span><br><span class="line">  <span class="keyword">let</span> cy = y + r;</span><br><span class="line">  ctx.arc(cx, cy, r, <span class="number">0</span>, <span class="number">2</span> * <span class="built_in">Math</span>.PI);</span><br><span class="line">  ctx.clip();</span><br><span class="line">  ctx.drawImage(img, x, y, d, d);</span><br><span class="line">  ctx.restore();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
@@ -225,6 +225,13 @@
     </article>
     <!-- 前后页  -->
     <ul class="post-pager">
+        
+            <li class="next">
+                <a href= "/2018/08/22/《大象席地而坐》/" title= 《大象席地而坐》 >
+                    <span>Next Post</span>
+                    <span>《大象席地而坐》</span>
+                </a>
+            </li>
         
         
             <li class="previous">
@@ -666,36 +673,7 @@
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <div class="total-archive"> Total : 25 </div>
+    <div class="total-archive"> Total : 26 </div>
     
     <div class="post-archive">
     
@@ -704,6 +682,11 @@
     
     <div class="archive-year"> 2018 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/22</span><a class="archive-post-title" href= "/2018/08/22/《大象席地而坐》/" >《大象席地而坐》</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -846,31 +829,29 @@
     
         <span class="sidebar-tag-name"><a href= "#">Web</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">CSS</a></span>
+        <span class="sidebar-tag-name"><a href= "#">ELK</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">JavaScript</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">ELK</a></span>
-    
         <span class="sidebar-tag-name"><a href= "#">RESTful</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">Vue</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">数据存储</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">语音合成、语音识别</a></span>
+        <span class="sidebar-tag-name"><a href= "#">CSS</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">git</a></span>
     
+        <span class="sidebar-tag-name"><a href= "#">Vue</a></span>
+    
         <span class="sidebar-tag-name"><a href= "#">自动化工具</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">js小技巧</a></span>
+        <span class="sidebar-tag-name"><a href= "#">数据存储</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">影视</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">文字</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">语音合成、语音识别</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">图片懒加载</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">算法</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">大整数运算</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">小程序</a></span>
     
@@ -878,17 +859,21 @@
     
         <span class="sidebar-tag-name"><a href= "#">页面交互</a></span>
     
+        <span class="sidebar-tag-name"><a href= "#">js小技巧</a></span>
+    
         <span class="sidebar-tag-name"><a href= "#">tips</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">算法</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">大整数运算</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">浏览器</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">排序</a></span>
-    
         <span class="sidebar-tag-name"><a href= "#">读书</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">文学</a></span>
-    
         <span class="sidebar-tag-name"><a href= "#">正则表达式</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">排序</a></span>
     
     </div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
