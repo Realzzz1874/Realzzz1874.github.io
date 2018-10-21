@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://realzzz.coding.me/"/>
-  <updated>2018-10-21T06:33:21.983Z</updated>
+  <updated>2018-10-21T06:46:49.311Z</updated>
   <id>http://realzzz.coding.me/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://realzzz.coding.me/2018/10/21/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91-SSR%E6%90%AD%E5%BB%BA/"/>
     <id>http://realzzz.coding.me/2018/10/21/科学上网-SSR搭建/</id>
     <published>2018-10-20T16:00:00.000Z</published>
-    <updated>2018-10-21T06:33:21.983Z</updated>
+    <updated>2018-10-21T06:46:49.311Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>科学上网，辩证地认知世界。<br><br>绝对不能用于不良用途。</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>科学上网，辩证地认知世界。<br><br>绝对不能用于不良用途。</p><h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="购买一台境外服务器，推荐厂商："><a href="#购买一台境外服务器，推荐厂商：" class="headerlink" title="购买一台境外服务器，推荐厂商："></a>购买一台<code>境外</code>服务器，推荐厂商：</h3><ul><li><a href="https://www.linode.com/" target="_blank" rel="noopener">linode</a></li><li><a href="https://my.vultr.com/" target="_blank" rel="noopener">vultr</a></li></ul><h3 id="登录服务器"><a href="#登录服务器" class="headerlink" title="登录服务器"></a>登录服务器</h3><ul><li><p>Mac</p><p>Terminal采用<code>ssh</code>登录</p></li><li><p>Windows</p><p>推荐<code>Xshell</code>或者<code>putty</code></p></li></ul><p>略。</p><h3 id="核心步骤"><a href="#核心步骤" class="headerlink" title="核心步骤"></a>核心步骤</h3><ul><li><p>gayhub下载脚本</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/flyzy2005/ss-fly</span><br></pre></td></tr></table></figure></li><li><p>没git才看这步</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install -y git</span><br><span class="line"><span class="comment"># 检测版本</span></span><br></pre></td></tr></table></figure></li></ul>]]></content>
     
     <summary type="html">
     
