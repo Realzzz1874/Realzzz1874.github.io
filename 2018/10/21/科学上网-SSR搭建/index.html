@@ -229,10 +229,29 @@
 <li>加密协议</li>
 </ol>
 </li>
-<li>好像OK了<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Congratulations, ShadowsocksR server install completed!</span><br><span class="line">Your Server IP        :你的服务器ip</span><br><span class="line">Your Server Port      :你的端口</span><br><span class="line">Your Password         :你的密码</span><br><span class="line">Your Protocol         :你的协议</span><br><span class="line">Your obfs             :你的混淆</span><br><span class="line">Your Encryption Method:your_encryption_method</span><br><span class="line"></span><br><span class="line">Welcome to visit:https://shadowsocks.be/9.html</span><br><span class="line">Enjoy it!</span><br></pre></td></tr></table></figure>
+<li><p>好像OK了</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Congratulations, ShadowsocksR server install completed!</span><br><span class="line">Your Server IP        :你的服务器ip</span><br><span class="line">Your Server Port      :你的端口</span><br><span class="line">Your Password         :你的密码</span><br><span class="line">Your Protocol         :你的协议</span><br><span class="line">Your obfs             :你的混淆</span><br><span class="line">Your Encryption Method:your_encryption_method</span><br><span class="line"></span><br><span class="line">Welcome to visit:https://shadowsocks.be/9.html</span><br><span class="line">Enjoy it!</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>相关的操作</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">启动：/etc/init.d/shadowsocks start</span><br><span class="line">停止：/etc/init.d/shadowsocks stop</span><br><span class="line">重启：/etc/init.d/shadowsocks restart</span><br><span class="line">状态：/etc/init.d/shadowsocks status</span><br><span class="line"></span><br><span class="line">配置文件路径：/etc/shadowsocks.json</span><br><span class="line">日志文件路径：/var/log/shadowsocks.log</span><br><span class="line">代码安装目录：/usr/local/shadowsocks</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>卸载ssr</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./shadowsocksR.sh uninstall</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>开启BBR加速</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ss-fly/ss-fly.sh -bbr</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-
+<p>安装完之后重启系统生效。<br><br>判断是否生效：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sysctl net.ipv4.tcp_available_congestion_control</span><br></pre></td></tr></table></figure></p>
+<p>如果：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net.ipv4.tcp_available_congestion_control = bbr cubic reno</span><br></pre></td></tr></table></figure></p>
+<p>就okk。</p>
+<h3 id="连接工具"><a href="#连接工具" class="headerlink" title="连接工具"></a>连接工具</h3><ul>
+<li>Mac<br><a href="https://www.tntjsq.com/ssr-download/ssr-mac.dmg" target="_blank" rel="noopener">ssr-mac</a></li>
+<li>Windows<br><a href="https://www.tntjsq.com/ssr-download/ssr-win.7z" target="_blank" rel="noopener">ssr-win</a></li>
+<li>android<br><a href="https://www.tntjsq.com/ssr-download/ssr-android.apk" target="_blank" rel="noopener">ssr-android</a></li>
+<li>ios <br><br>用美区账号登录App Store，搜索下载 <code>shadowrocket</code></li>
+</ul>
+<h3 id="OVER"><a href="#OVER" class="headerlink" title="OVER"></a>OVER</h3>
     </article>
     <!-- 前后页  -->
     <ul class="post-pager">
@@ -343,7 +362,7 @@
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#说明"><span class="toc-number">1.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#步骤"><span class="toc-number">2.</span> <span class="toc-text">步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#购买一台境外服务器，推荐厂商："><span class="toc-number">2.1.</span> <span class="toc-text">购买一台境外服务器，推荐厂商：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#登录服务器"><span class="toc-number">2.2.</span> <span class="toc-text">登录服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#核心步骤"><span class="toc-number">2.3.</span> <span class="toc-text">核心步骤</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#说明"><span class="toc-number">1.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#步骤"><span class="toc-number">2.</span> <span class="toc-text">步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#购买一台境外服务器，推荐厂商："><span class="toc-number">2.1.</span> <span class="toc-text">购买一台境外服务器，推荐厂商：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#登录服务器"><span class="toc-number">2.2.</span> <span class="toc-text">登录服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#核心步骤"><span class="toc-number">2.3.</span> <span class="toc-text">核心步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#连接工具"><span class="toc-number">2.4.</span> <span class="toc-text">连接工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OVER"><span class="toc-number">2.5.</span> <span class="toc-text">OVER</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top">&#xe639;</div>
