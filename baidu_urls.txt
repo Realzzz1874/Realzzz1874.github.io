@@ -19,8 +19,8 @@ http://realzzz.coding.me/2017/12/27/Web开发中的cookie、session、sessionSto
 http://realzzz.coding.me/2017/12/20/javascript中的this、call、apply、bind/
 http://realzzz.coding.me/2017/12/15/浏览器加载JavaScript和CSS的过程/
 http://realzzz.coding.me/2017/12/14/使用js实现图片懒加载/
-http://realzzz.coding.me/2017/12/03/排序算法/
 http://realzzz.coding.me/2017/12/03/Web版基于讯飞(IFLY)的语音识别与合成/
+http://realzzz.coding.me/2017/12/03/排序算法/
 http://realzzz.coding.me/2017/11/15/大整数运算/
 http://realzzz.coding.me/2017/11/06/我的git笔记/
 http://realzzz.coding.me/2017/10/24/CSS宝典/

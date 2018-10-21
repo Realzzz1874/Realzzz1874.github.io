@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://realzzz.coding.me/about/index.html</loc>
+    
+    <lastmod>2018-10-21T15:57:13.096Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://realzzz.coding.me/2018/10/21/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91-SSR%E6%90%AD%E5%BB%BA/</loc>
     
     <lastmod>2018-10-21T07:08:58.119Z</lastmod>
@@ -82,13 +89,6 @@
     <loc>http://realzzz.coding.me/2018/02/09/Vue%E4%B8%AD%E4%BD%BF%E7%94%A8i18n%E5%9B%BD%E9%99%85%E5%8C%96%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</loc>
     
     <lastmod>2018-03-01T07:18:19.927Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://realzzz.coding.me/about/index.html</loc>
-    
-    <lastmod>2018-02-22T11:53:22.993Z</lastmod>
     
   </url>
   
