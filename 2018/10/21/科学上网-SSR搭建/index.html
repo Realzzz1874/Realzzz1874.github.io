@@ -213,11 +213,23 @@
 </ul>
 <p>略。</p>
 <h3 id="核心步骤"><a href="#核心步骤" class="headerlink" title="核心步骤"></a>核心步骤</h3><ul>
+<li><p>没git才看这步</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">yum install -y git</span><br><span class="line"><span class="comment"># 检测版本</span></span><br><span class="line">git --version</span><br><span class="line"><span class="comment"># 卸载</span></span><br><span class="line">yum remove git</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>gayhub下载脚本</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/flyzy2005/ss-fly</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>没git才看这步</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install -y git</span><br><span class="line"><span class="comment"># 检测版本</span></span><br></pre></td></tr></table></figure>
+<li><p>运行脚本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ss-fly/ss-fly.sh -ssr</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>填写对应运行参数</p>
+<ol>
+<li>password：连接密码</li>
+<li>port：连接端口</li>
+<li>加密协议</li>
+</ol>
+</li>
+<li>好像OK了<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Congratulations, ShadowsocksR server install completed!</span><br><span class="line">Your Server IP        :你的服务器ip</span><br><span class="line">Your Server Port      :你的端口</span><br><span class="line">Your Password         :你的密码</span><br><span class="line">Your Protocol         :你的协议</span><br><span class="line">Your obfs             :你的混淆</span><br><span class="line">Your Encryption Method:your_encryption_method</span><br><span class="line"></span><br><span class="line">Welcome to visit:https://shadowsocks.be/9.html</span><br><span class="line">Enjoy it!</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 
