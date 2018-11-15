@@ -199,6 +199,8 @@
             <main class="main post-page">
     <article class="article-entry">
         <h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><p>输入一个数字，输出一个汉字字符串。<br><br>eg: <br><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fuck(<span class="number">123</span>)</span><br><span class="line"><span class="comment">// 一百二十三</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>循环递归正则匹配<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fuck</span> (<span class="params">str</span>) </span>&#123;</span><br><span class="line">  str = (<span class="string">''</span> + str).trim ().replace (<span class="regexp">/^0*/</span>, <span class="string">''</span>);</span><br><span class="line">  <span class="keyword">var</span> match = [<span class="string">''</span>, <span class="string">'一'</span>, <span class="string">'二'</span>, <span class="string">'三'</span>, <span class="string">'四'</span>, <span class="string">'五'</span>, <span class="string">'六'</span>, <span class="string">'七'</span>, <span class="string">'八'</span>, <span class="string">'九'</span>, <span class="string">'零'</span>];</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    (<span class="string">'0000'</span> + str)</span><br><span class="line">      .substr (str.length % <span class="number">4</span> || <span class="number">4</span>)</span><br><span class="line">      .replace (<span class="regexp">/(\d)&#123;4&#125;/g</span>, <span class="function"><span class="keyword">function</span> (<span class="params">_str, endIndex, startIndex</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> dot = (((str.length - <span class="number">1</span>) / <span class="number">4</span>) &gt;&gt; <span class="number">0</span>) - ((startIndex / <span class="number">4</span>) &gt;&gt; <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">var</span> prefix = (<span class="function"><span class="keyword">function</span> <span class="title">getPrfix</span> (<span class="params">dot</span>) </span>&#123;</span><br><span class="line">          <span class="keyword">return</span> dot &gt; <span class="number">2</span></span><br><span class="line">            ? +_str ? (dot == <span class="number">3</span> ? <span class="string">'万'</span> : getPrfix (dot - <span class="number">1</span>) + <span class="string">'万'</span>) : <span class="string">''</span></span><br><span class="line">            : dot == <span class="number">1</span> ? (+_str ? <span class="string">'万'</span> : <span class="string">''</span>) : dot == <span class="number">2</span> ? <span class="string">'亿'</span> : <span class="string">''</span>;</span><br><span class="line">        &#125;) (dot);</span><br><span class="line">        /<span class="number">0</span>+$/g.test (_str) &amp;&amp; (prefix += match[<span class="number">10</span>]);</span><br><span class="line">        <span class="keyword">return</span> +_str</span><br><span class="line">          ? _str.replace (<span class="regexp">/(\d)(\d)(\d)(\d)/g</span>, <span class="function"><span class="keyword">function</span> (<span class="params">$<span class="number">0</span>, $<span class="number">1</span>, $<span class="number">2</span>, $<span class="number">3</span>, $<span class="number">4</span></span>) </span>&#123;</span><br><span class="line">              !match[$<span class="number">1</span>] &amp;&amp;</span><br><span class="line">                (match[$<span class="number">2</span>]</span><br><span class="line">                  ? ($<span class="number">1</span> = <span class="number">10</span>)</span><br><span class="line">                  : match[$<span class="number">3</span>] ? ($<span class="number">2</span> = <span class="number">10</span>) : match[$<span class="number">4</span>] ? ($<span class="number">3</span> = <span class="number">10</span>) : <span class="string">''</span>);</span><br><span class="line">              match[$<span class="number">1</span>] &amp;&amp;</span><br><span class="line">                match[$<span class="number">3</span>] &amp;&amp;</span><br><span class="line">                !match[$<span class="number">2</span>] &amp;&amp;</span><br><span class="line">                ($<span class="number">2</span> = <span class="number">10</span>), match[$<span class="number">2</span>] &amp;&amp; match[$<span class="number">4</span>] &amp;&amp; !match[$<span class="number">3</span>] &amp;&amp; ($<span class="number">3</span> = <span class="number">10</span>), match[$<span class="number">1</span>] &amp;&amp; match[$<span class="number">4</span>] &amp;&amp; !match[$<span class="number">3</span>] &amp;&amp; !match[$<span class="number">2</span>] &amp;&amp; ($<span class="number">3</span> = <span class="number">10</span>);</span><br><span class="line">              <span class="keyword">return</span> (</span><br><span class="line">                (match[$<span class="number">1</span>] &amp;&amp; ($<span class="number">1</span> &lt; <span class="number">10</span> ? match[$<span class="number">1</span>] + <span class="string">'千'</span> : match[$<span class="number">1</span>])) +</span><br><span class="line">                (match[$<span class="number">2</span>] &amp;&amp; ($<span class="number">2</span> &lt; <span class="number">10</span> ? match[$<span class="number">2</span>] + <span class="string">'百'</span> : match[$<span class="number">2</span>])) +</span><br><span class="line">                (match[$<span class="number">3</span>] &amp;&amp;</span><br><span class="line">                  ($<span class="number">3</span> &lt; <span class="number">10</span> ? ($<span class="number">3</span> == <span class="number">1</span> ? <span class="string">'十'</span> : match[$<span class="number">3</span>] + <span class="string">'十'</span>) : match[$<span class="number">3</span>])) +</span><br><span class="line">                (match[$<span class="number">4</span>] &amp;&amp; match[$<span class="number">4</span>])</span><br><span class="line">              );</span><br><span class="line">            &#125;) + prefix</span><br><span class="line">          : prefix;</span><br><span class="line">      &#125;)</span><br><span class="line">      .replace (<span class="regexp">/^零*/g</span>, <span class="string">''</span>)</span><br><span class="line">      .replace (<span class="regexp">/零*$/g</span>, <span class="string">''</span>)</span><br><span class="line">      .replace (<span class="regexp">/(零)*/g</span>, <span class="string">'$1'</span>)</span><br><span class="line">      .replace (<span class="regexp">/零亿/g</span>, <span class="string">'亿'</span>) || match[<span class="number">10</span>]</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fuck(<span class="number">12345</span>);</span><br></pre></td></tr></table></figure>
 
     </article>
     <!-- 前后页  -->
@@ -305,7 +307,7 @@
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#目标"><span class="toc-number">1.</span> <span class="toc-text">目标</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#目标"><span class="toc-number">1.</span> <span class="toc-text">目标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决方案"><span class="toc-number">2.</span> <span class="toc-text">解决方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#调用"><span class="toc-number">3.</span> <span class="toc-text">调用</span></a></li></ol>
     </div>
     
     <div class="back-top">&#xe639;</div>
@@ -319,20 +321,6 @@
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-archive">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -851,15 +839,19 @@
     
         <span class="sidebar-tag-name"><a href= "#">CSS</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">RESTful</a></span>
+        <span class="sidebar-tag-name"><a href= "#">Vue</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">git</a></span>
+        <span class="sidebar-tag-name"><a href= "#">语音合成、语音识别</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">自动化工具</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">数据存储</a></span>
+        <span class="sidebar-tag-name"><a href= "#">git</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">Vue</a></span>
+        <span class="sidebar-tag-name"><a href= "#">RESTful</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">js小技巧</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">数据存储</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">图片懒加载</a></span>
     
@@ -867,23 +859,19 @@
     
         <span class="sidebar-tag-name"><a href= "#">wepy</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">语音合成、语音识别</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">js小技巧</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">tips</a></span>
+        <span class="sidebar-tag-name"><a href= "#">页面交互</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">算法</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">大整数运算</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">浏览器</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">页面交互</a></span>
+        <span class="sidebar-tag-name"><a href= "#">排序</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">工具</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">排序</a></span>
+        <span class="sidebar-tag-name"><a href= "#">浏览器</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">tips</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">读书</a></span>
     
