@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://realzzz.coding.me/"/>
-  <updated>2019-01-04T03:13:41.132Z</updated>
+  <updated>2019-01-13T10:13:56.030Z</updated>
   <id>https://realzzz.coding.me/</id>
   
   <author>
@@ -20,13 +20,21 @@
     <title>Git-一个清晰的，有意义的版本变更信息</title>
     <link href="https://realzzz.coding.me/2019/01/04/Git-%E4%B8%80%E4%B8%AA%E6%B8%85%E6%99%B0%E7%9A%84%EF%BC%8C%E6%9C%89%E6%84%8F%E4%B9%89%E7%9A%84%E7%89%88%E6%9C%AC%E5%8F%98%E6%9B%B4%E4%BF%A1%E6%81%AF/"/>
     <id>https://realzzz.coding.me/2019/01/04/Git-一个清晰的，有意义的版本变更信息/</id>
-    <published>2019-01-04T03:13:41.000Z</published>
-    <updated>2019-01-04T03:13:41.132Z</updated>
+    <published>2019-01-03T16:00:00.000Z</published>
+    <updated>2019-01-13T10:13:56.030Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>多人团队合作中，沟通成本不可忽略。如何能清晰准确地表达自己也就至关重要。那么在Git中，怎么样才能算是一条清晰有意义的版本变更记录呢？<br><br><br>之所以引入这个问题，是因为最近在使用rebase的时候出现了一个小困惑：<code>如何达到merge和rebase的平衡点？</code></p><h2 id="基操"><a href="#基操" class="headerlink" title="基操"></a>基操</h2><p>Git中整合分支的修改有两种方式：<code>merge</code>以及<code>rebase</code>。</p><h3 id="merge"><a href="#merge" class="headerlink" title="merge"></a>merge</h3><h4 id="merge的合并参数"><a href="#merge的合并参数" class="headerlink" title="merge的合并参数"></a>merge的合并参数</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">--ff   <span class="comment"># fast-forward</span></span><br><span class="line"><span class="comment"># 当条件允许的时候，git直接把HEAD指针指向合并分支的头，完成合并。属于“快进方式”，不过这种情况如果删除分支，则会丢失分支信息。因为在这个过程中没有创建commit</span></span><br><span class="line">--ff-only</span><br><span class="line"><span class="comment"># 只有能快速合并的情况才合并。如果合并过程出现冲突，Git会自动abort此次merge</span></span><br><span class="line">--no-ff</span><br><span class="line"><span class="comment"># 不使用快速合并。会生成一次新的提交记录，这个记录只是标识在这里进行了一次merge操作</span></span><br><span class="line">--squash</span><br><span class="line"><span class="comment"># 压缩合并。将合并过来的分支的所有不同的提交，当做一次提交，提交过来</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#--ff和--no-ff的区别是，当解决完冲突后，no-ff会生成一次commit</span></span><br></pre></td></tr></table></figure><h4 id="merge的合并策略"><a href="#merge的合并策略" class="headerlink" title="merge的合并策略"></a>merge的合并策略</h4><p><code>resovle</code> 、<code>recursive</code> 、<code>octopus</code> (and more :<code>ours</code>、<code>subtree</code>)<br></p><ol><li>resolve: 解决。<br><br> 合并两个分支，首先定义某个次commit为祖先为合并基础，然后执行一个直接的三方合并。</li><li>recursive: 递归。<br><br> 多次的调用解决。</li><li>octopus: 章鱼。<br><br> 来同时合并多个分支的策略。</li><li>ours: 我们的。<br><br>将另外一个分支的commit记录（log）提交过来，但是不提交文件本身。</li><li>subtree: 子树。<br><br> 当想将一个新的项目作为该项目的子项目往git上提交时可以使用，将其当做一个子模块一般。</li></ol><h4 id="merge的优缺点"><a href="#merge的优缺点" class="headerlink" title="merge的优缺点"></a>merge的优缺点</h4><p>优点：保留完整的历史和时间顺序，维持分支的上下文。<br><br>缺点：提交历史记录可能会被许多合并提交污染</p><h3 id="rebase"><a href="#rebase" class="headerlink" title="rebase"></a>rebase</h3><p><code>rebase</code>是将更改从一个分支集成到另一个分支的另一种方法。将所有更改压缩为单个<code>补丁</code>，然后它将补丁集成到目标分支上。<br></p><blockquote><p>它的原理是首先找到这两个分支（即当前分支 experiment、变基操作的目标基底分支 master）的最近共同祖先 C2，<br>然后对比当前分支相对于该祖先的历次提交，提取相应的修改并存为临时文件，<br>然后将当前分支指向目标基底 C3,<br>最后以此将之前另存为临时文件的修改依序应用。<br><br> <img src="https://git-scm.com/book/en/v2/images/basic-rebase-3.png" alt="eg"><br>一般我们这样做的目的是为了确保在向远程分支推送时能保持提交历史的整洁——例如向某个其他人维护的项目贡献代码时。 在这种情况下，你首先在自己的分支里进行开发，当开发完成时你需要先将你的代码变基到 origin/master 上，然后再向主项目提交修改。 这样的话，该项目的维护者就不再需要进行整合工作，只需要快进合并便可。</p></blockquote><p><code>变基是将一系列提交按照原有次序依次应用到另一分支上，而合并是把最终结果合在一起。</code></p><h4 id="rebase的优缺点"><a href="#rebase的优缺点" class="headerlink" title="rebase的优缺点"></a>rebase的优缺点</h4><p>优点：简化可能复杂的历史记录，通过将它们作为单个提交来清理中间提交，这对DevOps团队很有帮助。<br><br>缺点：重新定位公共存储库，使用远程分支 Rebase 需要强制推送。</p><h3 id="merge-VS-rebase"><a href="#merge-VS-rebase" class="headerlink" title="merge VS rebase"></a>merge VS rebase</h3><h4 id="rebase-1"><a href="#rebase-1" class="headerlink" title="rebase:"></a>rebase:</h4><ol><li>如果是对local 私有的临时性质的分支，则直接git rebase -i master(梳理历史信息比如合并成一个commit)+git merge产生一个fast forward, 最终以一个commit展示在master分支上。</li><li>如果是一个特别活动的跟踪，比如feature分支，bugfix分支那么永远不要使用rebase,而是git merge –no-ff，这样该分支历史永远存续在主分支上</li></ol><p><br><strong><em>只对尚未推送或分享给别人的本地修改执行变基操作清理历史，从不对已推送至别处的提交执行变基操作（永远不要rebase一个已经在中央库中存在的分支）</em></strong></p>]]></content>
     
     <summary type="html">
     
+      Git-一个清晰的，有意义的版本变更信息
+    
     </summary>
     
+      <category term="git" scheme="https://realzzz.coding.me/categories/git/"/>
+    
+    
+      <category term="git" scheme="https://realzzz.coding.me/tags/git/"/>
     
   </entry>
   
