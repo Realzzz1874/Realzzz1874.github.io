@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>https://realzzz.coding.me/2019/02/19/Swiper-js%E4%B8%ADDom%E7%9A%84click%E4%BA%8B%E4%BB%B6%E4%B8%8D%E8%83%BD%E6%AD%A3%E5%B8%B8%E5%93%8D%E5%BA%94/</loc>
+    <lastmod>2019-02-19T16:28:47.769Z</lastmod>
+    <data>
+        <display>
+        <title>Swiper.js中Dom的click事件不能正常响应</title>
+        <pubTime>2019-02-18T16:00:00.000Z</pubTime>
+        
+        <tag>Web</tag>
+         
+        <tag>JavaScript</tag>
+         
+         
+           
+             
+              <breadCrumb title="JavaScript" url="https://realzzz.coding.me/categories/JavaScript/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://realzzz.coding.me/2019/02/19/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%86%85%E5%B5%8C%E9%A1%B5%E8%B7%B3%E5%9B%9E%E5%8E%9F%E7%94%9F%E9%A1%B5/</loc>
     <lastmod>2019-02-19T03:51:45.235Z</lastmod>
     <data>
@@ -424,9 +446,9 @@
         <title>CSS积累（持续更新）</title>
         <pubTime>2017-10-23T16:00:00.000Z</pubTime>
         
-        <tag>Web</tag>
-         
         <tag>CSS</tag>
+         
+        <tag>Web</tag>
          
          
            
