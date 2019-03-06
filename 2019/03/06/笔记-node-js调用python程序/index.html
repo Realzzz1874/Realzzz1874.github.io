@@ -119,6 +119,12 @@
         
             <!-- 文章页标签  -->
             
+                <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = node>node</a>
+    
+</div>
+            
             <div class="post-intro-meta">
                 <span class="post-intro-calander iconfont-archer">&#xe676;</span>
                 <span class="post-intro-time">2019/03/06</span>
@@ -192,7 +198,24 @@
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        
+        <h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>最近在准备用<code>mpvue</code>写一个新的小程序，其中有一个小功能是图片处理再加工，流程是：</p>
+<ul>
+<li>小程序本地选择图片</li>
+<li>服务端接收然后上传到腾讯云对象储存（COS）</li>
+<li><code>node</code>处理之后再返回给小程序</li>
+</ul>
+<p>但是找了一大圈没找到合适的能够满足处理图像的库，所以最后决定用<code>python</code>来处理图像。关于图像的处理，这里先不做过多介绍。</p>
+<h3 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h3><h4 id="node多进程"><a href="#node多进程" class="headerlink" title="node多进程"></a><code>node</code>多进程</h4><p><code>node.js</code>是以单线程的模式运行的，但是它使用的是事件驱动来处理并发。所以当我们的CPU是多核的时候，我们就可以创建多个子进程，从而可以提高性能。<code>node</code>调用其它的程序（不仅仅是<code>python</code>），可以通过使用子进程来执行我们的目标程序。<br><br>每个子进程带有三个流对象：<code>child.stdin</code>、<code>child.stdout</code>、<code>child.stderr</code>。他们可以共享父进程的<code>stdio</code>流，或者也可以是独立的被导流的流对象。<code>node</code>提供了<code>child_eprocess</code>模块来创建子进程，方法有：</p>
+<ul>
+<li><code>exec</code> – <code>child_eprocess.exec</code>使用子进程执行命令，缓存子进程的输出，并将子进程的输出以回调函数的方式返回给父进程</li>
+<li><code>spawn</code> – <code>child_eprocess.spawn</code>使用指定的命令行参数创建子进程</li>
+<li><code>fork</code> – <code>child_eprocess.fork</code>是<code>spawn()</code>的特殊形式，用于在子进程中运行模块，与<code>spawn</code>不同的是，<code>fork</code>会在父进程与子进程之间，建立一个通信管道，用于进程之间的通信。</li>
+</ul>
+<h4 id="方法选择"><a href="#方法选择" class="headerlink" title="方法选择"></a>方法选择</h4><p>需求是将图片通过<code>python</code>处理之后再返回给客户端，所以应该采用第一种<code>child_eprocess.exec</code>方法。</p>
+<h4 id="实现demo"><a href="#实现demo" class="headerlink" title="实现demo"></a>实现demo</h4><h5 id="node-js部分"><a href="#node-js部分" class="headerlink" title="node.js部分"></a><code>node.js</code>部分</h5><p>test_node.js:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">const</span> child_process = <span class="built_in">require</span>(<span class="string">'child_process'</span>);</span><br><span class="line"><span class="keyword">var</span> workerProcess = child_process.exec(<span class="string">'python test_python.py '</span>+<span class="number">1</span>, <span class="function"><span class="keyword">function</span> (<span class="params">error, stdout, stderr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (error) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(error.stack);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Error code: '</span>+error.code);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'stdout: '</span> + stdout);</span><br><span class="line">&#125;)</span><br><span class="line">workerProcess.on(<span class="string">'exit'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">code</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'子进程已退出，退出码 '</span>+code);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>test_python.py<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">print(<span class="string">"进程 "</span> +sys.argv[<span class="number">1</span>] +<span class="string">" 执行。"</span>)</span><br></pre></td></tr></table></figure></p>
+<p>运行结果：<br><br><img src="../imgs/n-p.png" alt="英文"></p>
+<h3 id="OVER"><a href="#OVER" class="headerlink" title="OVER"></a>OVER</h3>
     </article>
     <!-- 前后页  -->
     <ul class="post-pager">
@@ -298,7 +321,7 @@
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#说明"><span class="toc-number">1.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#流程"><span class="toc-number">2.</span> <span class="toc-text">流程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#node多进程"><span class="toc-number">2.1.</span> <span class="toc-text">node多进程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方法选择"><span class="toc-number">2.2.</span> <span class="toc-text">方法选择</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实现demo"><span class="toc-number">2.3.</span> <span class="toc-text">实现demo</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#node-js部分"><span class="toc-number">2.3.1.</span> <span class="toc-text">node.js部分</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OVER"><span class="toc-number">3.</span> <span class="toc-text">OVER</span></a></li></ol>
     </div>
     
     <div class="back-top">&#xe639;</div>
@@ -312,28 +335,6 @@
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-archive">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -967,12 +968,12 @@
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/03</span><a class="archive-post-title" href= "/2017/12/03/Web版基于讯飞(IFLY)的语音识别与合成/" >Web版基于讯飞(IFLY)的语音识别与合成</a>
+            <span class="archive-post-date">12/03</span><a class="archive-post-title" href= "/2017/12/03/排序算法/" >排序算法</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/03</span><a class="archive-post-title" href= "/2017/12/03/排序算法/" >排序算法</a>
+            <span class="archive-post-date">12/03</span><a class="archive-post-title" href= "/2017/12/03/Web版基于讯飞(IFLY)的语音识别与合成/" >Web版基于讯飞(IFLY)的语音识别与合成</a>
         </li>
     
     
@@ -1025,15 +1026,15 @@
     
         <span class="sidebar-tag-name"><a href= "#">图片懒加载</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">算法</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">大整数运算</a></span>
-    
         <span class="sidebar-tag-name"><a href= "#">小程序</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">wepy</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">页面交互</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">算法</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">大整数运算</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">tips</a></span>
     

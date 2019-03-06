@@ -187,11 +187,24 @@
                         <span>笔记--node.js调用python程序</span>
                     </h2>
                 <div class="abstract-content">
-                    
+                    说明最近在准备用mpvue写一个新的小程序，其中有一个小功能是图片处理再加工，流程是：
+
+小程序本地选择图片
+服务端接收然后上传到腾讯云对象储存（COS）
+node处理之后再返回给小程序
+
+但是找了一大圈没找到合适的能够满足处理图像的库，所以最后决定用python来处理图像。关于图像的处理，这里先不做过多介绍。
+流程node多进程node.js是以单线程的模式运行的，但是它使用的是事件驱动来处理并发。所以当我们的CPU是多核的时候，我们就可以创建多个子进程，从而可以提高性能。node调用其它的程序（不仅仅是python），可以通过使用子进程来执行我们的目标程序。每个子进程带有三个流对象：...
                 </div>
             </a>
             <div class="abstract-post-meta">
                 <!-- tags  -->
+                
+                <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = node>node</a>
+    
+</div>
                 
                 <!-- date  -->
                 <div class="abstract-date">
@@ -1128,28 +1141,6 @@ js绘制由于canvas的单位是数字也就是默认的px，所以需要...
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-archive"> Total : 34 </div>
     
     <div class="post-archive">
@@ -1325,12 +1316,12 @@ js绘制由于canvas的单位是数字也就是默认的px，所以需要...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/03</span><a class="archive-post-title" href= "/2017/12/03/Web版基于讯飞(IFLY)的语音识别与合成/" >Web版基于讯飞(IFLY)的语音识别与合成</a>
+            <span class="archive-post-date">12/03</span><a class="archive-post-title" href= "/2017/12/03/排序算法/" >排序算法</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/03</span><a class="archive-post-title" href= "/2017/12/03/排序算法/" >排序算法</a>
+            <span class="archive-post-date">12/03</span><a class="archive-post-title" href= "/2017/12/03/Web版基于讯飞(IFLY)的语音识别与合成/" >Web版基于讯飞(IFLY)的语音识别与合成</a>
         </li>
     
     
@@ -1383,15 +1374,15 @@ js绘制由于canvas的单位是数字也就是默认的px，所以需要...
     
         <span class="sidebar-tag-name"><a href= "#">图片懒加载</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">算法</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">大整数运算</a></span>
-    
         <span class="sidebar-tag-name"><a href= "#">小程序</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">wepy</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">页面交互</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">算法</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">大整数运算</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">tips</a></span>
     
