@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://realzzz.coding.me/"/>
-  <updated>2019-02-19T03:51:45.235Z</updated>
+  <updated>2019-03-06T10:02:12.031Z</updated>
   <id>https://realzzz.coding.me/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>笔记--node.js调用python程序</title>
+    <link href="https://realzzz.coding.me/2019/03/06/%E7%AC%94%E8%AE%B0-node-js%E8%B0%83%E7%94%A8python%E7%A8%8B%E5%BA%8F/"/>
+    <id>https://realzzz.coding.me/2019/03/06/笔记-node-js调用python程序/</id>
+    <published>2019-03-06T10:02:12.000Z</published>
+    <updated>2019-03-06T10:02:12.031Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>抛弃wepy投入mpvue的怀抱</title>
+    <link href="https://realzzz.coding.me/2019/02/28/%E6%8A%9B%E5%BC%83wepy%E6%8A%95%E5%85%A5mpvue%E7%9A%84%E6%80%80%E6%8A%B1/"/>
+    <id>https://realzzz.coding.me/2019/02/28/抛弃wepy投入mpvue的怀抱/</id>
+    <published>2019-02-27T16:00:00.000Z</published>
+    <updated>2019-03-04T08:29:22.414Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="小程序" scheme="https://realzzz.coding.me/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+    
+      <category term="小程序" scheme="https://realzzz.coding.me/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>微信小程序内嵌页跳回原生页</title>
@@ -439,54 +471,6 @@
     </summary>
     
       <category term="JavaScript" scheme="https://realzzz.coding.me/categories/JavaScript/"/>
-    
-    
-      <category term="Web" scheme="https://realzzz.coding.me/tags/Web/"/>
-    
-      <category term="JavaScript" scheme="https://realzzz.coding.me/tags/JavaScript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>记一些常用的正则</title>
-    <link href="https://realzzz.coding.me/2018/01/25/%E8%AE%B0%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84%E6%AD%A3%E5%88%99/"/>
-    <id>https://realzzz.coding.me/2018/01/25/记一些常用的正则/</id>
-    <published>2018-01-24T16:00:00.000Z</published>
-    <updated>2018-02-05T08:56:03.768Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="验证表单email"><a href="#验证表单email" class="headerlink" title="验证表单email"></a>验证表单email</h3><p>输入的数据必须包含 @ 符号和点号(.)。同时，@ 不可以是邮件地址的首字符，并且 @ 之后需有至少一个点号：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">validateFormEmail</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> reg = <span class="regexp">/^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]&#123;2,3&#125;$/</span>;</span><br><span class="line">  <span class="keyword">if</span> (!reg.test(email)) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h3 id="验证合法uri"><a href="#验证合法uri" class="headerlink" title="验证合法uri"></a>验证合法uri</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">validateURL</span>(<span class="params">textval</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> urlregex = <span class="regexp">/^(https?|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&amp;%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]&#123;2&#125;|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]&#123;2&#125;|[1-9]?[0-9]))&#123;3&#125;|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]&#123;2&#125;))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&amp;%$#=~_-]+))*$/</span></span><br><span class="line">  <span class="keyword">return</span> urlregex.test(textval)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="验证手机号码"><a href="#验证手机号码" class="headerlink" title="验证手机号码"></a>验证手机号码</h3><p>验证11位手机号码，参数是字符串<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">IsPhoneValid</span> (<span class="params">phoneNum</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (phoneNum.length != <span class="number">11</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> regexDX = <span class="regexp">/^[1][3,5,7,8][0,1,3,7,9][0-9]&#123;8&#125;$/</span>;</span><br><span class="line">  <span class="keyword">var</span> regexLT = <span class="regexp">/^[1][3,4,5,7,8][0,1,2,5,6][0-9]&#123;8&#125;$/</span>;</span><br><span class="line">  <span class="keyword">var</span> regexYD = <span class="regexp">/^[1][3,4,5,7,8][0-9]&#123;9&#125;$/</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (regexDX.test(phoneNum) || regexLT.test(phoneNum) || regexYD.test(phoneNum))&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h3 id="验证电话号码"><a href="#验证电话号码" class="headerlink" title="验证电话号码"></a>验证电话号码</h3><p>验证规则：区号+号码，区号以0开头，3位或4位。号码由7位或8位数字组成。区号与号码之间可以无连接符，也可以“-”连接。参数是字符串。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isTelValid</span> (<span class="params">tel</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> myreg = <span class="regexp">/^0\d&#123;2,3&#125;-?\d&#123;7,8&#125;$/</span>;</span><br><span class="line">  <span class="keyword">if</span> (!myreg.test(tel)) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h3 id="验证日期"><a href="#验证日期" class="headerlink" title="验证日期"></a>验证日期</h3><p>参数为yyyy-mm-dd格式<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isDate</span>(<span class="params">datetime</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> reg = <span class="regexp">/^(\d&#123;4&#125;)-(\d&#123;2&#125;)-(\d&#123;2&#125;)$/</span>;</span><br><span class="line">  <span class="keyword">var</span> str = datetime;</span><br><span class="line">  <span class="keyword">var</span> arr = reg.exec(str);</span><br><span class="line">  <span class="keyword">if</span> (str == <span class="string">""</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  <span class="keyword">if</span> (!reg.test(str) &amp;&amp; <span class="built_in">RegExp</span>.$<span class="number">2</span> &lt;= <span class="number">12</span> &amp;&amp; <span class="built_in">RegExp</span>.$<span class="number">3</span> &lt;= <span class="number">31</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h3 id="验证车牌号"><a href="#验证车牌号" class="headerlink" title="验证车牌号"></a>验证车牌号</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isCarNumValid</span> (<span class="params">carnum</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> myreg = <span class="regexp">/^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]&#123;1&#125;[A-Z]&#123;1&#125;[A-Z0-9]&#123;4&#125;[A-Z0-9挂学警港澳]&#123;1&#125;$/</span>;</span><br><span class="line">  <span class="keyword">if</span> (myreg.test(carnum)) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="验证中文字符"><a href="#验证中文字符" class="headerlink" title="验证中文字符"></a>验证中文字符</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isChinese</span>(<span class="params">c</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> reg = <span class="regexp">/[\u4e00-\u9fa5]/</span>;</span><br><span class="line">  <span class="keyword">if</span>(reg.test(c)) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      记一些常用的正则
-    
-    </summary>
-    
-      <category term="tips" scheme="https://realzzz.coding.me/categories/tips/"/>
-    
-    
-      <category term="tips" scheme="https://realzzz.coding.me/tags/tips/"/>
-    
-      <category term="正则表达式" scheme="https://realzzz.coding.me/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>深入了解CommonJS模块实现原理</title>
-    <link href="https://realzzz.coding.me/2018/01/24/%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3CommonJS%E6%A8%A1%E5%9D%97%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/"/>
-    <id>https://realzzz.coding.me/2018/01/24/深入了解CommonJS模块实现原理/</id>
-    <published>2018-01-23T16:00:00.000Z</published>
-    <updated>2018-01-25T04:16:19.066Z</updated>
-    
-    <content type="html"><![CDATA[<p>在JavaScript中使用变量也需要同其它编程语言一样要注意变量的作用域，如果a.js和b.js中都使用了全局变量x，那么它们将会产生冲突。<br><br>JavaScript语言本身并没有一种模块机制来保证不同模块之间可以使用相同的变量名。<br></p><h3 id="模块的隔离"><a href="#模块的隔离" class="headerlink" title="模块的隔离"></a>模块的隔离</h3><p>JavaScript是函数式编程语言，JavaScript支持<a href="https://baike.baidu.com/item/%E9%97%AD%E5%8C%85/10908873?fr=aladdin" target="_blank" rel="noopener">闭包</a>。用闭包函数的方式将一段JavaScript代码封装起来，那么这段代码中的变量将只能在本闭包中产生作用，采用这种方法便形象地将“全局变量”变成了闭包中的“局部变量”。<br></p><p>编写一个js文件命名为<code>a.js</code>：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">'hello world!'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br></pre></td></tr></table></figure></p><p>Node.js模块化加载以后会将原来的代码进行封装：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="string">'hello world!'</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(a);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></p><p>这一步操作以后，原来的全局变量a现在就变成了闭包中的局部变量。Node利用JavaScript闭包的特性，可以很容易的就实现了模块与模块之间的隔离。</p><h3 id="模块的输出"><a href="#模块的输出" class="headerlink" title="模块的输出"></a>模块的输出</h3><h4 id="准备一个模块"><a href="#准备一个模块" class="headerlink" title="准备一个模块"></a>准备一个模块</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a.js</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="string">'hello'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span> (<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(a + <span class="string">', '</span> + name);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports = greet;</span><br></pre></td></tr></table></figure><h4 id="准备一个module对象"><a href="#准备一个module对象" class="headerlink" title="准备一个module对象"></a>准备一个module对象</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="built_in">module</span> = &#123;</span><br><span class="line">  id: <span class="string">'moduleId'</span>,</span><br><span class="line">  exports: &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 读取a.js</span></span><br><span class="line"><span class="keyword">var</span> load = <span class="function"><span class="keyword">function</span> (<span class="params">module</span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">greet</span> (<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'hello, '</span> + name);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">module</span>.exports = greet;</span><br><span class="line">  <span class="comment">// a.js代码部分执行完毕</span></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">module</span>.exports;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> exported = load(<span class="built_in">module</span>);</span><br><span class="line">save(<span class="built_in">module</span>, exported);</span><br></pre></td></tr></table></figure><h4 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h4><p>变量<code>module</code>是Node在加载js文件之前就已经准备好的一个变量，在<code>a.js</code>文件中能直接使用<code>module</code>的原因就是因为它本身就是一个函数参数。<br><br>通过参数把<code>module</code>传递给<code>load()</code>函数，<code>a.js</code>就成功的把一个变量传递给了Node的执行环境，Node会把<code>module</code>集中保存到一个地方。由于Node保存了所有的<code>module</code>，当用<code>require</code>获取<code>module</code>的时候，Node找到对应的<code>module</code>，把这个<code>module</code>对应的<code>exports</code>变量返回。<br><br>这样A模块就顺利地拿到B模块的输出：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> greet = <span class="built_in">require</span>(<span class="string">'./a.js'</span>);</span><br></pre></td></tr></table></figure></p><p>这就是Node实现JavaScript模块的原理。</p>]]></content>
-    
-    <summary type="html">
-    
-      深入了解CommonJS模块实现原理
-    
-    </summary>
-    
-      <category term="Web" scheme="https://realzzz.coding.me/categories/Web/"/>
     
     
       <category term="Web" scheme="https://realzzz.coding.me/tags/Web/"/>
