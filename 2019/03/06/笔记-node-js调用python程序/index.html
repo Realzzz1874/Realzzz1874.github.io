@@ -214,7 +214,7 @@
 <h4 id="方法选择"><a href="#方法选择" class="headerlink" title="方法选择"></a>方法选择</h4><p>需求是将图片通过<code>python</code>处理之后再返回给客户端，所以应该采用第一种<code>child_eprocess.exec</code>方法。</p>
 <h4 id="实现demo"><a href="#实现demo" class="headerlink" title="实现demo"></a>实现demo</h4><h5 id="node-js部分"><a href="#node-js部分" class="headerlink" title="node.js部分"></a><code>node.js</code>部分</h5><p>test_node.js:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">const</span> child_process = <span class="built_in">require</span>(<span class="string">'child_process'</span>);</span><br><span class="line"><span class="keyword">var</span> workerProcess = child_process.exec(<span class="string">'python test_python.py '</span>+<span class="number">1</span>, <span class="function"><span class="keyword">function</span> (<span class="params">error, stdout, stderr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (error) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(error.stack);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Error code: '</span>+error.code);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'stdout: '</span> + stdout);</span><br><span class="line">&#125;)</span><br><span class="line">workerProcess.on(<span class="string">'exit'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">code</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'子进程已退出，退出码 '</span>+code);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <p>test_python.py<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">print(<span class="string">"进程 "</span> +sys.argv[<span class="number">1</span>] +<span class="string">" 执行。"</span>)</span><br></pre></td></tr></table></figure></p>
-<p>运行结果：<br><br><img src="../imgs/n-p.png" alt="英文"></p>
+<p>运行结果：<br><br><img src="https://realzzz.coding.me/2019/03/06/imgs/n-p.png" alt="结果"></p>
 <h3 id="OVER"><a href="#OVER" class="headerlink" title="OVER"></a>OVER</h3>
     </article>
     <!-- 前后页  -->
@@ -335,72 +335,6 @@
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-archive">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -1018,12 +952,12 @@
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/03</span><a class="archive-post-title" href= "/2017/12/03/Web版基于讯飞(IFLY)的语音识别与合成/" >Web版基于讯飞(IFLY)的语音识别与合成</a>
+            <span class="archive-post-date">12/03</span><a class="archive-post-title" href= "/2017/12/03/排序算法/" >排序算法</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/03</span><a class="archive-post-title" href= "/2017/12/03/排序算法/" >排序算法</a>
+            <span class="archive-post-date">12/03</span><a class="archive-post-title" href= "/2017/12/03/Web版基于讯飞(IFLY)的语音识别与合成/" >Web版基于讯飞(IFLY)的语音识别与合成</a>
         </li>
     
     
@@ -1048,23 +982,21 @@
     
         <span class="sidebar-tag-name"><a href= "#">Web</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">CSS</a></span>
-    
         <span class="sidebar-tag-name"><a href= "#">JavaScript</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">ELK</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">git</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">RESTful</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">Vue</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">Element-UI</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">数据存储</a></span>
+        <span class="sidebar-tag-name"><a href= "#">CSS</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">语音合成、语音识别</a></span>
+        <span class="sidebar-tag-name"><a href= "#">RESTful</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">git</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">数据存储</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">自动化工具</a></span>
     
@@ -1072,9 +1004,11 @@
     
         <span class="sidebar-tag-name"><a href= "#">工具</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">js小技巧</a></span>
-    
         <span class="sidebar-tag-name"><a href= "#">图片懒加载</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">语音合成、语音识别</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">js小技巧</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">算法</a></span>
     
@@ -1088,8 +1022,6 @@
     
         <span class="sidebar-tag-name"><a href= "#">tips</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">排序</a></span>
-    
         <span class="sidebar-tag-name"><a href= "#">浏览器</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">读书</a></span>
@@ -1097,6 +1029,8 @@
         <span class="sidebar-tag-name"><a href= "#">文字</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">正则表达式</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">排序</a></span>
     
     </div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
