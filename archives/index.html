@@ -203,6 +203,39 @@ let`s &nbsp;go12345678910111213141516171819202122232425262728import ti...
     
     
         <article class="index-post">
+            <a class="content-show-full" href = "/2019/04/26/ssh配置别名免密登录服务器/" >
+                    <h2 class="abstract-title">
+                        
+                        <span>ssh配置别名免密登录服务器</span>
+                    </h2>
+                <div class="abstract-content">
+                    目的每次连接服务器都要 username@host_ip``` 还要记密码输密码，忒麻烦了，所以想本地配置一下ssh config，达到 ```ssh aliyun01```就可以直接登录进去。1234## 开始### 获取本机的公钥and私钥```bashcd ~/.ssh &amp;&amp; ls
+查看是否有id_rsa和id_rsa.pub文件，前者为私钥、后者为公钥如果没有则手动生成：1ssh-keygen -t rsa
+一路回车会在~/.ssh目录下生成id_rsa和id_rsa.pub这两个文件。其中id_ras.pub就是我们要放到服务器上的公钥
+将公钥放到服务器上先用传...
+                </div>
+            </a>
+            <div class="abstract-post-meta">
+                <!-- tags  -->
+                
+                <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = 工具>工具</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = 服务器>服务器</a>
+    
+</div>
+                
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2019/04/26</span>
+                </div>
+            </div>
+        </article>
+    
+    
+    
+        <article class="index-post">
             <a class="content-show-full" href = "/2019/03/06/笔记-node-js调用python程序/" >
                     <h2 class="abstract-title">
                         
@@ -467,59 +500,6 @@ mergemerge的合并参数12345678910--ff   # fast-forward# 当条件允许的时
                 <!-- date  -->
                 <div class="abstract-date">
                     <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/11/07</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2018/10/21/科学上网-SSR搭建/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>科学上网---SSR搭建</span>
-                    </h2>
-                <div class="abstract-content">
-                    说明科学上网，辩证地认知世界。绝对不能用于不良用途。
-步骤购买一台境外服务器推荐厂商：
-
-linode
-vultr
-
-登录服务器
-Mac
-Terminal采用ssh登录
-
-Windows
-推荐Xshell或者putty
-
-
-略。
-核心步骤 (以CentOS为例)
-没git才看这步
-12345yum install -y git# 检测版本git --version# 卸载yum remove git
-
-gayhub下载脚本
-1git clone https://github.com/flyzy2005/ss-fly
-
-运行脚本
-1ss-fly/ss-fly.sh -ssr
-
-填写对应运行...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = 工具>工具</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/10/21</span>
                 </div>
             </div>
         </article>
@@ -1057,7 +1037,26 @@ gayhub下载脚本
     
     
     
-    <div class="total-archive"> Total : 35 </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-archive"> Total : 36 </div>
     
     <div class="post-archive">
     
@@ -1070,6 +1069,11 @@ gayhub下载脚本
     
         <li class="archive-post-item">
             <span class="archive-post-date">04/26</span><a class="archive-post-title" href= "/2019/04/26/Python结合TinyPNG批量压缩图片/" >Python结合TinyPNG批量压缩图片</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/26</span><a class="archive-post-title" href= "/2019/04/26/ssh配置别名免密登录服务器/" >ssh配置别名免密登录服务器</a>
         </li>
     
     
@@ -1267,17 +1271,17 @@ gayhub下载脚本
     
         <span class="sidebar-tag-name"><a href= "#">Web</a></span>
     
+        <span class="sidebar-tag-name"><a href= "#">CSS</a></span>
+    
         <span class="sidebar-tag-name"><a href= "#">JavaScript</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">ELK</a></span>
     
+        <span class="sidebar-tag-name"><a href= "#">git</a></span>
+    
         <span class="sidebar-tag-name"><a href= "#">Vue</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">Element-UI</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">CSS</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">git</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">Python</a></span>
     
@@ -1287,27 +1291,29 @@ gayhub下载脚本
     
         <span class="sidebar-tag-name"><a href= "#">RESTful</a></span>
     
+        <span class="sidebar-tag-name"><a href= "#">数据存储</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">语音合成、语音识别</a></span>
+    
         <span class="sidebar-tag-name"><a href= "#">自动化工具</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">数据存储</a></span>
+        <span class="sidebar-tag-name"><a href= "#">js小技巧</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">node</a></span>
     
+        <span class="sidebar-tag-name"><a href= "#">服务器</a></span>
+    
         <span class="sidebar-tag-name"><a href= "#">图片懒加载</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">语音合成、语音识别</a></span>
+        <span class="sidebar-tag-name"><a href= "#">算法</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">大整数运算</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">小程序</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">wepy</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">页面交互</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">js小技巧</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">算法</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">大整数运算</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">tips</a></span>
     
