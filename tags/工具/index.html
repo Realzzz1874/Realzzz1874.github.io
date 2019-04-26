@@ -209,10 +209,11 @@ let`s &nbsp;go12345678910111213141516171819202122232425262728import ti...
                         <span>ssh配置别名免密登录服务器</span>
                     </h2>
                 <div class="abstract-content">
-                    目的每次连接服务器都要 username@host_ip``` 还要记密码输密码，忒麻烦了，所以想本地配置一下ssh config，达到 ```ssh aliyun01```就可以直接登录进去。1234## 开始### 获取本机的公钥and私钥```bashcd ~/.ssh &amp;&amp; ls
+                    目的每次连接服务器都要 ssh username@host_ip 还要记密码输密码，忒麻烦了，所以想本地配置一下ssh config，达到 ssh aliyun01就可以直接登录进去。
+开始获取本机的公钥and私钥1cd ~/.ssh &amp;&amp; ls
 查看是否有id_rsa和id_rsa.pub文件，前者为私钥、后者为公钥如果没有则手动生成：1ssh-keygen -t rsa
 一路回车会在~/.ssh目录下生成id_rsa和id_rsa.pub这两个文件。其中id_ras.pub就是我们要放到服务器上的公钥
-将公钥放到服务器上先用传...
+将公钥放到服务器上先用传统办法登录上服务器1ssh usernam...
                 </div>
             </a>
             <div class="abstract-post-meta">
@@ -399,8 +400,6 @@ gayhub下载脚本
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-archive">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
     
     
     
@@ -1114,19 +1113,19 @@ gayhub下载脚本
     
         <span class="sidebar-tag-name"><a href= "#">语音合成、语音识别</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">自动化工具</a></span>
-    
         <span class="sidebar-tag-name"><a href= "#">js小技巧</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">自动化工具</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">node</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">服务器</a></span>
     
+        <span class="sidebar-tag-name"><a href= "#">图片懒加载</a></span>
+    
         <span class="sidebar-tag-name"><a href= "#">算法</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">大整数运算</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">图片懒加载</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">小程序</a></span>
     

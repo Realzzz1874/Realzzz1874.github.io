@@ -200,12 +200,13 @@
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>每次连接服务器都要 <figure class="highlight plain"><figcaption><span>username@host_ip``` 还要记密码输密码，忒麻烦了，所以想本地配置一下ssh config，达到 ```ssh aliyun01```就可以直接登录进去。</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">## 开始</span><br><span class="line">### 获取本机的公钥and私钥</span><br><span class="line">```bash</span><br><span class="line">cd ~/.ssh &amp;&amp; ls</span><br></pre></td></tr></table></figure></p>
+        <h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>每次连接服务器都要 <code>ssh username@host_ip</code> 还要记密码输密码，忒麻烦了，所以想本地配置一下ssh config，达到 <code>ssh aliyun01</code>就可以直接登录进去。</p>
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><h3 id="获取本机的公钥and私钥"><a href="#获取本机的公钥and私钥" class="headerlink" title="获取本机的公钥and私钥"></a>获取本机的公钥and私钥</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/.ssh &amp;&amp; ls</span><br></pre></td></tr></table></figure>
 <p>查看是否有<code>id_rsa</code>和<code>id_rsa.pub</code>文件，前者为私钥、后者为公钥<br><br>如果没有则手动生成：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure></p>
 <p>一路回车会在<code>~/.ssh</code>目录下生成<code>id_rsa</code>和<code>id_rsa.pub</code>这两个文件。其中<code>id_ras.pub</code>就是我们要放到服务器上的公钥</p>
 <h3 id="将公钥放到服务器上"><a href="#将公钥放到服务器上" class="headerlink" title="将公钥放到服务器上"></a>将公钥放到服务器上</h3><p>先用传统办法登录上服务器<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh username@host_ip</span><br></pre></td></tr></table></figure></p>
 <p>进用户目录下的<code>.ssh</code>目录（若没有就手动创建）<br><br>将<code>id_ras.pub</code>中的内容复制到<code>authorized_keys</code>文件末尾<br><br>更改<code>authorized_keys</code>文件的权限：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 644 ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure></p>
-<h3 id="配置ssh-config"><a href="#配置ssh-config" class="headerlink" title="配置ssh config"></a>配置ssh config</h3><figure class="highlight plain"><figcaption><span>~/.ssh``` 并且 ```vim config```<br></span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">在`config`文件中追加</span><br><span class="line">```bash</span><br><span class="line">Host aliyun01 #ssh命令快速登录阿里云服务器的的别名</span><br><span class="line">hostname xx.xx.xx.xx #服务器ip</span><br><span class="line">user xxx #登录服务器的用户</span><br><span class="line">IdentityFile ~/.ssh/id_rsa #本地私钥</span><br></pre></td></tr></table></figure>
+<h3 id="配置ssh-config"><a href="#配置ssh-config" class="headerlink" title="配置ssh config"></a>配置ssh config</h3><p><code>cd ~/.ssh</code> 并且 <code>vim config</code><br><br>在<code>config</code>文件中追加<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Host aliyun01 <span class="comment">#ssh命令快速登录阿里云服务器的的别名</span></span><br><span class="line">hostname xx.xx.xx.xx <span class="comment">#服务器ip</span></span><br><span class="line">user xxx <span class="comment">#登录服务器的用户</span></span><br><span class="line">IdentityFile ~/.ssh/id_rsa <span class="comment">#本地私钥</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="完事"><a href="#完事" class="headerlink" title="完事"></a>完事</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh aliyun01</span><br></pre></td></tr></table></figure>
 <p><em>Everything is OK.</em></p>
 
@@ -321,7 +322,7 @@
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#目的"><span class="toc-number">1.</span> <span class="toc-text">目的</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#将公钥放到服务器上"><span class="toc-number">1.1.</span> <span class="toc-text">将公钥放到服务器上</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置ssh-config"><span class="toc-number">1.2.</span> <span class="toc-text">配置ssh config</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#完事"><span class="toc-number">2.</span> <span class="toc-text">完事</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#目的"><span class="toc-number">1.</span> <span class="toc-text">目的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开始"><span class="toc-number">2.</span> <span class="toc-text">开始</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#获取本机的公钥and私钥"><span class="toc-number">2.1.</span> <span class="toc-text">获取本机的公钥and私钥</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#将公钥放到服务器上"><span class="toc-number">2.2.</span> <span class="toc-text">将公钥放到服务器上</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置ssh-config"><span class="toc-number">2.3.</span> <span class="toc-text">配置ssh config</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#完事"><span class="toc-number">3.</span> <span class="toc-text">完事</span></a></li></ol>
     </div>
     
     <div class="back-top">&#xe639;</div>
@@ -335,8 +336,6 @@
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-archive">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
     
     
     
@@ -1050,19 +1049,19 @@
     
         <span class="sidebar-tag-name"><a href= "#">语音合成、语音识别</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">自动化工具</a></span>
-    
         <span class="sidebar-tag-name"><a href= "#">js小技巧</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">自动化工具</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">node</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">服务器</a></span>
     
+        <span class="sidebar-tag-name"><a href= "#">图片懒加载</a></span>
+    
         <span class="sidebar-tag-name"><a href= "#">算法</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">大整数运算</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">图片懒加载</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">小程序</a></span>
     
