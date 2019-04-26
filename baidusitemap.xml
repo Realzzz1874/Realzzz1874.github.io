@@ -3,6 +3,52 @@
 
 
     
+  <url>
+    <loc>https://realzzz.coding.me/realzzz/2019/04/26/Python%E7%BB%93%E5%90%88TinyPNG%E6%89%B9%E9%87%8F%E5%8E%8B%E7%BC%A9%E5%9B%BE%E7%89%87/</loc>
+    <lastmod>2019-04-26T14:25:21.748Z</lastmod>
+    <data>
+        <display>
+        <title>Python结合TinyPNG批量压缩图片</title>
+        <pubTime>2019-04-25T16:00:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+        <tag>图像处理</tag>
+         
+        <tag>工具</tag>
+         
+         
+           
+             
+              <breadCrumb title="Python" url="https://realzzz.coding.me/realzzz/categories/Python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://realzzz.coding.me/realzzz/2018/01/31/JavaScript%E4%B8%AD%E7%9A%84%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%8E%9F%E5%9E%8B%E9%93%BE/</loc>
+    <lastmod>2019-04-26T14:09:25.248Z</lastmod>
+    <data>
+        <display>
+        <title>JavaScript中的继承与原型链</title>
+        <pubTime>2018-01-30T16:00:00.000Z</pubTime>
+        
+        <tag>Web</tag>
+         
+        <tag>JavaScript</tag>
+         
+         
+           
+             
+              <breadCrumb title="JavaScript" url="https://realzzz.coding.me/realzzz/categories/JavaScript/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
     
   <url>
     <loc>https://realzzz.coding.me/realzzz/2018/10/21/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91-SSR%E6%90%AD%E5%BB%BA/</loc>
@@ -135,28 +181,6 @@
 
     
   <url>
-    <loc>https://realzzz.coding.me/realzzz/2018/01/31/JavaScript%E4%B8%AD%E7%9A%84%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%8E%9F%E5%9E%8B%E9%93%BE/</loc>
-    <lastmod>2019-01-29T13:14:33.519Z</lastmod>
-    <data>
-        <display>
-        <title>JavaScript中的继承与原型链</title>
-        <pubTime>2018-01-30T16:00:00.000Z</pubTime>
-        
-        <tag>Web</tag>
-         
-        <tag>JavaScript</tag>
-         
-         
-           
-             
-              <breadCrumb title="JavaScript" url="https://realzzz.coding.me/realzzz/categories/JavaScript/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://realzzz.coding.me/realzzz/2017/11/06/%E6%88%91%E7%9A%84git%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2019-01-15T12:16:02.269Z</lastmod>
     <data>
@@ -232,9 +256,9 @@
         
         <tag>JavaScript</tag>
          
-        <tag>node</tag>
-         
         <tag>工具</tag>
+         
+        <tag>node</tag>
          
          
            
