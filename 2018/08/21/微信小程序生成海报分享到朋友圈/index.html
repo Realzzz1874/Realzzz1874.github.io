@@ -219,7 +219,7 @@
 </li>
 </ul>
 <h3 id="保存"><a href="#保存" class="headerlink" title="保存"></a>保存</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="keyword">this</span>.temp_file != <span class="string">''</span>) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.temp_file);</span><br><span class="line">  wepy.saveImageToPhotosAlbum(&#123;</span><br><span class="line">    filePath: <span class="keyword">this</span>.temp_file,</span><br><span class="line">  &#125;).then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 成功</span></span><br><span class="line">  &#125;).catch(<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 失败 没有授权保存图片的权限</span></span><br><span class="line">    wepy.getSetting().then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (!res[<span class="string">'scope.writePhotosAlbum'</span>]) &#123;</span><br><span class="line">        wepy.showToast(&#123;</span><br><span class="line">          title: <span class="string">'请授权小程序保存图片的权限'</span>,</span><br><span class="line">          icon: <span class="string">'none'</span>,</span><br><span class="line">          mask: <span class="literal">true</span>,</span><br><span class="line">          duration: <span class="number">3000</span>,</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="朋友圈分享（略）"><a href="#朋友圈分享（略）" class="headerlink" title="朋友圈分享（略）"></a>朋友圈分享（略）</h3><h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><p>由于页面的大小有限，canvas保存的图片大小有限制，可能会遇到页面上的二维码太模糊而无法扫描出来。<br><br>解决办法：在页面内隐藏绘制一个比较大的canvas，保存到本地的时候保存着张比较大的图片。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">style</span>=<span class="string">"width:0; height:0; overflow:hidden;  position: absolute; top: -9999rpx;"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">canvas</span> <span class="attr">style</span>=<span class="string">"width: 1148rpx;height: 2020rpx;"</span> <span class="attr">canvas-id</span>=<span class="string">"save_canvas"</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="朋友圈分享（略）"><a href="#朋友圈分享（略）" class="headerlink" title="朋友圈分享（略）"></a>朋友圈分享（略）</h3><h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><p>由于页面的大小有限，canvas保存的图片大小有限制，可能会遇到页面上的二维码太模糊而无法扫描出来。<br><br>解决办法：在页面内隐藏绘制一个比较大的canvas，保存到本地的时候保存这张比较大的图片。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">style</span>=<span class="string">"width:0; height:0; overflow:hidden;  position: absolute; top: -9999rpx;"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">canvas</span> <span class="attr">style</span>=<span class="string">"width: 1148rpx;height: 2020rpx;"</span> <span class="attr">canvas-id</span>=<span class="string">"save_canvas"</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>相应的，绘制的时候绘制两张，第一张draw回调不下载，第二张draw的回调中下载。</p>
 
     </article>
@@ -1059,9 +1059,13 @@
     
         <span class="sidebar-tag-name"><a href= "#">JavaScript</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">CSS</a></span>
-    
         <span class="sidebar-tag-name"><a href= "#">ELK</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">Vue</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">Element-UI</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">CSS</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">Python</a></span>
     
@@ -1069,37 +1073,33 @@
     
         <span class="sidebar-tag-name"><a href= "#">工具</a></span>
     
+        <span class="sidebar-tag-name"><a href= "#">RESTful</a></span>
+    
         <span class="sidebar-tag-name"><a href= "#">git</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">Vue</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">Element-UI</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">RESTful</a></span>
+        <span class="sidebar-tag-name"><a href= "#">自动化工具</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">数据存储</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">语音合成、语音识别</a></span>
     
+        <span class="sidebar-tag-name"><a href= "#">node</a></span>
+    
         <span class="sidebar-tag-name"><a href= "#">服务器</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">js小技巧</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">自动化工具</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">图片懒加载</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">node</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">算法</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">大整数运算</a></span>
+        <span class="sidebar-tag-name"><a href= "#">js小技巧</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">小程序</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">wepy</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">页面交互</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">算法</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">大整数运算</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">tips</a></span>
     
