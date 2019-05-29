@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://realzzz.coding.me/realzzz/"/>
-  <updated>2019-04-28T02:50:11.531Z</updated>
+  <updated>2019-05-29T14:31:38.542Z</updated>
   <id>https://realzzz.coding.me/realzzz/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>将Chrome的插件导出安装到另一台电脑上</title>
+    <link href="https://realzzz.coding.me/realzzz/2019/05/29/%E5%B0%86Chrome%E7%9A%84%E6%8F%92%E4%BB%B6%E5%AF%BC%E5%87%BA%E5%AE%89%E8%A3%85%E5%88%B0%E5%8F%A6%E4%B8%80%E5%8F%B0%E7%94%B5%E8%84%91%E4%B8%8A/"/>
+    <id>https://realzzz.coding.me/realzzz/2019/05/29/将Chrome的插件导出安装到另一台电脑上/</id>
+    <published>2019-05-28T16:00:00.000Z</published>
+    <updated>2019-05-29T14:31:38.542Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>新电脑不能科学上网，没法直接下载插件，所以打算将旧电脑的插件直接导出，然后再导入到新的电脑里。</p><h2 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h2><h3 id="导出"><a href="#导出" class="headerlink" title="导出"></a>导出</h3><ul><li>在 <code>Chrome</code> 浏览器上输入 <code>chrome://version/</code> 找到已安装拓展程序在电脑的位置。</li><li><p>找到这个</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">个人资料路径/Users/XXX/Library/Application Support/Google/Chrome/Default</span><br></pre></td></tr></table></figure></li><li><p>浏览器中输入<code>chrome://extensions/</code>回车</p></li><li>开启<code>开发者模式</code>,找到要导出的插件,复制这个插件的<code>id</code></li><li><p>点击打包扩展程序</p><p><img src="https://s2.ax1x.com/2019/05/29/VuXWtg.png" alt="eg"></p></li><li>扩展目录选择刚才的<code>个人资料路径</code> 加上<code>Extensions\插件id\版本</code></li><li>点击打包，会在这个目录下生成一个<code>crx</code>格式的文件（目标文件）</li></ul><h3 id="导入"><a href="#导入" class="headerlink" title="导入"></a>导入</h3><p>导入比较简单，但是导入之后不能将导入的<code>crx</code>文件删除，所以建议先把要导入的<code>crx</code>格式的插件剪切到上文的扩展目录，然后还需要打开浏览器的<code>开发者模式</code>就可以一键导入了</p><h3 id="完事。"><a href="#完事。" class="headerlink" title="完事。"></a>完事。</h3>]]></content>
+    
+    <summary type="html">
+    
+      将Chrome的插件导出安装到另一台电脑上
+    
+    </summary>
+    
+      <category term="工具" scheme="https://realzzz.coding.me/realzzz/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="工具" scheme="https://realzzz.coding.me/realzzz/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="浏览器" scheme="https://realzzz.coding.me/realzzz/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>网易云音乐ncm格式转mp3格式的python脚本</title>
@@ -461,28 +485,6 @@
     
     
       <category term="git" scheme="https://realzzz.coding.me/realzzz/tags/git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ELK填坑攻略</title>
-    <link href="https://realzzz.coding.me/realzzz/2018/03/14/ELK%E5%A1%AB%E5%9D%91%E6%94%BB%E7%95%A5/"/>
-    <id>https://realzzz.coding.me/realzzz/2018/03/14/ELK填坑攻略/</id>
-    <published>2018-03-13T16:00:00.000Z</published>
-    <updated>2018-03-14T15:16:42.447Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>大数据时代如何获取大量的有价值信息是很重要的，如何从大量的日志文件中提取出有价值的信息就变成了运维、运营人员的一个很艰巨的任务（我只是一个小前端…）。从日志中检索有价值的信息会面临很多难点，比如文件体积过大、多维度综合查询等。所以常见的解决思路就是将所有的日志集中式管理，统一收集解析。<br>一个完整的日志系统应该包含：<br></p><ul><li><strong><em>收集</em></strong>：采集多种来源的日志数据</li><li><strong><em>传输</em></strong>：能够把节点数据稳定地传到中央节点</li><li><strong><em>存储</em></strong>：能存储不同来源的日志数据</li><li><strong><em>分析</em></strong>：能提供可视化的数据图表</li><li><strong><em>警告</em></strong>：能针对不同指标提供监控机制</li></ul><p>好了，ELK出场了。</p><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>ELK是一套由<code>Elasticsearch</code>、<code>Logstash</code>、<code>Kibana</code>组成的开源日志系统（现在增加了更<code>有趣</code>的<code>Beats</code>）。</p><ul><li><code>Elasticsearch</code>是一个基于<code>Lucene</code>的开源分布式搜索引擎，提供搜集、分析、存储三大主要功能。</li><li><code>Logstash</code>是用来进行日志搜集、分析、过滤、传输的工具</li><li><code>Kibana</code>是为分析之后的日志数据提供可视化图表操作</li></ul><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="Elasticsearch"><a href="#Elasticsearch" class="headerlink" title="Elasticsearch"></a><code>Elasticsearch</code></h3><ul><li><p>安装Java(JDK8 or later)</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 不想写这个。。。</span></span><br></pre></td></tr></table></figure></li><li><p>下载<code>Elasticsearch</code></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载压缩包</span></span><br><span class="line">...</span><br><span class="line"><span class="comment"># 解压</span></span><br><span class="line">tar -zxvf elasticsearch-x.x.x.tar.gz</span><br><span class="line"><span class="comment"># 修改配置文件（根据需求）</span></span><br><span class="line">vim config/elasticsearch.yml</span><br></pre></td></tr></table></figure></li><li><p>坑X1</p><p><code>Elassearch</code>由于会收集很多系统信息，所以不允许直接用root用户启动（强行启动自然会报错的，不能自以为放心），所以要用其它用户启动。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">groupadd elsearch</span><br><span class="line">useradd elsearch -g elsearch -p elasticsearch</span><br><span class="line">chown -R elsearch:elsearch  ./elasticsearch</span><br></pre></td></tr></table></figure><p>接下来可以用<code>elsearch</code>用户启动了。</p></li><li><p>启动</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./elasticsearch</span><br></pre></td></tr></table></figure><p>看见<code>initializing ...</code>，然后一堆<code>load</code>信息，然后<code>starting ...</code>啥的就说明OK了。</p></li><li><p>后台运行</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./elasticsearch -d</span><br></pre></td></tr></table></figure></li><li><p>验证</p><p>浏览器打开localhost:9200或者采用<code>curl -XGET</code>的方法，看见一堆信息，还有重要的那句<code>You Know, for Search</code>就OK了。</p></li></ul><h3 id="Logstash"><a href="#Logstash" class="headerlink" title="Logstash"></a><code>Logstash</code></h3><ul><li><p>下载、解压</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 一样下载压缩包解压吧，反正官网都有</span></span><br><span class="line">tar -zxvf logstash-x.x.x.tar.gz</span><br></pre></td></tr></table></figure></li><li><p>配置文件</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 新建一个log-s.conf的配置文件</span></span><br><span class="line">vim <span class="built_in">log</span>-s.conf</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">input &#123;</span><br><span class="line">  <span class="built_in">log</span> &#123;</span><br><span class="line">    mode =&gt; <span class="string">"server"</span></span><br><span class="line">    host =&gt; <span class="string">"localhoat"</span></span><br><span class="line">    port =&gt; 4567</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">filter &#123;</span><br><span class="line">  <span class="comment">#Only matched data are send to output.</span></span><br><span class="line">&#125;</span><br><span class="line">output &#123;</span><br><span class="line">  elasticsearch &#123;</span><br><span class="line">    action =&gt; <span class="string">"index"</span>          <span class="comment">#The operation on ES</span></span><br><span class="line">    hosts  =&gt; <span class="string">"localhost:9200"</span>   <span class="comment">#ElasticSearch host, can be array.</span></span><br><span class="line">    index  =&gt; <span class="string">"applog"</span>         <span class="comment">#The index to write data to.</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li><p>启动</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 指定刚才的配置文件</span></span><br><span class="line">./logstash -f <span class="built_in">log</span>-s.conf</span><br></pre></td></tr></table></figure></li></ul><h3 id="Kibana"><a href="#Kibana" class="headerlink" title="Kibana"></a><code>Kibana</code></h3><ul><li><p>下载解压</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf kibana-x.x.x.tar.gz</span><br></pre></td></tr></table></figure></li><li><p>修改配置文件</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim config/kibana.yml</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">server.port: 5601</span><br><span class="line">server.host: <span class="string">"localhost"</span></span><br><span class="line">elasticsearch.url: http://localhost:9200</span><br><span class="line">kibana.index: “.kibana”</span><br></pre></td></tr></table></figure></li><li><p>启动</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./kibana</span><br></pre></td></tr></table></figure></li><li><p>验证<br>浏览器访问<code>localhost:5601</code>出现<code>Kibana</code>的页面则说明成功。</p></li></ul><h2 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h2>]]></content>
-    
-    <summary type="html">
-    
-      ELK填坑攻略
-    
-    </summary>
-    
-      <category term="ELK" scheme="https://realzzz.coding.me/realzzz/categories/ELK/"/>
-    
-    
-      <category term="ELK" scheme="https://realzzz.coding.me/realzzz/tags/ELK/"/>
     
   </entry>
   
