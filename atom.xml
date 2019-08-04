@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://realzzz.coding.me/realzzz/"/>
-  <updated>2019-08-04T09:44:36.352Z</updated>
+  <updated>2019-08-04T09:52:10.265Z</updated>
   <id>https://realzzz.coding.me/realzzz/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://realzzz.coding.me/realzzz/2019/08/04/%E7%B4%AF%E7%A7%AF%E7%9A%84%E4%B8%80%E4%BA%9B%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%82%B9/"/>
     <id>https://realzzz.coding.me/realzzz/2019/08/04/累积的一些微信小程序性能优化点/</id>
     <published>2019-08-03T16:00:00.000Z</published>
-    <updated>2019-08-04T09:44:36.352Z</updated>
+    <updated>2019-08-04T09:52:10.265Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>微信小程序的性能优化一般可以从两个角度思考：</p><ol><li>数据</li><li>渲染</li></ol><h3 id="how-to-do"><a href="#how-to-do" class="headerlink" title="how to do"></a>how to do</h3><p>累积更新ing：</p><p>#### 启动加载</p><ol><li>控制代码包的大小<br>开启代码压缩、及时清除无用的资源文件、减少本地图片数量，使用网络图片</li><li>分包加载<br>a. 分包预加载<br>b. 独立分包</li></ol><h4 id="首屏加载"><a href="#首屏加载" class="headerlink" title="首屏加载"></a>首屏加载</h4><ol><li>提前请求：异步请求数据不需要等待页面的渲染完成</li><li>缓存</li><li>避免白屏：先展示骨架屏和基础内容</li><li>及时反馈：loading提示</li></ol><h4 id="视图层渲染"><a href="#视图层渲染" class="headerlink" title="视图层渲染"></a>视图层渲染</h4><ol><li>优化视图节点：减少页面节点数量与复杂度</li><li>去掉不必要的事件绑定</li><li>图片使用CDN</li><li>列表渲染使用key（不直接使用数组索引）</li></ol><h4 id="渲染机制"><a href="#渲染机制" class="headerlink" title="渲染机制"></a>渲染机制</h4><ol><li><p>避免不当使用<code>setData</code><br>a. data中仅包含与页面交互相关的数据<br>b. 仅传输变化的数据<br>c. 对setData操作进行合并<br>d. 页面切入后台之后的setData延迟到页面重新展示的时候执行：因为后台页面在进行setData的时候回抢占前台页面的渲染资源</p></li><li><p>避免不当使用<code>onPageScroll</code><br>a. 避免在onPageScroll中执行复杂逻辑<br>b. 避免在onPageScroll中频繁调用setData<br>c. 避免频繁查询节点信息</p></li><li><p>使用组件<br>组件的更新只在组件内部更新，不受页面其它部分的复杂性影响。</p></li></ol>]]></content>
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>微信小程序的性能优化一般可以从两个角度思考：</p><ol><li>数据</li><li>渲染</li></ol><h3 id="how-to-do"><a href="#how-to-do" class="headerlink" title="how to do"></a>how to do</h3><p>累积更新ing：</p><h4 id="启动加载"><a href="#启动加载" class="headerlink" title="启动加载"></a>启动加载</h4><ol><li>控制代码包的大小<br>开启代码压缩、及时清除无用的资源文件、减少本地图片数量，使用网络图片</li><li>分包加载<br>a. 分包预加载<br>b. 独立分包</li></ol><h4 id="首屏加载"><a href="#首屏加载" class="headerlink" title="首屏加载"></a>首屏加载</h4><ol><li>提前请求：异步请求数据不需要等待页面的渲染完成</li><li>缓存</li><li>避免白屏：先展示骨架屏和基础内容</li><li>及时反馈：loading提示</li></ol><h4 id="视图层渲染"><a href="#视图层渲染" class="headerlink" title="视图层渲染"></a>视图层渲染</h4><ol><li>优化视图节点：减少页面节点数量与复杂度</li><li>去掉不必要的事件绑定</li><li>图片使用CDN</li><li>列表渲染使用key（不直接使用数组索引）</li></ol><h4 id="渲染机制"><a href="#渲染机制" class="headerlink" title="渲染机制"></a>渲染机制</h4><ol><li><p>避免不当使用<code>setData</code><br>a. data中仅包含与页面交互相关的数据<br>b. 仅传输变化的数据<br>c. 对setData操作进行合并<br>d. 页面切入后台之后的setData延迟到页面重新展示的时候执行：因为后台页面在进行setData的时候回抢占前台页面的渲染资源</p></li><li><p>避免不当使用<code>onPageScroll</code><br>a. 避免在onPageScroll中执行复杂逻辑<br>b. 避免在onPageScroll中频繁调用setData<br>c. 避免频繁查询节点信息</p></li><li><p>使用组件<br>组件的更新只在组件内部更新，不受页面其它部分的复杂性影响。</p></li></ol>]]></content>
     
     <summary type="html">
     
