@@ -181,6 +181,62 @@
     
     
         <article class="index-post">
+            <a class="content-show-full" href = "/2019/08/04/累积的一些微信小程序性能优化点/" >
+                    <h2 class="abstract-title">
+                        
+                        <span>累积的一些微信小程序性能优化点</span>
+                    </h2>
+                <div class="abstract-content">
+                    前言微信小程序的性能优化一般可以从两个角度思考：
+
+数据
+渲染
+
+how to do累积更新ing：
+#### 启动加载
+
+控制代码包的大小开启代码压缩、及时清除无用的资源文件、减少本地图片数量，使用网络图片
+分包加载a. 分包预加载b. 独立分包
+
+首屏加载
+提前请求：异步请求数据不需要等待页面的渲染完成
+缓存
+避免白屏：先展示骨架屏和基础内容
+及时反馈：loading提示
+
+视图层渲染
+优化视图节点：减少页面节点数量与复杂度
+去掉不必要的事件绑定
+图片使用CDN
+列表渲染使用key（不直接使用数组索引）
+
+渲染机制
+避免不当使用setDataa. data中仅包含与页面交互相关的数...
+                </div>
+            </a>
+            <div class="abstract-post-meta">
+                <!-- tags  -->
+                
+                <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = 小程序>小程序</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = wepy>wepy</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = mpvue>mpvue</a>
+    
+</div>
+                
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2019/08/04</span>
+                </div>
+            </div>
+        </article>
+    
+    
+    
+        <article class="index-post">
             <a class="content-show-full" href = "/2019/06/03/《一一》中展现出的平凡的世界/" >
                     <h2 class="abstract-title">
                         
@@ -488,36 +544,6 @@ src: webview指向网页的链接, 需要是小程序的业务域名。
                 <!-- date  -->
                 <div class="abstract-date">
                     <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2019/02/19</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2019/01/04/Git-一个清晰的，有意义的版本变更信息/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>Git-一个清晰的，有意义的版本变更信息</span>
-                    </h2>
-                <div class="abstract-content">
-                    前言多人团队合作中，沟通成本不可忽略。如何能清晰准确地表达自己也就至关重要。那么在Git中，怎么样才能算是一条清晰有意义的版本变更记录呢？之所以引入这个问题，是因为最近在使用rebase的时候出现了一个小困惑：如何达到merge和rebase的平衡点？
-基操Git中整合分支的修改有两种方式：merge以及rebase。
-mergemerge的合并参数12345678910--ff   # fast-forward# 当条件允许的时候，git直接把HEAD指针指向合并分支的头，完成合并。属于“快进方式”，不过这种情况如果删除分支，则会丢失分支信息。因为在这个过程中没有创建commit--f...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = git>git</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2019/01/04</span>
                 </div>
             </div>
         </article>
@@ -1182,7 +1208,28 @@ mergemerge的合并参数12345678910--ff   # fast-forward# 当条件允许的时
     
     
     
-    <div class="total-archive"> Total : 39 </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-archive"> Total : 40 </div>
     
     <div class="post-archive">
     
@@ -1191,6 +1238,11 @@ mergemerge的合并参数12345678910--ff   # fast-forward# 当条件允许的时
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/04</span><a class="archive-post-title" href= "/2019/08/04/累积的一些微信小程序性能优化点/" >累积的一些微信小程序性能优化点</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1410,11 +1462,11 @@ mergemerge的合并参数12345678910--ff   # fast-forward# 当条件允许的时
         <div class="sidebar-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name"><a href= "#">Web</a></span>
-    
         <span class="sidebar-tag-name"><a href= "#">CSS</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">git</a></span>
+        <span class="sidebar-tag-name"><a href= "#">Web</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">ELK</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">JavaScript</a></span>
     
@@ -1422,11 +1474,7 @@ mergemerge的合并参数12345678910--ff   # fast-forward# 当条件允许的时
     
         <span class="sidebar-tag-name"><a href= "#">Element-UI</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">ELK</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">数据存储</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">语音合成、语音识别</a></span>
+        <span class="sidebar-tag-name"><a href= "#">git</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">Python</a></span>
     
@@ -1434,7 +1482,19 @@ mergemerge的合并参数12345678910--ff   # fast-forward# 当条件允许的时
     
         <span class="sidebar-tag-name"><a href= "#">工具</a></span>
     
+        <span class="sidebar-tag-name"><a href= "#">RESTful</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">数据存储</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">语音合成、语音识别</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">js小技巧</a></span>
+    
         <span class="sidebar-tag-name"><a href= "#">自动化工具</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">node</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">服务器</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">电影</a></span>
     
@@ -1442,11 +1502,7 @@ mergemerge的合并参数12345678910--ff   # fast-forward# 当条件允许的时
     
         <span class="sidebar-tag-name"><a href= "#">家庭</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">RESTful</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">js小技巧</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">node</a></span>
+        <span class="sidebar-tag-name"><a href= "#">图片懒加载</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">算法</a></span>
     
@@ -1454,21 +1510,19 @@ mergemerge的合并参数12345678910--ff   # fast-forward# 当条件允许的时
     
         <span class="sidebar-tag-name"><a href= "#">浏览器</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">图片懒加载</a></span>
-    
         <span class="sidebar-tag-name"><a href= "#">小程序</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">wepy</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">页面交互</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">服务器</a></span>
-    
         <span class="sidebar-tag-name"><a href= "#">tips</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">读书</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">文字</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">mpvue</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">正则表达式</a></span>
     
