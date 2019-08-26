@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://realzzz.coding.me/realzzz/"/>
-  <updated>2019-08-04T09:52:10.265Z</updated>
+  <updated>2019-08-26T07:00:34.084Z</updated>
   <id>https://realzzz.coding.me/realzzz/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>HTTPS如何保证安全</title>
+    <link href="https://realzzz.coding.me/realzzz/2019/08/26/HTTPS%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E5%AE%89%E5%85%A8/"/>
+    <id>https://realzzz.coding.me/realzzz/2019/08/26/HTTPS如何保证安全/</id>
+    <published>2019-08-25T16:00:00.000Z</published>
+    <updated>2019-08-26T07:00:34.084Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="what"><a href="#what" class="headerlink" title="what"></a>what</h3><p>HTTPS：Hypertext Transfer Protocol over Secure Socket Layer. 以安全为目标的HTTP通道，即HTTP + SSL。</p><blockquote><p>一份SSL证书包含一个公共密钥和一个私用密钥：公钥的作用是用来加密信息，私钥的作用是用来翻译加密信息。当浏览器指向一个安全域时，安装证书后SSL会同步确认客户端和服务器，并在两者之间建立一种加密方式和一个唯一的会话密钥，这样便可以保证通话双方信息的完整性和保密性。</p></blockquote><h3 id="do-what"><a href="#do-what" class="headerlink" title="do what"></a>do what</h3><ul><li>内容加密</li><li>身份验证</li><li>数据完整</li></ul><h3 id="加密"><a href="#加密" class="headerlink" title="加密"></a>加密</h3><h4 id="对称加密"><a href="#对称加密" class="headerlink" title="对称加密"></a>对称加密</h4><p>通信的双方都使用同一个密钥进行加解密。<br><code>无法解决首次把密钥发给对方的安全问题。</code></p><h4 id="非对称加密"><a href="#非对称加密" class="headerlink" title="非对称加密"></a>非对称加密</h4><p>私钥 + 公钥 = 密钥对</p><ul><li>用私钥加密的数据只有用对应的公钥才能解密，公钥加密的数据也只有用对应的私钥才能解密</li><li>通信双方都有一套自己的密钥对，正式通信之前要先把自己的公钥先发给对方</li><li>对方拿着这个公钥来加密数据发送给自己，然后自己再用私钥解密</li></ul><p><code>安全性虽高，但速度慢，影响性能</code></p><p>解决方案：将对称加密的密钥使用非对称加密的公钥进行加密，然后发送出去，接收方使用私钥进行解密得到对称加密的密钥，然后双方用对称加密传输数据。</p><p>新的问题：中间人攻击</p><p>客户端和服务器之间存在一个中间人，这个中间人只需要把原本双方互发的公钥换成自己的公钥就可以解密双方发送的所有数据。</p><p>中间人攻击过程：</p><ul><li>服务器向客户端发送公钥</li><li>攻击者截获公钥，保存在自己手上</li><li>攻击者生成一个自己伪造的公钥，发给客户端</li><li>客户端收到伪造的秘钥之后，生成加密的hash值发给服务器</li><li>攻击者获得加密的hash值，用自己的私钥解密获得真的秘钥</li><li>同时生成假的加密hash值发给服务器</li><li>服务器用私钥解密获得假秘钥</li><li>服务器用假秘钥传输信息</li></ul><p>针对中间人攻击的解决方案：<br>需要一个安全的第三方颁发证书(CA)，证明身份的身份证，防止被中间人攻击。证书中包括：签发者、证书用途、使用者公钥、使用者私钥、使用者的hash算法、证书到期时间等。</p><p>但是又会有新的问题：中间人篡改证书<br>解决方案：数字签名<br>数字签名是用CA自带的hash算法对证书的内容进行hash得到一个摘要，再用CA加密的私钥加密，最终换成数字签名。当别人把他的证书发过来时，我再用同样的hash算法再次生成消息摘要，然后用CA的公钥对数字签名解密，得到CA创建的消息摘要，将二者对比就可以分辨出有没有被篡改。</p>]]></content>
+    
+    <summary type="html">
+    
+      HTTPS如何保证安全
+    
+    </summary>
+    
+      <category term="HTTPS" scheme="https://realzzz.coding.me/realzzz/categories/HTTPS/"/>
+    
+    
+      <category term="HTTPS" scheme="https://realzzz.coding.me/realzzz/tags/HTTPS/"/>
+    
+      <category term="通信" scheme="https://realzzz.coding.me/realzzz/tags/%E9%80%9A%E4%BF%A1/"/>
+    
+  </entry>
   
   <entry>
     <title>累积的一些微信小程序性能优化点</title>
@@ -467,30 +491,6 @@
       <category term="wepy" scheme="https://realzzz.coding.me/realzzz/tags/wepy/"/>
     
       <category term="页面交互" scheme="https://realzzz.coding.me/realzzz/tags/%E9%A1%B5%E9%9D%A2%E4%BA%A4%E4%BA%92/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>读完《小团圆》之后的一些想法</title>
-    <link href="https://realzzz.coding.me/realzzz/2018/04/25/%E8%AF%BB%E5%AE%8C%E3%80%8A%E5%B0%8F%E5%9B%A2%E5%9C%86%E3%80%8B%E4%B9%8B%E5%90%8E%E7%9A%84%E4%B8%80%E4%BA%9B%E6%83%B3%E6%B3%95/"/>
-    <id>https://realzzz.coding.me/realzzz/2018/04/25/读完《小团圆》之后的一些想法/</id>
-    <published>2018-04-24T16:00:00.000Z</published>
-    <updated>2018-08-22T14:07:33.827Z</updated>
-    
-    <content type="html"><![CDATA[<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;《小团圆》是张去世之后的遗产所有人整理发表的，这部作品和其它的作品给我的感受差距很大。看之前的小说，张始终站在一个俯视角度，她站在高处，冷冷的摆布和嘲弄笔下的人物，是她主导着主人公的一切。而《小团圆》中，主导人物命运的不是作者，反而是作者本身被命运主导。《小团圆》中虽然使用第三人称，可是总让人觉得是一个受了委屈的姑娘站在你面前和你一句一句地诉说自己的经历，向你展示她心里的每一处伤疤。读完《小团圆》让我觉得“小团圆”其实不是人物的团圆，而是张爱玲自己的“团圆”，会觉得红玫瑰与白玫瑰中的那个点燃心爱男人的烟头排遣相思的是自己，那个说“这个人是爱我的！”也是自己，倾城之恋里那个满脑子想逃离家庭苦难的白流苏也是自己，那个说出“如果你认识从前的我，就会原谅现在的我”的范柳原也是自己。《小团圆》更像是一本自传，张爱玲将生平的一件件经历都寄托在了九莉的身上，不像是创作，而是像诉说。</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;母亲在年幼的时候抛夫弃子，父亲因为后母的教唆而变得疏远，弟弟和奶奶被感情利益麻痹，她想赚钱，想逃离，想自由，可是屡屡失败，惨遭至亲之人的排斥。后来亲身母亲带她离开了原本的那个家庭牢笼，却又进入了另一个情感牢狱。她们的感情是很生分的。母亲请客少了把椅子，她费了好大劲狼狈不堪的从领居家搬来了一把笨重的椅子，却只是换来母亲的一句“你是猪吗？”。她注定不能成为母亲眼中的乖乖女，不能嫁给有钱人让母亲过上衣食无忧的生活，母亲输光了她所有的学费后让她们变得互相失望。</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;再后来，她终于有了自己的生活。</p><p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;她遇见了他，她知道他是一个汉奸，战争结束后肯定是要逃亡的，可是她不在乎，因为爱情就是爱情，喜欢就是喜欢。她用信封收存他的烟头，在心里一直告诉自己他会一直爱自己。她缺乏的根本就不是爱情，而是自己爱自己。明明看透了一切，却只能眼睁睁地看着自己仍然不顾一切，飞蛾扑火。“他真的逃亡了，她不远万里去找寻他，一切都是按照剧本进行，除了他已经不再爱她了”。</p><p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;那个时候的人们都把国家主义当做是宗教，可是她偏偏不信宗教。</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;“二次大战就要打完了”，</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;“哎呦，我希望它永远打下去”，</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;“死那么多人，还要永远打下去？”，</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;“我不过因为想和你一直在一起”，九莉轻声道。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当时就是因为这段对话才对张爱玲真真正正的着迷，发自内心的钦佩一个生活在乱世，却穷极一生渴望被爱的“女人”。</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;张爱玲那个圈子的女性大多都有一个共同点，无论是她的母亲，她的姑姑，还是其它的姐妹，都是出了门是别人眼中的大小姐、少奶奶，可是关上门就只是简简单单的女人，是和那个社会所有的女人一样，得不到尊重和承认的生活在情感黑暗中的女人，孤独却又渴望出路。</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;“群体的自我憎恨和自我厌弃，对自己和同伴的鄙视，造成这种结果的根源是对女性卑下观点的反复宣扬，无论这种宣扬多么含蓄，最后，女性对这种宣扬也信以为真”。</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;《小团圆》一书中的感情实在是太过复杂，这种复杂不是人物关系的复杂，而是人性的复杂。年轻时说的低到尘埃里，心里还有揣着的东西，现在看来那句“亦是好的”其实下一句不过是“好个屁”。写出来是泄愤，不写是深藏在心，骂了是因爱生恨，不骂是无法忘情。</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;感情大多如此，没有任何理性可言。喜欢就是喜欢。明明看透一切，也要飞蛾扑火。镜子碎了，满地都是幻灭的爱情，可终归还是存在的。</p>]]></content>
-    
-    <summary type="html">
-    
-      读完《小团圆》之后的一些想法
-    
-    </summary>
-    
-      <category term="文字" scheme="https://realzzz.coding.me/realzzz/categories/%E6%96%87%E5%AD%97/"/>
-    
-    
-      <category term="读书" scheme="https://realzzz.coding.me/realzzz/tags/%E8%AF%BB%E4%B9%A6/"/>
-    
-      <category term="文字" scheme="https://realzzz.coding.me/realzzz/tags/%E6%96%87%E5%AD%97/"/>
     
   </entry>
   
