@@ -181,6 +181,48 @@
     
     
         <article class="index-post">
+            <a class="content-show-full" href = "/2018/04/26/微信小程序（wepy）中实现左滑删除列表项/" >
+                    <h2 class="abstract-title">
+                        
+                        <span>微信小程序（wepy）中实现左滑删除列表项</span>
+                    </h2>
+                <div class="abstract-content">
+                    实现效果
+向左滑动的时候，列表的item跟着向左滑动，同时列表右边出现删除按钮
+滑动距离超过指定宽度的时候，item自动滑到左侧，删除按钮完全出现
+滑动距离小于指定宽度的时候，item回到原来的位置，隐藏删除按钮
+
+实现思路
+将列表中的每一个item和删除按钮（del_btn）通过z-index属性分为上下两层
+上层item使用绝对定位，左滑改变left属性为对应负值
+通过监听touchstart、touchmove、touchend来实现滑动
+
+实现方法HTML部分1234567891011121314&lt;view class="detail-item" wx:for="&#123...
+                </div>
+            </a>
+            <div class="abstract-post-meta">
+                <!-- tags  -->
+                
+                <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = 小程序>小程序</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = wepy>wepy</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = 页面交互>页面交互</a>
+    
+</div>
+                
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/04/26</span>
+                </div>
+            </div>
+        </article>
+    
+    
+    
+        <article class="index-post">
             <a class="content-show-full" href = "/2018/04/25/读完《小团圆》之后的一些想法/" >
                     <h2 class="abstract-title">
                         
@@ -460,42 +502,6 @@ Nod...
                 <!-- date  -->
                 <div class="abstract-date">
                     <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/01/24</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2018/01/15/18位身份证号码验证算法的原理与实现/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>18位身份证号码验证算法的原理与实现</span>
-                    </h2>
-                <div class="abstract-content">
-                    验证的算法原理
-判断用户输入的身份证号码长度是不是18位
-判断前17位是不是都是数字
-第一个数字不为0
-出生日期是否合法
-将前17位数字按照加权求和的计算方法与最后一位校验位比较
-
-算法的实现checkIdNum (idnum)函数接收一个身份证字符串，函数返回一个布尔值 true或者 false。取前17位为n，最后一位如果是x或者X都先置为0123var n = 0;var s = idnum.replace('x', '0').replace('X', '0');n = idnum.substring(0, 17);
-验证长度是否合法123if (idnum.length != 1...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = Web>Web</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/01/15</span>
                 </div>
             </div>
         </article>
@@ -1190,7 +1196,24 @@ Nod...
     
     
     
-    <div class="total-archive"> Total : 41 </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-archive"> Total : 42 </div>
     
     <div class="post-archive">
     
@@ -1199,6 +1222,11 @@ Nod...
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/20</span><a class="archive-post-title" href= "/2019/09/20/前端的Web安全/" >前端的Web安全</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1497,6 +1525,8 @@ Nod...
         <span class="sidebar-tag-name"><a href= "#">正则表达式</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">排序</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">安全</a></span>
     
     </div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
