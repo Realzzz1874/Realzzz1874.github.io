@@ -200,7 +200,42 @@
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        
+        <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>随着前端应用的复杂度越来越高，前端安全问题也就越来越受到重视，常见的Web安全问题包含哪些呢？</p>
+<h2 id="Web安全的种类"><a href="#Web安全的种类" class="headerlink" title="Web安全的种类"></a>Web安全的种类</h2><h3 id="XSS攻击"><a href="#XSS攻击" class="headerlink" title="XSS攻击"></a>XSS攻击</h3><p>XSS（Cross-site Scripting，跨站脚本攻击）是一种代码注入式的攻击方式。攻击者在目标网站上注入恶意代码，当用户登录网站时就会被执行这些代码，这些恶意的脚本可以获取到用户的cookie，session，token等，攻击者就可以假扮用户进行非法操作。</p>
+<h4 id="XSS分类"><a href="#XSS分类" class="headerlink" title="XSS分类"></a>XSS分类</h4><h5 id="反射型"><a href="#反射型" class="headerlink" title="反射型"></a>反射型</h5><p>反射型是指恶意的代码是来自用户的请求。当用户点击一个恶意链接，或者是提交了一个表单，服务器响应了用户请求，并在浏览器端执行了恶意代码。</p>
+<p>反射型XSS的攻击步骤：</p>
+<ul>
+<li><p>攻击者构造包含恶意代码的URL</p>
+</li>
+<li><p>用户打开这个URL，服务器提取出恶意代码，并将这段代码返回给浏览器</p>
+</li>
+<li><p>浏览器接收到服务器的响应后解析HTML，也执行了恶意代码</p>
+</li>
+<li><p>恶意代码窃取用户数据并发送给攻击者，或者直接冒充用户进行一些敏感操作</p>
+</li>
+</ul>
+<h5 id="DOM型"><a href="#DOM型" class="headerlink" title="DOM型"></a>DOM型</h5><p>DOM型XSS攻击，实质上就是前端的JS代码不够严谨，把一些不可信任的内容插入到了页面。比如使用 <code>.innerHTML、.outerHTML、.appendChild、document.write()</code> 的时候先把内容做编码过滤。</p>
+<h5 id="存储型"><a href="#存储型" class="headerlink" title="存储型"></a>存储型</h5><p>存储型是指恶意代码来自网站的数据库。攻击者先根据网站的输入途径（比如评论）将恶意代码存入数据库，当浏览器访问到这段数据的时候就会执行这段代码从而受到攻击。</p>
+<h4 id="XSS防御"><a href="#XSS防御" class="headerlink" title="XSS防御"></a>XSS防御</h4><p>基本思路：</p>
+<ol>
+<li>输入输出进行转译编码过滤</li>
+<li>白名单</li>
+</ol>
+<p>具体方案：</p>
+<h5 id="CSP"><a href="#CSP" class="headerlink" title="CSP"></a>CSP</h5><p>   CSP用来限制浏览器只能使用从可信任的域下载的资源。在服务端使用HTTP的<code>Content Security Policy</code>头部来指定策略，或者在前端设置meta标签。<br><br>   例如配置只允许加载同域资源：<br>   <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Content-Security-Policy: default-src 'self'</span><br></pre></td></tr></table></figure></p>
+   <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Security-Policy"</span> <span class="attr">content</span>=<span class="string">"form-action 'self';"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>CSP在XSS防御中的作用：</p>
+<ul>
+<li>禁止加载外域代码，防止复杂的攻击逻辑</li>
+<li>禁止外域提交，被攻击后数据不会外泄</li>
+<li>禁止执行内联脚本</li>
+<li>禁止执行未授权的脚本</li>
+<li>合理使用上报可以及时发现XSS，利于尽快修复</li>
+</ul>
+<h5 id="实体转译和反转译"><a href="#实体转译和反转译" class="headerlink" title="实体转译和反转译"></a>实体转译和反转译</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">htmlEncode</span>(<span class="params">html</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> sub = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span><br><span class="line">    sub.textContent != <span class="literal">null</span> ? sub.textContent = html : sub.innerText = html;</span><br><span class="line">    <span class="keyword">var</span> output = sub.innerHTML;</span><br><span class="line">    sub = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">return</span> output;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">htmlDecode</span>(<span class="params">text</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> sub = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span><br><span class="line">    sub.innerHTML = text;</span><br><span class="line">    <span class="keyword">var</span> output = sub.textContent || sub.innerText;</span><br><span class="line">    sub = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">return</span> output;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="控制输入内容，对输入校验过滤"><a href="#控制输入内容，对输入校验过滤" class="headerlink" title="控制输入内容，对输入校验过滤"></a>控制输入内容，对输入校验过滤</h5><p>限制输入数据的字符类型、字符长度，在存入数据库之前进行类型转换、过滤等。</p>
+<h3 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h3><p><code>CSRF（Cross-site request forgery）</code> 跨站请求伪造，是一种依赖web浏览器的、被混淆过的代理人攻击，通过伪装来自受信任用户的请求来利用受信任的网站，造成个人隐私泄露及财产安全。<br><img src="../imgs/csrf.png" alt="效果图"></p>
+
     </article>
     <!-- 前后页  -->
     <ul class="post-pager">
@@ -306,7 +341,7 @@
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#说明"><span class="toc-number">1.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web安全的种类"><span class="toc-number">2.</span> <span class="toc-text">Web安全的种类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#XSS攻击"><span class="toc-number">2.1.</span> <span class="toc-text">XSS攻击</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#XSS分类"><span class="toc-number">2.1.1.</span> <span class="toc-text">XSS分类</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#反射型"><span class="toc-number">2.1.1.1.</span> <span class="toc-text">反射型</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#DOM型"><span class="toc-number">2.1.1.2.</span> <span class="toc-text">DOM型</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#存储型"><span class="toc-number">2.1.1.3.</span> <span class="toc-text">存储型</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#XSS防御"><span class="toc-number">2.1.2.</span> <span class="toc-text">XSS防御</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#CSP"><span class="toc-number">2.1.2.1.</span> <span class="toc-text">CSP</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#实体转译和反转译"><span class="toc-number">2.1.2.2.</span> <span class="toc-text">实体转译和反转译</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#控制输入内容，对输入校验过滤"><span class="toc-number">2.1.2.3.</span> <span class="toc-text">控制输入内容，对输入校验过滤</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSRF"><span class="toc-number">2.2.</span> <span class="toc-text">CSRF</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top">&#xe639;</div>
