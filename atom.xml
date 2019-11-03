@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://realzzz.coding.me/realzzz/"/>
-  <updated>2019-09-22T13:35:09.813Z</updated>
+  <updated>2019-11-03T09:35:18.522Z</updated>
   <id>https://realzzz.coding.me/realzzz/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="https://realzzz.coding.me/realzzz/2019/11/03/QQ%E9%9F%B3%E4%B9%90%EF%BC%88qmcflac%EF%BC%89%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%88%90mp3/"/>
+    <id>https://realzzz.coding.me/realzzz/2019/11/03/QQ音乐（qmcflac）格式转成mp3/</id>
+    <published>2019-11-03T09:35:18.522Z</published>
+    <updated>2019-11-03T09:35:18.522Z</updated>
+    
+    <content type="html"><![CDATA[<hr><p>title: QQ音乐（qmcflac）格式转成mp3<br>date: 2019-11-03<br>tags:</p><ul><li>Python</li><li>工具</li></ul><p>categories: Python<br>description: QQ音乐（qmcflac）格式转成mp3</p><h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>网易云版权越来越少，但是作为一名已经10级多年的用户来说除了嫌弃它不争气之外，也很难切换到其它平台了（QQ音乐真香QAQ，还给它开了会员，希望网易云能反思一下自己），所以只能在QQ音乐上下载然后导入到网易云音乐云盘去听（再diss一下网易云，Mac都没入口，Windows笔记本唯一的作用可能就是用来上传文件到网易云云盘了）。</p><h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>QQ音乐的文件格式一般是<code>qmcflac</code>，网易云能识别的可以是<code>flac</code>或者更通用的<code>mp3</code>。所以只需要将<code>qmcflac</code>格式的文件做一下转换就vans了。</p><h2 id="How-To"><a href="#How-To" class="headerlink" title="How To"></a>How To</h2><p>核心步骤：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__flac_to_mp3</span><span class="params">(self, flac_files, _tmp_dir, save=False)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> os.path.exists(_tmp_dir):</span><br><span class="line">        shutil.rmtree(_tmp_dir)</span><br><span class="line">    os.mkdir(_tmp_dir)</span><br><span class="line">    <span class="keyword">for</span> path <span class="keyword">in</span> flac_files:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> save:</span><br><span class="line">            shutil.move(path, _tmp_dir)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            shutil.copy(path, _tmp_dir)</span><br><span class="line">    cmd = <span class="string">"%s %s %s"</span> % (flac2mp3_tool, _tmp_dir, self.output)</span><br><span class="line">    print(cmd)</span><br><span class="line">    os.system(cmd)</span><br><span class="line">    shutil.rmtree(_tmp_dir)</span><br><span class="line">    print(<span class="string">"%s finish."</span> % _tmp_dir)</span><br></pre></td></tr></table></figure></p><p>OVER 3_&gt;</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;hr&gt;
+&lt;p&gt;title: QQ音乐（qmcflac）格式转成mp3&lt;br&gt;date: 2019-11-03&lt;br&gt;tags:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Python&lt;/li&gt;
+&lt;li&gt;工具&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;categories: Python&lt;br&gt;descrip
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>前端的Web安全</title>
@@ -465,30 +492,6 @@
       <category term="读书" scheme="https://realzzz.coding.me/realzzz/tags/%E8%AF%BB%E4%B9%A6/"/>
     
       <category term="文字" scheme="https://realzzz.coding.me/realzzz/tags/%E6%96%87%E5%AD%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>微信小程序（wepy）使用的坑s--持续更新</title>
-    <link href="https://realzzz.coding.me/realzzz/2018/05/19/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%EF%BC%88wepy%EF%BC%89%E4%BD%BF%E7%94%A8%E7%9A%84%E5%9D%91s-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/"/>
-    <id>https://realzzz.coding.me/realzzz/2018/05/19/微信小程序（wepy）使用的坑s-持续更新/</id>
-    <published>2018-05-18T16:00:00.000Z</published>
-    <updated>2018-05-29T07:56:50.939Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="tabBar字体颜色"><a href="#tabBar字体颜色" class="headerlink" title="tabBar字体颜色"></a>tabBar字体颜色</h3><p>IOS下tabBar的字体颜色不可以简写，不可以写成如：<code>black</code>的形式，需要写成<code>#000000</code>,<br><br>Android下颜色不可以写成<code>#000</code>的形式,<br><br><code>总结</code>: 统一写成<code>#000000</code>.</p><h3 id="tap事件名称长度的bug"><a href="#tap事件名称长度的bug" class="headerlink" title="@tap事件名称长度的bug"></a>@tap事件名称长度的bug</h3><p>@tap事件长度不能超过22个字符，其它事件没有这个问题</p><h3 id="picker组件的选择范围"><a href="#picker组件的选择范围" class="headerlink" title="picker组件的选择范围"></a>picker组件的选择范围</h3><p>picker组件调起选择框的可触摸范围是子节点的大小，不能在子节点之间的空白区域调起，<br><br><code>解决办法</code>: 在picker组件内写一个总的容器，将所有子节点包含在这个容器中，然后定义这个容器的大小为需要调起的范围。</p><h3 id="组件属性值为Boolean"><a href="#组件属性值为Boolean" class="headerlink" title="组件属性值为Boolean"></a>组件属性值为Boolean</h3><p>当组件的属性值为boolean的时候，不可以直接写成<code>xxx=&quot;false&quot;</code>, 标签解析会自动将<code>&quot;&quot;</code>中的内容解析成字符串，所以当值为false的时候还是true. <br><br><code>解决办法</code>: 需要写成<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xxx=<span class="string">"&#123;&#123;false&#125;&#125;"</span></span><br></pre></td></tr></table></figure></p><h3 id="iOS下hideTabBar方法失效"><a href="#iOS下hideTabBar方法失效" class="headerlink" title="iOS下hideTabBar方法失效"></a>iOS下hideTabBar方法失效</h3><p>问题描述：tabBar 定义了3个页面，其中希望进入B页面后自动隐藏tabBar，而展现自定义的底部菜单。使用wepy.hideTabBar()，在安卓上表现正常，但是在IOS 上测试出现问题.<br><br><code>解决办法</code>: 将hideTabBar写在页面的onReady中</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">onReady() &#123;</span><br><span class="line">  wepy.hideTabBar(&#123;</span><br><span class="line">    animation: <span class="literal">true</span>,</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      微信小程序（wepy）使用的坑s--持续更新
-    
-    </summary>
-    
-      <category term="小程序" scheme="https://realzzz.coding.me/realzzz/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
-    
-    
-      <category term="小程序" scheme="https://realzzz.coding.me/realzzz/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
-    
-      <category term="wepy" scheme="https://realzzz.coding.me/realzzz/tags/wepy/"/>
     
   </entry>
   

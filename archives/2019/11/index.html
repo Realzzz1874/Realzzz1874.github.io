@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
     <title>
         
-        CommonJS、AMD和CMD · realzzz
+        realzzz
         
     </title>
     <link rel="icon" href= /assets/favicon.ico>
@@ -69,22 +69,11 @@
 </head>
 
     
-        <body class="post-body">
-    
     
 <header class="header">
 
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
-    
-    <div class="banner">
-            <div class="blog-title">
-                <a href="/" >realzzz</a>
-            </div>
-            <div class="post-title">
-                <a href="#" class="post-name">CommonJS、AMD和CMD</a>
-            </div>
-    </div>
     
     <a class="home-link" href=/>realzzz</a>
 </header>
@@ -92,45 +81,21 @@
         <div class="site-intro">
     
     <!-- 主页  -->
-    
-    
-    <!-- 404页  -->
             
-    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/)"></div>
     <div class="site-intro-placeholder"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            CommonJS、AMD和CMD
-            <!-- 404 -->
-            
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
-            
-            <!-- 404 -->
-            
         </p>
         <!-- 文章页meta -->
-        
-            <!-- 文章页标签  -->
-            
-                <div class= post-intro-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = Web>Web</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = JavaScript>JavaScript</a>
-    
-</div>
-            
-            <div class="post-intro-meta">
-                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                <span class="post-intro-time">2018/01/03</span>
-            </div>
         
     </div>
 </div>
@@ -198,66 +163,39 @@
             }
         </script>
         <div class="container container-unloaded">
-            <main class="main post-page">
-    <article class="article-entry">
-        <h2 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h2><p>CommonJS是作用在服务器端，同步的，如nodeJS。根据CommonJS的规范，一个文件就是一个模块，加载的时候用require方法，然后执行之后返回文件内部的exports对象<br><br>AMD是<code>Asynchronous Module Definition</code>的缩写，意思是“异步模块定义”<br><br>CMD是<code>Commom Module Definition</code>的缩写，意思是“通用模块定义”<br><br>AMD是RequireJS对模块定义的规范化产物<br><br>CMD是SeaJS对模块定义的规范化产物</p>
-<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><p>AMD和CMD最大的区别就是<strong><em>对依赖的执行时机处理不同</em></strong>（不是加载的时机或者方式）</p>
-<ul>
-<li>AMD推崇依赖前置，在模块定义的时候就要声明依赖的模块</li>
-<li>CMD推崇就近依赖，在用到某个模块的时候再去require</li>
-<li>AMD的API默认是一个当多个用，CMD的API职责单一比较纯粹</li>
-</ul>
-<p>引用<a href="https://www.zhihu.com/question/20351507" target="_blank" rel="noopener">知乎上的一个代码示例</a>：<br></p>
-<p>AMD的默认写法是一开始就将用到的所有依赖全部写好<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">define([<span class="string">'./a'</span>, <span class="string">'./b'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  a.doSomething();</span><br><span class="line">  b.doSomething();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<p>CMD的默认写法是就近写依赖，用到的地方再写<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params">require, exports, module</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="built_in">require</span>(<span class="string">'./a'</span>);</span><br><span class="line">  a.doSomething();</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="keyword">var</span> b = <span class="built_in">require</span>(<span class="string">'./b'</span>);</span><br><span class="line">  b.doSomething();</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<h2 id="简要概述"><a href="#简要概述" class="headerlink" title="简要概述"></a>简要概述</h2><p>AMD和CMD的区别是对依赖的执行时机处理不同，不是加载的时机。不是字面意思AMD异步，CMD同步，它们都是异步加载。<br><br>AMD在加载模块完成以后就会执行该模块，所有的模块加载完成以后都会进入require的回调函数执行主逻辑函数。这样最终依赖模块的执行顺序和书写顺序不一致，哪个先被网络请求下来就先执行哪一个，但是最终的主逻辑一定会是在所有的依赖加载完成之后才会被执行。<br><br>CMD加载完某个依赖模块以后并不立即执行，只是下载下来而已，在完成所有的依赖模块加载之后进入主逻辑，遇到require语句的时候才会执行相应的模块，这样模块的执行顺序和模块的书写顺序就完全一致了。</p>
-
-    </article>
-    <!-- 前后页  -->
-    <ul class="post-pager">
-        
-            <li class="next">
-                <a href= "/2018/01/09/那些我会用到也会忘记的tips/" title= 那些我会用到也会忘记的tips >
-                    <span>Next Post</span>
-                    <span>那些我会用到也会忘记的tips</span>
-                </a>
-            </li>
-        
-        
-            <li class="previous">
-                <a href= "/2017/12/27/Web开发中的cookie、session、sessionStorage、localStorage/" title= Web开发中的cookie、session、sessionStorage、localStorage >
-                    <span>Previous Post</span>
-                    <span>Web开发中的cookie、session、sessionStorage、localStorage</span>
-                </a>
-            </li>
-        
-    </ul>
-    <!-- 评论插件 -->
-    <!-- 来必力City版安装代码 -->
-
-    <div id="lv-container" data-id="city" data-uid= MTAyMC8zMzYxNC8xMDE2OQ==>
-        <script type="text/javascript">
-            (function (d, s) {
-                var j, e = d.getElementsByTagName(s)[0];
-                if (typeof LivereTower === 'function') { return; }
-                j = d.createElement(s);
-                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-                j.async = true;
-
-                e.parentNode.insertBefore(j, e);
-            })(document, 'script');
-        </script>
-        <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
-    </div>
-
-<!-- City版安装代码已完成 -->
+            <main class="main index-page">
     
     
-    <!--PC版-->
+    
+        <article class="index-post">
+            <a class="content-show-full" href = "/2019/11/03/QQ音乐（qmcflac）格式转成mp3/" >
+                    <h2 class="abstract-title">
+                        
+                        <span>[Untitled Post]</span>
+                    </h2>
+                <div class="abstract-content">
+                    
+title: QQ音乐（qmcflac）格式转成mp3date: 2019-11-03tags:
 
-    <!--PC版-->
+Python
+工具
 
-
+categories: Pythondescription: QQ音乐（qmcflac）格式转成mp3
+需求网易云版权越来越少，但是作为一名已经10级多年的用户来说除了嫌弃它不争气之外，也很难切换到其它平台了（QQ音乐真香QAQ，还给它开了会员，希望网易云能反思一下自己），所以只能在QQ音乐上下载然后导入到网易云音乐云盘去听（再diss一下网易云，Mac都没入口，Windows笔记本唯一的作用可能就是用来上传文件到网易云云盘了）。
+想法QQ音乐的文件格式一般是qmc...
+                </div>
+            </a>
+            <div class="abstract-post-meta">
+                <!-- tags  -->
+                
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2019/11/03</span>
+                </div>
+            </div>
+        </article>
+    
+    <!-- paginator  -->
     
 </main>
             <!-- profile -->
@@ -319,13 +257,6 @@
 
     </div>
     <!-- toc -->
-    
-    <div class="toc-wrapper">
-        <div class="toc-catalog">
-            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
-        </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#是什么"><span class="toc-number">1.</span> <span class="toc-text">是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#区别"><span class="toc-number">2.</span> <span class="toc-text">区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#简要概述"><span class="toc-number">3.</span> <span class="toc-text">简要概述</span></a></li></ol>
-    </div>
     
     <div class="back-top">&#xe639;</div>
     <div class="sidebar">
