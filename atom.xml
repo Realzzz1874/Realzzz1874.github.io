@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://realzzz.coding.me/realzzz/"/>
-  <updated>2019-11-03T09:35:18.522Z</updated>
+  <updated>2019-11-03T09:37:16.140Z</updated>
   <id>https://realzzz.coding.me/realzzz/</id>
   
   <author>
@@ -17,29 +17,26 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
+    <title>QQ音乐（qmcflac）格式转成mp3</title>
     <link href="https://realzzz.coding.me/realzzz/2019/11/03/QQ%E9%9F%B3%E4%B9%90%EF%BC%88qmcflac%EF%BC%89%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%88%90mp3/"/>
     <id>https://realzzz.coding.me/realzzz/2019/11/03/QQ音乐（qmcflac）格式转成mp3/</id>
-    <published>2019-11-03T09:35:18.522Z</published>
-    <updated>2019-11-03T09:35:18.522Z</updated>
+    <published>2019-11-02T16:00:00.000Z</published>
+    <updated>2019-11-03T09:37:16.140Z</updated>
     
-    <content type="html"><![CDATA[<hr><p>title: QQ音乐（qmcflac）格式转成mp3<br>date: 2019-11-03<br>tags:</p><ul><li>Python</li><li>工具</li></ul><p>categories: Python<br>description: QQ音乐（qmcflac）格式转成mp3</p><h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>网易云版权越来越少，但是作为一名已经10级多年的用户来说除了嫌弃它不争气之外，也很难切换到其它平台了（QQ音乐真香QAQ，还给它开了会员，希望网易云能反思一下自己），所以只能在QQ音乐上下载然后导入到网易云音乐云盘去听（再diss一下网易云，Mac都没入口，Windows笔记本唯一的作用可能就是用来上传文件到网易云云盘了）。</p><h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>QQ音乐的文件格式一般是<code>qmcflac</code>，网易云能识别的可以是<code>flac</code>或者更通用的<code>mp3</code>。所以只需要将<code>qmcflac</code>格式的文件做一下转换就vans了。</p><h2 id="How-To"><a href="#How-To" class="headerlink" title="How To"></a>How To</h2><p>核心步骤：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__flac_to_mp3</span><span class="params">(self, flac_files, _tmp_dir, save=False)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> os.path.exists(_tmp_dir):</span><br><span class="line">        shutil.rmtree(_tmp_dir)</span><br><span class="line">    os.mkdir(_tmp_dir)</span><br><span class="line">    <span class="keyword">for</span> path <span class="keyword">in</span> flac_files:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> save:</span><br><span class="line">            shutil.move(path, _tmp_dir)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            shutil.copy(path, _tmp_dir)</span><br><span class="line">    cmd = <span class="string">"%s %s %s"</span> % (flac2mp3_tool, _tmp_dir, self.output)</span><br><span class="line">    print(cmd)</span><br><span class="line">    os.system(cmd)</span><br><span class="line">    shutil.rmtree(_tmp_dir)</span><br><span class="line">    print(<span class="string">"%s finish."</span> % _tmp_dir)</span><br></pre></td></tr></table></figure></p><p>OVER 3_&gt;</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>网易云版权越来越少，但是作为一名已经10级多年的用户来说除了嫌弃它不争气之外，也很难切换到其它平台了（QQ音乐真香QAQ，还给它开了会员，希望网易云能反思一下自己），所以只能在QQ音乐上下载然后导入到网易云音乐云盘去听（再diss一下网易云，Mac都没入口，Windows笔记本唯一的作用可能就是用来上传文件到网易云云盘了）。</p><h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>QQ音乐的文件格式一般是<code>qmcflac</code>，网易云能识别的可以是<code>flac</code>或者更通用的<code>mp3</code>。所以只需要将<code>qmcflac</code>格式的文件做一下转换就vans了。</p><h2 id="How-To"><a href="#How-To" class="headerlink" title="How To"></a>How To</h2><p>核心步骤：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__flac_to_mp3</span><span class="params">(self, flac_files, _tmp_dir, save=False)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> os.path.exists(_tmp_dir):</span><br><span class="line">        shutil.rmtree(_tmp_dir)</span><br><span class="line">    os.mkdir(_tmp_dir)</span><br><span class="line">    <span class="keyword">for</span> path <span class="keyword">in</span> flac_files:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> save:</span><br><span class="line">            shutil.move(path, _tmp_dir)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            shutil.copy(path, _tmp_dir)</span><br><span class="line">    cmd = <span class="string">"%s %s %s"</span> % (flac2mp3_tool, _tmp_dir, self.output)</span><br><span class="line">    print(cmd)</span><br><span class="line">    os.system(cmd)</span><br><span class="line">    shutil.rmtree(_tmp_dir)</span><br><span class="line">    print(<span class="string">"%s finish."</span> % _tmp_dir)</span><br></pre></td></tr></table></figure></p><p>OVER 3_&gt;</p>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;hr&gt;
-&lt;p&gt;title: QQ音乐（qmcflac）格式转成mp3&lt;br&gt;date: 2019-11-03&lt;br&gt;tags:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Python&lt;/li&gt;
-&lt;li&gt;工具&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;categories: Python&lt;br&gt;descrip
-      
+      QQ音乐（qmcflac）格式转成mp3
     
     </summary>
     
+      <category term="Python" scheme="https://realzzz.coding.me/realzzz/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="https://realzzz.coding.me/realzzz/tags/Python/"/>
+    
+      <category term="工具" scheme="https://realzzz.coding.me/realzzz/tags/%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   
