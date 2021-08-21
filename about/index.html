@@ -170,6 +170,9 @@
   
   
   
+    
+    <link rel="prefetch" href="//unpkg.com/valine/dist/Valine.min.js" as="script">
+  
   
   
   <link rel="stylesheet" href="/css/main.css">
@@ -293,12 +296,12 @@
     </h1>
   </header>
   <div class="post-meta post-show-meta">
-    <time datetime="2021-08-19T16:34:15.777Z">
+    <time datetime="2021-08-21T14:09:18.181Z">
       <i 
         class="iconfont icon-calendar" 
         style="margin-right: 2px;">
       </i>
-      <span>2021-08-20</span>
+      <span>2021-08-21</span>
     </time>
     
     
@@ -349,6 +352,42 @@
   
 </div>
 
+  <div 
+    class="card card-content comment-card" 
+    style="margin-top: 16px;">
+    <div class="comment-card-title">评论</div>
+    
+  <div id="vcomments"></div>
+  
+  <script>
+    loadScript("//unpkg.com/valine/dist/Valine.min.js");
+    var oldLoadVa = window.onload;
+    window.onload = function () {
+      oldLoadVa && oldLoadVa();
+      new Valine({
+        el: '#vcomments',
+        appId: 'Rco3KkjsoblXIpT244qC7agz-gzGzoHsz',
+        appKey: '1HXabhsimRHduyaGLXWruPnm',
+        placeholder: 'Just go go',
+        path: window.location.pathname,
+        avatar: 'wavatar',
+        meta: ["nick","mail","link"],
+        pageSize: '10',
+        lang: '',
+        visitor: 'false',
+        highlight: true,
+        recordIP: true,
+        
+        
+        
+        enableQQ: 'false',
+        requiredFields: [],
+      });
+    };
+  </script>
+
+  </div>
+
 <div 
   class="card card-content toc-card" 
   id="mobiletoc">
@@ -377,22 +416,32 @@
   <a 
     class="author-posts-count" 
     href="/archives">
-    <span>2</span>
+    <span>3</span>
     <span>文章</span>
   </a>
   <a 
     class="author-categories-count" 
     href="/categories">
-    <span>1</span>
+    <span>2</span>
     <span>分类</span>
   </a>
   <a 
     class="author-tags-count" 
     href="/tags">
-    <span>2</span>
+    <span>4</span>
     <span>标签</span>
   </a>
 </div>
+
+  <div class="author-card-society">
+    
+      <div class="author-card-society-icon">
+        <a target="_blank" rel="noopener" href="https://github.com/Realzzz1874">
+          <i class="iconfont icon-github society-icon"></i>
+        </a>
+      </div>
+    
+  </div>
 
               </div>
                <div class="sticky-tablet">
@@ -416,6 +465,13 @@
         </div>
       </a>
     
+      <a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/">
+        <div class="categories-list-item">
+          技术分享
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
   </div>
 </div>
   </article>
@@ -429,6 +485,18 @@
     </i>热门标签
   </div>
   <div class="tags-list">
+    
+      <a 
+        href="/tags/Web/" 
+        title="Web">
+        <div class="tags-list-item">Web</div>
+      </a>
+    
+      <a 
+        href="/tags/Steam/" 
+        title="Steam">
+        <div class="tags-list-item">Steam</div>
+      </a>
     
       <a 
         href="/tags/%E9%9F%B3%E4%B9%90/" 
@@ -469,12 +537,16 @@
         
       
     
+      
+        
+      
+    
     
       <a 
         href="/archives/2021" 
         class="archive-card-list-item">
         2021
-        <span class="archive-card-list-item-badge">2</span>
+        <span class="archive-card-list-item-badge">3</span>
       </a>
     
   </div>
@@ -499,13 +571,18 @@
   <div class="recent-posts-list">
     
       <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2021-08-20</div>
-        <a href="/2021/08/20/music/"><div class="recent-posts-item-content">音乐格式转换</div></a>
+        <div class="recent-posts-item-title">2021-08-21</div>
+        <a href="/2021/08/21/music/"><div class="recent-posts-item-content">音乐格式转换</div></a>
       </div>
     
       <div class="recent-posts-item">
-        <div class="recent-posts-item-title">2021-08-19</div>
-        <a href="/2021/08/19/hello-world/"><div class="recent-posts-item-content">Hello World</div></a>
+        <div class="recent-posts-item-title">2021-08-21</div>
+        <a href="/2021/08/21/steam/"><div class="recent-posts-item-content">使用Steam作为第三方账号登录你的网站</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-08-21</div>
+        <a href="/2021/08/21/hello-world/"><div class="recent-posts-item-content">Hello World</div></a>
       </div>
     
   </div>
@@ -535,12 +612,16 @@
         
       
     
+      
+        
+      
+    
     
       <a 
         href="/archives/2021" 
         class="archive-card-list-item">
         2021
-        <span class="archive-card-list-item-badge">2</span>
+        <span class="archive-card-list-item-badge">3</span>
       </a>
     
   </div>
