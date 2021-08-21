@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  <meta charset="UTF-8">
+  <meta 
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta 
+    http-equiv="X-UA-Compatible" 
+    content="ie=edge">
+  <meta 
+    name="theme-color" 
+    content="#fff" 
+    id="theme-color">
+  <meta 
+    name="description" 
+    content="呆在地球的日子">
+  <link 
+    rel="icon" 
+    href="//mariaovo.icu/img/f.png">
+  <title>使用Steam作为第三方账号登录你的网站</title>
+  
+    
+      <meta 
+        property="og:title" 
+        content="使用Steam作为第三方账号登录你的网站">
+    
+    
+      <meta 
+        property="og:url" 
+        content="http://mariaovo.icu/2021/08/21/steam/index.html">
+    
+    
+      <meta 
+        property="og:img" 
+        content="//mariaovo.icu/img/banner-steam.png">
+    
+    
+      <meta 
+        property="og:img" 
+        content="如何在你的网站中集成Steam登录？">
+    
+    
+      <meta 
+        property="og:type" 
+        content="article">
+      <meta 
+        property="og:article:published_time" 
+        content="2021-08-21">
+      <meta 
+        property="og:article:modified_time" 
+        content="2021-08-21">
+      <meta 
+        property="og:article:author" 
+        content="Maria">
+      
+        
+          <meta 
+            property="og:article:tag" 
+            content="Steam">
+        
+          <meta 
+            property="og:article:tag" 
+            content="Web">
+        
+      
+    
+  
+  <script>
+    function loadScript(url, cb) {
+      var script = document.createElement('script');
+      script.src = url;
+      if (cb) script.onload = cb;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+    function loadCSS(href, data, attr) {
+      var sheet = document.createElement('link');
+      sheet.ref = 'stylesheet';
+      sheet.href = href;
+      sheet.dataset[data] = attr;
+      document.head.appendChild(sheet);
+    }
+    function changeCSS(cssFile, data, attr) {
+      var oldlink = document.querySelector(data);
+      var newlink = document.createElement("link");
+      newlink.setAttribute("rel", "stylesheet");
+      newlink.setAttribute("href", cssFile);
+      newlink.dataset.prism = attr;
+      document.head.replaceChild(newlink, oldlink);
+    }
+  </script>
+  
+    
+      
+      
+      
+      
+        
+        
+        
+        <script>
+          function prismThemeChange() {
+            if(document.getElementById('theme-color').dataset.mode === 'dark') {
+              if(document.querySelector('[data-prism]')) {
+                changeCSS('/js/lib/prism/prism-okaidia.min.css', '[data-prism]', 'prism-okaidia');
+              } else {
+                loadCSS('/js/lib/prism/prism-okaidia.min.css', 'prism', 'prism-okaidia');
+              }
+            } else {
+              if(document.querySelector('[data-prism]')) {
+                changeCSS('/js/lib/prism/prism.min.css', '[data-prism]', 'prism');
+              } else {
+                loadCSS('/js/lib/prism/prism.min.css', 'prism', 'prism');
+              }
+            }
+          }
+          prismThemeChange()
+        </script>
+      
+      
+        
+        <link rel="stylesheet" href="/js/lib/prism/prism-line-numbers.min.css">
+      
+    
+  
+  <script>
+    // control reverse button
+    var reverseDarkList = {
+      dark: 'light',
+      light: 'dark'
+    };
+    var themeColor = {
+      dark: '#1c1c1e',
+      light: '#fff'
+    }
+    // get the data of css prefers-color-scheme
+    var getCssMediaQuery = function() {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    // reverse current darkmode setting function
+    var reverseDarkModeSetting = function() {
+      var setting = localStorage.getItem('user-color-scheme');
+      if(reverseDarkList[setting]) {
+        setting = reverseDarkList[setting];
+      } else if(setting === null) {
+        setting = reverseDarkList[getCssMediaQuery()];
+      } else {
+        return;
+      }
+      localStorage.setItem('user-color-scheme', setting);
+      return setting;
+    };
+    // apply current darkmode setting
+  </script>
+  
+    <script>
+      var setDarkmode = function(mode) {
+      var setting = mode || localStorage.getItem('user-color-scheme');
+      if(setting === getCssMediaQuery()) {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+        prismThemeChange();
+      } else if(reverseDarkList[setting]) {
+        document.documentElement.setAttribute('data-user-color-scheme', setting);
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+        prismThemeChange();
+      } else {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
+        document.getElementById('theme-color').dataset.mode = getCssMediaQuery();
+        prismThemeChange();
+      }
+    };
+    setDarkmode();
+    </script>
+  
+  
+  <link rel="preload" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css" as="style" >
+  <link rel="preload" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css" as="style" >
+  
+  
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.js" as="script">
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.css" as="style" >
+  
+  
+    <link rel="preload" href="/js/lib/lozad.min.js" as="script">
+  
+  
+  
+  
+  
+    
+    <link rel="prefetch" href="//unpkg.com/valine/dist/Valine.min.js" as="script">
+  
+  
+  
+  <link rel="stylesheet" href="/css/main.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
+  
+    <link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+  <body>
+    <div class="wrapper">
+       
+      <nav class="navbar">
+  <div class="navbar-logo">
+    <span class="navbar-logo-main">
+      
+        <img 
+          class="navbar-logo-img"
+          width="32"
+          height="32"
+          src="//mariaovo.icu/img/f.png" 
+          alt="blog logo">
+      
+      <span class="navbar-logo-dsc">居家呆猫</span>
+    </span>
+  </div>
+  <div class="navbar-menu">
+    
+      <a 
+        href="/" 
+        class="navbar-menu-item">
+        
+          首页
+        
+      </a>
+    
+      <a 
+        href="/archives" 
+        class="navbar-menu-item">
+        
+          归档
+        
+      </a>
+    
+      <a 
+        href="/tags" 
+        class="navbar-menu-item">
+        
+          标签
+        
+      </a>
+    
+      <a 
+        href="/categories" 
+        class="navbar-menu-item">
+        
+          分类
+        
+      </a>
+    
+      <a 
+        href="/about" 
+        class="navbar-menu-item">
+        
+          关于
+        
+      </a>
+    
+      <a 
+        href="/links" 
+        class="navbar-menu-item">
+        
+          友链
+        
+      </a>
+    
+    <a 
+      class="navbar-menu-item darknavbar" 
+      id="dark">
+      <i class="iconfont icon-weather"></i>
+    </a>
+    <a 
+      class="navbar-menu-item searchnavbar" 
+      id="search">
+      <i 
+        class="iconfont icon-search" 
+        style="font-size: 1.2rem; font-weight: 400;">
+      </i>
+    </a>
+  </div>
+</nav> 
+      
+      <div 
+        id="local-search" 
+        style="display: none">
+        <input
+          class="navbar-menu-item"
+          id="search-input"
+          placeholder="请输入搜索内容..." />
+        <div id="search-content"></div>
+      </div>
+      
+      <div class="section-wrap">
+        <div class="container">
+          <div class="columns">
+            <main class="main-column">
+  <div class="image-wrapper">
+    <img 
+      src="//mariaovo.icu/img/banner-steam.png" 
+      data-src="//mariaovo.icu/img/banner-steam.png"
+      srcset="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20300%20300&#39;%3E%3C/svg%3E"
+      class="image lozad"
+      alt="使用Steam作为第三方账号登录你的网站 thumbnail">
+  </div>
+
+<article class="card card-content">
+  <header>
+    <h1 class="post-title">
+      使用Steam作为第三方账号登录你的网站
+    </h1>
+  </header>
+  <div class="post-meta post-show-meta">
+    <time datetime="2021-08-21T14:09:18.180Z">
+      <i 
+        class="iconfont icon-calendar" 
+        style="margin-right: 2px;">
+      </i>
+      <span>2021-08-21</span>
+    </time>
+    
+      <span class="dot"></span>
+      
+        <a 
+          href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" 
+          class="post-meta-link">
+          技术分享
+        </a>
+      
+    
+    
+      <span class="dot"></span>
+      <span>1.1k 字</span>
+    
+  </div>
+  
+    <div 
+      class="post-meta post-show-meta" 
+      style="margin-top: -10px;">
+      <div style="display: flex; align-items: center;">
+        <i 
+          class="iconfont icon-biaoqian" 
+          style="margin-right: 2px; font-size: 1.15rem;">
+        </i>
+        
+          
+          <a 
+            href="/tags/Steam/" 
+            class="post-meta-link">
+            Steam
+          </a>
+        
+          
+            <span class="dot"></span>
+          
+          <a 
+            href="/tags/Web/" 
+            class="post-meta-link">
+            Web
+          </a>
+        
+      </div>
+    </div>
+  
+  </header>
+  <div 
+    id="section" 
+    class="post-content">
+    <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>  在日常网络冲浪中，很多网站要求我们注册登录的时候，我们都可以选择使用 <code>QQ|微信|微博|Github</code> 等作为第三方账号去登录。那么如果我的网站都是游戏相关的内容，我可不可以让用户 <em>使用 <code>Steam</code> 作为第三方账号登录</em> 呢？</p>
+<h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><h4 id="基于网页浏览器的-OpenID-验证"><a href="#基于网页浏览器的-OpenID-验证" class="headerlink" title="基于网页浏览器的 OpenID 验证"></a>基于网页浏览器的 OpenID 验证</h4><p>如 <code>OpenID 2.0</code>（<a target="_blank" rel="noopener" href="https://openid.net/">了解更多</a>） 规范所描述，Steam 只是一个 OpenID 的提供者。在网页浏览器内，第三方网站可以使用 OpenID 来获取用户的 SteamID ，用户的 SteamID 可以用来作为第三方网站的登录凭据（登录）或者与第三方网站的既有账户绑定（注册）。</p>
+<h4 id="流程描述"><a href="#流程描述" class="headerlink" title="流程描述"></a>流程描述</h4><p>当用户希望登录第三方网站并且将自己的账号与 Steam 账号绑定，第三方网站将用户重定向到 Steam 社区的登录授权页面，用户输入 Steam 的登录凭证后，浏览器自动重定向回第三方网站，并将一些额外的 OpenID 数据写入返回的 <code>URL</code> 中。这些数据通过验证之后即可解析出用户的 SteamID 。</p>
+<h3 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h3><h4 id="申请一个用来校验信息的-ApiKey"><a href="#申请一个用来校验信息的-ApiKey" class="headerlink" title="申请一个用来校验信息的 ApiKey"></a>申请一个用来校验信息的 <code>ApiKey</code></h4><p>到这里申请 =&gt; <a target="_blank" rel="noopener" href="https://steamcommunity.com/dev/apikey">steamcommunity</a></p>
+<h4 id="构造用来登录的链接"><a href="#构造用来登录的链接" class="headerlink" title="构造用来登录的链接"></a>构造用来登录的链接</h4><p>参数说明：</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">steamLoginUrl<span class="token operator">:</span> https<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>steamcommunity<span class="token punctuation">.</span>com<span class="token operator">/</span>openid<span class="token operator">/</span>login
+returnUrl<span class="token operator">:</span> Steam社区登录之后重定向的链接，一般为登录之后的网站首页 https<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>xxx<span class="token punctuation">.</span>com
+realm<span class="token operator">:</span> steam社区授权页面显示的第三方网站名称<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 返回的链接</span>
+<span class="token keyword">const</span> url <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>steamLoginUrl<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">?openid.ns=http://specs.openid.net/auth/2.0&amp;openid.mode=checkid_setup&amp;openid.return_to=</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>returnUrl<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">&amp;openid.realm=</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>realm<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">&amp;openid.identity=http://specs.openid.net/auth/2.0/identifier_select&amp;openid.claimed_id=http://specs.openid.net/auth/2.0/identifier_select</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>当用户点击网页上的 Steam 登录标识的时候，浏览器将用户重定向到 url ，在用户授权之后，会回到 <code>returnUrl</code> 页面。</p>
+<h4 id="校验Steam返回的数据"><a href="#校验Steam返回的数据" class="headerlink" title="校验Steam返回的数据"></a>校验Steam返回的数据</h4><p>当 Steam 成功授权登录返回到我们的 <code>returnUrl</code> 页面之后，页面链接中会带有很多额外信息：</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> respUrl <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>returnUrl<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">?openid.ns=http://specs.openid.net/auth/2.0&amp;openid.mode=id_res&amp;openid.op_endpoint=https://steamcommunity.com/openid/login&amp;openid.claimed_id=https://steamcommunity.com/openid/id/xxxxxxxxxxx&amp;openid.identity=https://steamcommunity.com/openid/id/xxxxxxxxxxx&amp;openid.return_to=https:/%mywebsite.com&amp;openid.response_nonce=2020-08-27T04:44:16Zs4DPZce8qc+iPCe8JgQKB0BiIDI=&amp;openid.assoc_handle=1234567890&amp;openid.signed=signed,op_endpoint,claimed_id,identity,return_to,response_nonce,assoc_handle&amp;openid.sig=W0u5DRbtHE1GG0ZKXjerUZDUGmc=</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><code>具体的参数说明可参考steam官方文档</code></p>
+<p>因为返回的参数中带有用户的 SteamID 字段，为了保证信息安全，我们需要对数据进行正确性校验。<br>定义 <code>params</code> = respUrl <code>?</code> 后面的内容</p>
+<ol>
+<li><p>替换 <code>params</code> 中的 <code>openid.mode=id_res</code> 为 <code>openid.mode=check_authentication</code></p>
+</li>
+<li><p>构造校验链接</p>
+ <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> validateUrl <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">https://steamcommunity.com/openid/login?</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>params<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<li><p>通过 <code>GET</code> 请求 <code>validateUrl</code> 得到校验结果<br> 得到一个 <code>text/plain</code> 类型的response：</p>
+ <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">ns<span class="token operator">:</span>http<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>specs<span class="token punctuation">.</span>openid<span class="token punctuation">.</span>net<span class="token operator">/</span>auth<span class="token operator">/</span><span class="token number">2.0</span>
+is_valid<span class="token operator">:</span><span class="token boolean">true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p> <code>is_valid:true</code> 表明校验通过。</p>
+</li>
+</ol>
+<h4 id="通过用户的SteamID来获取用户的个人信息"><a href="#通过用户的SteamID来获取用户的个人信息" class="headerlink" title="通过用户的SteamID来获取用户的个人信息"></a>通过用户的SteamID来获取用户的个人信息</h4><p>当校验完用户的 Steam 登录之后，我们便可以在返回的数据中获取到用户的 SteamID 。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token variable"><span class="token variable">`</span>openid.identity<span class="token operator">=</span>https://steamcommunity.com/openid/id/xxxxxxxxxxx<span class="token punctuation">(</span>此处则是用户的SteamID<span class="token punctuation">)</span><span class="token variable">`</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>通过 Steam 平台开放接口，我们则可以获取到用户的 Steam 个人信息。</p>
+<p><code>GET</code> 请求：</p>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token variable"><span class="token variable">`</span>https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key<span class="token operator">=</span>$<span class="token punctuation">&#123;</span>开篇申请的ApiKey<span class="token punctuation">&#125;</span><span class="token operator">&amp;</span><span class="token assign-left variable">steamids</span><span class="token operator">=</span>$<span class="token punctuation">&#123;</span>用户的SteamID<span class="token punctuation">&#125;</span><span class="token variable">`</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>返回的数据格式：</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"response"</span><span class="token operator">:</span><span class="token punctuation">&#123;</span>  
+  <span class="token property">"players"</span><span class="token operator">:</span><span class="token punctuation">[</span>  
+     <span class="token punctuation">&#123;</span>  
+        <span class="token property">"steamid"</span><span class="token operator">:</span><span class="token string">"xxxxxxxxxxx"</span><span class="token punctuation">,</span>
+        <span class="token property">"communityvisibilitystate"</span><span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">,</span>
+        <span class="token property">"profilestate"</span><span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">,</span>
+        <span class="token property">"personaname"</span><span class="token operator">:</span><span class="token string">"xxxx"</span><span class="token punctuation">,</span>
+        <span class="token property">"lastlogoff"</span><span class="token operator">:</span><span class="token number">1556305001</span><span class="token punctuation">,</span>
+        <span class="token property">"profileurl"</span><span class="token operator">:</span><span class="token string">"https://steamcommunity.com/profiles/xxxxxxxxxxx/"</span><span class="token punctuation">,</span>
+        <span class="token property">"avatar"</span><span class="token operator">:</span><span class="token string">"https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/32/xxxxxxxxxxx.jpg"</span><span class="token punctuation">,</span>
+        <span class="token property">"avatarmedium"</span><span class="token operator">:</span><span class="token string">"https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/32/xxxxxxxxxxx.jpg"</span><span class="token punctuation">,</span>
+        <span class="token property">"avatarfull"</span><span class="token operator">:</span><span class="token string">"https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/32/xxxxxxxxxxx.jpg"</span><span class="token punctuation">,</span>
+     <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>至此，使用 Steam 作为网站的第三方账号登录并且获取用户的 Steam 信息就已经全部完成。</p>
+<h3 id="结语-amp-一些小问题"><a href="#结语-amp-一些小问题" class="headerlink" title="结语 &amp; 一些小问题"></a>结语 &amp; 一些小问题</h3><ol>
+<li><p>为保证数据安全性，<code>ApiKey</code> 应该存储在网站自己的服务器上，所有的构造链接以及校验过程都应该放在后端完成。</p>
+</li>
+<li><p>Steam 社区登录的时候偶尔可能需要用户科学上网，一旦用户不能正常访问 Steam 的登录功能，页面要做好容错处理。</p>
+</li>
+</ol>
+
+  </div>
+  <div>
+    
+      <div 
+        class="post-note note-warning copyright" 
+        style="margin-top: 42px">
+        <p>
+          <span style="font-weight: bold;">作者：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="/about">
+            Maria
+          </a>
+        </p>
+        <p>
+          <span style="font-weight: bold;">文章链接：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="http://mariaovo.icu/2021/08/21/steam/">
+            http://mariaovo.icu/2021/08/21/steam/
+          </a>
+        </p>
+        <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
+      </div>
+    
+  </div>
+</article>
+<div class="nav">
+  
+    <div class="nav-item-prev">
+      <a 
+        href="/2021/08/21/music/" 
+        class="nav-link">
+        <i class="iconfont icon-left nav-prev-icon"></i>
+        <div>
+          <div class="nav-label">上一篇</div>
+          
+            <div class="nav-title">音乐格式转换 </div>
+          
+        </div>
+      </a>
+    </div>
+  
+  
+    <div class="nav-item-next">
+      <a 
+        href="/2021/08/21/hello-world/" 
+        class="nav-link">
+        <div>
+          <div class="nav-label">下一篇</div>
+          
+            <div class="nav-title">Hello World </div>
+          
+        </div>
+        <i class="iconfont icon-right nav-next-icon"></i>
+      </a>
+    </div>
+  
+</div>
+
+  <div 
+    class="card card-content comment-card" 
+    style="margin-top: 16px;">
+    <div class="comment-card-title">评论</div>
+    
+  <div id="vcomments"></div>
+  
+  <script>
+    loadScript("//unpkg.com/valine/dist/Valine.min.js");
+    var oldLoadVa = window.onload;
+    window.onload = function () {
+      oldLoadVa && oldLoadVa();
+      new Valine({
+        el: '#vcomments',
+        appId: 'Rco3KkjsoblXIpT244qC7agz-gzGzoHsz',
+        appKey: '1HXabhsimRHduyaGLXWruPnm',
+        placeholder: 'Just go go',
+        path: window.location.pathname,
+        avatar: 'wavatar',
+        meta: ["nick","mail","link"],
+        pageSize: '10',
+        lang: '',
+        visitor: 'false',
+        highlight: true,
+        recordIP: true,
+        
+        
+        
+        enableQQ: 'false',
+        requiredFields: [],
+      });
+    };
+  </script>
+
+  </div>
+
+<div 
+  class="card card-content toc-card" 
+  id="mobiletoc">
+  <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90"><span class="toc-text">问题分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E7%BD%91%E9%A1%B5%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84-OpenID-%E9%AA%8C%E8%AF%81"><span class="toc-text">基于网页浏览器的 OpenID 验证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B%E6%8F%8F%E8%BF%B0"><span class="toc-text">流程描述</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E6%93%8D%E4%BD%9C"><span class="toc-text">具体操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%B3%E8%AF%B7%E4%B8%80%E4%B8%AA%E7%94%A8%E6%9D%A5%E6%A0%A1%E9%AA%8C%E4%BF%A1%E6%81%AF%E7%9A%84-ApiKey"><span class="toc-text">申请一个用来校验信息的 ApiKey</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E7%94%A8%E6%9D%A5%E7%99%BB%E5%BD%95%E7%9A%84%E9%93%BE%E6%8E%A5"><span class="toc-text">构造用来登录的链接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%A1%E9%AA%8CSteam%E8%BF%94%E5%9B%9E%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="toc-text">校验Steam返回的数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E7%94%A8%E6%88%B7%E7%9A%84SteamID%E6%9D%A5%E8%8E%B7%E5%8F%96%E7%94%A8%E6%88%B7%E7%9A%84%E4%B8%AA%E4%BA%BA%E4%BF%A1%E6%81%AF"><span class="toc-text">通过用户的SteamID来获取用户的个人信息</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD-amp-%E4%B8%80%E4%BA%9B%E5%B0%8F%E9%97%AE%E9%A2%98"><span class="toc-text">结语 &amp; 一些小问题</span></a></li></ol>
+</div></main>
+            <aside class="left-column">
+              
+              <div class="card card-author">
+                
+  <img 
+    src="//mariaovo.icu/img/f.png" 
+    class="author-img"
+    width="88"
+    height="88"
+    alt="author avatar">
+
+<p class="author-name">Maria</p>
+<p class="author-description">呆在地球的日子</p>
+<div class="author-message">
+  <a 
+    class="author-posts-count" 
+    href="/archives">
+    <span>3</span>
+    <span>文章</span>
+  </a>
+  <a 
+    class="author-categories-count" 
+    href="/categories">
+    <span>2</span>
+    <span>分类</span>
+  </a>
+  <a 
+    class="author-tags-count" 
+    href="/tags">
+    <span>4</span>
+    <span>标签</span>
+  </a>
+</div>
+
+  <div class="author-card-society">
+    
+      <div class="author-card-society-icon">
+        <a target="_blank" rel="noopener" href="https://github.com/Realzzz1874">
+          <i class="iconfont icon-github society-icon"></i>
+        </a>
+      </div>
+    
+  </div>
+
+              </div>
+               <div class="sticky-tablet">
+  
+  
+    <article class="display-when-two-columns spacer">
+      <div class="card card-content toc-card">
+        <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90"><span class="toc-text">问题分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E7%BD%91%E9%A1%B5%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84-OpenID-%E9%AA%8C%E8%AF%81"><span class="toc-text">基于网页浏览器的 OpenID 验证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B%E6%8F%8F%E8%BF%B0"><span class="toc-text">流程描述</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E6%93%8D%E4%BD%9C"><span class="toc-text">具体操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%B3%E8%AF%B7%E4%B8%80%E4%B8%AA%E7%94%A8%E6%9D%A5%E6%A0%A1%E9%AA%8C%E4%BF%A1%E6%81%AF%E7%9A%84-ApiKey"><span class="toc-text">申请一个用来校验信息的 ApiKey</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E7%94%A8%E6%9D%A5%E7%99%BB%E5%BD%95%E7%9A%84%E9%93%BE%E6%8E%A5"><span class="toc-text">构造用来登录的链接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%A1%E9%AA%8CSteam%E8%BF%94%E5%9B%9E%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="toc-text">校验Steam返回的数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E7%94%A8%E6%88%B7%E7%9A%84SteamID%E6%9D%A5%E8%8E%B7%E5%8F%96%E7%94%A8%E6%88%B7%E7%9A%84%E4%B8%AA%E4%BA%BA%E4%BF%A1%E6%81%AF"><span class="toc-text">通过用户的SteamID来获取用户的个人信息</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD-amp-%E4%B8%80%E4%BA%9B%E5%B0%8F%E9%97%AE%E9%A2%98"><span class="toc-text">结语 &amp; 一些小问题</span></a></li></ol>
+      </div>
+    </article>
+  
+  
+  <article class="card card-content categories-widget">
+    <div class="categories-card">
+  <div class="categories-header">
+    <i 
+      class="iconfont icon-fenlei" 
+      style="padding-right: 2px;">
+    </i>分类
+  </div>
+  <div class="categories-list">
+    
+      <a href="/categories/%E5%B0%8F%E8%BD%AE%E5%AD%90/">
+        <div class="categories-list-item">
+          小轮子
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/">
+        <div class="categories-list-item">
+          技术分享
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  <article class="card card-content tags-widget">
+    <div class="tags-card">
+  <div class="tags-header">
+    <i 
+      class="iconfont icon-biaoqian" 
+      style="padding-right: 2px;">
+    </i>热门标签
+  </div>
+  <div class="tags-list">
+    
+      <a 
+        href="/tags/Web/" 
+        title="Web">
+        <div class="tags-list-item">Web</div>
+      </a>
+    
+      <a 
+        href="/tags/Steam/" 
+        title="Steam">
+        <div class="tags-list-item">Steam</div>
+      </a>
+    
+      <a 
+        href="/tags/%E9%9F%B3%E4%B9%90/" 
+        title="音乐">
+        <div class="tags-list-item">音乐</div>
+      </a>
+    
+      <a 
+        href="/tags/Python/" 
+        title="Python">
+        <div class="tags-list-item">Python</div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+            <aside class="right-column">
+              <div class="sticky-widescreen">
+  
+  
+    <article class="card card-content toc-card">
+      <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90"><span class="toc-text">问题分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E7%BD%91%E9%A1%B5%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84-OpenID-%E9%AA%8C%E8%AF%81"><span class="toc-text">基于网页浏览器的 OpenID 验证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B%E6%8F%8F%E8%BF%B0"><span class="toc-text">流程描述</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E6%93%8D%E4%BD%9C"><span class="toc-text">具体操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%B3%E8%AF%B7%E4%B8%80%E4%B8%AA%E7%94%A8%E6%9D%A5%E6%A0%A1%E9%AA%8C%E4%BF%A1%E6%81%AF%E7%9A%84-ApiKey"><span class="toc-text">申请一个用来校验信息的 ApiKey</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E7%94%A8%E6%9D%A5%E7%99%BB%E5%BD%95%E7%9A%84%E9%93%BE%E6%8E%A5"><span class="toc-text">构造用来登录的链接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%A1%E9%AA%8CSteam%E8%BF%94%E5%9B%9E%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="toc-text">校验Steam返回的数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E7%94%A8%E6%88%B7%E7%9A%84SteamID%E6%9D%A5%E8%8E%B7%E5%8F%96%E7%94%A8%E6%88%B7%E7%9A%84%E4%B8%AA%E4%BA%BA%E4%BF%A1%E6%81%AF"><span class="toc-text">通过用户的SteamID来获取用户的个人信息</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD-amp-%E4%B8%80%E4%BA%9B%E5%B0%8F%E9%97%AE%E9%A2%98"><span class="toc-text">结语 &amp; 一些小问题</span></a></li></ol>
+    </article>
+  
+  
+  <article class="card card-content">
+    <div class="recent-posts-card">
+  <div class="recent-posts-header">
+    <i 
+      class="iconfont icon-wenzhang_huaban" 
+      style="padding-right: 2px;">
+    </i>最近文章
+  </div>
+  <div class="recent-posts-list">
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-08-21</div>
+        <a href="/2021/08/21/music/"><div class="recent-posts-item-content">音乐格式转换</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-08-21</div>
+        <a href="/2021/08/21/steam/"><div class="recent-posts-item-content">使用Steam作为第三方账号登录你的网站</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2021-08-21</div>
+        <a href="/2021/08/21/hello-world/"><div class="recent-posts-item-content">Hello World</div></a>
+      </div>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <footer class="footer">
+  <div class="footer-container">
+    <div>
+      <div class="footer-dsc">
+        <span>
+          Copyright ©
+          
+            2021 -
+          
+          2021
+        </span>
+        &nbsp;
+        <a 
+          href="/" 
+          class="footer-link">
+          居家呆猫
+        </a>
+      </div>
+    </div>
+
+    
+    
+    
+    
+      <div class="footer-dsc">
+        
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        
+        
+          <span>&nbsp;|&nbsp;</span>
+        
+        
+          本站总访客数<span id="busuanzi_value_site_uv"></span>次
+        
+      </div>
+      
+    
+</footer> 
+    
+  <a 
+    role="button" 
+    id="scrollbutton" 
+    class="basebutton" 
+    aria-label="回到顶部">
+    <i class="iconfont icon-arrowleft button-icon"></i>
+  </a>
+
+<a 
+  role="button" 
+  id="menubutton"
+  aria-label="menu button"
+  class="basebutton">
+  <i class="iconfont icon-menu button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="popbutton" 
+  class="basebutton" 
+  aria-label="控制中心">
+  <i class="iconfont icon-expand button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="darkbutton" 
+  class="basebutton darkwidget" 
+  aria-label="夜色模式">
+  <i class="iconfont icon-weather button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="searchbutton" 
+  class="basebutton searchwidget" 
+  aria-label="搜索">
+  <i class="iconfont icon-search button-icon"></i>
+</a> 
+     
+     
+     
+      <script>
+  var addImgLayout = function () {
+    var img = document.querySelectorAll('.post-content img')
+    var i
+    for (i = 0; i < img.length; i++) {
+      var wrapper = document.createElement('a')
+      wrapper.setAttribute('href', img[i].getAttribute('data-src'))
+      wrapper.setAttribute('aria-label', 'illustration')
+      wrapper.style.cssText =
+        'width: 100%; display: flex; justify-content: center;'
+      if (img[i].alt) wrapper.dataset.caption = img[i].alt
+      wrapper.dataset.nolink = true
+      img[i].before(wrapper)
+      wrapper.append(img[i])
+      var divWrap = document.createElement('div')
+      divWrap.classList.add('gallery')
+      wrapper.before(divWrap)
+      divWrap.append(wrapper)
+    }
+    baguetteBox.run('.gallery')
+  }
+</script>
+<script>
+  loadScript(
+    "/js/lib/lightbox/baguetteBox.min.js",
+    addImgLayout
+  )
+</script>
+ 
+     
+     
+    <script src="/js/main.js"></script> 
+    
+      <script> 
+        loadScript('/js/lib/busuanzi.min.js') 
+      </script>
+     
+    
+      <script>
+        var addLazyload = function () {
+          var observer = lozad('.lozad', {
+            load: function (el) {
+              el.srcset = el.getAttribute('data-src')
+            },
+            loaded: function (el) {
+              el.classList.add('loaded')
+            },
+          })
+          observer.observe()
+        }
+      </script>
+      <script>
+        loadScript('/js/lib/lozad.min.js', addLazyload)
+      </script>
+     
+    
+    
+      <script>
+        setTimeout(() => {localSearch("search.json")}, 0)
+      </script>
+    
+  </body>
+</html>
