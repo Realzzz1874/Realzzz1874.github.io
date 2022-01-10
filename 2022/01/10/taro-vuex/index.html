@@ -332,7 +332,7 @@
     
     
       <span class="dot"></span>
-      <span>547 字</span>
+      <span>545 字</span>
     
   </div>
   
@@ -446,40 +446,38 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
 <ol start="2">
 <li>再改 <code>src/store/index.js</code></li>
 </ol>
-  <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">    <span class="token comment">// 部分代码</span>
-    <span class="token keyword">import</span> Taro <span class="token keyword">from</span> <span class="token string">'@tarojs/taro'</span>
-    plugins<span class="token operator">:</span> <span class="token punctuation">[</span>
-      <span class="token function">persistedState</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-        storage<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-          <span class="token function-variable function">getItem</span><span class="token operator">:</span> <span class="token parameter">key</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
-            <span class="token keyword">return</span> Taro<span class="token punctuation">.</span><span class="token function">getStorageSync</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span>
-          <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-          <span class="token function-variable function">setItem</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">key<span class="token punctuation">,</span> value</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
-            Taro<span class="token punctuation">.</span><span class="token function">setStorageSync</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">)</span>
-          <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-          <span class="token function-variable function">removeItem</span><span class="token operator">:</span> <span class="token parameter">key</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
-            Taro<span class="token punctuation">.</span><span class="token function">removeStorageSync</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span>
-          <span class="token punctuation">&#125;</span>
-        <span class="token punctuation">&#125;</span>
-      <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-    <span class="token punctuation">]</span>
-      
-    <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token template-punctuation string">`</span></span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token template-punctuation string">`</span></span>
-  <span class="token operator">**</span><span class="token operator">*</span>将 <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">getItem</span><span class="token template-punctuation string">`</span></span>、<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">setItem</span><span class="token template-punctuation string">`</span></span>、<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">removeItem</span><span class="token template-punctuation string">`</span></span> 全部改成 <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Taro</span><span class="token template-punctuation string">`</span></span> 调用<span class="token operator">**</span><span class="token operator">*</span>
-
-  编译正常。
-
-
-<span class="token operator">*</span> 业务测试
-
-  <span class="token number">1.</span> 获取 <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">state</span><span class="token template-punctuation string">`</span></span>
-
-  <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token template-punctuation string">`</span></span>`javascript
-    computed<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-      <span class="token function">nickname</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$store<span class="token punctuation">.</span>state<span class="token punctuation">.</span>userinfo<span class="token punctuation">.</span>nickname
+  <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 部分代码</span>
+<span class="token keyword">import</span> Taro <span class="token keyword">from</span> <span class="token string">'@tarojs/taro'</span>
+plugins<span class="token operator">:</span> <span class="token punctuation">[</span>
+  <span class="token function">persistedState</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+    storage<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+      <span class="token function-variable function">getItem</span><span class="token operator">:</span> <span class="token parameter">key</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> Taro<span class="token punctuation">.</span><span class="token function">getStorageSync</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span>
+      <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+      <span class="token function-variable function">setItem</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">key<span class="token punctuation">,</span> value</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+        Taro<span class="token punctuation">.</span><span class="token function">setStorageSync</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">)</span>
+      <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+      <span class="token function-variable function">removeItem</span><span class="token operator">:</span> <span class="token parameter">key</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+        Taro<span class="token punctuation">.</span><span class="token function">removeStorageSync</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span>
       <span class="token punctuation">&#125;</span>
-    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token punctuation">]</span>
+  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><em><strong>将 <code>getItem</code>、<code>setItem</code>、<code>removeItem</code> 全部改成 <code>Taro</code> 调用</strong></em></p>
+<p>编译正常。</p>
+</li>
+</ul>
+<ul>
+<li><p>业务测试</p>
+<ol>
+<li>获取 <code>state</code></li>
+</ol>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">computed<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+  <span class="token function">nickname</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$store<span class="token punctuation">.</span>state<span class="token punctuation">.</span>userinfo<span class="token punctuation">.</span>nickname
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <ol start="2">
 <li>触发 <code>mutations</code></li>
