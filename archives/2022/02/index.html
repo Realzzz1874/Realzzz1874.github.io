@@ -18,17 +18,17 @@
   <link 
     rel="icon" 
     href="//mariaovo.icu/img/head-smile.png">
-  <title>根据 IP 限制访问接口的频率</title>
+  <title>归档</title>
   
     
       <meta 
         property="og:title" 
-        content="根据 IP 限制访问接口的频率">
+        content="归档">
     
     
       <meta 
         property="og:url" 
-        content="http://mariaovo.icu/2021/10/20/ratelimit/index.html">
+        content="http://mariaovo.icu/archives/2022/02/index.html">
     
     
       <meta 
@@ -38,32 +38,8 @@
     
       <meta 
         property="og:img" 
-        content="根据IP限制访问接口的频率（ratelimit）的中间件【midway、eggjs】">
+        content="我思故我在">
     
-    
-      <meta 
-        property="og:type" 
-        content="article">
-      <meta 
-        property="og:article:published_time" 
-        content="2021-10-20">
-      <meta 
-        property="og:article:modified_time" 
-        content="2021-12-22">
-      <meta 
-        property="og:article:author" 
-        content="Maria">
-      
-        
-          <meta 
-            property="og:article:tag" 
-            content="BackEnd">
-        
-          <meta 
-            property="og:article:tag" 
-            content="node">
-        
-      
     
   
   <script>
@@ -205,8 +181,6 @@
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
   
-    <link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
-  
 <meta name="generator" content="Hexo 5.4.0"></head>
 
   <body>
@@ -306,209 +280,33 @@
         <div class="container">
           <div class="columns">
             <main class="main-column">
-<article class="card card-content">
-  <header>
-    <h1 class="post-title">
-      根据 IP 限制访问接口的频率
-    </h1>
-  </header>
-  <div class="post-meta post-show-meta">
-    <time datetime="2021-10-19T16:00:00.000Z">
-      <i 
-        class="iconfont icon-calendar" 
-        style="margin-right: 2px;">
-      </i>
-      <span>2021-10-20</span>
-    </time>
-    
-      <span class="dot"></span>
-      
-        <a 
-          href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" 
-          class="post-meta-link">
-          技术分享
-        </a>
-      
-    
-    
-      <span class="dot"></span>
-      <span>362 字</span>
-    
-  </div>
+<div class="card card-content">
+  <h1 class="widget-title">归档</h1>
+</div>
+<div class="archive-timeline">
   
-    <div 
-      class="post-meta post-show-meta" 
-      style="margin-top: -10px;">
-      <div style="display: flex; align-items: center;">
-        <i 
-          class="iconfont icon-biaoqian" 
-          style="margin-right: 2px; font-size: 1.15rem;">
-        </i>
-        
-          
-          <a 
-            href="/tags/BackEnd/" 
-            class="post-meta-link">
-            BackEnd
-          </a>
-        
-          
-            <span class="dot"></span>
-          
-          <a 
-            href="/tags/node/" 
-            class="post-meta-link">
-            node
-          </a>
-        
+  
+    
+      <div class="archive-timeline-tag"><span>2022</span></div>
+      
+    
+    <div class="archive-timeline-item">
+      <div class="archive-timeline-post">
+        <div class="card card-content">
+          <div class="archive-timeline-post-date">2022-02-09</div>
+          <div class="archive-timeline-post-content">
+            <a 
+              href="/2022/02/09/box-shadow/"
+              class="archive-timeline-post-item">
+              提升一点点也是值得的，使用 box-shadow 的时候应该避免重绘
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   
-  </header>
-  <div 
-    id="section" 
-    class="post-content">
-    <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>业务上线之后，经常会出现一些来路不明的人在持续不断的请求业务接口，这些请求就算没有产生数据安全问题也会对业务服务器产生一些压力，那么如何拦截这些请求就成了一个不得不去面对的问题。<br>解决方案有很多种，其中之一就是：<em><strong>根据 IP 限制访问接口的频率</strong></em></p>
-<h3 id="设计思路"><a href="#设计思路" class="headerlink" title="设计思路"></a>设计思路</h3><p>以10秒钟之内请求次数不超过20次为例</p>
-<ul>
-<li><p>把请求的 ip 和接口路由 path 拼接起来作为 key，把请求的次数作为 value，存进Redis，并设置过期时间为10秒</p>
-</li>
-<li><p>第一次请求设置 value 为1，以后每次请求 value + 1</p>
-</li>
-<li><p>每一次请求都重置过期时间，并且判断 value 是否大于 10</p>
-</li>
-<li><p>如果没过期，且 value 大于 10，则是应该被限制的请求</p>
-</li>
-</ul>
-<h3 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h3><p>以 eggjs/midway 中间件为例</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">
-<span class="token keyword">const</span> cacheName <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>ip<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">-</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>path<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span> <span class="token comment">// key</span>
-
-<span class="token keyword">const</span> ttl <span class="token operator">=</span> <span class="token keyword">await</span> redisService<span class="token punctuation">.</span><span class="token function">ttl</span><span class="token punctuation">(</span>cacheName<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// key是否有剩余时间</span>
-
-<span class="token keyword">if</span> <span class="token punctuation">(</span>ttl <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-  <span class="token keyword">const</span> count <span class="token operator">=</span> <span class="token keyword">await</span> redisService<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span>cacheName<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// key已经请求的次数</span>
-  <span class="token keyword">if</span> <span class="token punctuation">(</span>count <span class="token operator">&amp;&amp;</span> <span class="token operator">+</span>count <span class="token operator">&lt;</span> <span class="token number">20</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 如果还没到20次，次数加1，重置过期时间，正确返回</span>
-    <span class="token keyword">await</span> redisService<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>cacheName<span class="token punctuation">,</span> count <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> ttl<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">await</span> <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 次数大于阈值，拦截，返回429</span>
-    <span class="token keyword">throw</span> <span class="token function">Error</span><span class="token punctuation">(</span><span class="token string">'too many requests'</span><span class="token punctuation">,</span> <span class="token number">429</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
-   <span class="token comment">// ttl &lt; 0, 重新写</span>
-  <span class="token keyword">await</span> redisService<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>cacheName<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token keyword">await</span> <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-  </div>
-  <div>
-    
-      <div 
-        class="post-note note-warning copyright" 
-        style="margin-top: 42px">
-        <p>
-          <span style="font-weight: bold;">作者：</span><a 
-            target="_blank" 
-            rel="nofollow noopener noreferrer" 
-            href="/about">
-            Maria
-          </a>
-        </p>
-        <p>
-          <span style="font-weight: bold;">文章链接：</span><a 
-            target="_blank" 
-            rel="nofollow noopener noreferrer" 
-            href="http://mariaovo.icu/2021/10/20/ratelimit/">
-            http://mariaovo.icu/2021/10/20/ratelimit/
-          </a>
-        </p>
-        <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
-      </div>
-    
-  </div>
-</article>
-<div class="nav">
-  
-    <div class="nav-item-prev">
-      <a 
-        href="/2021/10/22/image-node/" 
-        class="nav-link">
-        <i class="iconfont icon-left nav-prev-icon"></i>
-        <div>
-          <div class="nav-label">上一篇</div>
-          
-            <div class="nav-title">【图片压缩二】使用node批量压缩图片 </div>
-          
-        </div>
-      </a>
-    </div>
-  
-  
-    <div class="nav-item-next">
-      <a 
-        href="/2021/10/19/image-tinypng-py/" 
-        class="nav-link">
-        <div>
-          <div class="nav-label">下一篇</div>
-          
-            <div class="nav-title">【图片压缩一】Python结合TinyPNG批量压缩图片 </div>
-          
-        </div>
-        <i class="iconfont icon-right nav-next-icon"></i>
-      </a>
-    </div>
-  
 </div>
-
-  <div 
-    class="card card-content comment-card" 
-    style="margin-top: 16px;">
-    <div class="comment-card-title">评论</div>
-    
-  <div id="vcomments"></div>
-  
-  <script>
-    loadScript("//unpkg.com/valine/dist/Valine.min.js");
-    var oldLoadVa = window.onload;
-    window.onload = function () {
-      oldLoadVa && oldLoadVa();
-      new Valine({
-        el: '#vcomments',
-        appId: 'Rco3KkjsoblXIpT244qC7agz-gzGzoHsz',
-        appKey: '1HXabhsimRHduyaGLXWruPnm',
-        placeholder: 'Just go go',
-        path: window.location.pathname,
-        avatar: 'wavatar',
-        meta: ["nick","mail","link"],
-        pageSize: '10',
-        lang: '',
-        visitor: 'false',
-        highlight: true,
-        recordIP: true,
-        
-        
-        
-        enableQQ: 'false',
-        requiredFields: [],
-      });
-    };
-  </script>
-
-  </div>
-
-<div 
-  class="card card-content toc-card" 
-  id="mobiletoc">
-  <div class="toc-header">
-  <i 
-    class="iconfont icon-menu" 
-    style="padding-right: 2px;">
-  </i>目录
-</div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF"><span class="toc-text">设计思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%AA%E4%BB%A3%E7%A0%81"><span class="toc-text">伪代码</span></a></li></ol>
-</div></main>
+</main>
             <aside class="left-column">
               
               <div class="card card-author">
@@ -556,18 +354,6 @@
               </div>
                <div class="sticky-tablet">
   
-  
-    <article class="display-when-two-columns spacer">
-      <div class="card card-content toc-card">
-        <div class="toc-header">
-  <i 
-    class="iconfont icon-menu" 
-    style="padding-right: 2px;">
-  </i>目录
-</div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF"><span class="toc-text">设计思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%AA%E4%BB%A3%E7%A0%81"><span class="toc-text">伪代码</span></a></li></ol>
-      </div>
-    </article>
   
   
   <article class="card card-content categories-widget">
@@ -679,21 +465,98 @@
   </article>
   
   
+    <article class="card card-content widescreen-archive archive-widget">
+      <div class="archive-card">
+  <div class="archive-card-header">
+    <i 
+      class="iconfont icon-wodebaobiao" 
+      style="padding-right: 2px;">
+    </i>归档
+  </div>
+  <div class="archive-card-list">
+    
+    
+    
+      
+        
+        
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a 
+            href="/archives/2022" 
+            class="archive-card-list-item">
+            2022
+            <span class="archive-card-list-item-badge">3</span>
+          </a>
+        
+        
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+    
+      <a 
+        href="/archives/2021" 
+        class="archive-card-list-item">
+        2021
+        <span class="archive-card-list-item-badge">10</span>
+      </a>
+    
+  </div>
+</div>
+    </article>
+  
 </div>
             </aside>
             <aside class="right-column">
               <div class="sticky-widescreen">
   
-  
-    <article class="card card-content toc-card">
-      <div class="toc-header">
-  <i 
-    class="iconfont icon-menu" 
-    style="padding-right: 2px;">
-  </i>目录
-</div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF"><span class="toc-text">设计思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%AA%E4%BB%A3%E7%A0%81"><span class="toc-text">伪代码</span></a></li></ol>
-    </article>
   
   
   <article class="card card-content">
@@ -730,6 +593,93 @@
 </div>
   </article>
   
+  
+    <article class="card card-content">
+      <div class="archive-card">
+  <div class="archive-card-header">
+    <i 
+      class="iconfont icon-wodebaobiao" 
+      style="padding-right: 2px;">
+    </i>归档
+  </div>
+  <div class="archive-card-list">
+    
+    
+    
+      
+        
+        
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a 
+            href="/archives/2022" 
+            class="archive-card-list-item">
+            2022
+            <span class="archive-card-list-item-badge">3</span>
+          </a>
+        
+        
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+    
+      <a 
+        href="/archives/2021" 
+        class="archive-card-list-item">
+        2021
+        <span class="archive-card-list-item-badge">10</span>
+      </a>
+    
+  </div>
+</div>
+    </article>
   
 </div>
             </aside>
@@ -815,36 +765,6 @@
 </a> 
      
      
-     
-      <script>
-  var addImgLayout = function () {
-    var img = document.querySelectorAll('.post-content img')
-    var i
-    for (i = 0; i < img.length; i++) {
-      var wrapper = document.createElement('a')
-      wrapper.setAttribute('href', img[i].getAttribute('data-src'))
-      wrapper.setAttribute('aria-label', 'illustration')
-      wrapper.style.cssText =
-        'width: 100%; display: flex; justify-content: center;'
-      if (img[i].alt) wrapper.dataset.caption = img[i].alt
-      wrapper.dataset.nolink = true
-      img[i].before(wrapper)
-      wrapper.append(img[i])
-      var divWrap = document.createElement('div')
-      divWrap.classList.add('gallery')
-      wrapper.before(divWrap)
-      divWrap.append(wrapper)
-    }
-    baguetteBox.run('.gallery')
-  }
-</script>
-<script>
-  loadScript(
-    "/js/lib/lightbox/baguetteBox.min.js",
-    addImgLayout
-  )
-</script>
- 
      
      
     <script src="/js/main.js"></script> 

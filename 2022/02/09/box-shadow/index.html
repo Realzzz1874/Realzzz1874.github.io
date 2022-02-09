@@ -18,17 +18,17 @@
   <link 
     rel="icon" 
     href="//mariaovo.icu/img/head-smile.png">
-  <title>根据 IP 限制访问接口的频率</title>
+  <title>提升一点点也是值得的，使用 box-shadow 的时候应该避免重绘</title>
   
     
       <meta 
         property="og:title" 
-        content="根据 IP 限制访问接口的频率">
+        content="提升一点点也是值得的，使用 box-shadow 的时候应该避免重绘">
     
     
       <meta 
         property="og:url" 
-        content="http://mariaovo.icu/2021/10/20/ratelimit/index.html">
+        content="http://mariaovo.icu/2022/02/09/box-shadow/index.html">
     
     
       <meta 
@@ -38,7 +38,7 @@
     
       <meta 
         property="og:img" 
-        content="根据IP限制访问接口的频率（ratelimit）的中间件【midway、eggjs】">
+        content="如何设置 box-shadow 避免重绘？">
     
     
       <meta 
@@ -46,10 +46,10 @@
         content="article">
       <meta 
         property="og:article:published_time" 
-        content="2021-10-20">
+        content="2022-02-09">
       <meta 
         property="og:article:modified_time" 
-        content="2021-12-22">
+        content="2022-02-09">
       <meta 
         property="og:article:author" 
         content="Maria">
@@ -57,11 +57,11 @@
         
           <meta 
             property="og:article:tag" 
-            content="BackEnd">
+            content="Web">
         
           <meta 
             property="og:article:tag" 
-            content="node">
+            content="CSS">
         
       
     
@@ -309,16 +309,16 @@
 <article class="card card-content">
   <header>
     <h1 class="post-title">
-      根据 IP 限制访问接口的频率
+      提升一点点也是值得的，使用 box-shadow 的时候应该避免重绘
     </h1>
   </header>
   <div class="post-meta post-show-meta">
-    <time datetime="2021-10-19T16:00:00.000Z">
+    <time datetime="2022-02-08T16:00:00.000Z">
       <i 
         class="iconfont icon-calendar" 
         style="margin-right: 2px;">
       </i>
-      <span>2021-10-20</span>
+      <span>2022-02-09</span>
     </time>
     
       <span class="dot"></span>
@@ -332,7 +332,7 @@
     
     
       <span class="dot"></span>
-      <span>362 字</span>
+      <span>302 字</span>
     
   </div>
   
@@ -347,18 +347,18 @@
         
           
           <a 
-            href="/tags/BackEnd/" 
+            href="/tags/Web/" 
             class="post-meta-link">
-            BackEnd
+            Web
           </a>
         
           
             <span class="dot"></span>
           
           <a 
-            href="/tags/node/" 
+            href="/tags/CSS/" 
             class="post-meta-link">
-            node
+            CSS
           </a>
         
       </div>
@@ -368,39 +368,48 @@
   <div 
     id="section" 
     class="post-content">
-    <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>业务上线之后，经常会出现一些来路不明的人在持续不断的请求业务接口，这些请求就算没有产生数据安全问题也会对业务服务器产生一些压力，那么如何拦截这些请求就成了一个不得不去面对的问题。<br>解决方案有很多种，其中之一就是：<em><strong>根据 IP 限制访问接口的频率</strong></em></p>
-<h3 id="设计思路"><a href="#设计思路" class="headerlink" title="设计思路"></a>设计思路</h3><p>以10秒钟之内请求次数不超过20次为例</p>
-<ul>
-<li><p>把请求的 ip 和接口路由 path 拼接起来作为 key，把请求的次数作为 value，存进Redis，并设置过期时间为10秒</p>
-</li>
-<li><p>第一次请求设置 value 为1，以后每次请求 value + 1</p>
-</li>
-<li><p>每一次请求都重置过期时间，并且判断 value 是否大于 10</p>
-</li>
-<li><p>如果没过期，且 value 大于 10，则是应该被限制的请求</p>
-</li>
-</ul>
-<h3 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h3><p>以 eggjs/midway 中间件为例</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">
-<span class="token keyword">const</span> cacheName <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>ip<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">-</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>path<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span> <span class="token comment">// key</span>
+    <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在渲染长列表的时候，经常有这样的需求：悬浮在列表的 item 上，会“高亮”显示当前的 hover 内容，虽然数据量少的时候没有明显的卡顿感受，但是如果数据量过大或者操作过于频繁，就会感受到页面有一点点的“呆滞”。</p>
+<h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>直接动态添加 <code>box-shadow</code> 属性的时候，每一次操作都会进行重绘 (<code>repaint</code>)，会损耗页面渲染的性能。</p>
+<h3 id="优化方案"><a href="#优化方案" class="headerlink" title="优化方案"></a>优化方案</h3><p><em><strong>通过修改伪类元素的透明度来实现 box-shadow</strong></em></p>
+<p>原理：通过改变透明度，这样其实是从一个非默认值来更新它的值，不需要进行重绘。</p>
+<h3 id="写法对比"><a href="#写法对比" class="headerlink" title="写法对比"></a>写法对比</h3><h4 id="old"><a href="#old" class="headerlink" title="old"></a>old</h4><pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>old<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<span class="token keyword">const</span> ttl <span class="token operator">=</span> <span class="token keyword">await</span> redisService<span class="token punctuation">.</span><span class="token function">ttl</span><span class="token punctuation">(</span>cacheName<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// key是否有剩余时间</span>
+<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.old</span> <span class="token punctuation">&#123;</span>
+  <span class="token property">padding</span><span class="token punctuation">:</span> 20px<span class="token punctuation">;</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> #ffffff<span class="token punctuation">;</span>
+  <span class="token property">transition</span><span class="token punctuation">:</span> 0.2s<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token selector">.old:hover</span> <span class="token punctuation">&#123;</span>
+  <span class="token property">box-shadow</span><span class="token punctuation">:</span> 0 0 10px 0 <span class="token function">rgba</span><span class="token punctuation">(</span>0<span class="token punctuation">,</span> 0<span class="token punctuation">,</span> 0<span class="token punctuation">,</span> 0.3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<span class="token keyword">if</span> <span class="token punctuation">(</span>ttl <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-  <span class="token keyword">const</span> count <span class="token operator">=</span> <span class="token keyword">await</span> redisService<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span>cacheName<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// key已经请求的次数</span>
-  <span class="token keyword">if</span> <span class="token punctuation">(</span>count <span class="token operator">&amp;&amp;</span> <span class="token operator">+</span>count <span class="token operator">&lt;</span> <span class="token number">20</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 如果还没到20次，次数加1，重置过期时间，正确返回</span>
-    <span class="token keyword">await</span> redisService<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>cacheName<span class="token punctuation">,</span> count <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> ttl<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">await</span> <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 次数大于阈值，拦截，返回429</span>
-    <span class="token keyword">throw</span> <span class="token function">Error</span><span class="token punctuation">(</span><span class="token string">'too many requests'</span><span class="token punctuation">,</span> <span class="token number">429</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
-   <span class="token comment">// ttl &lt; 0, 重新写</span>
-  <span class="token keyword">await</span> redisService<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>cacheName<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token keyword">await</span> <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="new"><a href="#new" class="headerlink" title="new"></a>new</h4><pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>new<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ol>
+<li>设置一个空的伪元素，设置它的透明度为0</li>
+</ol>
+<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.new::after</span> <span class="token punctuation">&#123;</span>
+    <span class="token property">content</span><span class="token punctuation">:</span> <span class="token string">""</span><span class="token punctuation">;</span>
+    <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>  
+    <span class="token property">top</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+    <span class="token property">right</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+    <span class="token property">bottom</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>  
+    <span class="token property">left</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+    <span class="token property">z-index</span><span class="token punctuation">:</span> -1<span class="token punctuation">;</span>
+    <span class="token property">box-shadow</span><span class="token punctuation">:</span> 0 0 10px 0 <span class="token function">rgba</span><span class="token punctuation">(</span>0<span class="token punctuation">,</span> 0<span class="token punctuation">,</span> 0<span class="token punctuation">,</span> 0.3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token property">opacity</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+    <span class="token property">will-change</span><span class="token punctuation">:</span> opacity<span class="token punctuation">;</span>
+    <span class="token property">transition</span><span class="token punctuation">:</span> 0.2s<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol start="2">
+<li>通过鼠标悬停，恢复它的透明度</li>
+</ol>
+<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.new:hover::after</span> <span class="token punctuation">&#123;</span>
+  <span class="token property">opacity</span><span class="token punctuation">:</span> 1<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><p><img src="https://tobiasahlin.com/static/animate-box-shadow/demo.gif" alt="image.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://tobiasahlin.com/static/animate-box-shadow/demo.gif" class="lozad post-image"></p>
 
   </div>
   <div>
@@ -420,8 +429,8 @@
           <span style="font-weight: bold;">文章链接：</span><a 
             target="_blank" 
             rel="nofollow noopener noreferrer" 
-            href="http://mariaovo.icu/2021/10/20/ratelimit/">
-            http://mariaovo.icu/2021/10/20/ratelimit/
+            href="http://mariaovo.icu/2022/02/09/box-shadow/">
+            http://mariaovo.icu/2022/02/09/box-shadow/
           </a>
         </p>
         <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
@@ -431,29 +440,15 @@
 </article>
 <div class="nav">
   
-    <div class="nav-item-prev">
-      <a 
-        href="/2021/10/22/image-node/" 
-        class="nav-link">
-        <i class="iconfont icon-left nav-prev-icon"></i>
-        <div>
-          <div class="nav-label">上一篇</div>
-          
-            <div class="nav-title">【图片压缩二】使用node批量压缩图片 </div>
-          
-        </div>
-      </a>
-    </div>
-  
   
     <div class="nav-item-next">
       <a 
-        href="/2021/10/19/image-tinypng-py/" 
+        href="/2022/01/27/css-reset/" 
         class="nav-link">
         <div>
           <div class="nav-label">下一篇</div>
           
-            <div class="nav-title">【图片压缩一】Python结合TinyPNG批量压缩图片 </div>
+            <div class="nav-title">My Custom CSS Reset </div>
           
         </div>
         <i class="iconfont icon-right nav-next-icon"></i>
@@ -507,7 +502,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF"><span class="toc-text">设计思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%AA%E4%BB%A3%E7%A0%81"><span class="toc-text">伪代码</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E5%9B%A0"><span class="toc-text">原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88"><span class="toc-text">优化方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99%E6%B3%95%E5%AF%B9%E6%AF%94"><span class="toc-text">写法对比</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#old"><span class="toc-text">old</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#new"><span class="toc-text">new</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%88%E6%9E%9C"><span class="toc-text">效果</span></a></li></ol>
 </div></main>
             <aside class="left-column">
               
@@ -565,7 +560,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF"><span class="toc-text">设计思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%AA%E4%BB%A3%E7%A0%81"><span class="toc-text">伪代码</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E5%9B%A0"><span class="toc-text">原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88"><span class="toc-text">优化方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99%E6%B3%95%E5%AF%B9%E6%AF%94"><span class="toc-text">写法对比</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#old"><span class="toc-text">old</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#new"><span class="toc-text">new</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%88%E6%9E%9C"><span class="toc-text">效果</span></a></li></ol>
       </div>
     </article>
   
@@ -692,7 +687,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF"><span class="toc-text">设计思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%AA%E4%BB%A3%E7%A0%81"><span class="toc-text">伪代码</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E5%9B%A0"><span class="toc-text">原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88"><span class="toc-text">优化方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99%E6%B3%95%E5%AF%B9%E6%AF%94"><span class="toc-text">写法对比</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#old"><span class="toc-text">old</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#new"><span class="toc-text">new</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%88%E6%9E%9C"><span class="toc-text">效果</span></a></li></ol>
     </article>
   
   
