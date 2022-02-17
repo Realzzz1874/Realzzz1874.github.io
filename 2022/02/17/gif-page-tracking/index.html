@@ -18,27 +18,27 @@
   <link 
     rel="icon" 
     href="//mariaovo.icu/img/head-smile.png">
-  <title>Hello World</title>
+  <title>前端监控埋点方案（GIF）</title>
   
     
       <meta 
         property="og:title" 
-        content="Hello World">
+        content="前端监控埋点方案（GIF）">
     
     
       <meta 
         property="og:url" 
-        content="http://mariaovo.icu/2021/08/18/hello-world/index.html">
+        content="http://mariaovo.icu/2022/02/17/gif-page-tracking/index.html">
     
     
       <meta 
         property="og:img" 
-        content="//mariaovo.icu/img/banner-index.png">
+        content="//mariaovo.icu/img/head-lwj.png">
     
     
       <meta 
         property="og:img" 
-        content="关于我又开始写博客这件事">
+        content="为什么前端埋点都喜欢选择采用 GIF 来做呢">
     
     
       <meta 
@@ -46,14 +46,18 @@
         content="article">
       <meta 
         property="og:article:published_time" 
-        content="2021-08-18">
+        content="2022-02-17">
       <meta 
         property="og:article:modified_time" 
-        content="2021-08-28">
+        content="2022-02-17">
       <meta 
         property="og:article:author" 
         content="Maria">
       
+        
+          <meta 
+            property="og:article:tag" 
+            content="FrontEnd">
         
       
     
@@ -298,49 +302,117 @@
         <div class="container">
           <div class="columns">
             <main class="main-column">
-  <div class="image-wrapper">
-    <img 
-      src="//mariaovo.icu/img/banner-index.png" 
-      data-src="//mariaovo.icu/img/banner-index.png"
-      srcset="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20300%20300&#39;%3E%3C/svg%3E"
-      class="image lozad"
-      alt="Hello World thumbnail">
-  </div>
-
 <article class="card card-content">
   <header>
     <h1 class="post-title">
-      Hello World
+      前端监控埋点方案（GIF）
     </h1>
   </header>
   <div class="post-meta post-show-meta">
-    <time datetime="2021-08-17T16:00:00.000Z">
+    <time datetime="2022-02-16T16:00:00.000Z">
       <i 
         class="iconfont icon-calendar" 
         style="margin-right: 2px;">
       </i>
-      <span>2021-08-18</span>
+      <span>2022-02-17</span>
     </time>
+    
+      <span class="dot"></span>
+      
+        <a 
+          href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" 
+          class="post-meta-link">
+          技术分享
+        </a>
+      
     
     
       <span class="dot"></span>
-      <span>229 字</span>
+      <span>406 字</span>
     
   </div>
+  
+    <div 
+      class="post-meta post-show-meta" 
+      style="margin-top: -10px;">
+      <div style="display: flex; align-items: center;">
+        <i 
+          class="iconfont icon-biaoqian" 
+          style="margin-right: 2px; font-size: 1.15rem;">
+        </i>
+        
+          
+          <a 
+            href="/tags/FrontEnd/" 
+            class="post-meta-link">
+            FrontEnd
+          </a>
+        
+      </div>
+    </div>
   
   </header>
   <div 
     id="section" 
     class="post-content">
-    <h2 id="关于我又开始写博客这件事"><a href="#关于我又开始写博客这件事" class="headerlink" title="关于我又开始写博客这件事"></a>关于我又开始写博客这件事</h2><h3 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h3><p>大约两个月前，我加入了一个很有活力的创业团队。这两个月里，我作为一面的面试官参与了几次招聘，并且工作模式也从原来的瀑布式开发转成了敏捷式开发。在这个过程中，我愈发意识到良好的语言表达能力在日常生活与工作中的重要性。因此我决定开始通过写文章的方式来提升自己的语言组织能力与表述能力。</p>
-<h3 id="大概会写些什么内容"><a href="#大概会写些什么内容" class="headerlink" title="大概会写些什么内容"></a>大概会写些什么内容</h3><ol>
-<li><p>日常工作遇到的一些问题，包括但不限于：<br>前端：Vue、Nuxt、js/ts、CSS、Webpack等<br>后端：Node<br>爬虫：Node、Python<br>数据库：MySQL、TypeORM等</p>
+    <h3 id="为什么需要埋点"><a href="#为什么需要埋点" class="headerlink" title="为什么需要埋点"></a>为什么需要埋点</h3><p>互联网 2.0 时代的产品比较喜欢讲究千人千面，运营与产品团队非常注重观察用户使用产品的行为轨迹，从而能够精准推荐到“猜你喜欢”。研发团队也会非常关注产品的性能和异常，确保产品的高性能以及高安全性。</p>
+<h3 id="埋点-amp-上报"><a href="#埋点-amp-上报" class="headerlink" title="埋点 &amp; 上报"></a>埋点 &amp; 上报</h3><h4 id="埋点（监控）内容"><a href="#埋点（监控）内容" class="headerlink" title="埋点（监控）内容"></a>埋点（监控）内容</h4><ul>
+<li><p>用户数据</p>
+<ul>
+<li>PV / UV</li>
+<li>点击位置 / 浏览位置 / 浏览时间</li>
+<li>入口</li>
+<li>触发的行为</li>
+<li>……</li>
+</ul>
 </li>
-<li><p>一些阅读积累，包括但不限于：<br> 技术型书籍阅读笔记<br> 文学性书籍读后感</p>
+<li><p>页面性能</p>
+<ul>
+<li>不同用户不同机型不同系统加载时间</li>
+<li>接口请求时间 / 页面渲染时间</li>
+<li>……</li>
+</ul>
 </li>
-<li><p>造一些小轮子</p>
+<li><p>系统异常</p>
+<ul>
+<li>系统报错</li>
+<li>……</li>
+</ul>
 </li>
-</ol>
+</ul>
+<h4 id="上报"><a href="#上报" class="headerlink" title="上报"></a>上报</h4><p>常见上报方式：</p>
+<ul>
+<li><p>请求接口</p>
+</li>
+<li><p>请求普通文件</p>
+</li>
+<li><p>请求图片</p>
+</li>
+</ul>
+<p>弊端：</p>
+<ul>
+<li><p>请求接口：场景复杂，容易出现跨域</p>
+</li>
+<li><p>请求普通文件（js/css/ttf 等）：浏览器创建 DOM 树之后才会请求资源节点，大量请求 js/css 等资源还会阻塞页面渲染</p>
+</li>
+</ul>
+<p>选择图片打点的原因：</p>
+<p>图片打点不需要操作 DOM，得利于 img 的 src 属性，只需要在 js 中 new 一个 image 对象就可以发起请求，而且也没有页面阻塞的问题。</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">
+<span class="token keyword">let</span> img <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Image</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+img<span class="token punctuation">.</span>src <span class="token operator">=</span> <span class="token string">'https://static.example.com/track.gif?data=xxx'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="图片为什么选择-GIF"><a href="#图片为什么选择-GIF" class="headerlink" title="图片为什么选择 GIF"></a>图片为什么选择 GIF</h4><p>同样是 1x1 像素的透明图片，GIF 的体积最小。</p>
+<ul>
+<li>最小的 BMP 文件需要 74 个字节</li>
+<li>最小的 PNG 需要 67 字节</li>
+<li>最小的 GIF 需要 43 字节</li>
+</ul>
+<h3 id="前端埋点选择-GIF-的主要原因"><a href="#前端埋点选择-GIF-的主要原因" class="headerlink" title="前端埋点选择 GIF 的主要原因"></a>前端埋点选择 GIF 的主要原因</h3><ul>
+<li>不跨域</li>
+<li>不阻塞页面加载</li>
+<li>体积小</li>
+</ul>
 
   </div>
   <div>
@@ -360,8 +432,8 @@
           <span style="font-weight: bold;">文章链接：</span><a 
             target="_blank" 
             rel="nofollow noopener noreferrer" 
-            href="http://mariaovo.icu/2021/08/18/hello-world/">
-            http://mariaovo.icu/2021/08/18/hello-world/
+            href="http://mariaovo.icu/2022/02/17/gif-page-tracking/">
+            http://mariaovo.icu/2022/02/17/gif-page-tracking/
           </a>
         </p>
         <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
@@ -371,20 +443,20 @@
 </article>
 <div class="nav">
   
-    <div class="nav-item-prev">
+  
+    <div class="nav-item-next">
       <a 
-        href="/2021/08/19/music/" 
+        href="/2022/02/09/box-shadow/" 
         class="nav-link">
-        <i class="iconfont icon-left nav-prev-icon"></i>
         <div>
-          <div class="nav-label">上一篇</div>
+          <div class="nav-label">下一篇</div>
           
-            <div class="nav-title">音乐格式转换 </div>
+            <div class="nav-title">提升一点点也是值得的，使用 box-shadow 的时候应该避免重绘 </div>
           
         </div>
+        <i class="iconfont icon-right nav-next-icon"></i>
       </a>
     </div>
-  
   
 </div>
 
@@ -433,7 +505,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%88%91%E5%8F%88%E5%BC%80%E5%A7%8B%E5%86%99%E5%8D%9A%E5%AE%A2%E8%BF%99%E4%BB%B6%E4%BA%8B"><span class="toc-text">关于我又开始写博客这件事</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%B7%E5%9B%A0"><span class="toc-text">起因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%A7%E6%A6%82%E4%BC%9A%E5%86%99%E4%BA%9B%E4%BB%80%E4%B9%88%E5%86%85%E5%AE%B9"><span class="toc-text">大概会写些什么内容</span></a></li></ol></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%9F%8B%E7%82%B9"><span class="toc-text">为什么需要埋点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%8B%E7%82%B9-amp-%E4%B8%8A%E6%8A%A5"><span class="toc-text">埋点 &amp; 上报</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%8B%E7%82%B9%EF%BC%88%E7%9B%91%E6%8E%A7%EF%BC%89%E5%86%85%E5%AE%B9"><span class="toc-text">埋点（监控）内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8A%E6%8A%A5"><span class="toc-text">上报</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9-GIF"><span class="toc-text">图片为什么选择 GIF</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E7%AB%AF%E5%9F%8B%E7%82%B9%E9%80%89%E6%8B%A9-GIF-%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8E%9F%E5%9B%A0"><span class="toc-text">前端埋点选择 GIF 的主要原因</span></a></li></ol>
 </div></main>
             <aside class="left-column">
               
@@ -491,7 +563,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%88%91%E5%8F%88%E5%BC%80%E5%A7%8B%E5%86%99%E5%8D%9A%E5%AE%A2%E8%BF%99%E4%BB%B6%E4%BA%8B"><span class="toc-text">关于我又开始写博客这件事</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%B7%E5%9B%A0"><span class="toc-text">起因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%A7%E6%A6%82%E4%BC%9A%E5%86%99%E4%BA%9B%E4%BB%80%E4%B9%88%E5%86%85%E5%AE%B9"><span class="toc-text">大概会写些什么内容</span></a></li></ol></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%9F%8B%E7%82%B9"><span class="toc-text">为什么需要埋点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%8B%E7%82%B9-amp-%E4%B8%8A%E6%8A%A5"><span class="toc-text">埋点 &amp; 上报</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%8B%E7%82%B9%EF%BC%88%E7%9B%91%E6%8E%A7%EF%BC%89%E5%86%85%E5%AE%B9"><span class="toc-text">埋点（监控）内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8A%E6%8A%A5"><span class="toc-text">上报</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9-GIF"><span class="toc-text">图片为什么选择 GIF</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E7%AB%AF%E5%9F%8B%E7%82%B9%E9%80%89%E6%8B%A9-GIF-%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8E%9F%E5%9B%A0"><span class="toc-text">前端埋点选择 GIF 的主要原因</span></a></li></ol>
       </div>
     </article>
   
@@ -624,7 +696,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%88%91%E5%8F%88%E5%BC%80%E5%A7%8B%E5%86%99%E5%8D%9A%E5%AE%A2%E8%BF%99%E4%BB%B6%E4%BA%8B"><span class="toc-text">关于我又开始写博客这件事</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%B7%E5%9B%A0"><span class="toc-text">起因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%A7%E6%A6%82%E4%BC%9A%E5%86%99%E4%BA%9B%E4%BB%80%E4%B9%88%E5%86%85%E5%AE%B9"><span class="toc-text">大概会写些什么内容</span></a></li></ol></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%9F%8B%E7%82%B9"><span class="toc-text">为什么需要埋点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%8B%E7%82%B9-amp-%E4%B8%8A%E6%8A%A5"><span class="toc-text">埋点 &amp; 上报</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%8B%E7%82%B9%EF%BC%88%E7%9B%91%E6%8E%A7%EF%BC%89%E5%86%85%E5%AE%B9"><span class="toc-text">埋点（监控）内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8A%E6%8A%A5"><span class="toc-text">上报</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9-GIF"><span class="toc-text">图片为什么选择 GIF</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E7%AB%AF%E5%9F%8B%E7%82%B9%E9%80%89%E6%8B%A9-GIF-%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8E%9F%E5%9B%A0"><span class="toc-text">前端埋点选择 GIF 的主要原因</span></a></li></ol>
     </article>
   
   
