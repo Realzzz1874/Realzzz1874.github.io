@@ -18,27 +18,27 @@
   <link 
     rel="icon" 
     href="//mariaovo.icu/img/head-smile.png">
-  <title>Hello World</title>
+  <title>ssh2 + mysql ，node写接口如何更“安全”的操作数据库</title>
   
     
       <meta 
         property="og:title" 
-        content="Hello World">
+        content="ssh2 + mysql ，node写接口如何更“安全”的操作数据库">
     
     
       <meta 
         property="og:url" 
-        content="http://mariaovo.icu/2021/08/18/hello-world/index.html">
+        content="http://mariaovo.icu/2022/02/21/ssh2-mysql/index.html">
     
     
       <meta 
         property="og:img" 
-        content="//mariaovo.icu/img/banner-index.png">
+        content="//mariaovo.icu/img/head-lwj.png">
     
     
       <meta 
         property="og:img" 
-        content="关于我又开始写博客这件事">
+        content="采用 ssh2 的方式建立 mysql 的连接">
     
     
       <meta 
@@ -46,14 +46,22 @@
         content="article">
       <meta 
         property="og:article:published_time" 
-        content="2021-08-18">
+        content="2022-02-21">
       <meta 
         property="og:article:modified_time" 
-        content="2021-08-28">
+        content="2022-02-21">
       <meta 
         property="og:article:author" 
         content="Maria">
       
+        
+          <meta 
+            property="og:article:tag" 
+            content="BackEnd">
+        
+          <meta 
+            property="og:article:tag" 
+            content="node">
         
       
     
@@ -298,49 +306,123 @@
         <div class="container">
           <div class="columns">
             <main class="main-column">
-  <div class="image-wrapper">
-    <img 
-      src="//mariaovo.icu/img/banner-index.png" 
-      data-src="//mariaovo.icu/img/banner-index.png"
-      srcset="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20300%20300&#39;%3E%3C/svg%3E"
-      class="image lozad"
-      alt="Hello World thumbnail">
-  </div>
-
 <article class="card card-content">
   <header>
     <h1 class="post-title">
-      Hello World
+      ssh2 + mysql ，node写接口如何更“安全”的操作数据库
     </h1>
   </header>
   <div class="post-meta post-show-meta">
-    <time datetime="2021-08-17T16:00:00.000Z">
+    <time datetime="2022-02-20T16:00:00.000Z">
       <i 
         class="iconfont icon-calendar" 
         style="margin-right: 2px;">
       </i>
-      <span>2021-08-18</span>
+      <span>2022-02-21</span>
     </time>
+    
+      <span class="dot"></span>
+      
+        <a 
+          href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" 
+          class="post-meta-link">
+          技术分享
+        </a>
+      
     
     
       <span class="dot"></span>
-      <span>229 字</span>
+      <span>263 字</span>
     
   </div>
+  
+    <div 
+      class="post-meta post-show-meta" 
+      style="margin-top: -10px;">
+      <div style="display: flex; align-items: center;">
+        <i 
+          class="iconfont icon-biaoqian" 
+          style="margin-right: 2px; font-size: 1.15rem;">
+        </i>
+        
+          
+          <a 
+            href="/tags/BackEnd/" 
+            class="post-meta-link">
+            BackEnd
+          </a>
+        
+          
+            <span class="dot"></span>
+          
+          <a 
+            href="/tags/node/" 
+            class="post-meta-link">
+            node
+          </a>
+        
+      </div>
+    </div>
   
   </header>
   <div 
     id="section" 
     class="post-content">
-    <h2 id="关于我又开始写博客这件事"><a href="#关于我又开始写博客这件事" class="headerlink" title="关于我又开始写博客这件事"></a>关于我又开始写博客这件事</h2><h3 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h3><p>大约两个月前，我加入了一个很有活力的创业团队。这两个月里，我作为一面的面试官参与了几次招聘，并且工作模式也从原来的瀑布式开发转成了敏捷式开发。在这个过程中，我愈发意识到良好的语言表达能力在日常生活与工作中的重要性。因此我决定开始通过写文章的方式来提升自己的语言组织能力与表述能力。</p>
-<h3 id="大概会写些什么内容"><a href="#大概会写些什么内容" class="headerlink" title="大概会写些什么内容"></a>大概会写些什么内容</h3><ol>
-<li><p>日常工作遇到的一些问题，包括但不限于：<br>前端：Vue、Nuxt、js/ts、CSS、Webpack等<br>后端：Node<br>爬虫：Node、Python<br>数据库：MySQL、TypeORM等</p>
-</li>
-<li><p>一些阅读积累，包括但不限于：<br> 技术型书籍阅读笔记<br> 文学性书籍读后感</p>
-</li>
-<li><p>造一些小轮子</p>
-</li>
+    <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>为了网络安全起见，数据库和后端服务一般不会直接部署在同一台机器上，且一般也不允许直接用账户+密码的方式直接连接，通常采取的方案是通过 ssh 的方式进行连接。</p>
+<p><em><strong>项目已经封装成 npm 包：<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/ssh2-connect-mysql">ssh2-connect-mysql</a></strong></em></p>
+<p><em><strong>github 地址：<a target="_blank" rel="noopener" href="https://github.com/Realzzz1874/ssh2-connect-mysql">ssh2-connect-mysql</a></strong></em></p>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol>
+<li>建立 ssh 连接</li>
+<li>与 mysql 建立连接</li>
+<li>得到 mysql 操作句柄</li>
 </ol>
+<h3 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h3><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> client <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"ssh2"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>Client<span class="token punctuation">;</span>
+<span class="token keyword">const</span> mysql <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'mysql2'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> _client <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">client</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// see config: https://github.com/mscdex/ssh2</span>
+<span class="token keyword">const</span> ssh_conf <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  host<span class="token operator">:</span> <span class="token string">'xxx.xxx.xx.1'</span><span class="token punctuation">,</span>
+  port<span class="token operator">:</span> <span class="token number">22</span><span class="token punctuation">,</span>
+  username<span class="token operator">:</span> <span class="token string">'maria'</span><span class="token punctuation">,</span>
+  privateKey<span class="token operator">:</span> fs<span class="token punctuation">.</span><span class="token function">readFileSync</span><span class="token punctuation">(</span><span class="token string">'/path/to/my/key'</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token comment">// see config: https://github.com/sidorares/node-mysql2</span>
+<span class="token keyword">const</span> db_conf <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  host<span class="token operator">:</span> <span class="token string">'xxx.xxx.xx.2'</span><span class="token punctuation">,</span>
+  user<span class="token operator">:</span> <span class="token string">'realzzzdb'</span><span class="token punctuation">,</span>
+  password<span class="token operator">:</span> <span class="token string">'qwer123..'</span><span class="token punctuation">,</span>
+  database<span class="token operator">:</span> <span class="token string">'mydb'</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 建立 ssh 连接</span>
+_client<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">"ready"</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    _client<span class="token punctuation">.</span><span class="token function">forwardOut</span><span class="token punctuation">(</span>
+      <span class="token string">"127.0.0.1"</span><span class="token punctuation">,</span>
+      <span class="token number">12345</span><span class="token punctuation">,</span>
+      db_config<span class="token punctuation">.</span>host<span class="token punctuation">,</span>
+      db_config<span class="token punctuation">.</span>port<span class="token punctuation">,</span>
+      <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">err<span class="token punctuation">,</span> stream</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+          _client<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token keyword">return</span> <span class="token function">renject</span><span class="token punctuation">(</span><span class="token string">"Connection failed."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token comment">// success get stream</span>
+        db_config<span class="token punctuation">.</span>host <span class="token operator">=</span> <span class="token string">'localhost'</span><span class="token punctuation">;</span>
+        db_config<span class="token punctuation">.</span>stream <span class="token operator">=</span> stream<span class="token punctuation">;</span>
+
+        <span class="token comment">// 得到 mysql 的操作句柄</span>
+        _sql <span class="token operator">=</span> mysql<span class="token punctuation">.</span><span class="token function">createConnection</span><span class="token punctuation">(</span>db_config<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+      <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>ssh_config<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ssh 连接的参数</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="更好的使用，封装成-npm-包"><a href="#更好的使用，封装成-npm-包" class="headerlink" title="更好的使用，封装成 npm 包"></a>更好的使用，封装成 npm 包</h3><p>npm package: <a target="_blank" rel="noopener" href="https://www.npmjs.com/package/ssh2-connect-mysql">ssh2-connect-mysql</a></p>
+<p>github page: <a target="_blank" rel="noopener" href="https://github.com/Realzzz1874/ssh2-connect-mysql">ssh2-connect-mysql</a></p>
 
   </div>
   <div>
@@ -360,8 +442,8 @@
           <span style="font-weight: bold;">文章链接：</span><a 
             target="_blank" 
             rel="nofollow noopener noreferrer" 
-            href="http://mariaovo.icu/2021/08/18/hello-world/">
-            http://mariaovo.icu/2021/08/18/hello-world/
+            href="http://mariaovo.icu/2022/02/21/ssh2-mysql/">
+            http://mariaovo.icu/2022/02/21/ssh2-mysql/
           </a>
         </p>
         <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
@@ -371,20 +453,20 @@
 </article>
 <div class="nav">
   
-    <div class="nav-item-prev">
+  
+    <div class="nav-item-next">
       <a 
-        href="/2021/08/19/music/" 
+        href="/2022/02/17/gif-page-tracking/" 
         class="nav-link">
-        <i class="iconfont icon-left nav-prev-icon"></i>
         <div>
-          <div class="nav-label">上一篇</div>
+          <div class="nav-label">下一篇</div>
           
-            <div class="nav-title">音乐格式转换 </div>
+            <div class="nav-title">前端监控埋点方案（GIF） </div>
           
         </div>
+        <i class="iconfont icon-right nav-next-icon"></i>
       </a>
     </div>
-  
   
 </div>
 
@@ -433,7 +515,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%88%91%E5%8F%88%E5%BC%80%E5%A7%8B%E5%86%99%E5%8D%9A%E5%AE%A2%E8%BF%99%E4%BB%B6%E4%BA%8B"><span class="toc-text">关于我又开始写博客这件事</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%B7%E5%9B%A0"><span class="toc-text">起因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%A7%E6%A6%82%E4%BC%9A%E5%86%99%E4%BA%9B%E4%BB%80%E4%B9%88%E5%86%85%E5%AE%B9"><span class="toc-text">大概会写些什么内容</span></a></li></ol></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4"><span class="toc-text">步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="toc-text">实现方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E5%A5%BD%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%8C%E5%B0%81%E8%A3%85%E6%88%90-npm-%E5%8C%85"><span class="toc-text">更好的使用，封装成 npm 包</span></a></li></ol>
 </div></main>
             <aside class="left-column">
               
@@ -491,7 +573,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%88%91%E5%8F%88%E5%BC%80%E5%A7%8B%E5%86%99%E5%8D%9A%E5%AE%A2%E8%BF%99%E4%BB%B6%E4%BA%8B"><span class="toc-text">关于我又开始写博客这件事</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%B7%E5%9B%A0"><span class="toc-text">起因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%A7%E6%A6%82%E4%BC%9A%E5%86%99%E4%BA%9B%E4%BB%80%E4%B9%88%E5%86%85%E5%AE%B9"><span class="toc-text">大概会写些什么内容</span></a></li></ol></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4"><span class="toc-text">步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="toc-text">实现方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E5%A5%BD%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%8C%E5%B0%81%E8%A3%85%E6%88%90-npm-%E5%8C%85"><span class="toc-text">更好的使用，封装成 npm 包</span></a></li></ol>
       </div>
     </article>
   
@@ -624,7 +706,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%88%91%E5%8F%88%E5%BC%80%E5%A7%8B%E5%86%99%E5%8D%9A%E5%AE%A2%E8%BF%99%E4%BB%B6%E4%BA%8B"><span class="toc-text">关于我又开始写博客这件事</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%B7%E5%9B%A0"><span class="toc-text">起因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%A7%E6%A6%82%E4%BC%9A%E5%86%99%E4%BA%9B%E4%BB%80%E4%B9%88%E5%86%85%E5%AE%B9"><span class="toc-text">大概会写些什么内容</span></a></li></ol></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4"><span class="toc-text">步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="toc-text">实现方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E5%A5%BD%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%8C%E5%B0%81%E8%A3%85%E6%88%90-npm-%E5%8C%85"><span class="toc-text">更好的使用，封装成 npm 包</span></a></li></ol>
     </article>
   
   
