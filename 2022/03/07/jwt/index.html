@@ -18,27 +18,27 @@
   <link 
     rel="icon" 
     href="//mariaovo.icu/img/head-smile.png">
-  <title>【重学前端】之 CSS</title>
+  <title>JWT 的一点知识</title>
   
     
       <meta 
         property="og:title" 
-        content="【重学前端】之 CSS">
+        content="JWT 的一点知识">
     
     
       <meta 
         property="og:url" 
-        content="http://mariaovo.icu/2022/03/02/study-fe-css/index.html">
+        content="http://mariaovo.icu/2022/03/07/jwt/index.html">
     
     
       <meta 
         property="og:img" 
-        content="//mariaovo.icu/img/head-lwj.png">
+        content="//mariaovo.icu/img/jwt.webp">
     
     
       <meta 
         property="og:img" 
-        content="【重学前端】之 CSS 篇：决定前端下限的寒冰大剑">
+        content="JSON Web Token 是如何工作的">
     
     
       <meta 
@@ -46,10 +46,10 @@
         content="article">
       <meta 
         property="og:article:published_time" 
-        content="2022-03-02">
+        content="2022-03-07">
       <meta 
         property="og:article:modified_time" 
-        content="2022-03-02">
+        content="2022-03-08">
       <meta 
         property="og:article:author" 
         content="Maria">
@@ -57,11 +57,7 @@
         
           <meta 
             property="og:article:tag" 
-            content="CSS">
-        
-          <meta 
-            property="og:article:tag" 
-            content="FrontEnd">
+            content="BackEnd">
         
       
     
@@ -306,19 +302,28 @@
         <div class="container">
           <div class="columns">
             <main class="main-column">
+  <div class="image-wrapper">
+    <img 
+      src="//mariaovo.icu/img/jwt.webp" 
+      data-src="//mariaovo.icu/img/jwt.webp"
+      srcset="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20300%20300&#39;%3E%3C/svg%3E"
+      class="image lozad"
+      alt="JWT 的一点知识 thumbnail">
+  </div>
+
 <article class="card card-content">
   <header>
     <h1 class="post-title">
-      【重学前端】之 CSS
+      JWT 的一点知识
     </h1>
   </header>
   <div class="post-meta post-show-meta">
-    <time datetime="2022-03-01T16:00:00.000Z">
+    <time datetime="2022-03-06T16:00:00.000Z">
       <i 
         class="iconfont icon-calendar" 
         style="margin-right: 2px;">
       </i>
-      <span>2022-03-02</span>
+      <span>2022-03-07</span>
     </time>
     
       <span class="dot"></span>
@@ -332,7 +337,7 @@
     
     
       <span class="dot"></span>
-      <span>953 字</span>
+      <span>655 字</span>
     
   </div>
   
@@ -347,18 +352,9 @@
         
           
           <a 
-            href="/tags/CSS/" 
+            href="/tags/BackEnd/" 
             class="post-meta-link">
-            CSS
-          </a>
-        
-          
-            <span class="dot"></span>
-          
-          <a 
-            href="/tags/FrontEnd/" 
-            class="post-meta-link">
-            FrontEnd
+            BackEnd
           </a>
         
       </div>
@@ -368,114 +364,64 @@
   <div 
     id="section" 
     class="post-content">
-    <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><b>【重学前端】系列推荐：</b> <a href="https://mariaovo.icu/2022/03/02/study-fe-html/">HTML 篇</a></p>
-<p>CSS 是一种描述 HTML 文档样式的语言。<br>CSS 是前端需要掌握的最基本的技能，决定了一个程序员的下限。</p>
-<h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><h4 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h4><p>CSS 盒模型本质上是一个盒子，它包括：边距、边框、内容。</p>
-<p>CSS 盒模型包括：<code>IE 盒模型（怪异盒模型）</code> 和 <code>W3C 盒模型（标准盒模型）</code></p>
-<p>标准盒模型宽度 = width + margin(left &amp; right) + padding(left &amp; right) + border(left &amp; right)</p>
-<p>怪异盒模型宽度 = width + margin(left &amp; right)<br><code>width 已经包含了 padding 和 border 的值</code></p>
-<h4 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h4><ul>
-<li>id 选择器 (#myid)</li>
-<li>类选择器 (.myclass)</li>
-<li>属性选择器 (a[href] {color:red;})</li>
-<li>伪类选择器 (a:hover, li:nth-child)</li>
-<li>标签选择器 (div, h1,p)</li>
-<li>相邻选择器 (h1 + p)</li>
-<li>子选择器 (ul &gt; li)</li>
-<li>后代选择器 (li a)</li>
-<li>通配符选择器 (*)</li>
-</ul>
-<p>优先级：</p>
+    <h3 id="JWT-是什么"><a href="#JWT-是什么" class="headerlink" title="JWT 是什么"></a>JWT 是什么</h3><blockquote>
+<p>JSON Web Token (JWT) 是一个开放标准(RFC 7519)，它定义了一种紧凑的、自包含的方式，用于作为 JSON 对象在各方之间安全地传输信息。该信息可以被验证和信任，因为它是数字签名的。</p>
+</blockquote>
+<h3 id="JWT-长啥样"><a href="#JWT-长啥样" class="headerlink" title="JWT 长啥样"></a>JWT 长啥样</h3><p>JWT 是由三段信息构成的，将这三段信息用 <code>.</code> 连接在一起就构成了 JWT。</p>
 <ul>
-<li>!important</li>
-<li>内联样式</li>
-<li>id 选择器</li>
-<li>类选择器 / 属性选择器 / 伪类选择器</li>
-<li>元素选择器 / 伪元素选择器</li>
-<li>关系选择器 / 通配符选择器</li>
+<li>Header</li>
+<li>Payload</li>
+<li>Signature</li>
 </ul>
-<p><b>!important &gt; 行内样式 &gt; id 选择器 &gt; 类选择器 &gt; 标签 &gt; 通配符 &gt; 继承 &gt; 浏览器默认属性</b></p>
-<h4 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a>BFC</h4><p>BFC: Block Formatting Context, 块级格式化上下文。BFC 是一个独立的渲染区域，规定了内部的 box 如何布局，并且这个区域的子元素不会影响到外面的元素，计算 BFC 高度的时候，浮动元素也参与计算。</p>
-<p>BFC 的布局规则</p>
+<p>类似：<code>Header.Payload.Signature</code></p>
+<h4 id="Header"><a href="#Header" class="headerlink" title="Header"></a>Header</h4><p>Header 部分是一个 JSON 对象，描述 JWT 的元数据。<br>承载两部分信息：</p>
 <ul>
-<li>内部的 box 会在垂直方向一个接一个排列</li>
-<li>box 垂直方向的距离由 margin 决定，属于同一个 BFC 的两个相邻 box 的 margin 会发生重叠</li>
-<li>BFC 的区域不会与 float box 发生重叠</li>
-<li>BFC 是一个独立容器，里面元素不会影响到外面元素</li>
-<li>计算 BFC 的高度的时候，浮动元素也参与计算高度</li>
-<li>元素的类型和 display 属性决定了这个 box 的类型，不同类型的 box 会参与不同的 formatting context</li>
+<li>声明类型，JWT 的类型统一写为 JWT</li>
+<li>声明加密的算法，通常直接使用 HMAC SHA256</li>
 </ul>
-<p>如何创建 BFC</p>
-<ul>
-<li>根元素，即 HTML 元素</li>
-<li>float 的值不为 none</li>
-<li>position 为 absolute 或者 fixed</li>
-<li>display 的值为 inline-block</li>
-<li>overflow 的值不为 visible</li>
-</ul>
-<p>BFC 使用场景</p>
-<ul>
-<li>去除边距重叠</li>
-<li>清除浮动</li>
-</ul>
-<h4 id="flex"><a href="#flex" class="headerlink" title="flex"></a>flex</h4><p>flex 是 flexible box 的缩写，意为“弹性布局”。通过指定容器的 display 属性为 flex 即可。</p>
-<p>容器属性：</p>
-<ul>
-<li>flex-direction: row | row-reverse | column | column-reverse;</li>
-<li>flex-wrap: nowrap | wrap | wrap-reverse;</li>
-<li>justify-content: flex-start | flex-end | center | space-between | space-around;</li>
-<li>align-items: flex-start | flex-end | center | baseline | stretch;</li>
-<li>align-content: flex-start | flex-end | center | space-between | space-around | stretch;</li>
-</ul>
-<p>元素属性：</p>
-<ul>
-<li>order 属性：定义项目的排列顺序，顺序越小，排列越靠前，默认为 0</li>
-<li>flex-grow 属性：定义项目的放大比例，即使存在空间，也不会放大</li>
-<li>flex-shrink 属性：定义了项目的缩小比例，当空间不足的情况下会等比例的缩小，如果定义个 item 的 flow-shrink 为 0，则为不缩小</li>
-<li>flex-basis 属性：定义了在分配多余的空间，项目占据的主轴空间</li>
-<li>flex: 是 flex-grow 和 flex-shrink、flex-basis 的简写，默认值为 0 1 auto</li>
-<li>align-self: 允许单个项目与其他项目不一样的对齐方式，可以覆盖<br>align-items: 默认属性为 auto，表示继承父元素的 align-items</li>
-</ul>
-<h4 id="媒体查询"><a href="#媒体查询" class="headerlink" title="媒体查询"></a>媒体查询</h4><pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.example</span> <span class="token punctuation">&#123;</span>
-  <span class="token property">padding</span><span class="token punctuation">:</span> 20px<span class="token punctuation">;</span>
-  <span class="token property">color</span><span class="token punctuation">:</span> white<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token comment">/* Extra small devices (phones, 600px and down) */</span>
-<span class="token atrule"><span class="token rule">@media</span> <span class="token keyword">only</span> screen <span class="token keyword">and</span> <span class="token punctuation">(</span><span class="token property">max-width</span><span class="token punctuation">:</span> 600px<span class="token punctuation">)</span></span> <span class="token punctuation">&#123;</span>
-  <span class="token selector">.example</span> <span class="token punctuation">&#123;</span>
-    <span class="token property">background</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span>
-  <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span>
+<p>比如：</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
+  'typ'<span class="token operator">:</span> 'JWT'<span class="token punctuation">,</span>
+  'alg'<span class="token operator">:</span> 'HS256'
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>然后将这部分信息进行 Base64URL 算法转换成字符串，就构成了 JWT 的第一部分。</p>
+<h4 id="Payload"><a href="#Payload" class="headerlink" title="Payload"></a>Payload</h4><p>Payload 部分用来存放实际需要传递的数据，通常有 7 个字段：</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json">iss (issuer)：签发人
+exp (expiration time)：过期时间
+sub (subject)：主题
+aud (audience)：受众
+nbf (Not Before)：生效时间
+iat (Issued At)：签发时间
+jti (JWT ID)：编号<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<span class="token comment">/* Small devices (portrait tablets and large phones, 600px and up) */</span>
-<span class="token atrule"><span class="token rule">@media</span> <span class="token keyword">only</span> screen <span class="token keyword">and</span> <span class="token punctuation">(</span><span class="token property">min-width</span><span class="token punctuation">:</span> 600px<span class="token punctuation">)</span></span> <span class="token punctuation">&#123;</span>
-  <span class="token selector">.example</span> <span class="token punctuation">&#123;</span>
-    <span class="token property">background</span><span class="token punctuation">:</span> green<span class="token punctuation">;</span>
-  <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span>
+<p>除了这些字段外，我们一般会定义一些私有字段来传递业务中的数据，比如：</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
+  <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"maria"</span><span class="token punctuation">,</span>
+  <span class="token property">"uid"</span><span class="token operator">:</span> <span class="token number">100001</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p><em><strong>JWT 默认是不加密的，所以不要将敏感信息存储在 JWT 中</strong></em></p>
+<p>然后将这部分信息进行 Base64URL 算法转换成字符串，就构成了 JWT 的第二部分。</p>
+<h4 id="Signature"><a href="#Signature" class="headerlink" title="Signature"></a>Signature</h4><p>Signature 部分是对前两部分的签名，防止数据遭到篡改。</p>
+<p>首先，需要指定一个密钥（secret），这个密钥只有服务器才知道，不能泄露给用户。然后，使用 Header 里面指定的签名算法（默认是 HMAC SHA256），按照下面的公式产生签名</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json">HMACSHA256(
+  base64UrlEncode(header) + <span class="token string">"."</span> +
+  base64UrlEncode(payload)<span class="token punctuation">,</span>
+  secret)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
-<span class="token comment">/* Medium devices (landscape tablets, 768px and up) */</span>
-<span class="token atrule"><span class="token rule">@media</span> <span class="token keyword">only</span> screen <span class="token keyword">and</span> <span class="token punctuation">(</span><span class="token property">min-width</span><span class="token punctuation">:</span> 768px<span class="token punctuation">)</span></span> <span class="token punctuation">&#123;</span>
-  <span class="token selector">.example</span> <span class="token punctuation">&#123;</span>
-    <span class="token property">background</span><span class="token punctuation">:</span> blue<span class="token punctuation">;</span>
-  <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span>
+<p>算出签名之后，将 Header、Payload、Signature 三个部分拼成一个字符串，每个部分之间用 <code>.</code> 分隔，就得到了 JWT。</p>
+<h3 id="JWT-怎么用"><a href="#JWT-怎么用" class="headerlink" title="JWT 怎么用"></a>JWT 怎么用</h3><p>客户端收到服务器返回的 JWT 之后，可以将它存储在 cookie 里，也可以存储在 localStorage 之中。此后，客户端每次和服务器通信都带上这个 JWT，服务器收到之后进行解密校验，根据 Signature 判断是否被篡改。<br>流程：<br><img src="//mariaovo.icu/img/jwt.webp" alt="image.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="//mariaovo.icu/img/jwt.webp" class="lozad post-image"></p>
+<h3 id="JWT-中间件"><a href="#JWT-中间件" class="headerlink" title="JWT 中间件"></a>JWT 中间件</h3><h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><ul>
+<li>JWT 默认不加密，不要将敏感数据写入 JWT</li>
+<li>服务端无状态，不保存，易于扩展</li>
+<li>支持跨域认证（放 cookie 里不能跨域，但是放 header 里可以跨域）</li>
+<li>尽量使用 https</li>
+<li>JWT 一旦下发之后就无法废弃或者更改权限，所以有效时间尽可能短</li>
+</ul>
+<p>参考文章：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2018/07/json_web_token-tutorial.html">JSON Web Token 入门教程 by: 阮一峰</a></li>
+</ul>
 
-<span class="token comment">/* Large devices (laptops/desktops, 992px and up) */</span>
-<span class="token atrule"><span class="token rule">@media</span> <span class="token keyword">only</span> screen <span class="token keyword">and</span> <span class="token punctuation">(</span><span class="token property">min-width</span><span class="token punctuation">:</span> 992px<span class="token punctuation">)</span></span> <span class="token punctuation">&#123;</span>
-  <span class="token selector">.example</span> <span class="token punctuation">&#123;</span>
-    <span class="token property">background</span><span class="token punctuation">:</span> orange<span class="token punctuation">;</span>
-  <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token comment">/* Extra large devices (large laptops and desktops, 1200px and up) */</span>
-<span class="token atrule"><span class="token rule">@media</span> <span class="token keyword">only</span> screen <span class="token keyword">and</span> <span class="token punctuation">(</span><span class="token property">min-width</span><span class="token punctuation">:</span> 1200px<span class="token punctuation">)</span></span> <span class="token punctuation">&#123;</span>
-  <span class="token selector">.example</span> <span class="token punctuation">&#123;</span>
-    <span class="token property">background</span><span class="token punctuation">:</span> pink<span class="token punctuation">;</span>
-  <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="移动端适配"><a href="#移动端适配" class="headerlink" title="移动端适配"></a>移动端适配</h4><h4 id="预处理-less-sass"><a href="#预处理-less-sass" class="headerlink" title="预处理 less | sass"></a>预处理 less | sass</h4><h4 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h4>
   </div>
   <div>
     
@@ -494,8 +440,8 @@
           <span style="font-weight: bold;">文章链接：</span><a 
             target="_blank" 
             rel="nofollow noopener noreferrer" 
-            href="http://mariaovo.icu/2022/03/02/study-fe-css/">
-            http://mariaovo.icu/2022/03/02/study-fe-css/
+            href="http://mariaovo.icu/2022/03/07/jwt/">
+            http://mariaovo.icu/2022/03/07/jwt/
           </a>
         </p>
         <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
@@ -505,29 +451,15 @@
 </article>
 <div class="nav">
   
-    <div class="nav-item-prev">
-      <a 
-        href="/2022/03/07/jwt/" 
-        class="nav-link">
-        <i class="iconfont icon-left nav-prev-icon"></i>
-        <div>
-          <div class="nav-label">上一篇</div>
-          
-            <div class="nav-title">JWT 的一点知识 </div>
-          
-        </div>
-      </a>
-    </div>
-  
   
     <div class="nav-item-next">
       <a 
-        href="/2022/03/02/study-fe-html/" 
+        href="/2022/03/02/study-fe-css/" 
         class="nav-link">
         <div>
           <div class="nav-label">下一篇</div>
           
-            <div class="nav-title">【重学前端】之 HTML </div>
+            <div class="nav-title">【重学前端】之 CSS </div>
           
         </div>
         <i class="iconfont icon-right nav-next-icon"></i>
@@ -581,7 +513,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-text">正文</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%92%E6%A8%A1%E5%9E%8B"><span class="toc-text">盒模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-text">选择器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BFC"><span class="toc-text">BFC</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#flex"><span class="toc-text">flex</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2"><span class="toc-text">媒体查询</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D"><span class="toc-text">移动端适配</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A2%84%E5%A4%84%E7%90%86-less-sass"><span class="toc-text">预处理 less | sass</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A8%E7%94%BB"><span class="toc-text">动画</span></a></li></ol></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">JWT 是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E9%95%BF%E5%95%A5%E6%A0%B7"><span class="toc-text">JWT 长啥样</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Header"><span class="toc-text">Header</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Payload"><span class="toc-text">Payload</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Signature"><span class="toc-text">Signature</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E6%80%8E%E4%B9%88%E7%94%A8"><span class="toc-text">JWT 怎么用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-text">JWT 中间件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">优缺点</span></a></li></ol>
 </div></main>
             <aside class="left-column">
               
@@ -639,7 +571,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-text">正文</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%92%E6%A8%A1%E5%9E%8B"><span class="toc-text">盒模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-text">选择器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BFC"><span class="toc-text">BFC</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#flex"><span class="toc-text">flex</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2"><span class="toc-text">媒体查询</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D"><span class="toc-text">移动端适配</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A2%84%E5%A4%84%E7%90%86-less-sass"><span class="toc-text">预处理 less | sass</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A8%E7%94%BB"><span class="toc-text">动画</span></a></li></ol></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">JWT 是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E9%95%BF%E5%95%A5%E6%A0%B7"><span class="toc-text">JWT 长啥样</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Header"><span class="toc-text">Header</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Payload"><span class="toc-text">Payload</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Signature"><span class="toc-text">Signature</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E6%80%8E%E4%B9%88%E7%94%A8"><span class="toc-text">JWT 怎么用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-text">JWT 中间件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">优缺点</span></a></li></ol>
       </div>
     </article>
   
@@ -778,7 +710,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-text">正文</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%92%E6%A8%A1%E5%9E%8B"><span class="toc-text">盒模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-text">选择器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BFC"><span class="toc-text">BFC</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#flex"><span class="toc-text">flex</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2"><span class="toc-text">媒体查询</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D"><span class="toc-text">移动端适配</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A2%84%E5%A4%84%E7%90%86-less-sass"><span class="toc-text">预处理 less | sass</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A8%E7%94%BB"><span class="toc-text">动画</span></a></li></ol></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">JWT 是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E9%95%BF%E5%95%A5%E6%A0%B7"><span class="toc-text">JWT 长啥样</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Header"><span class="toc-text">Header</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Payload"><span class="toc-text">Payload</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Signature"><span class="toc-text">Signature</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E6%80%8E%E4%B9%88%E7%94%A8"><span class="toc-text">JWT 怎么用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-text">JWT 中间件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">优缺点</span></a></li></ol>
     </article>
   
   
