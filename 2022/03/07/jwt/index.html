@@ -33,7 +33,7 @@
     
       <meta 
         property="og:img" 
-        content="//mariaovo.icu/img/jwt.webp">
+        content="//mariaovo.icu/img/jwt.png">
     
     
       <meta 
@@ -304,8 +304,8 @@
             <main class="main-column">
   <div class="image-wrapper">
     <img 
-      src="//mariaovo.icu/img/jwt.webp" 
-      data-src="//mariaovo.icu/img/jwt.webp"
+      src="//mariaovo.icu/img/jwt.png" 
+      data-src="//mariaovo.icu/img/jwt.png"
       srcset="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20300%20300&#39;%3E%3C/svg%3E"
       class="image lozad"
       alt="JWT 的一点知识 thumbnail">
@@ -337,7 +337,7 @@
     
     
       <span class="dot"></span>
-      <span>655 字</span>
+      <span>660 字</span>
     
   </div>
   
@@ -409,7 +409,7 @@ jti (JWT ID)：编号<span aria-hidden="true" class="line-numbers-rows"><span></
   secret)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>算出签名之后，将 Header、Payload、Signature 三个部分拼成一个字符串，每个部分之间用 <code>.</code> 分隔，就得到了 JWT。</p>
-<h3 id="JWT-怎么用"><a href="#JWT-怎么用" class="headerlink" title="JWT 怎么用"></a>JWT 怎么用</h3><p>客户端收到服务器返回的 JWT 之后，可以将它存储在 cookie 里，也可以存储在 localStorage 之中。此后，客户端每次和服务器通信都带上这个 JWT，服务器收到之后进行解密校验，根据 Signature 判断是否被篡改。<br>流程：<br><img src="//mariaovo.icu/img/jwt.webp" alt="image.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="//mariaovo.icu/img/jwt.webp" class="lozad post-image"></p>
+<h3 id="JWT-怎么用"><a href="#JWT-怎么用" class="headerlink" title="JWT 怎么用"></a>JWT 怎么用</h3><p>客户端收到服务器返回的 JWT 之后，可以将它存储在 cookie 里，也可以存储在 localStorage 之中。此后，客户端每次和服务器通信都带上这个 JWT，服务器收到之后进行解密校验，根据 Signature 判断是否被篡改。<br>流程：<br><img src="//mariaovo.icu/img/jwt.png" alt="image.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="//mariaovo.icu/img/jwt.png" class="lozad post-image"></p>
 <h3 id="JWT-中间件"><a href="#JWT-中间件" class="headerlink" title="JWT 中间件"></a>JWT 中间件</h3><h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><ul>
 <li>JWT 默认不加密，不要将敏感数据写入 JWT</li>
 <li>服务端无状态，不保存，易于扩展</li>
@@ -420,6 +420,7 @@ jti (JWT ID)：编号<span aria-hidden="true" class="line-numbers-rows"><span></
 <p>参考文章：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2018/07/json_web_token-tutorial.html">JSON Web Token 入门教程 by: 阮一峰</a></li>
+<li><a target="_blank" rel="noopener" href="https://jwt.io/introduction/">Introduction to JSON Web Tokens</a></li>
 </ul>
 
   </div>
@@ -657,15 +658,15 @@ jti (JWT ID)：编号<span aria-hidden="true" class="line-numbers-rows"><span></
       </a>
     
       <a 
-        href="/tags/Python/" 
-        title="Python">
-        <div class="tags-list-item">Python</div>
-      </a>
-    
-      <a 
         href="/tags/%E5%9B%BE%E7%89%87/" 
         title="图片">
         <div class="tags-list-item">图片</div>
+      </a>
+    
+      <a 
+        href="/tags/Python/" 
+        title="Python">
+        <div class="tags-list-item">Python</div>
       </a>
     
       <a 
