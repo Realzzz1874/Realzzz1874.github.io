@@ -49,7 +49,7 @@
         content="2022-03-07">
       <meta 
         property="og:article:modified_time" 
-        content="2022-03-09">
+        content="2022-03-12">
       <meta 
         property="og:article:author" 
         content="Maria">
@@ -337,7 +337,7 @@
     
     
       <span class="dot"></span>
-      <span>660 字</span>
+      <span>833 字</span>
     
   </div>
   
@@ -410,7 +410,8 @@ jti (JWT ID)：编号<span aria-hidden="true" class="line-numbers-rows"><span></
 
 <p>算出签名之后，将 Header、Payload、Signature 三个部分拼成一个字符串，每个部分之间用 <code>.</code> 分隔，就得到了 JWT。</p>
 <h3 id="JWT-怎么用"><a href="#JWT-怎么用" class="headerlink" title="JWT 怎么用"></a>JWT 怎么用</h3><p>客户端收到服务器返回的 JWT 之后，可以将它存储在 cookie 里，也可以存储在 localStorage 之中。此后，客户端每次和服务器通信都带上这个 JWT，服务器收到之后进行解密校验，根据 Signature 判断是否被篡改。<br>流程：<br><img src="//mariaovo.icu/img/jwtp.png" alt="image.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="//mariaovo.icu/img/jwtp.png" class="lozad post-image"></p>
-<h3 id="JWT-中间件"><a href="#JWT-中间件" class="headerlink" title="JWT 中间件"></a>JWT 中间件</h3><h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><ul>
+<h3 id="JWT-应用"><a href="#JWT-应用" class="headerlink" title="JWT 应用"></a>JWT 应用</h3><h4 id="JWT-中间件"><a href="#JWT-中间件" class="headerlink" title="JWT 中间件"></a>JWT 中间件</h4><h4 id="只允许一个用户登录"><a href="#只允许一个用户登录" class="headerlink" title="只允许一个用户登录"></a>只允许一个用户登录</h4><p>将用户每次登录之后产生的 token 存入 redis 中， 用用户 id 做为 key。此 id 第二次登录的时候，上一次的 token 就会被覆盖。<br><b>但是</b>，在 token 未失效的情况下，第一次的 token 还是可以解码出来，payload 中的信息和第二次的一样，从而无法实现新旧 token 的对比。<br>所以在创建 token 的时候向其中写入一个随机字符串，客户端请求带上的 token 中的 uuid 如果与 redis 存的不一样，则该 token 应该被踢下线。<br><em><strong>听起来和 session 相比好像也没什么优雅的地方。</strong></em></p>
+<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><ul>
 <li>JWT 默认不加密，不要将敏感数据写入 JWT</li>
 <li>服务端无状态，不保存，易于扩展</li>
 <li>支持跨域认证（放 cookie 里不能跨域，但是放 header 里可以跨域）</li>
@@ -455,12 +456,12 @@ jti (JWT ID)：编号<span aria-hidden="true" class="line-numbers-rows"><span></
   
     <div class="nav-item-next">
       <a 
-        href="/2022/03/02/study-fe-html/" 
+        href="/2022/03/02/study-fe-css/" 
         class="nav-link">
         <div>
           <div class="nav-label">下一篇</div>
           
-            <div class="nav-title">【重学前端】之 HTML </div>
+            <div class="nav-title">【重学前端】之 CSS </div>
           
         </div>
         <i class="iconfont icon-right nav-next-icon"></i>
@@ -514,7 +515,7 @@ jti (JWT ID)：编号<span aria-hidden="true" class="line-numbers-rows"><span></
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">JWT 是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E9%95%BF%E5%95%A5%E6%A0%B7"><span class="toc-text">JWT 长啥样</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Header"><span class="toc-text">Header</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Payload"><span class="toc-text">Payload</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Signature"><span class="toc-text">Signature</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E6%80%8E%E4%B9%88%E7%94%A8"><span class="toc-text">JWT 怎么用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-text">JWT 中间件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">优缺点</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">JWT 是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E9%95%BF%E5%95%A5%E6%A0%B7"><span class="toc-text">JWT 长啥样</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Header"><span class="toc-text">Header</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Payload"><span class="toc-text">Payload</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Signature"><span class="toc-text">Signature</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E6%80%8E%E4%B9%88%E7%94%A8"><span class="toc-text">JWT 怎么用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E5%BA%94%E7%94%A8"><span class="toc-text">JWT 应用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#JWT-%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-text">JWT 中间件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AA%E5%85%81%E8%AE%B8%E4%B8%80%E4%B8%AA%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95"><span class="toc-text">只允许一个用户登录</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">优缺点</span></a></li></ol>
 </div></main>
             <aside class="left-column">
               
@@ -572,7 +573,7 @@ jti (JWT ID)：编号<span aria-hidden="true" class="line-numbers-rows"><span></
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">JWT 是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E9%95%BF%E5%95%A5%E6%A0%B7"><span class="toc-text">JWT 长啥样</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Header"><span class="toc-text">Header</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Payload"><span class="toc-text">Payload</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Signature"><span class="toc-text">Signature</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E6%80%8E%E4%B9%88%E7%94%A8"><span class="toc-text">JWT 怎么用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-text">JWT 中间件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">优缺点</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">JWT 是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E9%95%BF%E5%95%A5%E6%A0%B7"><span class="toc-text">JWT 长啥样</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Header"><span class="toc-text">Header</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Payload"><span class="toc-text">Payload</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Signature"><span class="toc-text">Signature</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E6%80%8E%E4%B9%88%E7%94%A8"><span class="toc-text">JWT 怎么用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E5%BA%94%E7%94%A8"><span class="toc-text">JWT 应用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#JWT-%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-text">JWT 中间件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AA%E5%85%81%E8%AE%B8%E4%B8%80%E4%B8%AA%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95"><span class="toc-text">只允许一个用户登录</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">优缺点</span></a></li></ol>
       </div>
     </article>
   
@@ -676,15 +677,15 @@ jti (JWT ID)：编号<span aria-hidden="true" class="line-numbers-rows"><span></
       </a>
     
       <a 
-        href="/tags/utils/" 
-        title="utils">
-        <div class="tags-list-item">utils</div>
-      </a>
-    
-      <a 
         href="/tags/%E9%9F%B3%E4%B9%90/" 
         title="音乐">
         <div class="tags-list-item">音乐</div>
+      </a>
+    
+      <a 
+        href="/tags/utils/" 
+        title="utils">
+        <div class="tags-list-item">utils</div>
       </a>
     
       <a 
@@ -711,7 +712,7 @@ jti (JWT ID)：编号<span aria-hidden="true" class="line-numbers-rows"><span></
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">JWT 是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E9%95%BF%E5%95%A5%E6%A0%B7"><span class="toc-text">JWT 长啥样</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Header"><span class="toc-text">Header</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Payload"><span class="toc-text">Payload</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Signature"><span class="toc-text">Signature</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E6%80%8E%E4%B9%88%E7%94%A8"><span class="toc-text">JWT 怎么用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-text">JWT 中间件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">优缺点</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">JWT 是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E9%95%BF%E5%95%A5%E6%A0%B7"><span class="toc-text">JWT 长啥样</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Header"><span class="toc-text">Header</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Payload"><span class="toc-text">Payload</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Signature"><span class="toc-text">Signature</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E6%80%8E%E4%B9%88%E7%94%A8"><span class="toc-text">JWT 怎么用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E5%BA%94%E7%94%A8"><span class="toc-text">JWT 应用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#JWT-%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-text">JWT 中间件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AA%E5%85%81%E8%AE%B8%E4%B8%80%E4%B8%AA%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95"><span class="toc-text">只允许一个用户登录</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">优缺点</span></a></li></ol>
     </article>
   
   
@@ -732,12 +733,12 @@ jti (JWT ID)：编号<span aria-hidden="true" class="line-numbers-rows"><span></
     
       <div class="recent-posts-item">
         <div class="recent-posts-item-title">2022-03-02</div>
-        <a href="/2022/03/02/study-fe-html/"><div class="recent-posts-item-content">【重学前端】之 HTML</div></a>
+        <a href="/2022/03/02/study-fe-css/"><div class="recent-posts-item-content">【重学前端】之 CSS</div></a>
       </div>
     
       <div class="recent-posts-item">
         <div class="recent-posts-item-title">2022-03-02</div>
-        <a href="/2022/03/02/study-fe-css/"><div class="recent-posts-item-content">【重学前端】之 CSS</div></a>
+        <a href="/2022/03/02/study-fe-html/"><div class="recent-posts-item-content">【重学前端】之 HTML</div></a>
       </div>
     
       <div class="recent-posts-item">
