@@ -18,17 +18,17 @@
   <link 
     rel="icon" 
     href="//mariaovo.icu/img/head-smile.png">
-  <title>标签</title>
+  <title>Mysql 中的悲观锁</title>
   
     
       <meta 
         property="og:title" 
-        content="标签">
+        content="Mysql 中的悲观锁">
     
     
       <meta 
         property="og:url" 
-        content="http://mariaovo.icu/tags/CSS/index.html">
+        content="http://mariaovo.icu/2022/03/12/mysql-pcc/index.html">
     
     
       <meta 
@@ -38,8 +38,28 @@
     
       <meta 
         property="og:img" 
-        content="我思故我在">
+        content="基于一种悲观的态度类来防止一切数据冲突">
     
+    
+      <meta 
+        property="og:type" 
+        content="article">
+      <meta 
+        property="og:article:published_time" 
+        content="2022-03-12">
+      <meta 
+        property="og:article:modified_time" 
+        content="2022-03-12">
+      <meta 
+        property="og:article:author" 
+        content="Maria">
+      
+        
+          <meta 
+            property="og:article:tag" 
+            content="SQL">
+        
+      
     
   
   <script>
@@ -181,6 +201,8 @@
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
   
+    <link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
+  
 <meta name="generator" content="Hexo 5.4.0"></head>
 
   <body>
@@ -280,63 +302,209 @@
         <div class="container">
           <div class="columns">
             <main class="main-column">
-<div class="card card-content tag-page-card">
-  <div class="tags-page-title">标签&nbsp-&nbspCSS</div>
-</div>
-<div class="archive-timeline">
-  
-  
+<article class="card card-content">
+  <header>
+    <h1 class="post-title">
+      Mysql 中的悲观锁
+    </h1>
+  </header>
+  <div class="post-meta post-show-meta">
+    <time datetime="2022-03-11T16:00:00.000Z">
+      <i 
+        class="iconfont icon-calendar" 
+        style="margin-right: 2px;">
+      </i>
+      <span>2022-03-12</span>
+    </time>
     
-      <div class="archive-timeline-tag"><span>2022</span></div>
+      <span class="dot"></span>
+      
+        <a 
+          href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" 
+          class="post-meta-link">
+          技术分享
+        </a>
       
     
-    <div class="archive-timeline-item">
-      <div class="archive-timeline-post">
-        <div class="card card-content">
-          <div class="archive-timeline-post-date">2022-03-02</div>
-          <div class="archive-timeline-post-content">
-            <a 
-              href="/2022/03/02/study-fe-css/" 
-              class="archive-timeline-post-item">
-              【重学前端】之 CSS
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  
     
-    <div class="archive-timeline-item">
-      <div class="archive-timeline-post">
-        <div class="card card-content">
-          <div class="archive-timeline-post-date">2022-02-09</div>
-          <div class="archive-timeline-post-content">
-            <a 
-              href="/2022/02/09/box-shadow/" 
-              class="archive-timeline-post-item">
-              提升一点点也是值得的，使用 box-shadow 的时候应该避免重绘
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  
+      <span class="dot"></span>
+      <span>926 字</span>
     
-    <div class="archive-timeline-item">
-      <div class="archive-timeline-post">
-        <div class="card card-content">
-          <div class="archive-timeline-post-date">2022-01-27</div>
-          <div class="archive-timeline-post-content">
-            <a 
-              href="/2022/01/27/css-reset/" 
-              class="archive-timeline-post-item">
-              My Custom CSS Reset
-            </a>
-          </div>
-        </div>
+  </div>
+  
+    <div 
+      class="post-meta post-show-meta" 
+      style="margin-top: -10px;">
+      <div style="display: flex; align-items: center;">
+        <i 
+          class="iconfont icon-biaoqian" 
+          style="margin-right: 2px; font-size: 1.15rem;">
+        </i>
+        
+          
+          <a 
+            href="/tags/SQL/" 
+            class="post-meta-link">
+            SQL
+          </a>
+        
       </div>
     </div>
   
+  </header>
+  <div 
+    id="section" 
+    class="post-content">
+    <h3 id="悲观锁是什么"><a href="#悲观锁是什么" class="headerlink" title="悲观锁是什么"></a>悲观锁是什么</h3><blockquote>
+<p>在关系数据库管理系统里，悲观并发控制（又名“悲观锁”，Pessimistic Concurrency Control，缩写“PCC”）是一种并发控制的方法。悲观锁是对数据的修改持悲观态度（认为数据在被修改的时候一定会存在并发问题），因此在整个数据处理过程中将数据锁定。悲观锁的实现，往往依靠数据库提供的锁机制（也只有数据库层提供的锁机制才能真正保证数据访问的排他性，否则，即使在应用层中实现了加锁机制，也无法保证外部系统不会修改数据）。</p>
+</blockquote>
+<p>简而言之，悲观锁主要用于保护数据的完整性。当多个事务并发执行时，某个事务对数据应用了锁，则其他事务只能等该事务执行完以后才能对该数据进行修改操作。</p>
+<h3 id="举个例子"><a href="#举个例子" class="headerlink" title="举个例子"></a>举个例子</h3><p>在商品购买场景中，当有多个用户对某个库存有限的商品同时下单，若采用先查库存再减库存的方式来变更库存数量，当出现并发的时候很可能会出现“超卖”的现象。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 1. 查询出商品库存</span>
+<span class="token keyword">select</span> stock <span class="token keyword">from</span> goods <span class="token keyword">where</span> id <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 2. 生成订单</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+<span class="token comment">-- 3. 库存减 1</span>
+<span class="token keyword">update</span> goods <span class="token keyword">set</span> stock <span class="token operator">=</span> stock <span class="token operator">-</span> <span class="token number">1</span> <span class="token keyword">where</span> id <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这种减库存的方式在高并发访问的情况下很可能会出现问题：</p>
+<ol>
+<li>用户 A、B 都查询出库存为 1</li>
+<li>用户 A、B 都下单</li>
+<li>B 先生成订单，此时库存变更为 0</li>
+<li>A 生成订单之后，库存就变成了 -1</li>
+</ol>
+<p>使用悲观锁来处理：</p>
+<ol>
+<li>A 获取到库存的时候，B 用户阻塞</li>
+<li>A 完成减库存的事务之后，B 才可以获取到商品库存</li>
+</ol>
+<h3 id="如何使用悲观锁"><a href="#如何使用悲观锁" class="headerlink" title="如何使用悲观锁"></a>如何使用悲观锁</h3><p><em><strong>要使用悲观锁，我们必须先关闭 Mysql 的自动提交属性。</strong></em></p>
+<p>用法：<b>SELECT … FOR UPDATE;</b></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">set</span> autocommit<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 开始事务</span>
+<span class="token keyword">begin</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 1. 查询出商品库存</span>
+<span class="token keyword">select</span> stock <span class="token keyword">from</span> goods <span class="token keyword">where</span> id <span class="token operator">=</span> <span class="token number">1</span> <span class="token keyword">for</span> <span class="token keyword">update</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 2. 生成订单</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+
+<span class="token comment">-- 3. 库存减 1</span>
+<span class="token keyword">update</span> goods <span class="token keyword">set</span> stock <span class="token operator">=</span> stock <span class="token operator">-</span> <span class="token number">1</span> <span class="token keyword">where</span> id <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 提交事务</span>
+<span class="token keyword">commit</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>当 A <code>select stock from goods where id = 1 for update</code> 之后，此时 B 来执行同样的事务时，B 会进入等待状态，等到 A 执行完 update 操作之后，B 的事务才会提交。</p>
+<h3 id="行锁与表锁"><a href="#行锁与表锁" class="headerlink" title="行锁与表锁"></a>行锁与表锁</h3><p>当执行 <code>SELECT … FOR UPDATE;</code> 的时候，Mysql 会把数据锁住，因此我们需要注意锁的级别。Mysql InnoDB 默认级别为行锁。当查询语句指定了<b>主键</b>时，Mysql 会执行行锁，否则执行表锁。<br>一般：</p>
+<ul>
+<li>若指明主键，且结果集有数据，行锁</li>
+<li>若指明主键，结果集无数据，则无锁</li>
+<li>若无主键，且非主键字段无索引，则表锁</li>
+<li>若使用主键但主键不明确，则使用表锁</li>
+</ul>
+<p><b>InnoDB 的行锁是通过给索引上的索引项加锁实现的，因此：只有通过索引检索数据才会采用行锁，否则使用的是表锁。</b></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>悲观锁采用的是「先获取锁再访问」的策略来保障数据的安全，但是加锁策略依赖数据库实现，会增加数据库的负担，且会增加死锁的发生几率。此外，对于不会发生变化的只读数据，加锁只会增加额外不必要的负担。在实际的实践中，对于并发很高的场景并不会使用悲观锁，因为当一个事务锁住了数据，那么其他事务都会发生阻塞，会导致大量的事务发生积压拖垮整个系统。</p>
+
+  </div>
+  <div>
+    
+      <div 
+        class="post-note note-warning copyright" 
+        style="margin-top: 42px">
+        <p>
+          <span style="font-weight: bold;">作者：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="/about">
+            Maria
+          </a>
+        </p>
+        <p>
+          <span style="font-weight: bold;">文章链接：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="http://mariaovo.icu/2022/03/12/mysql-pcc/">
+            http://mariaovo.icu/2022/03/12/mysql-pcc/
+          </a>
+        </p>
+        <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
+      </div>
+    
+  </div>
+</article>
+<div class="nav">
+  
+  
+    <div class="nav-item-next">
+      <a 
+        href="/2022/03/07/jwt/" 
+        class="nav-link">
+        <div>
+          <div class="nav-label">下一篇</div>
+          
+            <div class="nav-title">JWT 的一点知识 </div>
+          
+        </div>
+        <i class="iconfont icon-right nav-next-icon"></i>
+      </a>
+    </div>
+  
+</div>
+
+  <div 
+    class="card card-content comment-card" 
+    style="margin-top: 16px;">
+    <div class="comment-card-title">评论</div>
+    
+  <div id="vcomments"></div>
+  
+  <script>
+    loadScript("//unpkg.com/valine/dist/Valine.min.js");
+    var oldLoadVa = window.onload;
+    window.onload = function () {
+      oldLoadVa && oldLoadVa();
+      new Valine({
+        el: '#vcomments',
+        appId: 'Rco3KkjsoblXIpT244qC7agz-gzGzoHsz',
+        appKey: '1HXabhsimRHduyaGLXWruPnm',
+        placeholder: 'Just go go',
+        path: window.location.pathname,
+        avatar: 'wavatar',
+        meta: ["nick","mail","link"],
+        pageSize: '10',
+        lang: '',
+        visitor: 'false',
+        highlight: true,
+        recordIP: true,
+        
+        
+        
+        enableQQ: 'false',
+        requiredFields: [],
+      });
+    };
+  </script>
+
+  </div>
+
+<div 
+  class="card card-content toc-card" 
+  id="mobiletoc">
+  <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%82%B2%E8%A7%82%E9%94%81%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">悲观锁是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BE%E4%B8%AA%E4%BE%8B%E5%AD%90"><span class="toc-text">举个例子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E6%82%B2%E8%A7%82%E9%94%81"><span class="toc-text">如何使用悲观锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%8C%E9%94%81%E4%B8%8E%E8%A1%A8%E9%94%81"><span class="toc-text">行锁与表锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol>
 </div></main>
             <aside class="left-column">
               
@@ -385,6 +553,18 @@
               </div>
                <div class="sticky-tablet">
   
+  
+    <article class="display-when-two-columns spacer">
+      <div class="card card-content toc-card">
+        <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%82%B2%E8%A7%82%E9%94%81%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">悲观锁是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BE%E4%B8%AA%E4%BE%8B%E5%AD%90"><span class="toc-text">举个例子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E6%82%B2%E8%A7%82%E9%94%81"><span class="toc-text">如何使用悲观锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%8C%E9%94%81%E4%B8%8E%E8%A1%A8%E9%94%81"><span class="toc-text">行锁与表锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol>
+      </div>
+    </article>
   
   
   <article class="card card-content categories-widget">
@@ -514,130 +694,21 @@
   </article>
   
   
-    <article class="card card-content widescreen-archive archive-widget">
-      <div class="archive-card">
-  <div class="archive-card-header">
-    <i 
-      class="iconfont icon-wodebaobiao" 
-      style="padding-right: 2px;">
-    </i>归档
-  </div>
-  <div class="archive-card-list">
-    
-    
-    
-      
-        
-        
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-          <a 
-            href="/archives/2022" 
-            class="archive-card-list-item">
-            2022
-            <span class="archive-card-list-item-badge">11</span>
-          </a>
-        
-        
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-    
-      <a 
-        href="/archives/2021" 
-        class="archive-card-list-item">
-        2021
-        <span class="archive-card-list-item-badge">10</span>
-      </a>
-    
-  </div>
-</div>
-    </article>
-  
 </div>
             </aside>
             <aside class="right-column">
               <div class="sticky-widescreen">
   
+  
+    <article class="card card-content toc-card">
+      <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%82%B2%E8%A7%82%E9%94%81%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">悲观锁是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BE%E4%B8%AA%E4%BE%8B%E5%AD%90"><span class="toc-text">举个例子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E6%82%B2%E8%A7%82%E9%94%81"><span class="toc-text">如何使用悲观锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%8C%E9%94%81%E4%B8%8E%E8%A1%A8%E9%94%81"><span class="toc-text">行锁与表锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol>
+    </article>
   
   
   <article class="card card-content">
@@ -674,125 +745,6 @@
 </div>
   </article>
   
-  
-    <article class="card card-content">
-      <div class="archive-card">
-  <div class="archive-card-header">
-    <i 
-      class="iconfont icon-wodebaobiao" 
-      style="padding-right: 2px;">
-    </i>归档
-  </div>
-  <div class="archive-card-list">
-    
-    
-    
-      
-        
-        
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-          <a 
-            href="/archives/2022" 
-            class="archive-card-list-item">
-            2022
-            <span class="archive-card-list-item-badge">11</span>
-          </a>
-        
-        
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-    
-      <a 
-        href="/archives/2021" 
-        class="archive-card-list-item">
-        2021
-        <span class="archive-card-list-item-badge">10</span>
-      </a>
-    
-  </div>
-</div>
-    </article>
   
 </div>
             </aside>
@@ -878,6 +830,36 @@
 </a> 
      
      
+     
+      <script>
+  var addImgLayout = function () {
+    var img = document.querySelectorAll('.post-content img')
+    var i
+    for (i = 0; i < img.length; i++) {
+      var wrapper = document.createElement('a')
+      wrapper.setAttribute('href', img[i].getAttribute('data-src'))
+      wrapper.setAttribute('aria-label', 'illustration')
+      wrapper.style.cssText =
+        'width: 100%; display: flex; justify-content: center;'
+      if (img[i].alt) wrapper.dataset.caption = img[i].alt
+      wrapper.dataset.nolink = true
+      img[i].before(wrapper)
+      wrapper.append(img[i])
+      var divWrap = document.createElement('div')
+      divWrap.classList.add('gallery')
+      wrapper.before(divWrap)
+      divWrap.append(wrapper)
+    }
+    baguetteBox.run('.gallery')
+  }
+</script>
+<script>
+  loadScript(
+    "/js/lib/lightbox/baguetteBox.min.js",
+    addImgLayout
+  )
+</script>
+ 
      
      
     <script src="/js/main.js"></script> 
