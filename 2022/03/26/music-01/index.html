@@ -18,17 +18,17 @@
   <link 
     rel="icon" 
     href="//mariaovo.icu/img/head-smile.png">
-  <title>反爬虫机制和破解方法汇总</title>
+  <title>【耳朵会说话-01】《硬汉》 - 腰乐队</title>
   
     
       <meta 
         property="og:title" 
-        content="反爬虫机制和破解方法汇总">
+        content="【耳朵会说话-01】《硬汉》 - 腰乐队">
     
     
       <meta 
         property="og:url" 
-        content="http://mariaovo.icu/2021/08/25/crawl-tips/index.html">
+        content="http://mariaovo.icu/2022/03/26/music-01/index.html">
     
     
       <meta 
@@ -38,7 +38,7 @@
     
       <meta 
         property="og:img" 
-        content="总结标记一下常见的反爬虫机制和破解方法">
+        content="我思故我在">
     
     
       <meta 
@@ -46,10 +46,10 @@
         content="article">
       <meta 
         property="og:article:published_time" 
-        content="2021-08-25">
+        content="2022-03-26">
       <meta 
         property="og:article:modified_time" 
-        content="2021-08-28">
+        content="2022-03-28">
       <meta 
         property="og:article:author" 
         content="Maria">
@@ -57,7 +57,7 @@
         
           <meta 
             property="og:article:tag" 
-            content="爬虫">
+            content="音乐">
         
       
     
@@ -305,30 +305,30 @@
 <article class="card card-content">
   <header>
     <h1 class="post-title">
-      反爬虫机制和破解方法汇总
+      【耳朵会说话-01】《硬汉》 - 腰乐队
     </h1>
   </header>
   <div class="post-meta post-show-meta">
-    <time datetime="2021-08-24T16:00:00.000Z">
+    <time datetime="2022-03-25T16:00:00.000Z">
       <i 
         class="iconfont icon-calendar" 
         style="margin-right: 2px;">
       </i>
-      <span>2021-08-25</span>
+      <span>2022-03-26</span>
     </time>
     
       <span class="dot"></span>
       
         <a 
-          href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" 
+          href="/categories/%E8%80%B3%E6%9C%B5%E4%BC%9A%E8%AF%B4%E8%AF%9D/" 
           class="post-meta-link">
-          技术分享
+          耳朵会说话
         </a>
       
     
     
       <span class="dot"></span>
-      <span>385 字</span>
+      <span>470 字</span>
     
   </div>
   
@@ -343,9 +343,9 @@
         
           
           <a 
-            href="/tags/%E7%88%AC%E8%99%AB/" 
+            href="/tags/%E9%9F%B3%E4%B9%90/" 
             class="post-meta-link">
-            爬虫
+            音乐
           </a>
         
       </div>
@@ -355,36 +355,51 @@
   <div 
     id="section" 
     class="post-content">
-    <h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><div class="post-note note-warning"><p><em><strong>网络不是法外之地，请大家文明上网</strong></em></p></div>
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="100" src="//music.163.com/outchain/player?type=2&amp;id=28768120&amp;auto=1&amp;height=100"></iframe>
 
-<h3 id="反爬虫机制"><a href="#反爬虫机制" class="headerlink" title="反爬虫机制"></a>反爬虫机制</h3><ul>
-<li><p><em><strong>通过UA 识别爬虫</strong></em><br>有些爬虫的UA很好识别，比如百度，与正常浏览器的UA是不一样的，可以通过识别UA的方法直接封禁此类请求</p>
-</li>
-<li><p><em><strong>设置IP的访问频率</strong></em><br>如果同一个IP超过一定频率，可以通过弹出验证码的方式来过滤机器人（如何巧妙设置验证，也是一个很有意思的问题）</p>
-</li>
-<li><p><em><strong>通过并发识别爬虫</strong></em><br>很多爬虫的并发率是非常高的，当达到一定阈值，可以直接封禁</p>
-</li>
-<li><p><em><strong>限制单个 IP/API token的访问量</strong></em></p>
-</li>
-<li><p><em><strong>识别出合法爬虫</strong></em><br>设置合法爬虫的白名单，例如百度的自动收录等，如果不是合法爬虫则可以直接封禁</p>
-</li>
-<li><p><em><strong>蜜罐资源</strong></em><br>蜜罐资源策略简单来说就是 <code>钓鱼执法</code> ，通过在页面上设置一些隐式链接，普通用户无法访问，一旦有IP请求了这些资源，则可以判断这些IP是爬虫的IP</p>
-</li>
-</ul>
-<h3 id="破解反爬虫机制"><a href="#破解反爬虫机制" class="headerlink" title="破解反爬虫机制"></a>破解反爬虫机制</h3><ul>
-<li><p><em><strong>设置下载延迟</strong></em></p>
-</li>
-<li><p><em><strong>禁止cookie</strong></em><br>很多网站会通过cookie识别用户身份，禁止cookie可以让服务器无法追踪爬虫轨迹</p>
-</li>
-<li><p><em><strong>使用UA池</strong></em><br>每次发送爬虫请求的时候，从UA池里随机使用一个UA</p>
-</li>
-<li><p><em><strong>使用IP池</strong></em><br>每次发送爬虫请求的时候，使用不同的代理IP</p>
-</li>
-<li><p><em><strong>分布式爬取</strong></em></p>
-</li>
-<li><p><em><strong>模拟登录</strong></em></p>
-</li>
-</ul>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">作词 : 刘涛
+作曲 : 杨绍昆
+吉他：杨绍昆 洪宇
+贝斯：胡尚洪
+鼓：艾永彬
+
+调查显示国人较去年快乐
+收入低是不安全至少是不快乐根源
+当然薪水最薄的职业往往也是
+最丢脸的案例最容易悲伤的依据
+混前程是无解的题荒愁的永动机
+报废到你幸福账面蹉跎的心底
+它在你怀念的女人背景中如疯般不可抑止
+像我们爱过那只落阳深处的布鲁斯
+
+跟这没人性的现实拼命拉锯
+越拼你越没头绪乏力的马卡告诉他弟
+“生活真够刺激，莫再逼我了，
+做个粪蛋也好，只要可以过下去”
+马卡你应该明白在大多数悲剧里面
+真正的伤心很少见马卡你得试着原谅
+如果故事的方向和你要的都不一样
+我多想你能有勇气重新开场
+
+你总不忘提醒再写上一些实况吧
+把最柔顺的曲调来刻画弯路里没路的人
+当歌声四起它应该是怎样的陈述句
+才不要你太唏嘘
+被自己打败的捣蛋鬼们已经很难
+去面对厄运吐露感情和热忱
+爱谈天的软骨头我们过白天然后等夜晚
+等夜晚只为喝得到明天
+
+当通往大结局的路啊正踏平所有的祖屋和田野
+快拿出力量去桃李芬芳
+去社会栋梁去掀起权力财富的巨浪
+去担负起自家的兴旺
+去变成大人和大人物变成一个
+只有钱才可以影响到情绪的臭傻逼
+你大概会挂得很无奈但是对于亲友团的颜面
+以及统治阶梯的审美观算是有交代
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
   </div>
   <div>
@@ -404,8 +419,8 @@
           <span style="font-weight: bold;">文章链接：</span><a 
             target="_blank" 
             rel="nofollow noopener noreferrer" 
-            href="http://mariaovo.icu/2021/08/25/crawl-tips/">
-            http://mariaovo.icu/2021/08/25/crawl-tips/
+            href="http://mariaovo.icu/2022/03/26/music-01/">
+            http://mariaovo.icu/2022/03/26/music-01/
           </a>
         </p>
         <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
@@ -415,29 +430,15 @@
 </article>
 <div class="nav">
   
-    <div class="nav-item-prev">
-      <a 
-        href="/2021/08/28/browser-debugger/" 
-        class="nav-link">
-        <i class="iconfont icon-left nav-prev-icon"></i>
-        <div>
-          <div class="nav-label">上一篇</div>
-          
-            <div class="nav-title">我不希望别人可以随意调试我的网站代码 </div>
-          
-        </div>
-      </a>
-    </div>
-  
   
     <div class="nav-item-next">
       <a 
-        href="/2021/08/22/steam/" 
+        href="/2022/03/23/think-from0to1/" 
         class="nav-link">
         <div>
           <div class="nav-label">下一篇</div>
           
-            <div class="nav-title">使用Steam作为第三方账号登录你的网站 </div>
+            <div class="nav-title">从 0 到 1 构建项目，正确的打开方式到底是什么？ </div>
           
         </div>
         <i class="iconfont icon-right nav-next-icon"></i>
@@ -491,7 +492,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B4%E6%98%8E"><span class="toc-text">说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E7%88%AC%E8%99%AB%E6%9C%BA%E5%88%B6"><span class="toc-text">反爬虫机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A0%B4%E8%A7%A3%E5%8F%8D%E7%88%AC%E8%99%AB%E6%9C%BA%E5%88%B6"><span class="toc-text">破解反爬虫机制</span></a></li></ol>
+
 </div></main>
             <aside class="left-column">
               
@@ -549,7 +550,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B4%E6%98%8E"><span class="toc-text">说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E7%88%AC%E8%99%AB%E6%9C%BA%E5%88%B6"><span class="toc-text">反爬虫机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A0%B4%E8%A7%A3%E5%8F%8D%E7%88%AC%E8%99%AB%E6%9C%BA%E5%88%B6"><span class="toc-text">破解反爬虫机制</span></a></li></ol>
+
       </div>
     </article>
   
@@ -714,7 +715,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B4%E6%98%8E"><span class="toc-text">说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E7%88%AC%E8%99%AB%E6%9C%BA%E5%88%B6"><span class="toc-text">反爬虫机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A0%B4%E8%A7%A3%E5%8F%8D%E7%88%AC%E8%99%AB%E6%9C%BA%E5%88%B6"><span class="toc-text">破解反爬虫机制</span></a></li></ol>
+
     </article>
   
   
