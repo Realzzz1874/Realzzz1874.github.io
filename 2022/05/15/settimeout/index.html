@@ -18,27 +18,27 @@
   <link 
     rel="icon" 
     href="//mariaovo.icu/img/head-smile.png">
-  <title>提升一点点也是值得的，使用 box-shadow 的时候应该避免重绘</title>
+  <title>用 setTimeout 模拟 setInterval</title>
   
     
       <meta 
         property="og:title" 
-        content="提升一点点也是值得的，使用 box-shadow 的时候应该避免重绘">
+        content="用 setTimeout 模拟 setInterval">
     
     
       <meta 
         property="og:url" 
-        content="http://mariaovo.icu/2022/02/09/box-shadow/index.html">
+        content="http://mariaovo.icu/2022/05/15/settimeout/index.html">
     
     
       <meta 
         property="og:img" 
-        content="//mariaovo.icu/img/head-lwj.png">
+        content="//mariaovo.icu/img/settimeout.png">
     
     
       <meta 
         property="og:img" 
-        content="如何设置 box-shadow 避免重绘？">
+        content="为什么要用 setTimeout 模拟 setInterval？">
     
     
       <meta 
@@ -46,10 +46,10 @@
         content="article">
       <meta 
         property="og:article:published_time" 
-        content="2022-02-09">
+        content="2022-05-15">
       <meta 
         property="og:article:modified_time" 
-        content="2022-02-09">
+        content="2022-05-15">
       <meta 
         property="og:article:author" 
         content="Maria">
@@ -61,7 +61,7 @@
         
           <meta 
             property="og:article:tag" 
-            content="CSS">
+            content="JS">
         
       
     
@@ -306,19 +306,28 @@
         <div class="container">
           <div class="columns">
             <main class="main-column">
+  <div class="image-wrapper">
+    <img 
+      src="//mariaovo.icu/img/settimeout.png" 
+      data-src="//mariaovo.icu/img/settimeout.png"
+      srcset="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20300%20300&#39;%3E%3C/svg%3E"
+      class="image lozad"
+      alt="用 setTimeout 模拟 setInterval thumbnail">
+  </div>
+
 <article class="card card-content">
   <header>
     <h1 class="post-title">
-      提升一点点也是值得的，使用 box-shadow 的时候应该避免重绘
+      用 setTimeout 模拟 setInterval
     </h1>
   </header>
   <div class="post-meta post-show-meta">
-    <time datetime="2022-02-08T16:00:00.000Z">
+    <time datetime="2022-05-14T16:00:00.000Z">
       <i 
         class="iconfont icon-calendar" 
         style="margin-right: 2px;">
       </i>
-      <span>2022-02-09</span>
+      <span>2022-05-15</span>
     </time>
     
       <span class="dot"></span>
@@ -332,7 +341,7 @@
     
     
       <span class="dot"></span>
-      <span>302 字</span>
+      <span>618 字</span>
     
   </div>
   
@@ -356,9 +365,9 @@
             <span class="dot"></span>
           
           <a 
-            href="/tags/CSS/" 
+            href="/tags/JS/" 
             class="post-meta-link">
-            CSS
+            JS
           </a>
         
       </div>
@@ -368,49 +377,47 @@
   <div 
     id="section" 
     class="post-content">
-    <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在渲染长列表的时候，经常有这样的需求：悬浮在列表的 item 上，会“高亮”显示当前的 hover 内容，虽然数据量少的时候没有明显的卡顿感受，但是如果数据量过大或者操作过于频繁，就会感受到页面有一点点的“呆滞”。</p>
-<h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>直接动态添加 <code>box-shadow</code> 属性的时候，每一次操作都会进行重绘 (<code>repaint</code>)，会损耗页面渲染的性能。</p>
-<h3 id="优化方案"><a href="#优化方案" class="headerlink" title="优化方案"></a>优化方案</h3><p><em><strong>通过修改伪类元素的透明度来实现 box-shadow</strong></em></p>
-<p>原理：通过改变透明度，这样其实是从一个非默认值来更新它的值，不需要进行重绘。</p>
-<h3 id="写法对比"><a href="#写法对比" class="headerlink" title="写法对比"></a>写法对比</h3><h4 id="old"><a href="#old" class="headerlink" title="old"></a>old</h4><pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>old<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.old</span> <span class="token punctuation">&#123;</span>
-  <span class="token property">padding</span><span class="token punctuation">:</span> 20px<span class="token punctuation">;</span>
-  <span class="token property">background-color</span><span class="token punctuation">:</span> #ffffff<span class="token punctuation">;</span>
-  <span class="token property">transition</span><span class="token punctuation">:</span> 0.2s<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token selector">.old:hover</span> <span class="token punctuation">&#123;</span>
-  <span class="token property">box-shadow</span><span class="token punctuation">:</span> 0 0 10px 0 <span class="token function">rgba</span><span class="token punctuation">(</span>0<span class="token punctuation">,</span> 0<span class="token punctuation">,</span> 0<span class="token punctuation">,</span> 0.3<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="new"><a href="#new" class="headerlink" title="new"></a>new</h4><pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>new<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+    <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
+<p>为什么要用 setTimeout 模拟 setInterval 呢？</p>
+</blockquote>
+<p>在 JavaScript 事件循环过程中，setInterval 是一个宏任务，它的定义是：<code>按照指定的周期（以毫秒计）来调用函数或计算表达式</code>。</p>
+<p>然而我们永久了会发现，很多时候，它并不会按照我们的期望来 work。</p>
+<h3 id="问题点"><a href="#问题点" class="headerlink" title="问题点"></a>问题点</h3><p><em><strong>推入任务队列后的时间不准确</strong></em></p>
+<p>setInterval 用法：<code>setInterval(fn(), N);</code><br>表示：fn() 将会在 N 秒之后被推入任务队列。<br>所以，在 setInterval 被推入任务队列时，如果它前面有很多任务或者某个任务等待的时间比较长，那么这个定时器的执行时间就会和我们预定它执行的时间并不一致。</p>
+<h4 id="多个定时器连续执行"><a href="#多个定时器连续执行" class="headerlink" title="多个定时器连续执行"></a>多个定时器连续执行</h4><h4 id="某些间隔会被跳过"><a href="#某些间隔会被跳过" class="headerlink" title="某些间隔会被跳过"></a>某些间隔会被跳过</h4><h3 id="setTimeout"><a href="#setTimeout" class="headerlink" title="setTimeout"></a>setTimeout</h3><p>setInterval 指定的时间间隔，表示的是何时将定时器的代码添加到消息队列中，而<b>不是何时执行代码</b>。所以真正何时执行代码的时间是不能保证的，取决于何时被主线程的事件循环取出并执行。</p>
+<p><img src="//mariaovo.icu/img/settimeout.png" alt="js timeline" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="//mariaovo.icu/img/settimeout.png" class="lozad post-image"></p>
+<p>上图可见:</p>
+<ul>
+<li>setInterval 每隔 100ms 往队列中添加一个事件；</li>
+<li>100ms 后，添加 T1 定时器代码至队列中，主线程中还有任务在执行，所以等待，some event 执行结束后执行 T1 定时器代码；</li>
+<li>又过了 100ms，T2 定时器被添加到队列中，主线程还在执行 T1 代码，所以等待；</li>
+<li>又过了 100ms，理论上又要往队列里推一个定时器代码，但由于此时 T2 还在队列中，所以 T3 不会被添加（T3 被跳过），结果就是此时被跳过；</li>
+<li>这里我们可以看到，T1 定时器执行结束后马上执行了 T2 代码，所以并没有达到定时器的效果。</li>
+</ul>
+<p><b>每个 setTimeout 产生的任务会直接 push 到任务队列中；而 setInterval 在每次把任务 push 到任务队列前，都要进行一下判断(看上次的任务是否仍在队列中，如果有则不添加，没有则添加)。</b></p>
+<h3 id="setTimeout-模拟-setInterval"><a href="#setTimeout-模拟-setInterval" class="headerlink" title="setTimeout 模拟 setInterval"></a>setTimeout 模拟 setInterval</h3><ul>
+<li>在前一个定时器执行完前，不会向队列插入新的定时器</li>
+<li>保证定时器间隔</li>
+</ul>
 <ol>
-<li>设置一个空的伪元素，设置它的透明度为0</li>
+<li><p>定义 interval 方法</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">let</span> timer <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+<span class="token function">interval</span><span class="token punctuation">(</span><span class="token parameter">func<span class="token punctuation">,</span> wait</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">let</span> <span class="token function-variable function">interv</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token function">func</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        timer<span class="token operator">=</span><span class="token function">setTimeout</span><span class="token punctuation">(</span>interv<span class="token punctuation">,</span> wait<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+    timer<span class="token operator">=</span> <span class="token function">setTimeout</span><span class="token punctuation">(</span>interv<span class="token punctuation">,</span> wait<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p>和 setInterval() 一样使用它</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">interval</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<li><p>终止定时器</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">if</span> <span class="token punctuation">(</span>timer<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  window<span class="token punctuation">.</span><span class="token function">clearSetTimeout</span><span class="token punctuation">(</span>timer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  timer <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
 </ol>
-<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.new::after</span> <span class="token punctuation">&#123;</span>
-    <span class="token property">content</span><span class="token punctuation">:</span> <span class="token string">""</span><span class="token punctuation">;</span>
-    <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>  
-    <span class="token property">top</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
-    <span class="token property">right</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
-    <span class="token property">bottom</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>  
-    <span class="token property">left</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
-    <span class="token property">z-index</span><span class="token punctuation">:</span> -1<span class="token punctuation">;</span>
-    <span class="token property">box-shadow</span><span class="token punctuation">:</span> 0 0 10px 0 <span class="token function">rgba</span><span class="token punctuation">(</span>0<span class="token punctuation">,</span> 0<span class="token punctuation">,</span> 0<span class="token punctuation">,</span> 0.3<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token property">opacity</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
-    <span class="token property">will-change</span><span class="token punctuation">:</span> opacity<span class="token punctuation">;</span>
-    <span class="token property">transition</span><span class="token punctuation">:</span> 0.2s<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<ol start="2">
-<li>通过鼠标悬停，恢复它的透明度</li>
-</ol>
-<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.new:hover::after</span> <span class="token punctuation">&#123;</span>
-  <span class="token property">opacity</span><span class="token punctuation">:</span> 1<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><p><img src="https://tobiasahlin.com/static/animate-box-shadow/demo.gif" alt="image.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="https://tobiasahlin.com/static/animate-box-shadow/demo.gif" class="lozad post-image"></p>
-
+<h3 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h3>
   </div>
   <div>
     
@@ -429,8 +436,8 @@
           <span style="font-weight: bold;">文章链接：</span><a 
             target="_blank" 
             rel="nofollow noopener noreferrer" 
-            href="http://mariaovo.icu/2022/02/09/box-shadow/">
-            http://mariaovo.icu/2022/02/09/box-shadow/
+            href="http://mariaovo.icu/2022/05/15/settimeout/">
+            http://mariaovo.icu/2022/05/15/settimeout/
           </a>
         </p>
         <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
@@ -440,29 +447,15 @@
 </article>
 <div class="nav">
   
-    <div class="nav-item-prev">
-      <a 
-        href="/2022/02/17/gif-page-tracking/" 
-        class="nav-link">
-        <i class="iconfont icon-left nav-prev-icon"></i>
-        <div>
-          <div class="nav-label">上一篇</div>
-          
-            <div class="nav-title">前端监控埋点方案（GIF） </div>
-          
-        </div>
-      </a>
-    </div>
-  
   
     <div class="nav-item-next">
       <a 
-        href="/2022/01/27/css-reset/" 
+        href="/2022/05/06/ssh-manager/" 
         class="nav-link">
         <div>
           <div class="nav-label">下一篇</div>
           
-            <div class="nav-title">My Custom CSS Reset </div>
+            <div class="nav-title">ssh manager 写个脚本来管理我的 ssh server </div>
           
         </div>
         <i class="iconfont icon-right nav-next-icon"></i>
@@ -516,7 +509,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E5%9B%A0"><span class="toc-text">原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88"><span class="toc-text">优化方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99%E6%B3%95%E5%AF%B9%E6%AF%94"><span class="toc-text">写法对比</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#old"><span class="toc-text">old</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#new"><span class="toc-text">new</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%88%E6%9E%9C"><span class="toc-text">效果</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E7%82%B9"><span class="toc-text">问题点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E4%B8%AA%E5%AE%9A%E6%97%B6%E5%99%A8%E8%BF%9E%E7%BB%AD%E6%89%A7%E8%A1%8C"><span class="toc-text">多个定时器连续执行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%90%E4%BA%9B%E9%97%B4%E9%9A%94%E4%BC%9A%E8%A2%AB%E8%B7%B3%E8%BF%87"><span class="toc-text">某些间隔会被跳过</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#setTimeout"><span class="toc-text">setTimeout</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#setTimeout-%E6%A8%A1%E6%8B%9F-setInterval"><span class="toc-text">setTimeout 模拟 setInterval</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9D%9F"><span class="toc-text">结束</span></a></li></ol>
 </div></main>
             <aside class="left-column">
               
@@ -574,7 +567,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E5%9B%A0"><span class="toc-text">原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88"><span class="toc-text">优化方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99%E6%B3%95%E5%AF%B9%E6%AF%94"><span class="toc-text">写法对比</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#old"><span class="toc-text">old</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#new"><span class="toc-text">new</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%88%E6%9E%9C"><span class="toc-text">效果</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E7%82%B9"><span class="toc-text">问题点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E4%B8%AA%E5%AE%9A%E6%97%B6%E5%99%A8%E8%BF%9E%E7%BB%AD%E6%89%A7%E8%A1%8C"><span class="toc-text">多个定时器连续执行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%90%E4%BA%9B%E9%97%B4%E9%9A%94%E4%BC%9A%E8%A2%AB%E8%B7%B3%E8%BF%87"><span class="toc-text">某些间隔会被跳过</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#setTimeout"><span class="toc-text">setTimeout</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#setTimeout-%E6%A8%A1%E6%8B%9F-setInterval"><span class="toc-text">setTimeout 模拟 setInterval</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9D%9F"><span class="toc-text">结束</span></a></li></ol>
       </div>
     </article>
   
@@ -745,7 +738,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E5%9B%A0"><span class="toc-text">原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88"><span class="toc-text">优化方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99%E6%B3%95%E5%AF%B9%E6%AF%94"><span class="toc-text">写法对比</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#old"><span class="toc-text">old</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#new"><span class="toc-text">new</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%88%E6%9E%9C"><span class="toc-text">效果</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E7%82%B9"><span class="toc-text">问题点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E4%B8%AA%E5%AE%9A%E6%97%B6%E5%99%A8%E8%BF%9E%E7%BB%AD%E6%89%A7%E8%A1%8C"><span class="toc-text">多个定时器连续执行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%90%E4%BA%9B%E9%97%B4%E9%9A%94%E4%BC%9A%E8%A2%AB%E8%B7%B3%E8%BF%87"><span class="toc-text">某些间隔会被跳过</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#setTimeout"><span class="toc-text">setTimeout</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#setTimeout-%E6%A8%A1%E6%8B%9F-setInterval"><span class="toc-text">setTimeout 模拟 setInterval</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9D%9F"><span class="toc-text">结束</span></a></li></ol>
     </article>
   
   
