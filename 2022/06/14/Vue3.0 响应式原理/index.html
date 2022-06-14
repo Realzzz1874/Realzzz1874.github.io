@@ -18,27 +18,27 @@
   <link 
     rel="icon" 
     href="//mariaovo.icu/img/head-smile.png">
-  <title>JWT 的一点知识</title>
+  <title>Vue3.0 响应式原理</title>
   
     
       <meta 
         property="og:title" 
-        content="JWT 的一点知识">
+        content="Vue3.0 响应式原理">
     
     
       <meta 
         property="og:url" 
-        content="http://mariaovo.icu/2022/03/07/jwt/index.html">
+        content="http://mariaovo.icu/2022/06/14/Vue3.0%20%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/index.html">
     
     
       <meta 
         property="og:img" 
-        content="//mariaovo.icu/img/jwt.png">
+        content="//mariaovo.icu/img/head-notion.png">
     
     
       <meta 
         property="og:img" 
-        content="JSON Web Token 是如何工作的">
+        content="Vue3.0 响应式原理到底是怎么样呢">
     
     
       <meta 
@@ -46,10 +46,10 @@
         content="article">
       <meta 
         property="og:article:published_time" 
-        content="2022-03-07">
+        content="2022-06-14">
       <meta 
         property="og:article:modified_time" 
-        content="2022-03-12">
+        content="2022-06-14">
       <meta 
         property="og:article:author" 
         content="Maria">
@@ -57,7 +57,11 @@
         
           <meta 
             property="og:article:tag" 
-            content="BackEnd">
+            content="Web">
+        
+          <meta 
+            property="og:article:tag" 
+            content="FrontEnd">
         
       
     
@@ -302,28 +306,19 @@
         <div class="container">
           <div class="columns">
             <main class="main-column">
-  <div class="image-wrapper">
-    <img 
-      src="//mariaovo.icu/img/jwt.png" 
-      data-src="//mariaovo.icu/img/jwt.png"
-      srcset="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20300%20300&#39;%3E%3C/svg%3E"
-      class="image lozad"
-      alt="JWT 的一点知识 thumbnail">
-  </div>
-
 <article class="card card-content">
   <header>
     <h1 class="post-title">
-      JWT 的一点知识
+      Vue3.0 响应式原理
     </h1>
   </header>
   <div class="post-meta post-show-meta">
-    <time datetime="2022-03-06T16:00:00.000Z">
+    <time datetime="2022-06-13T16:00:00.000Z">
       <i 
         class="iconfont icon-calendar" 
         style="margin-right: 2px;">
       </i>
-      <span>2022-03-07</span>
+      <span>2022-06-14</span>
     </time>
     
       <span class="dot"></span>
@@ -337,7 +332,7 @@
     
     
       <span class="dot"></span>
-      <span>833 字</span>
+      <span>1.5k 字</span>
     
   </div>
   
@@ -352,9 +347,18 @@
         
           
           <a 
-            href="/tags/BackEnd/" 
+            href="/tags/Web/" 
             class="post-meta-link">
-            BackEnd
+            Web
+          </a>
+        
+          
+            <span class="dot"></span>
+          
+          <a 
+            href="/tags/FrontEnd/" 
+            class="post-meta-link">
+            FrontEnd
           </a>
         
       </div>
@@ -364,64 +368,105 @@
   <div 
     id="section" 
     class="post-content">
-    <h3 id="JWT-是什么"><a href="#JWT-是什么" class="headerlink" title="JWT 是什么"></a>JWT 是什么</h3><blockquote>
-<p>JSON Web Token (JWT) 是一个开放标准(RFC 7519)，它定义了一种紧凑的、自包含的方式，用于作为 JSON 对象在各方之间安全地传输信息。该信息可以被验证和信任，因为它是数字签名的。</p>
-</blockquote>
-<h3 id="JWT-长啥样"><a href="#JWT-长啥样" class="headerlink" title="JWT 长啥样"></a>JWT 长啥样</h3><p>JWT 是由三段信息构成的，将这三段信息用 <code>.</code> 连接在一起就构成了 JWT。</p>
-<ul>
-<li>Header</li>
-<li>Payload</li>
-<li>Signature</li>
-</ul>
-<p>类似：<code>Header.Payload.Signature</code></p>
-<h4 id="Header"><a href="#Header" class="headerlink" title="Header"></a>Header</h4><p>Header 部分是一个 JSON 对象，描述 JWT 的元数据。<br>承载两部分信息：</p>
-<ul>
-<li>声明类型，JWT 的类型统一写为 JWT</li>
-<li>声明加密的算法，通常直接使用 HMAC SHA256</li>
-</ul>
-<p>比如：</p>
-<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
-  'typ'<span class="token operator">:</span> 'JWT'<span class="token punctuation">,</span>
-  'alg'<span class="token operator">:</span> 'HS256'
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>然后将这部分信息进行 Base64URL 算法转换成字符串，就构成了 JWT 的第一部分。</p>
-<h4 id="Payload"><a href="#Payload" class="headerlink" title="Payload"></a>Payload</h4><p>Payload 部分用来存放实际需要传递的数据，通常有 7 个字段：</p>
-<pre class="line-numbers language-json" data-language="json"><code class="language-json">iss (issuer)：签发人
-exp (expiration time)：过期时间
-sub (subject)：主题
-aud (audience)：受众
-nbf (Not Before)：生效时间
-iat (Issued At)：签发时间
-jti (JWT ID)：编号<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>Vue3 已经发布许久，官网推荐的版本也已经直接改成了 v3，Vue3 的响应式原理是通过什么实现的呢？</p>
+<h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><h4 id="Vue2"><a href="#Vue2" class="headerlink" title="Vue2"></a>Vue2</h4><p>在了解 V3 之前，我们先来了解一下 Vue2 的原理：<code>Object.defineProperty</code>.</p>
+<p>Vue2 使用的是 <code>Object.defineProperty</code> 来实现响应式原理。</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> prop<span class="token punctuation">,</span> descriptor<span class="token punctuation">)</span> 接受三个参数，而且都是必填的
+obj<span class="token operator">:</span> 要定义属性的对象
+prop<span class="token operator">:</span> 要定义或修改的属性的名称
+descriptor<span class="token operator">:</span> 要定义或修改的属性描述符<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>除了这些字段外，我们一般会定义一些私有字段来传递业务中的数据，比如：</p>
-<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
-  <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"maria"</span><span class="token punctuation">,</span>
-  <span class="token property">"uid"</span><span class="token operator">:</span> <span class="token number">100001</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p><em><strong>JWT 默认是不加密的，所以不要将敏感信息存储在 JWT 中</strong></em></p>
-<p>然后将这部分信息进行 Base64URL 算法转换成字符串，就构成了 JWT 的第二部分。</p>
-<h4 id="Signature"><a href="#Signature" class="headerlink" title="Signature"></a>Signature</h4><p>Signature 部分是对前两部分的签名，防止数据遭到篡改。</p>
-<p>首先，需要指定一个密钥（secret），这个密钥只有服务器才知道，不能泄露给用户。然后，使用 Header 里面指定的签名算法（默认是 HMAC SHA256），按照下面的公式产生签名</p>
-<pre class="line-numbers language-json" data-language="json"><code class="language-json">HMACSHA256(
-  base64UrlEncode(header) + <span class="token string">"."</span> +
-  base64UrlEncode(payload)<span class="token punctuation">,</span>
-  secret)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>算出签名之后，将 Header、Payload、Signature 三个部分拼成一个字符串，每个部分之间用 <code>.</code> 分隔，就得到了 JWT。</p>
-<h3 id="JWT-怎么用"><a href="#JWT-怎么用" class="headerlink" title="JWT 怎么用"></a>JWT 怎么用</h3><p>客户端收到服务器返回的 JWT 之后，可以将它存储在 cookie 里，也可以存储在 localStorage 之中。此后，客户端每次和服务器通信都带上这个 JWT，服务器收到之后进行解密校验，根据 Signature 判断是否被篡改。<br>流程：<br><img src="//mariaovo.icu/img/jwtp.png" alt="image.png" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="//mariaovo.icu/img/jwtp.png" class="lozad post-image"></p>
-<h3 id="JWT-应用"><a href="#JWT-应用" class="headerlink" title="JWT 应用"></a>JWT 应用</h3><h4 id="JWT-中间件"><a href="#JWT-中间件" class="headerlink" title="JWT 中间件"></a>JWT 中间件</h4><h4 id="只允许一个用户登录"><a href="#只允许一个用户登录" class="headerlink" title="只允许一个用户登录"></a>只允许一个用户登录</h4><p>将用户每次登录之后产生的 token 存入 redis 中， 用用户 id 做为 key。此 id 第二次登录的时候，上一次的 token 就会被覆盖。<br><b>但是</b>，在 token 未失效的情况下，第一次的 token 还是可以解码出来，payload 中的信息和第二次的一样，从而无法实现新旧 token 的对比。<br>所以在创建 token 的时候向其中写入一个随机字符串，客户端请求带上的 token 中的 uuid 如果与 redis 存的不一样，则该 token 应该被踢下线。<br><em><strong>听起来和 session 相比好像也没什么优雅的地方。</strong></em></p>
-<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><ul>
-<li>JWT 默认不加密，不要将敏感数据写入 JWT</li>
-<li>服务端无状态，不保存，易于扩展</li>
-<li>支持跨域认证（放 cookie 里不能跨域，但是放 header 里可以跨域）</li>
-<li>尽量使用 https</li>
-<li>JWT 一旦下发之后就无法废弃或者更改权限，所以有效时间尽可能短</li>
-</ul>
-<p>参考文章：</p>
+<p>当一个普通的 js 对象传入 Vue 实例作为 data 选项时，Vue 将遍历 data 的所有属性，并使用 Object.defineProperty 重写这些属性的 getter/setter 方法用来追踪依赖，在属性值被访问和修改时通知变更。每个组件实例都对应一个 watcher 实例，它会在组件渲染的过程中将访问过的属性设置为依赖，之后当属性的 setter 触发时，会通知 watcher 对关联的组件进行重新渲染。</p>
+<p>在 Vue2 中，Vue 的响应式系统是基于 <em><strong>数据拦截 + 发布订阅模式</strong></em>，包含了四个模块：</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2018/07/json_web_token-tutorial.html">JSON Web Token 入门教程 by: 阮一峰</a></li>
-<li><a target="_blank" rel="noopener" href="https://jwt.io/introduction/">Introduction to JSON Web Tokens</a></li>
+<li>Observer: 通过 Object.defineProperty 拦截 data 的 getter/setter 方法，从而使得每一个 property 都拥有一个 Dep，当触发 getter 的时候收集依赖（使用该 property 的 watcher），当触发 setter 的时候通知更新；</li>
+<li>Dep: 依赖收集器，用户维护 data property 的所有 watcher；</li>
+<li>Watcher: 将视图依赖的 property 绑定到 Dep 中，当数据修改时触发 setter，调用 Dep 的 notify 方法，通知所有依赖该 property 的 watcher 进行 update，使 property 与 视图绑定；</li>
+<li>Compile: 模板指令解析器，对模板的每个元素节点的指令进行扫描解析，根据指令模板替换 property 的值，同时注入 watcher 更新数据的回调方法</li>
+</ul>
+<p><b>总结：</b> Observer 通过重写 data 各个 property 的 getter/setter 方法，对每个 property 都维护一个 Dep，用于收集依赖该 property 的所有 watcher，当该 property 触发 setter 的时候，派发更新通知。</p>
+<h3 id="Vue3"><a href="#Vue3" class="headerlink" title="Vue3"></a>Vue3</h3><p>与 Vue2 的实现不同，Vue3 的响应式原理是用 ES6 的 <code>Proxy</code> 方法来实现的。<br>Proxy 用于创建一个对象的代理，从而实现基本操作的拦截和自定义（如：属性查找、赋值、枚举、函数调用等）。可以理解为：在目标对象之前有一层“拦截”，外界对该对象的访问都必须先通过这层拦截。因此提供了一种机制：<em><strong>可以对外界的访问进行过滤和改写</strong></em>。</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// target: 目标对象，待要使用 Proxy 包装的目标对象（可以是任何类型的对象，包括原生数组，函数，甚至另一个代理）</span>
+<span class="token comment">// handler: 一个通常以函数作为属性的对象，各属性中的函数分别定义了在执行各种操作时代理 proxy 的行为</span>
+<span class="token keyword">const</span> proxy <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Proxy</span><span class="token punctuation">(</span>target<span class="token punctuation">,</span> handler<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>常见代理函数：</p>
+<ul>
+<li><p>get: 拦截对象属性的读取</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">let</span> obj <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  <span class="token string">'name'</span><span class="token operator">:</span> <span class="token string">"张三"</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">const</span> proxy <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Proxy</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> <span class="token punctuation">&#123;</span>
+  <span class="token comment">// target：代理对象；key：当前的属性名</span>
+  <span class="token function">get</span><span class="token punctuation">(</span>target<span class="token punctuation">,</span> key<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> key <span class="token keyword">in</span> target <span class="token operator">?</span> target<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">:</span> key
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>proxy<span class="token punctuation">[</span><span class="token string">"name"</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token comment">// 张三</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>proxy<span class="token punctuation">[</span><span class="token string">"age"</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token comment">// age</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p>set: 拦截对象属性的设置；（必须有返回值，返回值为布尔类型）</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">let</span> obj <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  <span class="token string">'name'</span><span class="token operator">:</span> <span class="token string">"张三"</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">const</span> proxy <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Proxy</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> <span class="token punctuation">&#123;</span>
+  <span class="token comment">// target：代理对象；key：当前的属性名；value：新的属性值</span>
+  <span class="token function">set</span><span class="token punctuation">(</span>target<span class="token punctuation">,</span> key<span class="token punctuation">,</span> value<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    target<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> value
+    <span class="token keyword">return</span> <span class="token boolean">true</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+proxy<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">'李四'</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>proxy<span class="token punctuation">[</span><span class="token string">"name"</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token comment">// 李四</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p>has: 拦截 key in proxy 的操作</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">let</span> range <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+   start<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+   end<span class="token operator">:</span> <span class="token number">5</span>
+ <span class="token punctuation">&#125;</span>
+ <span class="token keyword">const</span> proxy <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Proxy</span><span class="token punctuation">(</span>range<span class="token punctuation">,</span> <span class="token punctuation">&#123;</span>
+   <span class="token comment">// target：代理对象；key：当前的属性名</span>
+   <span class="token function">has</span><span class="token punctuation">(</span><span class="token parameter">target<span class="token punctuation">,</span> key</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+     <span class="token keyword">return</span> key <span class="token operator">>=</span> proxy<span class="token punctuation">.</span>start <span class="token operator">&amp;&amp;</span> key <span class="token operator">&lt;=</span> proxy<span class="token punctuation">.</span>end
+   <span class="token punctuation">&#125;</span>
+ <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+ console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">2</span> <span class="token keyword">in</span> proxy<span class="token punctuation">)</span> <span class="token comment">// true</span>
+ console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">9</span> <span class="token keyword">in</span> proxy<span class="token punctuation">)</span> <span class="token comment">// false</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p>deleteProperty: 拦截对象属性的删除</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">let</span> obj <span class="token operator">=</span> <span class="token punctuation">&#123;</span> name<span class="token operator">:</span> <span class="token string">'李四'</span><span class="token punctuation">,</span> age<span class="token operator">:</span> <span class="token string">'18'</span> <span class="token punctuation">&#125;</span>
+<span class="token keyword">const</span> proxy <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Proxy</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> <span class="token punctuation">&#123;</span>
+  <span class="token comment">// target：代理对象；key：当前的属性名</span>
+  <span class="token function">deleteProperty</span><span class="token punctuation">(</span><span class="token parameter">target<span class="token punctuation">,</span> key</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'当前删除 :'</span><span class="token punctuation">,</span> target<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token keyword">delete</span> target<span class="token punctuation">[</span>key<span class="token punctuation">]</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">delete</span> proxy<span class="token punctuation">.</span>name
+Reflect<span class="token punctuation">.</span><span class="token function">deleteProperty</span><span class="token punctuation">(</span>proxy<span class="token punctuation">,</span> <span class="token string">'age'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p>ownKeys: 拦截对象键值的读取<br>…</p>
+</li>
+</ul>
+<p>Proxy 支持 13 种拦截操作。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ol>
+<li></li>
+</ol>
+<ul>
+<li>Object.defineProperty(obj, prop, descriptor) 中的第一个参数是需要定义的对象，当我们使用后，这个对象就会被数据劫持</li>
+<li>Proxy 实际是一个构造函数，用来生成 Proxy 实例。而且 Proxy 定义的是拦截，只是对外界访问是的过滤和改变</li>
+</ul>
+<ol start="2">
+<li></li>
+</ol>
+<ul>
+<li>defineProperty 的局限性最大原因是它只能针对单例属性做监听。Vue2 中的响应性实现正是基于 defineProperty 中的 descriptor，对 data 中的属性做了遍历 + 递归，为每个属性设置了 getter、setter。这也就是为什么 Vue 只能对 data 中预定义过的属性做出响应的原因，在 Vue 中使用下标的方式直接修改属性的值或者添加一个预先不存在的对象属性是无法做到 setter 监听的(一般使用 this.$set(…) 显式声明一下)，这是 defineProperty 的局限性</li>
+<li>Proxy 的监听是针对一个对象的，那么对这个对象的所有操作会进入监听操作，这就完全可以代理所有属性，将会带来很大的性能提升和更优的代码。Proxy 可以理解成，在目标对象之前架设一层 “拦截” ，外界对该对象的访问，都必须先通过这层拦截，因此提供了一种机制，可以对外界的访问进行过滤和改写</li>
+</ul>
+<ol start="3">
+<li></li>
+</ol>
+<ul>
+<li>在 Vue2 中，对于一个深层属性嵌套的对象，要劫持它内部深层次的变化，就需要递归遍历这个对象，执行 Object.defineProperty 把每一层对象数据都变成响应性的，这无疑会有很大的性能消耗。而在 Vue3 中，使用 Proxy 并不能监听到对象内部深层次的属性变化，因此它的处理方式是在 getter 中去递归响应性，这样做的好处是真正访问到的内部属性才会变成响应性，简单的可以说是按需实现响应性，减少性能消耗</li>
+</ul>
+<p>参考链接：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/7JnXUPmYRCYlWZoxop01ZA">大转转Fe - Vue3.0 响应性原理</a></li>
 </ul>
 
   </div>
@@ -442,8 +487,8 @@ jti (JWT ID)：编号<span aria-hidden="true" class="line-numbers-rows"><span></
           <span style="font-weight: bold;">文章链接：</span><a 
             target="_blank" 
             rel="nofollow noopener noreferrer" 
-            href="http://mariaovo.icu/2022/03/07/jwt/">
-            http://mariaovo.icu/2022/03/07/jwt/
+            href="http://mariaovo.icu/2022/06/14/Vue3.0%20%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/">
+            http://mariaovo.icu/2022/06/14/Vue3.0%20%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/
           </a>
         </p>
         <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
@@ -453,29 +498,15 @@ jti (JWT ID)：编号<span aria-hidden="true" class="line-numbers-rows"><span></
 </article>
 <div class="nav">
   
-    <div class="nav-item-prev">
-      <a 
-        href="/2022/03/12/mysql-pcc/" 
-        class="nav-link">
-        <i class="iconfont icon-left nav-prev-icon"></i>
-        <div>
-          <div class="nav-label">上一篇</div>
-          
-            <div class="nav-title">Mysql 中的悲观锁 </div>
-          
-        </div>
-      </a>
-    </div>
-  
   
     <div class="nav-item-next">
       <a 
-        href="/2022/03/02/study-fe-css/" 
+        href="/2022/05/26/music-02/" 
         class="nav-link">
         <div>
           <div class="nav-label">下一篇</div>
           
-            <div class="nav-title">【重学前端】之 CSS </div>
+            <div class="nav-title">【耳朵会说话-02】《致我的迷茫兄弟》 - 声音碎片 </div>
           
         </div>
         <i class="iconfont icon-right nav-next-icon"></i>
@@ -529,7 +560,7 @@ jti (JWT ID)：编号<span aria-hidden="true" class="line-numbers-rows"><span></
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">JWT 是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E9%95%BF%E5%95%A5%E6%A0%B7"><span class="toc-text">JWT 长啥样</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Header"><span class="toc-text">Header</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Payload"><span class="toc-text">Payload</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Signature"><span class="toc-text">Signature</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E6%80%8E%E4%B9%88%E7%94%A8"><span class="toc-text">JWT 怎么用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E5%BA%94%E7%94%A8"><span class="toc-text">JWT 应用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#JWT-%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-text">JWT 中间件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AA%E5%85%81%E8%AE%B8%E4%B8%80%E4%B8%AA%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95"><span class="toc-text">只允许一个用户登录</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">优缺点</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-text">正文</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Vue2"><span class="toc-text">Vue2</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vue3"><span class="toc-text">Vue3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol>
 </div></main>
             <aside class="left-column">
               
@@ -587,7 +618,7 @@ jti (JWT ID)：编号<span aria-hidden="true" class="line-numbers-rows"><span></
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">JWT 是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E9%95%BF%E5%95%A5%E6%A0%B7"><span class="toc-text">JWT 长啥样</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Header"><span class="toc-text">Header</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Payload"><span class="toc-text">Payload</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Signature"><span class="toc-text">Signature</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E6%80%8E%E4%B9%88%E7%94%A8"><span class="toc-text">JWT 怎么用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E5%BA%94%E7%94%A8"><span class="toc-text">JWT 应用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#JWT-%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-text">JWT 中间件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AA%E5%85%81%E8%AE%B8%E4%B8%80%E4%B8%AA%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95"><span class="toc-text">只允许一个用户登录</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">优缺点</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-text">正文</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Vue2"><span class="toc-text">Vue2</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vue3"><span class="toc-text">Vue3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol>
       </div>
     </article>
   
@@ -758,7 +789,7 @@ jti (JWT ID)：编号<span aria-hidden="true" class="line-numbers-rows"><span></
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">JWT 是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E9%95%BF%E5%95%A5%E6%A0%B7"><span class="toc-text">JWT 长啥样</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Header"><span class="toc-text">Header</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Payload"><span class="toc-text">Payload</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Signature"><span class="toc-text">Signature</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E6%80%8E%E4%B9%88%E7%94%A8"><span class="toc-text">JWT 怎么用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT-%E5%BA%94%E7%94%A8"><span class="toc-text">JWT 应用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#JWT-%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-text">JWT 中间件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AA%E5%85%81%E8%AE%B8%E4%B8%80%E4%B8%AA%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95"><span class="toc-text">只允许一个用户登录</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">优缺点</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-text">正文</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Vue2"><span class="toc-text">Vue2</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vue3"><span class="toc-text">Vue3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol>
     </article>
   
   
