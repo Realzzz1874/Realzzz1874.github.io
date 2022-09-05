@@ -18,17 +18,17 @@
   <link 
     rel="icon" 
     href="//mariaovo.icu/img/head-smile.png">
-  <title>标签</title>
+  <title>如何判断一个 url 是否是图片呢？</title>
   
     
       <meta 
         property="og:title" 
-        content="标签">
+        content="如何判断一个 url 是否是图片呢？">
     
     
       <meta 
         property="og:url" 
-        content="http://mariaovo.icu/tags/Taro/index.html">
+        content="http://mariaovo.icu/2022/09/05/url-is-image-or-not/index.html">
     
     
       <meta 
@@ -38,8 +38,36 @@
     
       <meta 
         property="og:img" 
-        content="我思故我在">
+        content="通过 head-requests 来验证一个 url 是否为图片">
     
+    
+      <meta 
+        property="og:type" 
+        content="article">
+      <meta 
+        property="og:article:published_time" 
+        content="2022-09-05">
+      <meta 
+        property="og:article:modified_time" 
+        content="2022-09-05">
+      <meta 
+        property="og:article:author" 
+        content="Maria">
+      
+        
+          <meta 
+            property="og:article:tag" 
+            content="Web">
+        
+          <meta 
+            property="og:article:tag" 
+            content="FrontEnd">
+        
+          <meta 
+            property="og:article:tag" 
+            content="JS">
+        
+      
     
   
   <script>
@@ -181,6 +209,8 @@
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
   
+    <link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
+  
 <meta name="generator" content="Hexo 5.4.0"></head>
 
   <body>
@@ -280,47 +310,194 @@
         <div class="container">
           <div class="columns">
             <main class="main-column">
-<div class="card card-content tag-page-card">
-  <div class="tags-page-title">标签&nbsp-&nbspTaro</div>
-</div>
-<div class="archive-timeline">
-  
-  
+<article class="card card-content">
+  <header>
+    <h1 class="post-title">
+      如何判断一个 url 是否是图片呢？
+    </h1>
+  </header>
+  <div class="post-meta post-show-meta">
+    <time datetime="2022-09-04T16:00:00.000Z">
+      <i 
+        class="iconfont icon-calendar" 
+        style="margin-right: 2px;">
+      </i>
+      <span>2022-09-05</span>
+    </time>
     
-      <div class="archive-timeline-tag"><span>2022</span></div>
+      <span class="dot"></span>
+      
+        <a 
+          href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" 
+          class="post-meta-link">
+          技术分享
+        </a>
       
     
-    <div class="archive-timeline-item">
-      <div class="archive-timeline-post">
-        <div class="card card-content">
-          <div class="archive-timeline-post-date">2022-02-22</div>
-          <div class="archive-timeline-post-content">
-            <a 
-              href="/2022/02/22/wxapp-share/" 
-              class="archive-timeline-post-item">
-              微信小程序全局接管页面分享
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  
     
-    <div class="archive-timeline-item">
-      <div class="archive-timeline-post">
-        <div class="card card-content">
-          <div class="archive-timeline-post-date">2022-01-10</div>
-          <div class="archive-timeline-post-content">
-            <a 
-              href="/2022/01/10/taro-vuex/" 
-              class="archive-timeline-post-item">
-              Taro 中使用 Vuex &amp; 数据持久化存储
-            </a>
-          </div>
-        </div>
+      <span class="dot"></span>
+      <span>345 字</span>
+    
+  </div>
+  
+    <div 
+      class="post-meta post-show-meta" 
+      style="margin-top: -10px;">
+      <div style="display: flex; align-items: center;">
+        <i 
+          class="iconfont icon-biaoqian" 
+          style="margin-right: 2px; font-size: 1.15rem;">
+        </i>
+        
+          
+          <a 
+            href="/tags/Web/" 
+            class="post-meta-link">
+            Web
+          </a>
+        
+          
+            <span class="dot"></span>
+          
+          <a 
+            href="/tags/FrontEnd/" 
+            class="post-meta-link">
+            FrontEnd
+          </a>
+        
+          
+            <span class="dot"></span>
+          
+          <a 
+            href="/tags/JS/" 
+            class="post-meta-link">
+            JS
+          </a>
+        
       </div>
     </div>
   
+  </header>
+  <div 
+    id="section" 
+    class="post-content">
+    <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 daily coding 的时候经常会有这种需求:</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">if</span> url 是图片，则 <span class="token constant">A</span><span class="token punctuation">;</span>
+<span class="token keyword">else</span> <span class="token constant">B</span><span class="token punctuation">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>那么，如何判断一个 url 是否是图片呢？</p>
+<h3 id="进入正题"><a href="#进入正题" class="headerlink" title="进入正题"></a>进入正题</h3><h4 id="正则"><a href="#正则" class="headerlink" title="正则"></a>正则</h4><p>通过判断 url 的结尾扩展名：</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">isImgUrl</span><span class="token punctuation">(</span><span class="token parameter">url</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">return</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.(jpg|jpeg|png|webp|avif|gif)$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>诚然，这种方式只要枚举出所有的图片扩展名，就可以校验出是否是图片。</p>
+<p>但是我们也经常会遇到一些图片，**<em>压根没有扩展名</em>**&#x1F622;</p>
+<p>比如我的 github 头像：<code>https://avatars.githubusercontent.com/u/19246724?v=4</code></p>
+<h4 id="利用-lt-img-gt-的-onload-事件"><a href="#利用-lt-img-gt-的-onload-事件" class="headerlink" title="利用 &lt;img&gt; 的 onload 事件"></a>利用 <code>&lt;img&gt;</code> 的 onload 事件</h4><p>将 url 赋值给 img 的 src 属性，如果可以出发 img 的 onload 方法，则 url 为图片。</p>
+<p>但是，这种方法浏览器会下载整个图片，造成不必要的资源浪费。</p>
+<h4 id="发送-HEAD-请求只检查-MIME"><a href="#发送-HEAD-请求只检查-MIME" class="headerlink" title="发送 HEAD 请求只检查 MIME"></a>发送 <code>HEAD</code> 请求只检查 <code>MIME</code></h4><p>发送 <code>HEAD</code> 请求，根据 <code>response.headers</code> 中的 <code>Content-Type</code> 来判断。</p>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">isImgUrl</span><span class="token punctuation">(</span><span class="token parameter">url</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">return</span> <span class="token function">fetch</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> <span class="token punctuation">&#123;</span> method<span class="token operator">:</span> <span class="token string">"HEAD"</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">res</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> res<span class="token punctuation">.</span>headers<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"Content-Type"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">startsWith</span><span class="token punctuation">(</span><span class="token string">"image"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>不同的图像都是以 <code>image</code> <code>MIME</code> 类型开头，比如 jpge 是 <code>image/jpeg</code>，png 是 <code>image/png</code> 等。<br>这样，不用担心响应请求的开销，就可以知道 url 是否是图片。</p>
+<h3 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h3><p>虽然这种通过校验 <code>MIME</code> 的方法可以校验是否是图片，但是由于发送请求的缘故，当 <code>CORS</code> 被拦截的时候，它就不灵了 &#x1F622;</p>
+
+  </div>
+  <div>
+    
+      <div 
+        class="post-note note-warning copyright" 
+        style="margin-top: 42px">
+        <p>
+          <span style="font-weight: bold;">作者：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="/about">
+            Maria
+          </a>
+        </p>
+        <p>
+          <span style="font-weight: bold;">文章链接：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="http://mariaovo.icu/2022/09/05/url-is-image-or-not/">
+            http://mariaovo.icu/2022/09/05/url-is-image-or-not/
+          </a>
+        </p>
+        <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
+      </div>
+    
+  </div>
+</article>
+<div class="nav">
+  
+  
+    <div class="nav-item-next">
+      <a 
+        href="/2022/09/01/img-color/" 
+        class="nav-link">
+        <div>
+          <div class="nav-label">下一篇</div>
+          
+            <div class="nav-title">计算图片的平均色值(主色调)与补色 </div>
+          
+        </div>
+        <i class="iconfont icon-right nav-next-icon"></i>
+      </a>
+    </div>
+  
+</div>
+
+  <div 
+    class="card card-content comment-card" 
+    style="margin-top: 16px;">
+    <div class="comment-card-title">评论</div>
+    
+  <div id="vcomments"></div>
+  
+  <script>
+    loadScript("//unpkg.com/valine/dist/Valine.min.js");
+    var oldLoadVa = window.onload;
+    window.onload = function () {
+      oldLoadVa && oldLoadVa();
+      new Valine({
+        el: '#vcomments',
+        appId: 'Rco3KkjsoblXIpT244qC7agz-gzGzoHsz',
+        appKey: '1HXabhsimRHduyaGLXWruPnm',
+        placeholder: 'Just go go',
+        path: window.location.pathname,
+        avatar: 'wavatar',
+        meta: ["nick","mail","link"],
+        pageSize: '10',
+        lang: '',
+        visitor: 'false',
+        highlight: true,
+        recordIP: true,
+        
+        
+        
+        enableQQ: 'false',
+        requiredFields: [],
+      });
+    };
+  </script>
+
+  </div>
+
+<div 
+  class="card card-content toc-card" 
+  id="mobiletoc">
+  <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E5%85%A5%E6%AD%A3%E9%A2%98"><span class="toc-text">进入正题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A3%E5%88%99"><span class="toc-text">正则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A9%E7%94%A8-lt-img-gt-%E7%9A%84-onload-%E4%BA%8B%E4%BB%B6"><span class="toc-text">利用 &lt;img&gt; 的 onload 事件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%91%E9%80%81-HEAD-%E8%AF%B7%E6%B1%82%E5%8F%AA%E6%A3%80%E6%9F%A5-MIME"><span class="toc-text">发送 HEAD 请求只检查 MIME</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E5%B0%BE"><span class="toc-text">结尾</span></a></li></ol>
 </div></main>
             <aside class="left-column">
               
@@ -369,6 +546,18 @@
               </div>
                <div class="sticky-tablet">
   
+  
+    <article class="display-when-two-columns spacer">
+      <div class="card card-content toc-card">
+        <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E5%85%A5%E6%AD%A3%E9%A2%98"><span class="toc-text">进入正题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A3%E5%88%99"><span class="toc-text">正则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A9%E7%94%A8-lt-img-gt-%E7%9A%84-onload-%E4%BA%8B%E4%BB%B6"><span class="toc-text">利用 &lt;img&gt; 的 onload 事件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%91%E9%80%81-HEAD-%E8%AF%B7%E6%B1%82%E5%8F%AA%E6%A3%80%E6%9F%A5-MIME"><span class="toc-text">发送 HEAD 请求只检查 MIME</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E5%B0%BE"><span class="toc-text">结尾</span></a></li></ol>
+      </div>
+    </article>
   
   
   <article class="card card-content categories-widget">
@@ -524,190 +713,21 @@
   </article>
   
   
-    <article class="card card-content widescreen-archive archive-widget">
-      <div class="archive-card">
-  <div class="archive-card-header">
-    <i 
-      class="iconfont icon-wodebaobiao" 
-      style="padding-right: 2px;">
-    </i>归档
-  </div>
-  <div class="archive-card-list">
-    
-    
-    
-      
-        
-        
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-          <a 
-            href="/archives/2022" 
-            class="archive-card-list-item">
-            2022
-            <span class="archive-card-list-item-badge">26</span>
-          </a>
-        
-        
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-    
-      <a 
-        href="/archives/2021" 
-        class="archive-card-list-item">
-        2021
-        <span class="archive-card-list-item-badge">10</span>
-      </a>
-    
-  </div>
-</div>
-    </article>
-  
 </div>
             </aside>
             <aside class="right-column">
               <div class="sticky-widescreen">
   
+  
+    <article class="card card-content toc-card">
+      <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E5%85%A5%E6%AD%A3%E9%A2%98"><span class="toc-text">进入正题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A3%E5%88%99"><span class="toc-text">正则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A9%E7%94%A8-lt-img-gt-%E7%9A%84-onload-%E4%BA%8B%E4%BB%B6"><span class="toc-text">利用 &lt;img&gt; 的 onload 事件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%91%E9%80%81-HEAD-%E8%AF%B7%E6%B1%82%E5%8F%AA%E6%A3%80%E6%9F%A5-MIME"><span class="toc-text">发送 HEAD 请求只检查 MIME</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E5%B0%BE"><span class="toc-text">结尾</span></a></li></ol>
+    </article>
   
   
   <article class="card card-content">
@@ -744,185 +764,6 @@
 </div>
   </article>
   
-  
-    <article class="card card-content">
-      <div class="archive-card">
-  <div class="archive-card-header">
-    <i 
-      class="iconfont icon-wodebaobiao" 
-      style="padding-right: 2px;">
-    </i>归档
-  </div>
-  <div class="archive-card-list">
-    
-    
-    
-      
-        
-        
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-          <a 
-            href="/archives/2022" 
-            class="archive-card-list-item">
-            2022
-            <span class="archive-card-list-item-badge">26</span>
-          </a>
-        
-        
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-    
-      <a 
-        href="/archives/2021" 
-        class="archive-card-list-item">
-        2021
-        <span class="archive-card-list-item-badge">10</span>
-      </a>
-    
-  </div>
-</div>
-    </article>
   
 </div>
             </aside>
@@ -1008,6 +849,36 @@
 </a> 
      
      
+     
+      <script>
+  var addImgLayout = function () {
+    var img = document.querySelectorAll('.post-content img')
+    var i
+    for (i = 0; i < img.length; i++) {
+      var wrapper = document.createElement('a')
+      wrapper.setAttribute('href', img[i].getAttribute('data-src'))
+      wrapper.setAttribute('aria-label', 'illustration')
+      wrapper.style.cssText =
+        'width: 100%; display: flex; justify-content: center;'
+      if (img[i].alt) wrapper.dataset.caption = img[i].alt
+      wrapper.dataset.nolink = true
+      img[i].before(wrapper)
+      wrapper.append(img[i])
+      var divWrap = document.createElement('div')
+      divWrap.classList.add('gallery')
+      wrapper.before(divWrap)
+      divWrap.append(wrapper)
+    }
+    baguetteBox.run('.gallery')
+  }
+</script>
+<script>
+  loadScript(
+    "/js/lib/lightbox/baguetteBox.min.js",
+    addImgLayout
+  )
+</script>
+ 
      
      
     <script src="/js/main.js"></script> 
