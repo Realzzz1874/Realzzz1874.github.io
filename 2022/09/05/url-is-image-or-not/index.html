@@ -392,7 +392,7 @@
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>诚然，这种方式只要枚举出所有的图片扩展名，就可以校验出是否是图片。</p>
-<p>但是我们也经常会遇到一些图片，**<em>压根没有扩展名</em>**&#x1F622;</p>
+<p>但是我们也经常会遇到一些图片，**_<em>压根没有扩展名</em>_**</p>
 <p>比如我的 github 头像：<code>https://avatars.githubusercontent.com/u/19246724?v=4</code></p>
 <h4 id="利用-lt-img-gt-的-onload-事件"><a href="#利用-lt-img-gt-的-onload-事件" class="headerlink" title="利用 &lt;img&gt; 的 onload 事件"></a>利用 <code>&lt;img&gt;</code> 的 onload 事件</h4><p>将 url 赋值给 img 的 src 属性，如果可以出发 img 的 onload 方法，则 url 为图片。</p>
 <p>但是，这种方法浏览器会下载整个图片，造成不必要的资源浪费。</p>
