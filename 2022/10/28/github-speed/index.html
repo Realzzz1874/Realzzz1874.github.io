@@ -49,7 +49,7 @@
         content="2022-10-28">
       <meta 
         property="og:article:modified_time" 
-        content="2022-10-29">
+        content="2022-10-30">
       <meta 
         property="og:article:author" 
         content="Maria">
@@ -332,7 +332,7 @@
     
     
       <span class="dot"></span>
-      <span>63 字</span>
+      <span>558 字</span>
     
   </div>
   
@@ -369,6 +369,41 @@
     id="section" 
     class="post-content">
     <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>使用 GitHub 的时候，经常会出现网络连接不稳定的情况，偏偏很着急的时候就非常耽误事儿。所以就想着有没有什么办法能尽可能保证访问 GitHub 的连通性。</p>
+<p>一般解决加速问题，最常用的手段就是使用 http proxy, 但是大部分的 GitHub 用户都会使用 SSH keys.</p>
+<h3 id="设置-Http-Proxy"><a href="#设置-Http-Proxy" class="headerlink" title="设置 Http Proxy"></a>设置 Http Proxy</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> config --global http.proxy socks5://127.0.0.1:7890<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>因为 git 底层使用 libcurl 发送 http 请求，而 libcurl 的代理使用 socks5:// 时会在本地解析 DNS，实际使用中我们希望 DNS 也在远程解析，所以使用 socks5h ，即</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> config --global http.proxy socks5h://127.0.0.1:7890<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>推荐使用 socks5 代理，因为 socks5 包含 http(s)。而且 socks5 代理工作在 osi 七层模型中的会话层（第五层），https/http 代理工作在 osi 七层模型的应用层（第七层）, socks 代理更加底层。所以就没必要配置 <code>git config --global http.proxy http://127.0.0.1:7890</code> 了。</p>
+<p>但这样配置的话会使本机所有的 git 服务都走了代理，假如你在良心云上部署了自己的 gitea，服务地址 <a target="_blank" rel="noopener" href="https://gitea.example.com,那么可以只配置/">https://gitea.example.com，那么可以只配置</a> GitHub 的 http proxy，即</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> config --global http.https://github.com.proxy socks5://127.0.0.1:7890<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这样做实际上是修改了 <code>~/.gitconfig</code> 文件，添加了如下内容</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>http <span class="token string">"https://github.com"</span><span class="token punctuation">]</span>
+  proxy <span class="token operator">=</span> socks5://127.0.0.1:7890<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h3 id="设置-SSH-Proxy"><a href="#设置-SSH-Proxy" class="headerlink" title="设置 SSH Proxy"></a>设置 SSH Proxy</h3><p>配置文件在用户家目录下的 <code>.ssh/config</code> 其中 nc 程序位于 <code>/usr/bin/nc</code></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">cat</span> ~/.ssh/config
+
+Host github.com
+ Hostname ssh.github.com
+ IdentityFile /xxx/.ssh/github_id_rsa
+ User <span class="token function">git</span>
+ Port <span class="token number">443</span>
+ ProxyCommand <span class="token function">nc</span> -v -x <span class="token number">127.0</span>.0.1:7890 %h %p<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><ul>
+<li><p>为什么 hostname 是 ssh.github.com，为什么要用 443 端口，ssh 默认不是 22 端口么？<br>因为有些 T 子 对于 22 端口做了限制，要么禁止了，要么有些抽风，这时经常会遇到如下错误：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">kex_exchange_identification: Connection closed by remote <span class="token function">host</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>所以如果 22 端口不畅就使用 443，安全稳定可靠。(ps: 22 端口时 hostname 请填 github.com。</p>
+</li>
+<li><p>如果代理设置了用户名和密码基础认证呢？比如 clash 的 config.yaml 中就可以添加如下配置以增加 http 基础认证</p>
+</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">authentication:
+  - <span class="token string">"USERNAME:PASSWORD"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
   </div>
   <div>
@@ -461,7 +496,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE-Http-Proxy"><span class="toc-text">设置 Http Proxy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE-SSH-Proxy"><span class="toc-text">设置 SSH Proxy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B4%E6%98%8E"><span class="toc-text">说明</span></a></li></ol>
 </div></main>
             <aside class="left-column">
               
@@ -519,7 +554,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE-Http-Proxy"><span class="toc-text">设置 Http Proxy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE-SSH-Proxy"><span class="toc-text">设置 SSH Proxy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B4%E6%98%8E"><span class="toc-text">说明</span></a></li></ol>
       </div>
     </article>
   
@@ -690,7 +725,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE-Http-Proxy"><span class="toc-text">设置 Http Proxy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE-SSH-Proxy"><span class="toc-text">设置 SSH Proxy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B4%E6%98%8E"><span class="toc-text">说明</span></a></li></ol>
     </article>
   
   
