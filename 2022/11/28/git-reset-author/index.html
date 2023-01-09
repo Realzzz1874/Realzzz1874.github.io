@@ -18,27 +18,27 @@
   <link 
     rel="icon" 
     href="//mariaovo.icu/img/head-smile.png">
-  <title>【图片压缩一】Python结合TinyPNG批量压缩图片</title>
+  <title>如何修改 Git 的提交作者信息</title>
   
     
       <meta 
         property="og:title" 
-        content="【图片压缩一】Python结合TinyPNG批量压缩图片">
+        content="如何修改 Git 的提交作者信息">
     
     
       <meta 
         property="og:url" 
-        content="http://mariaovo.icu/2021/10/19/image-tinypng-py/index.html">
+        content="http://mariaovo.icu/2022/11/28/git-reset-author/index.html">
     
     
       <meta 
         property="og:img" 
-        content="//mariaovo.icu/img/banner-tinypng-py.png">
+        content="//mariaovo.icu/img/head-notion.png">
     
     
       <meta 
         property="og:img" 
-        content="使用TinyPNG批量压缩图片的python脚本">
+        content="我思故我在">
     
     
       <meta 
@@ -46,10 +46,10 @@
         content="article">
       <meta 
         property="og:article:published_time" 
-        content="2021-10-19">
+        content="2022-11-28">
       <meta 
         property="og:article:modified_time" 
-        content="2021-10-26">
+        content="2023-01-09">
       <meta 
         property="og:article:author" 
         content="Maria">
@@ -57,11 +57,11 @@
         
           <meta 
             property="og:article:tag" 
-            content="图片">
+            content="工具">
         
           <meta 
             property="og:article:tag" 
-            content="Python">
+            content="Git">
         
       
     
@@ -306,42 +306,33 @@
         <div class="container">
           <div class="columns">
             <main class="main-column">
-  <div class="image-wrapper">
-    <img 
-      src="//mariaovo.icu/img/banner-tinypng-py.png" 
-      data-src="//mariaovo.icu/img/banner-tinypng-py.png"
-      srcset="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20300%20300&#39;%3E%3C/svg%3E"
-      class="image lozad"
-      alt="【图片压缩一】Python结合TinyPNG批量压缩图片 thumbnail">
-  </div>
-
 <article class="card card-content">
   <header>
     <h1 class="post-title">
-      【图片压缩一】Python结合TinyPNG批量压缩图片
+      如何修改 Git 的提交作者信息
     </h1>
   </header>
   <div class="post-meta post-show-meta">
-    <time datetime="2021-10-18T16:00:00.000Z">
+    <time datetime="2022-11-27T16:00:00.000Z">
       <i 
         class="iconfont icon-calendar" 
         style="margin-right: 2px;">
       </i>
-      <span>2021-10-19</span>
+      <span>2022-11-28</span>
     </time>
     
       <span class="dot"></span>
       
         <a 
-          href="/categories/%E5%B0%8F%E8%BD%AE%E5%AD%90/" 
+          href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" 
           class="post-meta-link">
-          小轮子
+          技术分享
         </a>
       
     
     
       <span class="dot"></span>
-      <span>226 字</span>
+      <span>440 字</span>
     
   </div>
   
@@ -356,18 +347,18 @@
         
           
           <a 
-            href="/tags/%E5%9B%BE%E7%89%87/" 
+            href="/tags/%E5%B7%A5%E5%85%B7/" 
             class="post-meta-link">
-            图片
+            工具
           </a>
         
           
             <span class="dot"></span>
           
           <a 
-            href="/tags/Python/" 
+            href="/tags/Git/" 
             class="post-meta-link">
-            Python
+            Git
           </a>
         
       </div>
@@ -377,39 +368,38 @@
   <div 
     id="section" 
     class="post-content">
-    <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在使用<a target="_blank" rel="noopener" href="https://tinypng.com/"><code>TinyPng</code></a>压缩图片的时候经常会遇到需要一次性压缩很多张，网站使用起来需要本地选择图片然后上传再下载压缩之后的图片，很不方便，所以想搞一个脚本在本地运行可以递归压缩文件夹及子文件夹中的所有图片。</p>
-<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>安装一下<code>tinify</code></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> --upgrade tinify<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+    <h3 id="对于最近的提交"><a href="#对于最近的提交" class="headerlink" title="对于最近的提交"></a>对于最近的提交</h3><p>更改最近提交的作者信息：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> commit --amend --author<span class="token operator">=</span><span class="token string">"author_name &lt;author_email> --no-edit"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h3 id="核心科技"><a href="#核心科技" class="headerlink" title="核心科技"></a>核心科技</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> tinify
-<span class="token keyword">import</span> os
-<span class="token keyword">import</span> os<span class="token punctuation">.</span>path
+<p><strong><em>author_email 必须加上&lt;&gt;</em></strong></p>
+<p>如果作者已经在 .git/config 中配置好，也可以直接运行：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> commit --amend --reset-author --no-edit<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-tinify<span class="token punctuation">.</span>key <span class="token operator">=</span><span class="token string">"XXXXXXXX"</span> <span class="token comment"># AppKey--tinypng申请的key</span>
-fromPath <span class="token operator">=</span><span class="token string">"/Users/xxx/Desktop/temp-test/pic-test/source"</span> <span class="token comment"># source path</span>
-toPath <span class="token operator">=</span><span class="token string">"/Users/xxx/Desktop/temp-test/pic-test/dest"</span> <span class="token comment"># dest path</span>
+<h3 id="对于较旧的提交"><a href="#对于较旧的提交" class="headerlink" title="对于较旧的提交"></a>对于较旧的提交</h3><p>如果想更改多个提交的作者信息，我们可以使用 <code>git rebase</code>.<br>例如：<br>假设有提交记录为 <code>A-&gt;B-&gt;C-&gt;D-&gt;E</code>, 想要更改提交 B 和 D 的作者。</p>
+<ul>
+<li>运行变基命令 <code>git rebase -i A</code></li>
+<li>将打开一个 vim 窗口打，可以看到 B、C、D、E 的提交哈希列表，它们之前都有 <code>pick</code></li>
+<li>将 B 和 D 之前的 <code>pick</code> 改成 <code>,</code></li>
+<li>保存并退出 vim 窗口 (<code>:wq</code>)</li>
+<li>运行 <code>git commit --amend --author=&quot;author_name &lt;author-email&gt;&quot; --no-edit</code>（这是针对提交 B 的）</li>
+<li>运行 <code>git rebase --continue</code> 以继续变基</li>
+<li>运行 <code>git commit --amend --author=&quot;author_name &lt;author-email&gt;&quot; --no-edit</code>（这次是提交 D）</li>
+<li>运行 <code>git rebase --continue</code> 以继续变基</li>
+</ul>
+<p>变基过程结束。</p>
+<h3 id="对于一系列提交"><a href="#对于一系列提交" class="headerlink" title="对于一系列提交"></a>对于一系列提交</h3><p>如果想将作者信息从较旧的提交更改为最近的提交，有一种比之前更有效/更快的方法：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># Note that to also include the root commit, we need to add --root option</span>
+<span class="token function">git</span> rebase --interactive --exec <span class="token string">"git commit --amend --reset-author --no-edit"</span> <span class="token punctuation">&#123;</span>commit-ref<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<span class="token keyword">for</span> root<span class="token punctuation">,</span> dirs<span class="token punctuation">,</span> files <span class="token keyword">in</span> os<span class="token punctuation">.</span>walk<span class="token punctuation">(</span>fromPath<span class="token punctuation">)</span><span class="token punctuation">:</span>
- newToPath <span class="token operator">=</span> toPath
- <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token builtin">len</span><span class="token punctuation">(</span>fromPath<span class="token punctuation">)</span><span class="token punctuation">:</span>
-  innerPath<span class="token operator">=</span> root<span class="token punctuation">[</span><span class="token builtin">len</span><span class="token punctuation">(</span>fromPath<span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token punctuation">]</span>
-  <span class="token keyword">if</span> innerPath<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'/'</span><span class="token punctuation">:</span>
-   innerPath <span class="token operator">=</span> innerPath<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span>
-  newToPath <span class="token operator">=</span>  os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>toPath<span class="token punctuation">,</span>innerPath<span class="token punctuation">)</span>
+<p>将会打开一个 vim 窗口：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pick xxx
+<span class="token builtin class-name">exec</span> <span class="token function">git</span> commit --amend --reset-author --no-edit
+pick xxx
+<span class="token builtin class-name">exec</span> <span class="token function">git</span> commit --amend --reset-author --no-edit
+<span class="token punctuation">..</span>.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
- <span class="token keyword">for</span> name <span class="token keyword">in</span> files<span class="token punctuation">:</span>
-  newFromFilePath <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>root<span class="token punctuation">,</span> name<span class="token punctuation">)</span>
-  newToFilePath <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>newToPath<span class="token punctuation">,</span> name<span class="token punctuation">)</span>  
-  fileName<span class="token punctuation">,</span> fileSuffix <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>splitext<span class="token punctuation">(</span>name<span class="token punctuation">)</span>
-  <span class="token keyword">if</span> fileSuffix <span class="token operator">==</span> <span class="token string">'.png'</span> <span class="token keyword">or</span> fileSuffix <span class="token operator">==</span> <span class="token string">'.jpg'</span><span class="token punctuation">:</span>
-   source <span class="token operator">=</span> tinify<span class="token punctuation">.</span>from_file<span class="token punctuation">(</span>newFromFilePath<span class="token punctuation">)</span>
-   source<span class="token punctuation">.</span>to_file<span class="token punctuation">(</span>newToFilePath<span class="token punctuation">)</span>
-  <span class="token keyword">else</span><span class="token punctuation">:</span>
-   <span class="token keyword">pass</span>
-
- <span class="token keyword">for</span> dirName <span class="token keyword">in</span> dirs<span class="token punctuation">:</span>
-  os<span class="token punctuation">.</span>mkdir<span class="token punctuation">(</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>newToPath<span class="token punctuation">,</span> dirName<span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>保存退出窗口（<code>:wq</code>）。这些提交的作者信息将自动更改。</p>
+<p><strong><em>请注意：更改提交作者信息将更改此提交的提交哈希，并且还会更改该特定提交后的提交哈希。因此，如果已将这些提交推送到远程仓库，则本地提交将与远程不同。</em></strong></p>
 
   </div>
   <div>
@@ -429,8 +419,8 @@ toPath <span class="token operator">=</span><span class="token string">"/Users/x
           <span style="font-weight: bold;">文章链接：</span><a 
             target="_blank" 
             rel="nofollow noopener noreferrer" 
-            href="http://mariaovo.icu/2021/10/19/image-tinypng-py/">
-            http://mariaovo.icu/2021/10/19/image-tinypng-py/
+            href="http://mariaovo.icu/2022/11/28/git-reset-author/">
+            http://mariaovo.icu/2022/11/28/git-reset-author/
           </a>
         </p>
         <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
@@ -442,13 +432,13 @@ toPath <span class="token operator">=</span><span class="token string">"/Users/x
   
     <div class="nav-item-prev">
       <a 
-        href="/2021/10/20/ratelimit/" 
+        href="/2022/12/03/mp-data-change/" 
         class="nav-link">
         <i class="iconfont icon-left nav-prev-icon"></i>
         <div>
           <div class="nav-label">上一篇</div>
           
-            <div class="nav-title">根据 IP 限制访问接口的频率 </div>
+            <div class="nav-title">微信小程序修改数组/对象里的值 </div>
           
         </div>
       </a>
@@ -457,12 +447,12 @@ toPath <span class="token operator">=</span><span class="token string">"/Users/x
   
     <div class="nav-item-next">
       <a 
-        href="/2021/08/28/browser-debugger/" 
+        href="/2022/11/17/Vue3%20Tree-shaking/" 
         class="nav-link">
         <div>
           <div class="nav-label">下一篇</div>
           
-            <div class="nav-title">我不希望别人可以随意调试我的网站代码 </div>
+            <div class="nav-title">Vue3 Tree-shaking </div>
           
         </div>
         <i class="iconfont icon-right nav-next-icon"></i>
@@ -516,7 +506,7 @@ toPath <span class="token operator">=</span><span class="token string">"/Users/x
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E7%A7%91%E6%8A%80"><span class="toc-text">核心科技</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8E%E6%9C%80%E8%BF%91%E7%9A%84%E6%8F%90%E4%BA%A4"><span class="toc-text">对于最近的提交</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8E%E8%BE%83%E6%97%A7%E7%9A%84%E6%8F%90%E4%BA%A4"><span class="toc-text">对于较旧的提交</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8E%E4%B8%80%E7%B3%BB%E5%88%97%E6%8F%90%E4%BA%A4"><span class="toc-text">对于一系列提交</span></a></li></ol>
 </div></main>
             <aside class="left-column">
               
@@ -574,7 +564,7 @@ toPath <span class="token operator">=</span><span class="token string">"/Users/x
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E7%A7%91%E6%8A%80"><span class="toc-text">核心科技</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8E%E6%9C%80%E8%BF%91%E7%9A%84%E6%8F%90%E4%BA%A4"><span class="toc-text">对于最近的提交</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8E%E8%BE%83%E6%97%A7%E7%9A%84%E6%8F%90%E4%BA%A4"><span class="toc-text">对于较旧的提交</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8E%E4%B8%80%E7%B3%BB%E5%88%97%E6%8F%90%E4%BA%A4"><span class="toc-text">对于一系列提交</span></a></li></ol>
       </div>
     </article>
   
@@ -759,7 +749,7 @@ toPath <span class="token operator">=</span><span class="token string">"/Users/x
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E7%A7%91%E6%8A%80"><span class="toc-text">核心科技</span></a></li></ol>
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8E%E6%9C%80%E8%BF%91%E7%9A%84%E6%8F%90%E4%BA%A4"><span class="toc-text">对于最近的提交</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8E%E8%BE%83%E6%97%A7%E7%9A%84%E6%8F%90%E4%BA%A4"><span class="toc-text">对于较旧的提交</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8E%E4%B8%80%E7%B3%BB%E5%88%97%E6%8F%90%E4%BA%A4"><span class="toc-text">对于一系列提交</span></a></li></ol>
     </article>
   
   
