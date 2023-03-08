@@ -18,17 +18,17 @@
   <link 
     rel="icon" 
     href="//mariaovo.icu/img/head-smile.png">
-  <title>友链</title>
+  <title>居家呆猫</title>
   
     
       <meta 
         property="og:title" 
-        content="友链">
+        content="居家呆猫">
     
     
       <meta 
         property="og:url" 
-        content="http://mariaovo.icu/links/index.html">
+        content="http://mariaovo.icu/2023/03/08/linux-rsync/index.html">
     
     
       <meta 
@@ -40,6 +40,22 @@
         property="og:img" 
         content="我思故我在">
     
+    
+      <meta 
+        property="og:type" 
+        content="article">
+      <meta 
+        property="og:article:published_time" 
+        content="2023-03-08">
+      <meta 
+        property="og:article:modified_time" 
+        content="2023-03-08">
+      <meta 
+        property="og:article:author" 
+        content="Maria">
+      
+        
+      
     
   
   <script>
@@ -181,6 +197,8 @@
   
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
   
+    <link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
+  
 <meta name="generator" content="Hexo 5.4.0"></head>
 
   <body>
@@ -280,15 +298,152 @@
         <div class="container">
           <div class="columns">
             <main class="main-column">
-<div class="card card-content">
-  <h1 class="widget-title">友链</h1>
-</div>
-<div class="card card-content friend-card">
-  <ul class="links">
+<article class="card card-content">
+  <header>
+    <h1 class="post-title">
+      
+    </h1>
+  </header>
+  <div class="post-meta post-show-meta">
+    <time datetime="2023-03-08T14:51:00.750Z">
+      <i 
+        class="iconfont icon-calendar" 
+        style="margin-right: 2px;">
+      </i>
+      <span>2023-03-08</span>
+    </time>
     
-  </ul>
+    
+      <span class="dot"></span>
+      <span>435 字</span>
+    
+  </div>
+  
+  </header>
+  <div 
+    id="section" 
+    class="post-content">
+    <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>很早之前在服务器上部署过一个微前端的项目，由于复杂度比较高导致 <code>node_modules</code> 过于庞大，当执行 <code>rm -rf node_modules/</code> 之后发现有一个报错：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">argument list too long<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>查询了一下发现原因是：删除文件中包含的小文件数量过多，受到 shell 参数个数限制，不能正常删除。<br>后面找了方案，发现可以通过 <code>rsync</code> 去快速删除大量文件。</p>
+<h3 id="省流版"><a href="#省流版" class="headerlink" title="省流版"></a>省流版</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># 以删除 logs 文件夹为例</span>
+<span class="token comment"># 创建一个空文件夹</span>
+<span class="token function">mkdir</span> -p /xxx/empty<span class="token punctuation">;</span>
+<span class="token comment"># 执行 rsync 同步空文件夹</span>
+<span class="token function">rsync</span> --delete-before -aO  /xxx/empty/ /xxx/logs/<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="详细版"><a href="#详细版" class="headerlink" title="详细版"></a>详细版</h3><h4 id="Linux-文件存储原理"><a href="#Linux-文件存储原理" class="headerlink" title="Linux 文件存储原理"></a>Linux 文件存储原理</h4><p>Linux 文件存储数据是放在一张 inode 表，里面每一个文件的节点，每个节点包括以下内容：</p>
+<ul>
+<li>文件类型</li>
+<li>权限</li>
+<li>UID，GID</li>
+<li>i_nlink 链接数（指向这个文件名路径名称个数）</li>
+<li>i_count 使用数（指使用这个文件的进程数）</li>
+<li>该文件的大小和不同的时间戳</li>
+<li>指向磁盘上文件的数据块指针</li>
+<li>有关文件的其他数据</li>
+</ul>
+<h4 id="Linux-文件真正删除的过程："><a href="#Linux-文件真正删除的过程：" class="headerlink" title="Linux 文件真正删除的过程："></a>Linux 文件真正删除的过程：</h4><ul>
+<li>i_nlink=0 没有人进行链接使用，包括任何硬链接</li>
+<li>i_count=0 没有任何进程使用</li>
+</ul>
+<h4 id="rm-原理"><a href="#rm-原理" class="headerlink" title="rm 原理"></a>rm 原理</h4><p>减少磁盘引用计数 i_nlink，就是减少其他文件对这个文件链接，实际并没有删除文件内容。<br>如果想要真正删除一个文件，还需要同时将 i_count 降至 0。</p>
+<h4 id="rsync-原理"><a href="#rsync-原理" class="headerlink" title="rsync 原理"></a>rsync 原理</h4><p>rsync 本身是将两个文件夹作同步使用，使用 rsync 删除文件，步骤就是将一个空文件夹同步到要删除的文件夹里，这样就等于将文件夹清空了 :)</p>
+
+  </div>
+  <div>
+    
+      <div 
+        class="post-note note-warning copyright" 
+        style="margin-top: 42px">
+        <p>
+          <span style="font-weight: bold;">作者：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="/about">
+            Maria
+          </a>
+        </p>
+        <p>
+          <span style="font-weight: bold;">文章链接：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="http://mariaovo.icu/2023/03/08/linux-rsync/">
+            http://mariaovo.icu/2023/03/08/linux-rsync/
+          </a>
+        </p>
+        <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
+      </div>
+    
+  </div>
+</article>
+<div class="nav">
+  
+  
+    <div class="nav-item-next">
+      <a 
+        href="/2023/03/03/primordials-is-not-defined/" 
+        class="nav-link">
+        <div>
+          <div class="nav-label">下一篇</div>
+          
+            <div class="nav-title">ReferenceError primordials is not defined </div>
+          
+        </div>
+        <i class="iconfont icon-right nav-next-icon"></i>
+      </a>
+    </div>
+  
 </div>
-</main>
+
+  <div 
+    class="card card-content comment-card" 
+    style="margin-top: 16px;">
+    <div class="comment-card-title">评论</div>
+    
+  <div id="vcomments"></div>
+  
+  <script>
+    loadScript("//unpkg.com/valine/dist/Valine.min.js");
+    var oldLoadVa = window.onload;
+    window.onload = function () {
+      oldLoadVa && oldLoadVa();
+      new Valine({
+        el: '#vcomments',
+        appId: 'Rco3KkjsoblXIpT244qC7agz-gzGzoHsz',
+        appKey: '1HXabhsimRHduyaGLXWruPnm',
+        placeholder: 'Just go go',
+        path: window.location.pathname,
+        avatar: 'wavatar',
+        meta: ["nick","mail","link"],
+        pageSize: '10',
+        lang: '',
+        visitor: 'false',
+        highlight: true,
+        recordIP: true,
+        
+        
+        
+        enableQQ: 'false',
+        requiredFields: [],
+      });
+    };
+  </script>
+
+  </div>
+
+<div 
+  class="card card-content toc-card" 
+  id="mobiletoc">
+  <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9C%81%E6%B5%81%E7%89%88"><span class="toc-text">省流版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%A6%E7%BB%86%E7%89%88"><span class="toc-text">详细版</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8%E5%8E%9F%E7%90%86"><span class="toc-text">Linux 文件存储原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-%E6%96%87%E4%BB%B6%E7%9C%9F%E6%AD%A3%E5%88%A0%E9%99%A4%E7%9A%84%E8%BF%87%E7%A8%8B%EF%BC%9A"><span class="toc-text">Linux 文件真正删除的过程：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rm-%E5%8E%9F%E7%90%86"><span class="toc-text">rm 原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rsync-%E5%8E%9F%E7%90%86"><span class="toc-text">rsync 原理</span></a></li></ol></li></ol></li></ol>
+</div></main>
             <aside class="left-column">
               
               <div class="card card-author">
@@ -336,6 +491,18 @@
               </div>
                <div class="sticky-tablet">
   
+  
+    <article class="display-when-two-columns spacer">
+      <div class="card card-content toc-card">
+        <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9C%81%E6%B5%81%E7%89%88"><span class="toc-text">省流版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%A6%E7%BB%86%E7%89%88"><span class="toc-text">详细版</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8%E5%8E%9F%E7%90%86"><span class="toc-text">Linux 文件存储原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-%E6%96%87%E4%BB%B6%E7%9C%9F%E6%AD%A3%E5%88%A0%E9%99%A4%E7%9A%84%E8%BF%87%E7%A8%8B%EF%BC%9A"><span class="toc-text">Linux 文件真正删除的过程：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rm-%E5%8E%9F%E7%90%86"><span class="toc-text">rm 原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rsync-%E5%8E%9F%E7%90%86"><span class="toc-text">rsync 原理</span></a></li></ol></li></ol></li></ol>
+      </div>
+    </article>
   
   
   <article class="card card-content categories-widget">
@@ -498,239 +665,21 @@
   </article>
   
   
-    <article class="card card-content widescreen-archive archive-widget">
-      <div class="archive-card">
-  <div class="archive-card-header">
-    <i 
-      class="iconfont icon-wodebaobiao" 
-      style="padding-right: 2px;">
-    </i>归档
-  </div>
-  <div class="archive-card-list">
-    
-    
-    
-      
-        
-        
-        
-      
-    
-      
-        
-      
-    
-      
-        
-          <a 
-            href="/archives/2023" 
-            class="archive-card-list-item">
-            2023
-            <span class="archive-card-list-item-badge">2</span>
-          </a>
-        
-        
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-          <a 
-            href="/archives/2022" 
-            class="archive-card-list-item">
-            2022
-            <span class="archive-card-list-item-badge">34</span>
-          </a>
-        
-        
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-    
-      <a 
-        href="/archives/2021" 
-        class="archive-card-list-item">
-        2021
-        <span class="archive-card-list-item-badge">10</span>
-      </a>
-    
-  </div>
-</div>
-    </article>
-  
 </div>
             </aside>
             <aside class="right-column">
               <div class="sticky-widescreen">
   
+  
+    <article class="card card-content toc-card">
+      <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9C%81%E6%B5%81%E7%89%88"><span class="toc-text">省流版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%A6%E7%BB%86%E7%89%88"><span class="toc-text">详细版</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8%E5%8E%9F%E7%90%86"><span class="toc-text">Linux 文件存储原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-%E6%96%87%E4%BB%B6%E7%9C%9F%E6%AD%A3%E5%88%A0%E9%99%A4%E7%9A%84%E8%BF%87%E7%A8%8B%EF%BC%9A"><span class="toc-text">Linux 文件真正删除的过程：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rm-%E5%8E%9F%E7%90%86"><span class="toc-text">rm 原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rsync-%E5%8E%9F%E7%90%86"><span class="toc-text">rsync 原理</span></a></li></ol></li></ol></li></ol>
+    </article>
   
   
   <article class="card card-content">
@@ -767,234 +716,6 @@
 </div>
   </article>
   
-  
-    <article class="card card-content">
-      <div class="archive-card">
-  <div class="archive-card-header">
-    <i 
-      class="iconfont icon-wodebaobiao" 
-      style="padding-right: 2px;">
-    </i>归档
-  </div>
-  <div class="archive-card-list">
-    
-    
-    
-      
-        
-        
-        
-      
-    
-      
-        
-      
-    
-      
-        
-          <a 
-            href="/archives/2023" 
-            class="archive-card-list-item">
-            2023
-            <span class="archive-card-list-item-badge">2</span>
-          </a>
-        
-        
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-          <a 
-            href="/archives/2022" 
-            class="archive-card-list-item">
-            2022
-            <span class="archive-card-list-item-badge">34</span>
-          </a>
-        
-        
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-    
-      <a 
-        href="/archives/2021" 
-        class="archive-card-list-item">
-        2021
-        <span class="archive-card-list-item-badge">10</span>
-      </a>
-    
-  </div>
-</div>
-    </article>
   
 </div>
             </aside>
@@ -1080,6 +801,36 @@
 </a> 
      
      
+     
+      <script>
+  var addImgLayout = function () {
+    var img = document.querySelectorAll('.post-content img')
+    var i
+    for (i = 0; i < img.length; i++) {
+      var wrapper = document.createElement('a')
+      wrapper.setAttribute('href', img[i].getAttribute('data-src'))
+      wrapper.setAttribute('aria-label', 'illustration')
+      wrapper.style.cssText =
+        'width: 100%; display: flex; justify-content: center;'
+      if (img[i].alt) wrapper.dataset.caption = img[i].alt
+      wrapper.dataset.nolink = true
+      img[i].before(wrapper)
+      wrapper.append(img[i])
+      var divWrap = document.createElement('div')
+      divWrap.classList.add('gallery')
+      wrapper.before(divWrap)
+      divWrap.append(wrapper)
+    }
+    baguetteBox.run('.gallery')
+  }
+</script>
+<script>
+  loadScript(
+    "/js/lib/lightbox/baguetteBox.min.js",
+    addImgLayout
+  )
+</script>
+ 
      
      
     <script src="/js/main.js"></script> 
