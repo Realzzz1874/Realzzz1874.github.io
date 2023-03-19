@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  <meta charset="UTF-8">
+  <meta 
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta 
+    http-equiv="X-UA-Compatible" 
+    content="ie=edge">
+  <meta 
+    name="theme-color" 
+    content="#fff" 
+    id="theme-color">
+  <meta 
+    name="description" 
+    content="我思故我在">
+  <link 
+    rel="icon" 
+    href="//mariaovo.icu/img/head-smile.png">
+  <title>tsconfig.json 配置详解</title>
+  
+    
+      <meta 
+        property="og:title" 
+        content="tsconfig.json 配置详解">
+    
+    
+      <meta 
+        property="og:url" 
+        content="http://mariaovo.icu/2023/03/19/tsconfig.json%E9%85%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/index.html">
+    
+    
+      <meta 
+        property="og:img" 
+        content="//mariaovo.icu/img/head-notion.png">
+    
+    
+      <meta 
+        property="og:img" 
+        content="tsconfig.json 配置详解">
+    
+    
+      <meta 
+        property="og:type" 
+        content="article">
+      <meta 
+        property="og:article:published_time" 
+        content="2023-03-19">
+      <meta 
+        property="og:article:modified_time" 
+        content="2023-03-19">
+      <meta 
+        property="og:article:author" 
+        content="Maria">
+      
+        
+          <meta 
+            property="og:article:tag" 
+            content="typescript">
+        
+      
+    
+  
+  <script>
+    function loadScript(url, cb) {
+      var script = document.createElement('script');
+      script.src = url;
+      if (cb) script.onload = cb;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+    function loadCSS(href, data, attr) {
+      var sheet = document.createElement('link');
+      sheet.ref = 'stylesheet';
+      sheet.href = href;
+      sheet.dataset[data] = attr;
+      document.head.appendChild(sheet);
+    }
+    function changeCSS(cssFile, data, attr) {
+      var oldlink = document.querySelector(data);
+      var newlink = document.createElement("link");
+      newlink.setAttribute("rel", "stylesheet");
+      newlink.setAttribute("href", cssFile);
+      newlink.dataset.prism = attr;
+      document.head.replaceChild(newlink, oldlink);
+    }
+  </script>
+  
+    
+      
+      
+      
+      
+        
+        
+        
+        <script>
+          function prismThemeChange() {
+            if(document.getElementById('theme-color').dataset.mode === 'dark') {
+              if(document.querySelector('[data-prism]')) {
+                changeCSS('/js/lib/prism/prism-okaidia.min.css', '[data-prism]', 'prism-okaidia');
+              } else {
+                loadCSS('/js/lib/prism/prism-okaidia.min.css', 'prism', 'prism-okaidia');
+              }
+            } else {
+              if(document.querySelector('[data-prism]')) {
+                changeCSS('/js/lib/prism/prism.min.css', '[data-prism]', 'prism');
+              } else {
+                loadCSS('/js/lib/prism/prism.min.css', 'prism', 'prism');
+              }
+            }
+          }
+          prismThemeChange()
+        </script>
+      
+      
+        
+        <link rel="stylesheet" href="/js/lib/prism/prism-line-numbers.min.css">
+      
+    
+  
+  <script>
+    // control reverse button
+    var reverseDarkList = {
+      dark: 'light',
+      light: 'dark'
+    };
+    var themeColor = {
+      dark: '#1c1c1e',
+      light: '#fff'
+    }
+    // get the data of css prefers-color-scheme
+    var getCssMediaQuery = function() {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    // reverse current darkmode setting function
+    var reverseDarkModeSetting = function() {
+      var setting = localStorage.getItem('user-color-scheme');
+      if(reverseDarkList[setting]) {
+        setting = reverseDarkList[setting];
+      } else if(setting === null) {
+        setting = reverseDarkList[getCssMediaQuery()];
+      } else {
+        return;
+      }
+      localStorage.setItem('user-color-scheme', setting);
+      return setting;
+    };
+    // apply current darkmode setting
+  </script>
+  
+    <script>
+      var setDarkmode = function(mode) {
+      var setting = mode || localStorage.getItem('user-color-scheme');
+      if(setting === getCssMediaQuery()) {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+        prismThemeChange();
+      } else if(reverseDarkList[setting]) {
+        document.documentElement.setAttribute('data-user-color-scheme', setting);
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+        prismThemeChange();
+      } else {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
+        document.getElementById('theme-color').dataset.mode = getCssMediaQuery();
+        prismThemeChange();
+      }
+    };
+    setDarkmode();
+    </script>
+  
+  
+  <link rel="preload" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css" as="style" >
+  <link rel="preload" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css" as="style" >
+  
+  
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.js" as="script">
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.css" as="style" >
+  
+  
+    <link rel="preload" href="/js/lib/lozad.min.js" as="script">
+  
+  
+  
+  
+  
+    
+    <link rel="prefetch" href="//unpkg.com/valine/dist/Valine.min.js" as="script">
+  
+  
+  
+  <link rel="stylesheet" href="/css/main.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
+  
+    <link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+  <body>
+    <div class="wrapper">
+       
+      <nav class="navbar">
+  <div class="navbar-logo">
+    <span class="navbar-logo-main">
+      
+        <img 
+          class="navbar-logo-img"
+          width="32"
+          height="32"
+          src="//mariaovo.icu/img/head-smile.png" 
+          alt="blog logo">
+      
+      <span class="navbar-logo-dsc">居家呆猫</span>
+    </span>
+  </div>
+  <div class="navbar-menu">
+    
+      <a 
+        href="/" 
+        class="navbar-menu-item">
+        
+          首页
+        
+      </a>
+    
+      <a 
+        href="/archives" 
+        class="navbar-menu-item">
+        
+          归档
+        
+      </a>
+    
+      <a 
+        href="/tags" 
+        class="navbar-menu-item">
+        
+          标签
+        
+      </a>
+    
+      <a 
+        href="/categories" 
+        class="navbar-menu-item">
+        
+          分类
+        
+      </a>
+    
+      <a 
+        href="/about" 
+        class="navbar-menu-item">
+        
+          关于
+        
+      </a>
+    
+      <a 
+        href="/links" 
+        class="navbar-menu-item">
+        
+          友链
+        
+      </a>
+    
+    <a 
+      class="navbar-menu-item darknavbar" 
+      id="dark">
+      <i class="iconfont icon-weather"></i>
+    </a>
+    <a 
+      class="navbar-menu-item searchnavbar" 
+      id="search">
+      <i 
+        class="iconfont icon-search" 
+        style="font-size: 1.2rem; font-weight: 400;">
+      </i>
+    </a>
+  </div>
+</nav> 
+      
+      <div 
+        id="local-search" 
+        style="display: none">
+        <input
+          class="navbar-menu-item"
+          id="search-input"
+          placeholder="请输入搜索内容..." />
+        <div id="search-content"></div>
+      </div>
+      
+      <div class="section-wrap">
+        <div class="container">
+          <div class="columns">
+            <main class="main-column">
+<article class="card card-content">
+  <header>
+    <h1 class="post-title">
+      tsconfig.json 配置详解
+    </h1>
+  </header>
+  <div class="post-meta post-show-meta">
+    <time datetime="2023-03-18T16:00:00.000Z">
+      <i 
+        class="iconfont icon-calendar" 
+        style="margin-right: 2px;">
+      </i>
+      <span>2023-03-19</span>
+    </time>
+    
+      <span class="dot"></span>
+      
+        <a 
+          href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" 
+          class="post-meta-link">
+          技术分享
+        </a>
+      
+    
+    
+      <span class="dot"></span>
+      <span>1.7k 字</span>
+    
+  </div>
+  
+    <div 
+      class="post-meta post-show-meta" 
+      style="margin-top: -10px;">
+      <div style="display: flex; align-items: center;">
+        <i 
+          class="iconfont icon-biaoqian" 
+          style="margin-right: 2px; font-size: 1.15rem;">
+        </i>
+        
+          
+          <a 
+            href="/tags/typescript/" 
+            class="post-meta-link">
+            typescript
+          </a>
+        
+      </div>
+    </div>
+  
+  </header>
+  <div 
+    id="section" 
+    class="post-content">
+    <h4 id="compilerOptions-编译选项"><a href="#compilerOptions-编译选项" class="headerlink" title="compilerOptions 编译选项"></a>compilerOptions 编译选项</h4><p>target 用于指定编译之后的版本目录</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"target"</span><span class="token operator">:</span> <span class="token string">"es5"</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>module 用来指定要使用的模板标准</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"module"</span><span class="token operator">:</span> <span class="token string">"commonjs"</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>lib 用于指定要包含在编译中的库文件</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"lib"</span><span class="token operator">:</span><span class="token punctuation">[</span>
+    <span class="token string">"es6"</span><span class="token punctuation">,</span>
+    <span class="token string">"dom"</span>
+<span class="token punctuation">]</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>allowJs 用来指定是否允许编译 JS 文件，默认 false,即不编译 JS 文件</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"allowJs"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>checkJs 用来指定是否检查和报告 JS 文件中的错误，默认 false</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"checkJs"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>指定 jsx 代码用于的开发环境:’preserve’,’react-native’,or ‘react’</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"jsx"</span><span class="token operator">:</span> <span class="token string">"preserve"</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>declaration 用来指定是否在编译的时候生成相的 d.ts 声明文件，如果设为 true,编译每个 ts 文件之后会生成一个 js 文件和一个声明文件，但是 declaration 和 allowJs 不能同时设为 true</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"declaration"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>declarationMap 用来指定编译时是否生成.map 文件</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"declarationMap"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>sourceMap 用来指定编译时是否生成.map 文件</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"sourceMap"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>outFile 用于指定输出文件合并为一个文件，只有设置 module 的值为 amd 和 system 模块时才支持这个配置</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"outFile"</span><span class="token operator">:</span> <span class="token string">"./"</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>outDir 用来指定输出文件夹，值为一个文件夹路径字符串，输出的文件都将放置在这个文件夹</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"outDir"</span><span class="token operator">:</span> <span class="token string">"./"</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>rootDir 用来指定编译文件的根目录，编译器会在根目录查找入口文件</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"rootDir"</span><span class="token operator">:</span> <span class="token string">"./"</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>composite 是否编译构建引用项目</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"composite"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>removeComments 用于指定是否将编译后的文件注释删掉，设为 true 的话即删除注释，默认为 false</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"removeComments"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>noEmit 不生成编译文件</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"noEmit"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>importHelpers 指定是否引入 tslib 里的复制工具函数，默认为 false</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"importHelpers"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>当 target 为”ES5”或”ES3”时，为”for-of” “spread”和”destructuring”中的迭代器提供完全支持</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"downlevelIteration"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>isolatedModules 指定是否将每个文件作为单独的模块，默认为 true，他不可以和 declaration 同时设定</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"isolatedModules"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>strict 用于指定是否启动所有类型检查，如果设为 true 这回同时开启下面这几个严格检查，默认为 false</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"strict"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>noImplicitAny 如果我们没有一些值设置明确类型，编译器会默认认为这个值为 any 类型，如果将 noImplicitAny 设为 true,则如果没有设置明确的类型会报错，默认值为 false</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"noImplicitAny"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>strictNullChecks 当设为 true 时，null 和 undefined 值不能赋值给非这两种类型的值，别的类型的值也不能赋给他们，除了 any 类型，还有个例外就是 undefined 可以赋值给 void 类型</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"strictNullChecks"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>strictFunctionTypes 用来指定是否使用函数参数双向协变检查</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"strictFunctionTypes"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>strictBindCallApply 设为 true 后对 bind、call 和 apply 绑定的方法的参数的检测是严格检测</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"strictBindCallApply"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>strictPropertyInitialization 设为 true 后会检查类的非 undefined 属性是否已经在构造函数里初始化，如果要开启这项，需要同时开启 strictNullChecks,默认为 false</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"strictPropertyInitialization"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>当 this 表达式的值为 any 类型的时候，生成一个错误</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"noImplicitThis"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>alwaysStrict 指定始终以严格模式检查每个模块，并且在编译之后的 JS 文件中加入”use strict”字符串，用来告诉浏览器该 JS 为严格模式</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"alwaysStrict"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>noUnusedLocals 用于检查是否有定义了但是没有使用变量，对于这一点的检测，使用 ESLint 可以在你书写代码的时候做提示，你可以配合使用，他的默认值为 false</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"noUnusedLocals"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>noUnusedParameters 用于检测是否在函数中没有使用的参数</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"noUnusedParameters"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>noImplicitReturns 用于检查函数是否有返回值，设为 true 后，如果函数没有返回值则会提示，默认为 false</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"noImplicitReturns"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>noFallthroughCasesInSwitch 用于检查 switch 中是否有 case 没有使用 break 跳出 switch,默认为 false</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"noFallthroughCasesInSwitch"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>moduleResolution 用于选择模块解析策略，有”node”和”classic”两种类型</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"moduleResolution"</span><span class="token operator">:</span> <span class="token string">"node"</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>baseUrl 用于设置解析非相对模块名称的基本目录，相对模块不会受到 baseUrl 的影响</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"baseUrl"</span><span class="token operator">:</span> <span class="token string">"./"</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>paths 用于设置模块名到基于 baseUrl 的路径映射</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"paths"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token property">"_"</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token string">"./node_modules/@types"</span><span class="token punctuation">,</span> <span class="token string">"./typings/_"</span><span class="token punctuation">]</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>rootDirs 可以指定一个路径列表，在构建时编译器会将这个路径中的内容都放到一个文件夹中</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"rootDirs"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>typeRoots 用来指定声明文件或文件夹的路径列表，如果指定了此项，则只有在这里列出的声明文件才会被加载</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"typeRoots"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>types 用于指定需要包含的模块，只有在这里列出的模块的声明文件才会被加载</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"types"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>allowSyntheticDefaultImports 用来指定允许从没有默认导出的模块中默认导入</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"allowSyntheticDefaultImports"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>esModuleInterop 通过导入内容创建命名空间，实现 CommonJS 和 ES 模块之间的互操作性</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"esModuleInterop"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>不把符号链接解析为真实路径，具体可以了解下 webpack 和 node.js 的 symlink 相关知识</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"preserveSymlinks"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>sourceRoot 用于指定调试器应该找到 TypeScript 文件而不是源文件的位置，这个值会被写进.map 文件里</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"sourceRoot"</span><span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>mapRoot 用于指定调试器找到映射文件而非生成文件的位置，指定 map 文件的根路径，该选项会影响.map 文件中的 sources 属性</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"mapRoot"</span><span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>inlineSourceMap 指定是否将 map 文件内容和 js 文件编译在一个同一个 js 文件中，如果设为 true,则 map 的内容会以 <code>//#sourceMappingURL=</code> 开头，然后接 base64 字符串的形式插入在 js 文件底部</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"inlineSourceMap"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>inlineSources 用于指定是否进一步将 ts 文件的内容也包含到输出文件中</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"inlineSources"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>experimentalDecorators 用于指定是否启用实验性的装饰器特性</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"experimentalDecorators"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>emitDecoratorMetadata 用于指定是否为装上去提供元数据支持，关于元数据，也是 ES6 的新标准，可以通过 Reflect 提供的静态方法获取元数据，如果需要使用 Reflect 的一些方法，需要引用 ES2015.Reflect 这个库</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"emitDecoratorMetadata"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="compileOnSave"><a href="#compileOnSave" class="headerlink" title="compileOnSave"></a>compileOnSave</h4><p>compileOnSave 如果设为 true,在我们编辑了项目文件保存的时候，编辑器会根据 tsconfig.json 的配置更新重新生成文本，不过这个编辑器支持</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"compileOnSave"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="include"><a href="#include" class="headerlink" title="include"></a>include</h4><p>include 也可以指定要编译的路径列表</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"include"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="files"><a href="#files" class="headerlink" title="files"></a>files</h4><p>files 可以配置一个数组列表</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"files"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="exclude"><a href="#exclude" class="headerlink" title="exclude"></a>exclude</h4><p>exclude 表示要排除的，不编译的文件，它也可以指定一个列表，规则和 include 一样，可以是文件可以是文件夹，可以是相对路径或绝对路径，可以使用通配符</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"exclude"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="extends"><a href="#extends" class="headerlink" title="extends"></a>extends</h4><p>extends 可以通过指定一个其他的 tsconfig.json 文件路径，来继承这个配置文件里的配置，继承来的文件的配置会覆盖当前文件定义的配置</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"extends"</span><span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="references"><a href="#references" class="headerlink" title="references"></a>references</h4><p>一个对象数组，指定要引用的项目</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"references"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+  </div>
+  <div>
+    
+      <div 
+        class="post-note note-warning copyright" 
+        style="margin-top: 42px">
+        <p>
+          <span style="font-weight: bold;">作者：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="/about">
+            Maria
+          </a>
+        </p>
+        <p>
+          <span style="font-weight: bold;">文章链接：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="http://mariaovo.icu/2023/03/19/tsconfig.json%E9%85%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/">
+            http://mariaovo.icu/2023/03/19/tsconfig.json%E9%85%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/
+          </a>
+        </p>
+        <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
+      </div>
+    
+  </div>
+</article>
+<div class="nav">
+  
+  
+    <div class="nav-item-next">
+      <a 
+        href="/2023/03/03/primordials-is-not-defined/" 
+        class="nav-link">
+        <div>
+          <div class="nav-label">下一篇</div>
+          
+            <div class="nav-title">ReferenceError primordials is not defined </div>
+          
+        </div>
+        <i class="iconfont icon-right nav-next-icon"></i>
+      </a>
+    </div>
+  
+</div>
+
+  <div 
+    class="card card-content comment-card" 
+    style="margin-top: 16px;">
+    <div class="comment-card-title">评论</div>
+    
+  <div id="vcomments"></div>
+  
+  <script>
+    loadScript("//unpkg.com/valine/dist/Valine.min.js");
+    var oldLoadVa = window.onload;
+    window.onload = function () {
+      oldLoadVa && oldLoadVa();
+      new Valine({
+        el: '#vcomments',
+        appId: 'Rco3KkjsoblXIpT244qC7agz-gzGzoHsz',
+        appKey: '1HXabhsimRHduyaGLXWruPnm',
+        placeholder: 'Just go go',
+        path: window.location.pathname,
+        avatar: 'wavatar',
+        meta: ["nick","mail","link"],
+        pageSize: '10',
+        lang: '',
+        visitor: 'false',
+        highlight: true,
+        recordIP: true,
+        
+        
+        
+        enableQQ: 'false',
+        requiredFields: [],
+      });
+    };
+  </script>
+
+  </div>
+
+<div 
+  class="card card-content toc-card" 
+  id="mobiletoc">
+  <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#compilerOptions-%E7%BC%96%E8%AF%91%E9%80%89%E9%A1%B9"><span class="toc-text">compilerOptions 编译选项</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#compileOnSave"><span class="toc-text">compileOnSave</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#include"><span class="toc-text">include</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#files"><span class="toc-text">files</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#exclude"><span class="toc-text">exclude</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#extends"><span class="toc-text">extends</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#references"><span class="toc-text">references</span></a></li></ol>
+</div></main>
+            <aside class="left-column">
+              
+              <div class="card card-author">
+                
+  <img 
+    src="//mariaovo.icu/img/head-notion.png" 
+    class="author-img"
+    width="88"
+    height="88"
+    alt="author avatar">
+
+<p class="author-name">Maria</p>
+<p class="author-description">我思故我在</p>
+<div class="author-message">
+  <a 
+    class="author-posts-count" 
+    href="/archives">
+    <span>47</span>
+    <span>文章</span>
+  </a>
+  <a 
+    class="author-categories-count" 
+    href="/categories">
+    <span>5</span>
+    <span>分类</span>
+  </a>
+  <a 
+    class="author-tags-count" 
+    href="/tags">
+    <span>24</span>
+    <span>标签</span>
+  </a>
+</div>
+
+  <div class="author-card-society">
+    
+      <div class="author-card-society-icon">
+        <a target="_blank" rel="noopener" href="https://github.com/Realzzz1874">
+          <i class="iconfont icon-github society-icon"></i>
+        </a>
+      </div>
+    
+  </div>
+
+              </div>
+               <div class="sticky-tablet">
+  
+  
+    <article class="display-when-two-columns spacer">
+      <div class="card card-content toc-card">
+        <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#compilerOptions-%E7%BC%96%E8%AF%91%E9%80%89%E9%A1%B9"><span class="toc-text">compilerOptions 编译选项</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#compileOnSave"><span class="toc-text">compileOnSave</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#include"><span class="toc-text">include</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#files"><span class="toc-text">files</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#exclude"><span class="toc-text">exclude</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#extends"><span class="toc-text">extends</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#references"><span class="toc-text">references</span></a></li></ol>
+      </div>
+    </article>
+  
+  
+  <article class="card card-content categories-widget">
+    <div class="categories-card">
+  <div class="categories-header">
+    <i 
+      class="iconfont icon-fenlei" 
+      style="padding-right: 2px;">
+    </i>分类
+  </div>
+  <div class="categories-list">
+    
+      <a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/">
+        <div class="categories-list-item">
+          技术分享
+          <span class="categories-list-item-badge">26</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E5%B0%8F%E8%BD%AE%E5%AD%90/">
+        <div class="categories-list-item">
+          小轮子
+          <span class="categories-list-item-badge">9</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E9%9A%8F%E6%83%B3%E5%BD%95/">
+        <div class="categories-list-item">
+          软件开发随想录
+          <span class="categories-list-item-badge">4</span>
+        </div>
+      </a>
+    
+      <a href="/categories/Bugs-%E5%B0%8F%E8%AE%B0/">
+        <div class="categories-list-item">
+          Bugs-小记
+          <span class="categories-list-item-badge">2</span>
+        </div>
+      </a>
+    
+      <a href="/categories/%E8%80%B3%E6%9C%B5%E4%BC%9A%E8%AF%B4%E8%AF%9D/">
+        <div class="categories-list-item">
+          耳朵会说话
+          <span class="categories-list-item-badge">4</span>
+        </div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  <article class="card card-content tags-widget">
+    <div class="tags-card">
+  <div class="tags-header">
+    <i 
+      class="iconfont icon-biaoqian" 
+      style="padding-right: 2px;">
+    </i>热门标签
+  </div>
+  <div class="tags-list">
+    
+      <a 
+        href="/tags/Web/" 
+        title="Web">
+        <div class="tags-list-item">Web</div>
+      </a>
+    
+      <a 
+        href="/tags/FrontEnd/" 
+        title="FrontEnd">
+        <div class="tags-list-item">FrontEnd</div>
+      </a>
+    
+      <a 
+        href="/tags/%E9%9F%B3%E4%B9%90/" 
+        title="音乐">
+        <div class="tags-list-item">音乐</div>
+      </a>
+    
+      <a 
+        href="/tags/BackEnd/" 
+        title="BackEnd">
+        <div class="tags-list-item">BackEnd</div>
+      </a>
+    
+      <a 
+        href="/tags/Node/" 
+        title="Node">
+        <div class="tags-list-item">Node</div>
+      </a>
+    
+      <a 
+        href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" 
+        title="微信小程序">
+        <div class="tags-list-item">微信小程序</div>
+      </a>
+    
+      <a 
+        href="/tags/JS/" 
+        title="JS">
+        <div class="tags-list-item">JS</div>
+      </a>
+    
+      <a 
+        href="/tags/%E5%9B%BE%E7%89%87/" 
+        title="图片">
+        <div class="tags-list-item">图片</div>
+      </a>
+    
+      <a 
+        href="/tags/%E5%B7%A5%E5%85%B7/" 
+        title="工具">
+        <div class="tags-list-item">工具</div>
+      </a>
+    
+      <a 
+        href="/tags/CSS/" 
+        title="CSS">
+        <div class="tags-list-item">CSS</div>
+      </a>
+    
+      <a 
+        href="/tags/Vue/" 
+        title="Vue">
+        <div class="tags-list-item">Vue</div>
+      </a>
+    
+      <a 
+        href="/tags/Taro/" 
+        title="Taro">
+        <div class="tags-list-item">Taro</div>
+      </a>
+    
+      <a 
+        href="/tags/Python/" 
+        title="Python">
+        <div class="tags-list-item">Python</div>
+      </a>
+    
+      <a 
+        href="/tags/Git/" 
+        title="Git">
+        <div class="tags-list-item">Git</div>
+      </a>
+    
+      <a 
+        href="/tags/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/" 
+        title="项目管理">
+        <div class="tags-list-item">项目管理</div>
+      </a>
+    
+      <a 
+        href="/tags/Excel/" 
+        title="Excel">
+        <div class="tags-list-item">Excel</div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+            <aside class="right-column">
+              <div class="sticky-widescreen">
+  
+  
+    <article class="card card-content toc-card">
+      <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#compilerOptions-%E7%BC%96%E8%AF%91%E9%80%89%E9%A1%B9"><span class="toc-text">compilerOptions 编译选项</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#compileOnSave"><span class="toc-text">compileOnSave</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#include"><span class="toc-text">include</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#files"><span class="toc-text">files</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#exclude"><span class="toc-text">exclude</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#extends"><span class="toc-text">extends</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#references"><span class="toc-text">references</span></a></li></ol>
+    </article>
+  
+  
+  <article class="card card-content">
+    <div class="recent-posts-card">
+  <div class="recent-posts-header">
+    <i 
+      class="iconfont icon-wenzhang_huaban" 
+      style="padding-right: 2px;">
+    </i>最近文章
+  </div>
+  <div class="recent-posts-list">
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2023-03-19</div>
+        <a href="/2023/03/19/tsconfig.json%E9%85%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/"><div class="recent-posts-item-content">tsconfig.json 配置详解</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2023-03-03</div>
+        <a href="/2023/03/03/primordials-is-not-defined/"><div class="recent-posts-item-content">ReferenceError primordials is not defined</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2023-02-26</div>
+        <a href="/2023/02/26/linux-rsync/"><div class="recent-posts-item-content">Linux 使用 rsync 快速删除大量文件</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-12-04</div>
+        <a href="/2022/12/04/mp-setdata/"><div class="recent-posts-item-content">微信小程序合理使用 setData()</div></a>
+      </div>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <footer class="footer">
+  <div class="footer-container">
+    <div>
+      <div class="footer-dsc">
+        <span>
+          Copyright ©
+          
+            2021 -
+          
+          2023
+        </span>
+        &nbsp;
+        <a 
+          href="/" 
+          class="footer-link">
+          居家呆猫
+        </a>
+      </div>
+    </div>
+
+    
+    
+    
+    
+      <div class="footer-dsc">
+        
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        
+        
+          <span>&nbsp;|&nbsp;</span>
+        
+        
+          本站总访客数<span id="busuanzi_value_site_uv"></span>次
+        
+      </div>
+      
+    
+</footer> 
+    
+  <a 
+    role="button" 
+    id="scrollbutton" 
+    class="basebutton" 
+    aria-label="回到顶部">
+    <i class="iconfont icon-arrowleft button-icon"></i>
+  </a>
+
+<a 
+  role="button" 
+  id="menubutton"
+  aria-label="menu button"
+  class="basebutton">
+  <i class="iconfont icon-menu button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="popbutton" 
+  class="basebutton" 
+  aria-label="控制中心">
+  <i class="iconfont icon-expand button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="darkbutton" 
+  class="basebutton darkwidget" 
+  aria-label="夜色模式">
+  <i class="iconfont icon-weather button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="searchbutton" 
+  class="basebutton searchwidget" 
+  aria-label="搜索">
+  <i class="iconfont icon-search button-icon"></i>
+</a> 
+     
+     
+     
+      <script>
+  var addImgLayout = function () {
+    var img = document.querySelectorAll('.post-content img')
+    var i
+    for (i = 0; i < img.length; i++) {
+      var wrapper = document.createElement('a')
+      wrapper.setAttribute('href', img[i].getAttribute('data-src'))
+      wrapper.setAttribute('aria-label', 'illustration')
+      wrapper.style.cssText =
+        'width: 100%; display: flex; justify-content: center;'
+      if (img[i].alt) wrapper.dataset.caption = img[i].alt
+      wrapper.dataset.nolink = true
+      img[i].before(wrapper)
+      wrapper.append(img[i])
+      var divWrap = document.createElement('div')
+      divWrap.classList.add('gallery')
+      wrapper.before(divWrap)
+      divWrap.append(wrapper)
+    }
+    baguetteBox.run('.gallery')
+  }
+</script>
+<script>
+  loadScript(
+    "/js/lib/lightbox/baguetteBox.min.js",
+    addImgLayout
+  )
+</script>
+ 
+     
+     
+    <script src="/js/main.js"></script> 
+    
+      <script> 
+        loadScript('/js/lib/busuanzi.min.js') 
+      </script>
+     
+    
+      <script>
+        var addLazyload = function () {
+          var observer = lozad('.lozad', {
+            load: function (el) {
+              el.srcset = el.getAttribute('data-src')
+            },
+            loaded: function (el) {
+              el.classList.add('loaded')
+            },
+          })
+          observer.observe()
+        }
+      </script>
+      <script>
+        loadScript('/js/lib/lozad.min.js', addLazyload)
+      </script>
+     
+    
+    
+      <script>
+        setTimeout(() => {localSearch("search.json")}, 0)
+      </script>
+    
+  </body>
+</html>
