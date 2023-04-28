@@ -18,17 +18,17 @@
   <link 
     rel="icon" 
     href="//mariaovo.icu/img/head-smile.png">
-  <title>前端异常</title>
+  <title>终端根据 .nvmrc 文件自动执行切换 Node 版本</title>
   
     
       <meta 
         property="og:title" 
-        content="前端异常">
+        content="终端根据 .nvmrc 文件自动执行切换 Node 版本">
     
     
       <meta 
         property="og:url" 
-        content="http://mariaovo.icu/2022/08/28/fe-error/index.html">
+        content="http://mariaovo.icu/2023/04/26/nvmrc/index.html">
     
     
       <meta 
@@ -38,7 +38,7 @@
     
       <meta 
         property="og:img" 
-        content="浅聊一下前端异常">
+        content="终端根据 .nvmrc 文件自动执行切换 Node 版本">
     
     
       <meta 
@@ -46,22 +46,14 @@
         content="article">
       <meta 
         property="og:article:published_time" 
-        content="2022-08-28">
+        content="2023-04-26">
       <meta 
         property="og:article:modified_time" 
-        content="2022-10-27">
+        content="2023-04-28">
       <meta 
         property="og:article:author" 
         content="Maria">
       
-        
-          <meta 
-            property="og:article:tag" 
-            content="Web">
-        
-          <meta 
-            property="og:article:tag" 
-            content="FrontEnd">
         
       
     
@@ -309,16 +301,16 @@
 <article class="card card-content">
   <header>
     <h1 class="post-title">
-      前端异常
+      终端根据 .nvmrc 文件自动执行切换 Node 版本
     </h1>
   </header>
   <div class="post-meta post-show-meta">
-    <time datetime="2022-08-27T16:00:00.000Z">
+    <time datetime="2023-04-25T16:00:00.000Z">
       <i 
         class="iconfont icon-calendar" 
         style="margin-right: 2px;">
       </i>
-      <span>2022-08-28</span>
+      <span>2023-04-26</span>
     </time>
     
       <span class="dot"></span>
@@ -332,110 +324,15 @@
     
     
       <span class="dot"></span>
-      <span>1.2k 字</span>
+      <span>0 字</span>
     
   </div>
-  
-    <div 
-      class="post-meta post-show-meta" 
-      style="margin-top: -10px;">
-      <div style="display: flex; align-items: center;">
-        <i 
-          class="iconfont icon-biaoqian" 
-          style="margin-right: 2px; font-size: 1.15rem;">
-        </i>
-        
-          
-          <a 
-            href="/tags/Web/" 
-            class="post-meta-link">
-            Web
-          </a>
-        
-          
-            <span class="dot"></span>
-          
-          <a 
-            href="/tags/FrontEnd/" 
-            class="post-meta-link">
-            FrontEnd
-          </a>
-        
-      </div>
-    </div>
   
   </header>
   <div 
     id="section" 
     class="post-content">
-    <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>随着前端监控体系的日益完善，前端工程师们也对异常更加地关注，大家也更重视异常捕获与消息上报，但是产生的原因以及处理办法所谈甚少，那么前端异常到底有哪些呢？</p>
-<h3 id="什么是异常"><a href="#什么是异常" class="headerlink" title="什么是异常"></a>什么是异常</h3><p>异常：<code>Exception</code>，即预料之外的事情，在程序执行的时候会打断程序正常运行。</p>
-<h3 id="有哪些"><a href="#有哪些" class="headerlink" title="有哪些"></a>有哪些</h3><p><code>ECMA-262</code> 白皮书 13 版中描述了 8 种异常：</p>
-<ul>
-<li>SyntaxError：语法异常</li>
-<li>ReferenceError：引用异常</li>
-<li>RangeError：范围异常</li>
-<li>Error：异常基类</li>
-<li>InternalError：内部异常</li>
-<li>TypeError: 类型异常</li>
-<li>EvalError: Eval 方法异常</li>
-<li>URIError: URI 相关方法产生的异常</li>
-</ul>
-<h4 id="SyntaxError"><a href="#SyntaxError" class="headerlink" title="SyntaxError"></a>SyntaxError</h4><p>在引擎执行代码之前，编译器需要对 js 进行编译，编辑阶段包括：词法分析，语法分析。<br>编译阶段发生的异常都是 SyntaxError，但 SyntaxError 不完全都发生于编译阶段；</p>
-<p>常见的 SyntaxError：</p>
-<ul>
-<li>SyntaxError: Invalid or unexpected token</li>
-<li>SyntaxError:Unexpected token u in JSON at position 0</li>
-<li>SyntaxError:Unexpected token ‘&lt;’</li>
-<li>SyntaxError:Unexpected identifier</li>
-</ul>
-<h4 id="ReferenceError"><a href="#ReferenceError" class="headerlink" title="ReferenceError"></a>ReferenceError</h4><p>引用异常，比较常见，类似于 Java 语言中最著名的空指针异常 (Null Pointer Exception，NPE).</p>
-<p>常见的有：</p>
-<ul>
-<li><code>ReferenceError:$ is not defined</code></li>
-<li><code>ReferenceError:Can&#39;t find variable: $</code></li>
-</ul>
-<h4 id="TypeError"><a href="#TypeError" class="headerlink" title="TypeError"></a>TypeError</h4><p>TypeError 在对值进行不合理操作时会发生，比如试图对一个非函数类型的值进行函数调用，或者引用 null 或 undefined 类型的值中的属性，那么引擎会抛出这种类型的异常。</p>
-<p>常见的有：</p>
-<ul>
-<li><code>TypeError:Cannot read property &#39;length&#39; of undefined</code></li>
-</ul>
-<h4 id="RangeError"><a href="#RangeError" class="headerlink" title="RangeError"></a>RangeError</h4><p>范围错误，比如:</p>
-<ul>
-<li>new Array(-20) 会导致 <code>RangeError: Invalid array length</code></li>
-<li>递归等消耗内存的程序会导致 <code>RangeError: Maximum call stack size exceeded</code></li>
-</ul>
-<h4 id="Error-与自定义异常"><a href="#Error-与自定义异常" class="headerlink" title="Error 与自定义异常"></a>Error 与自定义异常</h4><p>Error 是所有错误的基类，其他错误类型继承该类型。所有错误类型都共享相同的属性。</p>
-<ul>
-<li><code>Error.prototype.message</code> 错误消息。对于用户创建的 Error 对象，这是构造函数的第一个参数提供的字符串</li>
-<li><code>Error.prototype.name</code> 错误名称。这是由构造函数决定的</li>
-<li><code>Error.prototype.stack</code> 错误堆栈</li>
-</ul>
-<h4 id="Error-Script-Error"><a href="#Error-Script-Error" class="headerlink" title="Error: Script Error"></a>Error: Script Error</h4><p>它是 Error 类型中最常见的一种；由于没有具体异常堆栈和代码行列号，成为可最神秘的异常之一。<br>由于浏览器基于安全考虑效避免敏感信息无意中被第三方 (不受控制的) 脚本捕获到，浏览器只允许同域下的脚本捕获具体的错误信息。<br>但大部分的 JS 文件都存放在 CDN 上面，跟页面的域名不一致。做异常监控只能捕获 Error: Script Error. 无法捕获堆栈和准确的信息。</p>
-<h4 id="其他异常"><a href="#其他异常" class="headerlink" title="其他异常"></a>其他异常</h4><h5 id="InternalError"><a href="#InternalError" class="headerlink" title="InternalError"></a>InternalError</h5><p>这种异常极为少见，在 JS 引擎内部发生，示例场景通常为某些成分过大，例如：</p>
-<ul>
-<li><code>too many switch cases</code>（过多 case 子句）</li>
-<li><code>too many parentheses in regular expression</code>（正则表达式中括号过多）</li>
-<li><code>array initializer too large</code>（数组初始化器过大）</li>
-</ul>
-<h5 id="EvalError"><a href="#EvalError" class="headerlink" title="EvalError"></a>EvalError</h5><p>在 eval() 方法执行过程中抛出 EvalError 异常</p>
-<h5 id="URIError"><a href="#URIError" class="headerlink" title="URIError"></a>URIError</h5><p>用来表示以一种错误的方式使用全局 URI 处理函数而产生的错误.<br><code>decodeURI, decodeURIComponent, encodeURI, encodeURIComponent</code> 这四个方法会产生这种异常；<br>比如执行 <code>decodeURI(&#39;%%&#39;)</code> 的异常：<code>Uncaught URIError: URI malformed</code>.</p>
-<h3 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h3><h4 id="finally"><a href="#finally" class="headerlink" title="finally"></a>finally</h4><p>finally 在 try-catch 语句中是可选的，finally 子句一经使用，其代码无论如何都会执行。</p>
-<h4 id="throw"><a href="#throw" class="headerlink" title="throw"></a>throw</h4><p><code>throw new Error(&#39;Boom&#39;);</code><br>什么时候应该手动抛出异常呢？<br>一个指导原则就是可预测程序在某种情况下不能正确进行下去，需要告诉调用者异常的详细信息，而不仅仅是异常内容本身。</p>
-<h4 id="assert"><a href="#assert" class="headerlink" title="assert"></a>assert</h4><p>断言，如果表达式不符合预期，就抛出一个错误。<br>assert 方法接受两个参数，当第一个参数对应的布尔值为 true 时，不会有任何提示，返回 undefined。当第一个参数对应的布尔值为 false 时，会抛出一个错误，该错误的提示信息就是第二个参数设定的字符串。</p>
-<h4 id="异步中的异常"><a href="#异步中的异常" class="headerlink" title="异步中的异常"></a>异步中的异常</h4><p>非同步的代码，在事件循环中执行的，就无法通过 try catch 到。<br>主要注意的是，Promise 的 catch 方法用于处理 rejected 状态，而非处理异常。Rejected 状态未处理的话会触发 Uncaught Rejection. 后者可以通过如下方式进行统一的监听。</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">window<span class="token punctuation">.</span><span class="token function-variable function">onunhandledrejection</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
-  console<span class="token punctuation">.</span><span class="token function">warn</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">REJECTION: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>event<span class="token punctuation">.</span>reason<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<p>tips: await 这种 Promise 的同步写法，通常会被开发者忽略 rejected 的处理，可以用 try catch 来捕获。</p>
-<h4 id="异常监控"><a href="#异常监控" class="headerlink" title="异常监控"></a>异常监控</h4><p>服务端通常会通过服务器的日志进行异常监控，比如观察单台服务器的日志输出，或 kibana 可视化查询。<br>前端异常监控与之最大的不同，就是需要把客户端发生的异常数据通过网络再收集起来。</p>
-<p>参考：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.ecma-international.org/publications-and-standards/standards/ecma-262/">ecma-262</a></li>
-<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MjM5MTA1MjAxMQ==&mid=2651257490&idx=1&sn=de016f7d1474321d0258af4337319528">前端早读课</a></li>
-</ul>
-
+    
   </div>
   <div>
     
@@ -454,8 +351,8 @@
           <span style="font-weight: bold;">文章链接：</span><a 
             target="_blank" 
             rel="nofollow noopener noreferrer" 
-            href="http://mariaovo.icu/2022/08/28/fe-error/">
-            http://mariaovo.icu/2022/08/28/fe-error/
+            href="http://mariaovo.icu/2023/04/26/nvmrc/">
+            http://mariaovo.icu/2023/04/26/nvmrc/
           </a>
         </p>
         <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
@@ -465,29 +362,15 @@
 </article>
 <div class="nav">
   
-    <div class="nav-item-prev">
-      <a 
-        href="/2022/09/01/img-color/" 
-        class="nav-link">
-        <i class="iconfont icon-left nav-prev-icon"></i>
-        <div>
-          <div class="nav-label">上一篇</div>
-          
-            <div class="nav-title">计算图片的平均色值(主色调)与补色 </div>
-          
-        </div>
-      </a>
-    </div>
-  
   
     <div class="nav-item-next">
       <a 
-        href="/2022/08/08/fvue/" 
+        href="/2023/03/19/tsconfig.json%E9%85%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/" 
         class="nav-link">
         <div>
           <div class="nav-label">下一篇</div>
           
-            <div class="nav-title">写一个自己适用的 Vue 脚手架工具 </div>
+            <div class="nav-title">tsconfig.json 配置详解 </div>
           
         </div>
         <i class="iconfont icon-right nav-next-icon"></i>
@@ -541,7 +424,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%BC%82%E5%B8%B8"><span class="toc-text">什么是异常</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E5%93%AA%E4%BA%9B"><span class="toc-text">有哪些</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SyntaxError"><span class="toc-text">SyntaxError</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ReferenceError"><span class="toc-text">ReferenceError</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TypeError"><span class="toc-text">TypeError</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RangeError"><span class="toc-text">RangeError</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Error-%E4%B8%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8"><span class="toc-text">Error 与自定义异常</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Error-Script-Error"><span class="toc-text">Error: Script Error</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%BC%82%E5%B8%B8"><span class="toc-text">其他异常</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#InternalError"><span class="toc-text">InternalError</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#EvalError"><span class="toc-text">EvalError</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#URIError"><span class="toc-text">URIError</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="toc-text">异常处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#finally"><span class="toc-text">finally</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#throw"><span class="toc-text">throw</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#assert"><span class="toc-text">assert</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5%E4%B8%AD%E7%9A%84%E5%BC%82%E5%B8%B8"><span class="toc-text">异步中的异常</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E7%9B%91%E6%8E%A7"><span class="toc-text">异常监控</span></a></li></ol></li></ol>
+
 </div></main>
             <aside class="left-column">
               
@@ -599,7 +482,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%BC%82%E5%B8%B8"><span class="toc-text">什么是异常</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E5%93%AA%E4%BA%9B"><span class="toc-text">有哪些</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SyntaxError"><span class="toc-text">SyntaxError</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ReferenceError"><span class="toc-text">ReferenceError</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TypeError"><span class="toc-text">TypeError</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RangeError"><span class="toc-text">RangeError</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Error-%E4%B8%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8"><span class="toc-text">Error 与自定义异常</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Error-Script-Error"><span class="toc-text">Error: Script Error</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%BC%82%E5%B8%B8"><span class="toc-text">其他异常</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#InternalError"><span class="toc-text">InternalError</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#EvalError"><span class="toc-text">EvalError</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#URIError"><span class="toc-text">URIError</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="toc-text">异常处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#finally"><span class="toc-text">finally</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#throw"><span class="toc-text">throw</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#assert"><span class="toc-text">assert</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5%E4%B8%AD%E7%9A%84%E5%BC%82%E5%B8%B8"><span class="toc-text">异步中的异常</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E7%9B%91%E6%8E%A7"><span class="toc-text">异常监控</span></a></li></ol></li></ol>
+
       </div>
     </article>
   
@@ -777,7 +660,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%BC%82%E5%B8%B8"><span class="toc-text">什么是异常</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E5%93%AA%E4%BA%9B"><span class="toc-text">有哪些</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SyntaxError"><span class="toc-text">SyntaxError</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ReferenceError"><span class="toc-text">ReferenceError</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TypeError"><span class="toc-text">TypeError</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RangeError"><span class="toc-text">RangeError</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Error-%E4%B8%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8"><span class="toc-text">Error 与自定义异常</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Error-Script-Error"><span class="toc-text">Error: Script Error</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%BC%82%E5%B8%B8"><span class="toc-text">其他异常</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#InternalError"><span class="toc-text">InternalError</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#EvalError"><span class="toc-text">EvalError</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#URIError"><span class="toc-text">URIError</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="toc-text">异常处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#finally"><span class="toc-text">finally</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#throw"><span class="toc-text">throw</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#assert"><span class="toc-text">assert</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5%E4%B8%AD%E7%9A%84%E5%BC%82%E5%B8%B8"><span class="toc-text">异步中的异常</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E7%9B%91%E6%8E%A7"><span class="toc-text">异常监控</span></a></li></ol></li></ol>
+
     </article>
   
   
