@@ -324,7 +324,7 @@
     
     
       <span class="dot"></span>
-      <span>0 字</span>
+      <span>410 字</span>
     
   </div>
   
@@ -332,7 +332,48 @@
   <div 
     id="section" 
     class="post-content">
-    
+    <h3 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h3><p>需要了解一些关于 nvm 的基本知识。</p>
+<h3 id="nvmrc-如何使用"><a href="#nvmrc-如何使用" class="headerlink" title="nvmrc 如何使用"></a>nvmrc 如何使用</h3><p>创建一个 <code>.nvmrc</code> 文件，文件内容是一个 Node 版本的数字或者其它 nvm 可以理解的文本内容（例如：<code>v14.21.3</code>, 可以在终端输入 <code>nvm --help</code> 查看更多使用方法）。有了 <code>.nvmrc</code> 文件后，我们在终端没有指定 Node 版本时执行 <code>nvm use, nvm install, nvm exec, nvm run, 和 nvm which</code> 命令时会使用 <code>.nvmrc</code> 文件指定的 Node 版本。</p>
+<p><code>nvm use</code> 等命令将从当前目录向上遍历目录结构寻找文件 <code>.nvmrc</code>。也就是说，在带有 <code>.nvmrc</code> 的目录的任何子目录中运行<code>nvm use</code> 等命令，<code>.nvmrc</code> 都会起作用。</p>
+<h3 id="集成到-shell"><a href="#集成到-shell" class="headerlink" title="集成到 shell"></a>集成到 shell</h3><p>以 <code>zsh</code> 为例，编辑 <code>.zshrc</code> 文件，添加以下代码：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">
+autoload -U add-zsh-hook
+<span class="token function-name function">load-nvmrc</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token builtin class-name">local</span> <span class="token assign-left variable">nvmrc_path</span><span class="token operator">=</span><span class="token string">"<span class="token variable"><span class="token variable">$(</span>nvm_find_nvmrc<span class="token variable">)</span></span>"</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">[</span> -n <span class="token string">"<span class="token variable">$nvmrc_path</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token builtin class-name">local</span> <span class="token assign-left variable">nvmrc_node_version</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span>nvm version <span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token function">cat</span> <span class="token string">"<span class="token variable">$&#123;nvmrc_path&#125;</span>"</span><span class="token variable">)</span></span>"</span><span class="token variable">)</span></span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$nvmrc_node_version</span>"</span> <span class="token operator">=</span> <span class="token string">"N/A"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+      nvm <span class="token function">install</span>
+    <span class="token keyword">elif</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$nvmrc_node_version</span>"</span> <span class="token operator">!=</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span>nvm version<span class="token variable">)</span></span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+      nvm use
+    <span class="token keyword">fi</span>
+  <span class="token keyword">elif</span> <span class="token punctuation">[</span> -n <span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token assign-left variable"><span class="token environment constant">PWD</span></span><span class="token operator">=</span><span class="token environment constant">$OLDPWD</span> nvm_find_nvmrc<span class="token variable">)</span></span>"</span> <span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span>nvm version<span class="token variable">)</span></span>"</span> <span class="token operator">!=</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span>nvm version default<span class="token variable">)</span></span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"Reverting to nvm default version"</span>
+    nvm use default
+  <span class="token keyword">fi</span>
+<span class="token punctuation">&#125;</span>
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>编辑保存之后，执行 <code>source ~/.zshrc</code> 使内容生效。<br>此时，在有 <code>.nvmrc</code> 文件项目打开终端，会发现已经自动运行 <code>nvm use</code>：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ j <span class="token builtin class-name">test</span>
+/Users/Maria/Desktop/test/
+Found <span class="token string">'/Users/Maria/Desktop/test/.nvmrc'</span> with version <span class="token operator">&lt;</span>v14.21.<span class="token operator"><span class="token file-descriptor important">3</span>></span>
+Now using node v14.21.3 <span class="token punctuation">(</span>npm v6.14.18<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>如果没有找到 <code>.nvmrc</code>，会切换到 system default 的 Node 版本：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ j desk
+/Users/Maria/Desktop
+Reverting to nvm default version
+Now using node v20.0.0 <span class="token punctuation">(</span>npm v9.6.4<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ul>
+<li><code>.nvmrc</code> 文件必须是一个 <code>&lt;version&gt;</code> 符合 <code>nvm --help</code> 所列出的，版本号后跟换行符，不允许尾随空格</li>
+</ul>
+
   </div>
   <div>
     
@@ -424,7 +465,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="toc-text">前置知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nvmrc-%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8"><span class="toc-text">nvmrc 如何使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%86%E6%88%90%E5%88%B0-shell"><span class="toc-text">集成到 shell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F"><span class="toc-text">注意</span></a></li></ol>
 </div></main>
             <aside class="left-column">
               
@@ -482,7 +523,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="toc-text">前置知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nvmrc-%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8"><span class="toc-text">nvmrc 如何使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%86%E6%88%90%E5%88%B0-shell"><span class="toc-text">集成到 shell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F"><span class="toc-text">注意</span></a></li></ol>
       </div>
     </article>
   
@@ -660,7 +701,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-
+<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="toc-text">前置知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nvmrc-%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8"><span class="toc-text">nvmrc 如何使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%86%E6%88%90%E5%88%B0-shell"><span class="toc-text">集成到 shell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F"><span class="toc-text">注意</span></a></li></ol>
     </article>
   
   
